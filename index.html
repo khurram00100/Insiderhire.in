@@ -229,23 +229,53 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
   </div>
 </div>
 
-<!-- FRESHER SIGNUP FEE MODAL -->
+<!-- ACCESS FEE MODAL — $10 every 60 days, 5 requests/week -->
 <div class="modal-overlay" id="fresher-fee-modal">
-  <div class="modal" style="max-width:400px">
-    <h2 class="modal-title" style="font-size:22px">One-time Access Fee</h2>
-    <p class="modal-sub">Pay ₹ equivalent of $10 to activate your InsiderHire account and access verified referrers near you.</p>
-    <div style="background:var(--elevated);border:1px solid var(--border-md);border-radius:var(--r-xl);padding:18px;margin-bottom:20px">
-      <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:13px"><span style="color:var(--text-2)">Platform access</span><span>$10.00</span></div>
-      <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:13px"><span style="color:var(--text-2)">Currency</span><span>INR equivalent</span></div>
-      <div style="height:1px;background:var(--border);margin:10px 0"></div>
-      <div style="display:flex;justify-content:space-between;font-size:15px;font-weight:600"><span>Total</span><span>~₹840</span></div>
+  <div class="modal" style="max-width:420px">
+    <h2 class="modal-title" style="font-size:22px">Activate Account — $10</h2>
+    <p class="modal-sub" id="fee-modal-sub">Pay ≈$10 to activate your InsiderHire account for 60 days. Send up to 5 referral requests per week.</p>
+
+    <!-- What you get -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px">
+      <div style="padding:12px;background:var(--elevated);border:1px solid var(--border);border-radius:var(--r-lg);text-align:center">
+        <div style="font-size:20px;margin-bottom:4px">📅</div>
+        <div style="font-size:12px;font-weight:600;color:var(--text-1)">60 days</div>
+        <div style="font-size:11px;color:var(--text-3)">access period</div>
+      </div>
+      <div style="padding:12px;background:var(--elevated);border:1px solid var(--border);border-radius:var(--r-lg);text-align:center">
+        <div style="font-size:20px;margin-bottom:4px">📨</div>
+        <div style="font-size:12px;font-weight:600;color:var(--text-1)">5 requests</div>
+        <div style="font-size:11px;color:var(--text-3)">per week, free</div>
+      </div>
     </div>
+
+    <!-- Amount breakdown -->
+    <div style="background:var(--elevated);border:1px solid var(--border-md);border-radius:var(--r-xl);padding:18px;margin-bottom:16px">
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:13px">
+        <span style="color:var(--text-2)">Access fee (≈$10 USD)</span>
+        <span id="fee-total-display">$10.00</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:13px">
+        <span style="color:var(--text-2)">Currency</span>
+        <span id="fee-currency-display">USD</span>
+      </div>
+      <div style="height:1px;background:var(--border);margin:10px 0"></div>
+      <div style="display:flex;justify-content:space-between;font-size:15px;font-weight:600">
+        <span>Total</span><span id="fee-total-final">$10.00</span>
+      </div>
+    </div>
+
+    <div style="background:var(--elevated);border:1px solid var(--border);border-radius:var(--r-lg);padding:11px 14px;margin-bottom:16px;font-size:12px;color:var(--text-2);line-height:1.7">
+      🔄 Renews every 60 days — you'll be reminded 7 days before expiry.<br>
+      💬 After a referrer <strong>accepts</strong> your request, pay the $500 escrow in their currency to unlock full contact details &amp; chat.
+    </div>
+
     <div id="fee-pay-error" style="font-size:12px;color:#f87171;margin-bottom:10px;min-height:16px;text-align:center"></div>
     <button class="rzp-pay-btn" id="fee-pay-btn" onclick="paySignupFee()">
       <img src="https://razorpay.com/favicon.ico" width="18" height="18" onerror="this.style.display='none'">
-      Pay ₹ Equivalent of $10 via Razorpay
+      Pay & Activate 60-Day Access
     </button>
-    <div class="rzp-note">🔒 Secured by Razorpay · Non-refundable · PCI-DSS Compliant</div>
+    <div class="rzp-note">🔒 Secured by Razorpay · PCI-DSS Compliant · Non-refundable</div>
   </div>
 </div>
 
@@ -267,28 +297,39 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
   </div>
 </div>
 
-<!-- ESCROW MODAL -->
+<!-- ESCROW MODAL — amounts updated dynamically by openEscrowFor() -->
 <div class="modal-overlay" id="escrow-modal">
   <div class="modal" style="max-width:460px">
     <div class="modal-x" onclick="closeModal('escrow-modal')">✕</div>
     <div style="text-align:center;margin-bottom:28px">
       <div style="font-size:40px;margin-bottom:12px">🔐</div>
-      <h2 class="modal-title">Deposit to Escrow</h2>
-      <p class="modal-sub">Your $500 is held securely until job confirmation</p>
+      <h2 class="modal-title">Deposit Referral Escrow</h2>
+      <p class="modal-sub" id="escrow-modal-sub">Funds held securely until your job is confirmed</p>
     </div>
-    <div style="background:var(--elevated);border:1px solid var(--border-md);border-radius:var(--r-xl);padding:20px;margin-bottom:24px">
-      <div style="display:flex;justify-content:space-between;margin-bottom:12px;font-size:13px"><span style="color:var(--text-2)">Referral escrow</span><span>$500.00</span></div>
-      <div style="display:flex;justify-content:space-between;margin-bottom:12px;font-size:13px"><span style="color:var(--text-2)">Processing fee</span><span>$10.00</span></div>
+    <div style="background:var(--elevated);border:1px solid var(--border-md);border-radius:var(--r-xl);padding:20px;margin-bottom:16px">
+      <div style="display:flex;justify-content:space-between;margin-bottom:12px;font-size:13px">
+        <span style="color:var(--text-2)">Referral escrow (≈$500 USD)</span>
+        <span id="escrow-amount-display">$500.00</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:12px;font-size:13px">
+        <span style="color:var(--text-2)">Currency</span>
+        <span id="escrow-currency-display">USD</span>
+      </div>
       <div style="height:1px;background:var(--border);margin:12px 0"></div>
-      <div style="display:flex;justify-content:space-between;font-size:15px;font-weight:600"><span>Total</span><span>$510.00</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:15px;font-weight:600">
+        <span>Total</span><span id="escrow-total-display">$500.00</span>
+      </div>
     </div>
-    <div style="background:var(--elevated);border:1px solid var(--border-md);border-radius:var(--r-xl);padding:14px;margin-bottom:16px;font-size:12px;color:var(--text-2)">
-      🔒 Funds locked until job confirmed. Referrer's full name, phone, email and workplace revealed instantly after payment. 14-day auto-refund if no referral submitted.
+    <div style="background:var(--elevated);border:1px solid var(--border);border-radius:var(--r-lg);padding:12px 14px;margin-bottom:16px;font-size:12px;color:var(--text-2);line-height:1.7">
+      🔓 After payment: Referrer's full name, phone, email &amp; workplace revealed instantly.<br>
+      💬 Chat unlocks immediately.<br>
+      📅 14-day auto-refund if referral not submitted.<br>
+      💰 On success: referrer receives $400 USD equivalent, platform keeps $100.
     </div>
     <div id="escrow-pay-error" style="font-size:12px;color:#f87171;margin-bottom:10px;min-height:16px;text-align:center"></div>
     <button class="rzp-pay-btn" id="pay-btn" onclick="confirmEscrow()">
       <img src="https://razorpay.com/favicon.ico" width="18" height="18" onerror="this.style.display='none'">
-      Deposit ₹ Equivalent of $510 via Razorpay
+      <span id="escrow-pay-btn-text">Deposit $500.00 via Razorpay</span>
     </button>
     <div class="rzp-note">🔒 Secured by Razorpay · PCI-DSS Compliant · Held in Escrow</div>
   </div>
@@ -516,13 +557,14 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
     <p class="section-sub reveal delay-2" style="margin:0 auto">Pay only when you succeed. Zero hidden fees.</p>
     <div class="pricing-grid">
       <div class="price-card reveal">
-        <div class="price-name">Platform Access</div><div class="price-amount">$10</div><div class="price-period">one-time · non-refundable</div>
+        <div class="price-name">Access Fee</div><div class="price-amount">$10</div><div class="price-period">per 60 days · non-refundable · 5 requests/week</div>
         <div class="price-features">
           <div class="price-feature"><span class="price-feature-check">✓</span> Browse all 8,500+ insiders</div>
-          <div class="price-feature"><span class="price-feature-check">✓</span> Create complete profile</div>
+          <div class="price-feature"><span class="price-feature-check">✓</span> Send up to 5 requests/week</div>
           <div class="price-feature"><span class="price-feature-check">✓</span> View ratings &amp; reviews</div>
-          <div class="price-feature disabled"><span class="price-feature-x">✗</span> Direct chat</div>
-          <div class="price-feature disabled"><span class="price-feature-x">✗</span> Referrer contact details</div>
+          <div class="price-feature"><span class="price-feature-check">✓</span> Valid for 60 days</div>
+          <div class="price-feature disabled"><span class="price-feature-x">✗</span> Chat (unlocks after escrow)</div>
+          <div class="price-feature disabled"><span class="price-feature-x">✗</span> Contact details (escrow only)</div>
         </div>
         <button class="btn btn-outline" style="width:100%;padding:12px" onclick="openModal('signup-modal')">Get access</button>
       </div>
@@ -541,7 +583,7 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
       </div>
     </div>
     <div style="margin-top:20px;padding:16px 24px;border-radius:var(--r-xl);border:1px solid var(--border);background:var(--surface);font-size:13px;color:var(--text-2);display:inline-flex;align-items:center;gap:8px" class="reveal delay-3">
-      ℹ️ Platform earns $100 commission from the referrer's $500 only. Job seekers pay only the $500 escrow (refunded minus $15 if unsuccessful).
+      ℹ️ $10 access fee charged in your local currency (GBP/USD/AUD/EUR) · renewed every 60 days · 5 requests per week included. Platform earns $100 commission from referrer's $500 escrow on success. $485 refunded if no referral in 14 days.
     </div>
   </div>
 </section>
@@ -553,8 +595,14 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
     <h2 class="section-title reveal" style="font-size:clamp(48px,7vw,80px)">Your next<br>chapter<br><em>starts here</em></h2>
     <p class="section-sub reveal delay-2" style="margin:0 auto 40px">Join 50,000+ international students. Refer. Connect. Get hired.</p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap" class="reveal delay-3">
-      <button class="btn btn-white btn-xl" onclick="openModal('signup-modal')">Create free account →</button>
+      <button class="btn btn-white btn-xl" onclick="openModal('signup-modal')">Create account →</button>
       <button class="btn btn-outline btn-xl" onclick="openModal('login-modal')">Sign in</button>
+    </div>
+    <div style="margin-top:24px;display:flex;gap:24px;justify-content:center;flex-wrap:wrap;font-size:12px;color:var(--text-3)" class="reveal delay-4">
+      <span>🔓 Free to sign up</span>
+      <span>💳 $10 activation · valid 60 days</span>
+      <span>📨 5 requests per week</span>
+      <span>🔐 $500 escrow per referral</span>
     </div>
   </div>
 </section>
@@ -643,6 +691,23 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
             <div class="completion-pct" id="completion-pct">0%</div>
           </div>
           <div class="progress-bar-wrap"><div class="progress-bar-fill" id="completion-bar" style="width:0%"></div></div>
+        </div>
+        <!-- Access status bar -->
+        <div id="access-status-bar" style="display:none;padding:12px 16px;border-radius:var(--r-xl);border:1px solid var(--border-md);background:var(--surface);margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div id="access-status-icon" style="font-size:20px">📅</div>
+            <div>
+              <div style="font-size:13px;font-weight:600" id="access-status-title">Access active</div>
+              <div style="font-size:11px;color:var(--text-3)" id="access-status-sub">Loading...</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div style="text-align:right">
+              <div style="font-size:11px;color:var(--text-3)">This week</div>
+              <div style="font-size:13px;font-weight:600" id="access-req-count">0 / 5 requests</div>
+            </div>
+            <button id="access-renew-btn" class="btn btn-outline btn-sm" style="display:none" onclick="openFeeModal()">Renew →</button>
+          </div>
         </div>
         <div class="stats-row">
           <div class="stat-card"><div class="stat-label">Active requests</div><div class="stat-val" id="stat-requests">—</div><div class="stat-change stat-neutral">Loading...</div></div>
@@ -1782,8 +1847,88 @@ const REFERRER_PAYOUT   = 400;
 const REFUND_PROC_FEE   = 15;
 const ESCROW_AUTO_DAYS  = 14;
 
-// INR conversion rate fallback (overridden by edge fn response)
-const INR_RATE = 84;
+// ── CURRENCY SYSTEM ──────────────────────────────────────────────────────────
+// Maps country keywords → { currency code, Razorpay currency, symbol, rate vs USD }
+// Rates are fallbacks; live rates fetched from get-exchange-rate edge fn at payment time.
+const CURRENCY_MAP = {
+  // UK
+  uk: { code:'GBP', rzp:'GBP', symbol:'£', rate:0.79, name:'British Pound' },
+  'united kingdom': { code:'GBP', rzp:'GBP', symbol:'£', rate:0.79, name:'British Pound' },
+  england: { code:'GBP', rzp:'GBP', symbol:'£', rate:0.79, name:'British Pound' },
+  london: { code:'GBP', rzp:'GBP', symbol:'£', rate:0.79, name:'British Pound' },
+  manchester: { code:'GBP', rzp:'GBP', symbol:'£', rate:0.79, name:'British Pound' },
+  birmingham: { code:'GBP', rzp:'GBP', symbol:'£', rate:0.79, name:'British Pound' },
+  // USA
+  usa: { code:'USD', rzp:'USD', symbol:'$', rate:1.00, name:'US Dollar' },
+  'united states': { code:'USD', rzp:'USD', symbol:'$', rate:1.00, name:'US Dollar' },
+  us: { code:'USD', rzp:'USD', symbol:'$', rate:1.00, name:'US Dollar' },
+  new_york: { code:'USD', rzp:'USD', symbol:'$', rate:1.00, name:'US Dollar' },
+  seattle: { code:'USD', rzp:'USD', symbol:'$', rate:1.00, name:'US Dollar' },
+  // Australia
+  australia: { code:'AUD', rzp:'AUD', symbol:'A$', rate:1.53, name:'Australian Dollar' },
+  au: { code:'AUD', rzp:'AUD', symbol:'A$', rate:1.53, name:'Australian Dollar' },
+  sydney: { code:'AUD', rzp:'AUD', symbol:'A$', rate:1.53, name:'Australian Dollar' },
+  melbourne: { code:'AUD', rzp:'AUD', symbol:'A$', rate:1.53, name:'Australian Dollar' },
+  // Germany / EU
+  germany: { code:'EUR', rzp:'EUR', symbol:'€', rate:0.92, name:'Euro' },
+  de: { code:'EUR', rzp:'EUR', symbol:'€', rate:0.92, name:'Euro' },
+  munich: { code:'EUR', rzp:'EUR', symbol:'€', rate:0.92, name:'Euro' },
+  berlin: { code:'EUR', rzp:'EUR', symbol:'€', rate:0.92, name:'Euro' },
+  europe: { code:'EUR', rzp:'EUR', symbol:'€', rate:0.92, name:'Euro' },
+  // Canada
+  canada: { code:'CAD', rzp:'CAD', symbol:'C$', rate:1.36, name:'Canadian Dollar' },
+  toronto: { code:'CAD', rzp:'CAD', symbol:'C$', rate:1.36, name:'Canadian Dollar' },
+  // India
+  india: { code:'INR', rzp:'INR', symbol:'₹', rate:84, name:'Indian Rupee' },
+  // Default fallback
+  default: { code:'USD', rzp:'USD', symbol:'$', rate:1.00, name:'US Dollar' },
+};
+
+// Detect currency from a location string (referrer.location or user profile location)
+function detectCurrency(locationStr) {
+  if (!locationStr) return CURRENCY_MAP.default;
+  const l = locationStr.toLowerCase();
+  for (const [key, cfg] of Object.entries(CURRENCY_MAP)) {
+    if (key === 'default') continue;
+    if (l.includes(key)) return cfg;
+  }
+  // Check country codes in flag emojis (🇬🇧 🇺🇸 🇦🇺 🇩🇪)
+  if (l.includes('🇬🇧') || locationStr.includes('\uD83C\uDDEC\uD83C\uDDE7')) return CURRENCY_MAP.uk;
+  if (l.includes('🇺🇸') || locationStr.includes('\uD83C\uDDFA\uD83C\uDDF8')) return CURRENCY_MAP.usa;
+  if (l.includes('🇦🇺') || locationStr.includes('\uD83C\uDDE6\uD83C\uDDFA')) return CURRENCY_MAP.australia;
+  if (l.includes('🇩🇪') || locationStr.includes('\uD83C\uDDE9\uD83C\uDDEA')) return CURRENCY_MAP.germany;
+  return CURRENCY_MAP.default;
+}
+
+// Convert USD amount to local currency, returns { amount, amountSmallest, symbol, code, display }
+async function convertUSD(usdAmount, locationStr) {
+  const curr = detectCurrency(locationStr);
+  let rate = curr.rate;
+  // Try live rate from edge fn
+  if (SB) {
+    try {
+      const { data } = await SB.functions.invoke('get-exchange-rate', {
+        body: { from:'USD', to: curr.code, amount: usdAmount }
+      });
+      if (data?.rate)      rate = data.rate;
+      else if (data?.converted) rate = data.converted / usdAmount;
+    } catch(e) { /* use fallback rate */ }
+  }
+  const converted = Math.round(usdAmount * rate * 100) / 100;
+  // Razorpay smallest unit: paise for INR, cents for others
+  const smallest = curr.code === 'INR'
+    ? Math.round(converted * 100)
+    : Math.round(converted * 100);
+  return {
+    amount:        converted,
+    amountSmallest: smallest,
+    symbol:        curr.symbol,
+    code:          curr.code,
+    rzpCurrency:   curr.rzp,
+    display:       `${curr.symbol}${converted.toFixed(2)} ${curr.code}`,
+    name:          curr.name,
+  };
+}
 
 // Runtime config populated by loadPublicConfig() at startup
 let RZP_KEY     = '';   // fetched from public-config edge fn
@@ -1924,6 +2069,7 @@ function dashNav(p) {
   if(p==='dash-requests') loadRequests();
   if(p==='dash-txns')     loadTxns();
   if(p==='dash-profile')  loadFullFresherProfile();
+  if(p==='dash-overview') updateAccessStatusWidget();
 }
 
 function refNav(p) {
@@ -1984,8 +2130,16 @@ async function onSession(sess) {
     if (r==='admin')    nav('admin');
     else if (r==='referrer') nav('referrer');
     else {
-      if (profile && !profile.signup_fee_paid) openFeeModal();
-      else nav('fresher');
+      // $10 access fee gate: valid for 60 days from fee_paid_at
+      if (!isFeeValid()) {
+        openFeeModal();  // first time or expired — ask for $10
+      } else {
+        const daysLeft = feeExpiresInDays();
+        if (daysLeft <= 7) {
+          toast(`Access expires in ${daysLeft} day${daysLeft === 1 ? '' : 's'}. Renew soon to keep sending requests.`, 'info');
+        }
+        nav('fresher');
+      }
     }
   }
 }
@@ -2009,6 +2163,49 @@ function fillUI() {
   const da = $('dash-av');
   if(da){ da.textContent=av; da.style.background='linear-gradient(135deg,#1e3a8a,#2563EB)'; da.style.color='var(--blue-light)'; }
   safe('dash-name', name);
+}
+
+// ── ACCESS STATUS WIDGET ─────────────────────────────────────────────────────
+async function updateAccessStatusWidget() {
+  const bar = $('access-status-bar');
+  if (!bar) return;
+  bar.style.display = 'flex';
+
+  const valid    = isFeeValid();
+  const daysLeft = feeExpiresInDays();
+  const iconEl   = $('access-status-icon');
+  const titleEl  = $('access-status-title');
+  const subEl    = $('access-status-sub');
+  const renewBtn = $('access-renew-btn');
+  const reqEl    = $('access-req-count');
+
+  if (!profile?.signup_fee_paid) {
+    if(iconEl)  iconEl.textContent  = '🔒';
+    if(titleEl) titleEl.textContent = 'Access not activated';
+    if(subEl)   subEl.textContent   = 'Pay $10 to send referral requests';
+    bar.style.borderColor = 'rgba(220,38,38,0.3)';
+    bar.style.background  = 'rgba(220,38,38,0.05)';
+    if(renewBtn){ renewBtn.style.display=''; renewBtn.textContent='Activate →'; }
+  } else if (!valid) {
+    if(iconEl)  iconEl.textContent  = '⚠️';
+    if(titleEl) titleEl.textContent = 'Access expired — renew to send requests';
+    if(subEl)   subEl.textContent   = 'Your 60-day access period has ended.';
+    bar.style.borderColor = 'rgba(217,119,6,0.3)';
+    bar.style.background  = 'rgba(217,119,6,0.05)';
+    if(renewBtn){ renewBtn.style.display=''; renewBtn.textContent='Renew $10 →'; }
+  } else {
+    if(iconEl)  iconEl.textContent  = '✅';
+    if(titleEl) titleEl.textContent = 'Access active';
+    const warn = daysLeft <= 7;
+    if(subEl)   subEl.textContent   = `${daysLeft} day${daysLeft===1?'':'s'} remaining${warn?' — expiring soon!':''}`;
+    bar.style.borderColor = warn ? 'rgba(217,119,6,0.3)' : 'rgba(22,163,74,0.25)';
+    bar.style.background  = warn ? 'rgba(217,119,6,0.05)' : 'rgba(22,163,74,0.04)';
+    if(renewBtn) renewBtn.style.display = warn ? '' : 'none';
+  }
+
+  const weekCount = await getWeeklyRequestCount();
+  if(reqEl) reqEl.textContent = `${weekCount} / ${WEEKLY_REQUEST_LIMIT} requests this week`;
+  if(reqEl) reqEl.style.color = weekCount >= WEEKLY_REQUEST_LIMIT ? '#f87171' : 'var(--text-1)';
 }
 
 // ─── LOGIN ────────────────────────────────────────────────────
@@ -2063,8 +2260,13 @@ async function doSignup() {
       } catch(e) { /* trigger may have already inserted */ }
     }
     closeModal('signup-modal');
-    if (_selRole==='fresher') openFeeModal();
-    else toast('Account created! Welcome to InsiderHire 🎉','success');
+    if (_selRole==='fresher') {
+      // onSession() will fire automatically after signUp and call isFeeValid()
+      // which routes to openFeeModal() for the $10 payment before dashboard access.
+      toast('Account created! Complete your $10 activation to start sending requests.','success');
+    } else {
+      toast('Account created! Welcome to InsiderHire 🎉','success');
+    }
   } catch(e) { if(errEl) errEl.textContent=e.message; }
   finally { if(btn){ btn.classList.remove('btn-loading'); btn.textContent='Create account →'; } }
 }
@@ -2092,16 +2294,7 @@ async function doPasswordReset() {
 }
 
 // ─── RAZORPAY ─────────────────────────────────────────────────
-async function getINRAmount(usd) {
-  // Try edge function for live rate; fallback to hardcoded rate
-  if (SB) {
-    try {
-      const { data } = await SB.functions.invoke('get-exchange-rate', { body:{ from:'USD', to:'INR', amount: usd } });
-      if (data?.inr) return Math.round(data.inr * 100); // paise
-    } catch(e) { /* fallback */ }
-  }
-  return Math.round(usd * INR_RATE * 100); // paise
-}
+// getINRAmount() removed — replaced by convertUSD() which handles all currencies
 
 async function createRazorpayOrder(amountPaise, receipt, notes) {
   if (!SB) throw new Error('Supabase not configured');
@@ -2120,7 +2313,7 @@ async function verifyRazorpayPayment(payload) {
   return data;
 }
 
-function openRazorpay({ orderId, amountPaise, description, prefill, onSuccess, onFailure }) {
+function openRazorpay({ orderId, amountSmallest, currency, description, prefill, onSuccess, onFailure }) {
   const key = RZP_KEY;
   if (!key) {
     onFailure(new Error('Razorpay not ready. Config is still loading — please retry in a moment.'));
@@ -2128,8 +2321,8 @@ function openRazorpay({ orderId, amountPaise, description, prefill, onSuccess, o
   }
   const options = {
     key,
-    amount: amountPaise,
-    currency: 'INR',
+    amount: amountSmallest,
+    currency: currency || 'USD',
     name: 'InsiderHire',
     description,
     order_id: orderId,
@@ -2147,54 +2340,114 @@ function openRazorpay({ orderId, amountPaise, description, prefill, onSuccess, o
 }
 
 // ─── $10 SIGNUP FEE ──────────────────────────────────────────
-function openFeeModal() { openModal('fresher-fee-modal'); }
+// ── REQUEST FEE ($10) ─────────────────────────────────────────────────────────
+// $10 is charged per referral request, not at signup.
+// Called when fresher clicks "Request →" on a referrer card.
+// referrerLocation is used to detect which currency to charge in.
 
+// ── $10 ACCESS FEE — 2-MONTH VALIDITY, 5 REQUESTS/WEEK ──────────────────────
+// Rules:
+//   1. Fresher pays $10 once at first login.
+//   2. Access is valid for 60 days (2 months) from fee_paid_at timestamp.
+//   3. After 60 days, fresher must renew with another $10 to send requests.
+//   4. While access is valid: up to 5 requests per week, free.
+//   5. $500 escrow charged separately after referrer accepts a request.
+
+const WEEKLY_REQUEST_LIMIT = 5;
+const FEE_VALIDITY_DAYS    = 60;
+
+// Is the $10 fee currently valid?
+function isFeeValid() {
+  if (!profile?.signup_fee_paid) return false;
+  if (!profile?.fee_paid_at)     return true;   // no timestamp = legacy paid user, treat as valid
+  const paidAt    = new Date(profile.fee_paid_at);
+  const expiresAt = new Date(paidAt.getTime() + FEE_VALIDITY_DAYS * 24 * 60 * 60 * 1000);
+  return new Date() < expiresAt;
+}
+
+// Days remaining in current access period
+function feeExpiresInDays() {
+  if (!profile?.fee_paid_at) return FEE_VALIDITY_DAYS;
+  const paidAt    = new Date(profile.fee_paid_at);
+  const expiresAt = new Date(paidAt.getTime() + FEE_VALIDITY_DAYS * 24 * 60 * 60 * 1000);
+  return Math.max(0, Math.ceil((expiresAt - new Date()) / (1000 * 60 * 60 * 24)));
+}
+
+function openFeeModal() {
+  // Update modal title/sub based on whether this is first time or renewal
+  const isRenewal = profile?.signup_fee_paid && !isFeeValid();
+  const titleEl   = document.querySelector('#fresher-fee-modal .modal-title');
+  const subEl     = document.getElementById('fee-modal-sub');
+  if (titleEl) titleEl.textContent = isRenewal ? 'Renew Access — $10' : 'Activate Account — $10';
+  if (subEl)   subEl.textContent   = isRenewal
+    ? 'Your 2-month access has expired. Pay $10 equivalent to renew and continue sending requests.'
+    : 'Pay a one-time $10 equivalent to activate your InsiderHire account. Valid for 2 months — send up to 5 requests per week.';
+  openModal('fresher-fee-modal');
+}
+
+// $10 payment handler — called from fee modal "Pay" button
 async function paySignupFee() {
-  if (!requireSB()) return;
+  if (!requireSB() || !me) return;
   const btn=$('fee-pay-btn'), errEl=$('fee-pay-error');
   if(errEl) errEl.textContent='';
   if(btn) btn.disabled=true;
 
-  const uid = pendingUid || me?.id;
-  if (!uid) { if(errEl) errEl.textContent='Session error. Please sign in again.'; if(btn) btn.disabled=false; return; }
-
-  let amountPaise, orderId;
+  const uid = me.id;
+  const userLocation = profile?.location || '';
+  let curr, orderId;
   try {
-    amountPaise = await getINRAmount(PLATFORM_FEE_USD);
-    orderId     = await createRazorpayOrder(amountPaise, `fee_${uid}`, { type:'signup_fee', user_id: uid });
+    curr    = await convertUSD(PLATFORM_FEE_USD, userLocation);
+    orderId = await createRazorpayOrder(
+      curr.amountSmallest,
+      `access_fee_${uid}_${Date.now()}`,
+      { type:'access_fee', user_id: uid }
+    );
   } catch(e) {
     if(errEl) errEl.textContent = e.message;
-    if(btn) btn.disabled=false;
-    return;
+    if(btn) btn.disabled=false; return;
   }
+
+  // Update modal amounts with detected currency
+  const totalEl = $('fee-total-display');
+  if(totalEl) totalEl.textContent = curr.display;
+  const currEl = $('fee-currency-display');
+  if(currEl) currEl.textContent = curr.code;
+  const totalFinal = $('fee-total-final');
+  if(totalFinal) totalFinal.textContent = curr.display;
 
   openRazorpay({
     orderId,
-    amountPaise,
-    description: 'InsiderHire Platform Access Fee',
-    prefill: { name: profile?.full_name||'', email: me?.email||'' },
+    amountSmallest: curr.amountSmallest,
+    currency:       curr.rzpCurrency,
+    description:    `InsiderHire Access Fee (60 days) — ${curr.display}`,
+    prefill:        { name: profile?.full_name||'', email: me?.email||'' },
     onSuccess: async (resp) => {
       if(btn) btn.disabled=false;
       try {
         await verifyRazorpayPayment({
-          razorpay_order_id:    resp.razorpay_order_id,
-          razorpay_payment_id:  resp.razorpay_payment_id,
-          razorpay_signature:   resp.razorpay_signature,
-          type:'signup_fee', user_id: uid
+          razorpay_order_id:   resp.razorpay_order_id,
+          razorpay_payment_id: resp.razorpay_payment_id,
+          razorpay_signature:  resp.razorpay_signature,
+          type:'access_fee', user_id: uid
         });
-        await SB.from('profiles').update({ signup_fee_paid: true }).eq('id', uid);
+        const now = new Date().toISOString();
+        await SB.from('profiles').update({
+          signup_fee_paid: true,
+          fee_paid_at:     now
+        }).eq('id', uid);
         await SB.from('transactions').insert({
-          user_id: uid, type:'signup_fee', amount: PLATFORM_FEE_USD,
+          user_id: uid, type:'access_fee', amount: PLATFORM_FEE_USD,
           status:'paid', payment_id: resp.razorpay_payment_id,
           razorpay_order_id: resp.razorpay_order_id,
-          description:'Platform access fee'
+          description:`Access fee 60-day — ${curr.display}`
         });
-        if (profile) profile.signup_fee_paid = true;
+        // Update local profile state
+        if(profile) { profile.signup_fee_paid = true; profile.fee_paid_at = now; }
         closeModal('fresher-fee-modal');
-        toast('✅ Account activated! Welcome to InsiderHire 🎉','success');
+        toast('✅ Access activated for 60 days! Send up to 5 requests per week. 🎉','success');
         nav('fresher');
       } catch(e) {
-        if(errEl) errEl.textContent = 'Payment captured but verification failed. Contact support@insiderhire.in with payment ID: ' + resp.razorpay_payment_id;
+        if(errEl) errEl.textContent='Payment captured but activation failed. Contact support@insiderhire.in — Payment ID: '+resp.razorpay_payment_id;
       }
     },
     onFailure: (e) => {
@@ -2204,31 +2457,70 @@ async function paySignupFee() {
   });
 }
 
-// ─── ESCROW $500 ─────────────────────────────────────────────
-function openEscrow(refName, company) {
-  // Legacy call from static referrer cards on landing page — open signup if not logged in
-  if (!me && !profile) { openModal('signup-modal'); return; }
-  openModal('escrow-modal');
+// How many requests fresher sent in the last 7 days
+async function getWeeklyRequestCount() {
+  if (!SB || !me) return 0;
+  try {
+    const weekAgo   = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+    const { count } = await SB.from('applications')
+      .select('id', { count:'exact', head:true })
+      .eq('applicant_id', me.id)
+      .gte('applied_at', weekAgo);
+    return count || 0;
+  } catch(e) { return 0; }
 }
 
-function openEscrowFor(refId) {
-  if (!me && !profile) { openModal('signup-modal'); return; }
-  if (profile?.role==='fresher' && !profile?.signup_fee_paid) { openFeeModal(); return; }
+// Called from Browse card "Request →" button
+async function payRequestFee(referrerId, referrerLocation) {
   if (!requireSB()) return;
-  const r = allReferrers.find(x=>x.id===refId);
-  if (!r) { toast('Referrer not found.','error'); return; }
-  // Already unlocked?
-  if (unlockedRefs.has(refId)) { toast('You already have an active escrow with this referrer.','info'); dashNav('dash-chat'); return; }
-  escrowCtx = {
-    referrerId:   refId,
-    maskedName:   maskName(r.full_name),
-    jobCategory:  r.job_category || 'Odd Job',
-    fee:          +(r.referral_fee) || ESCROW_USD
-  };
-  const subEl = $('escrow-modal')?.querySelector('.modal-sub');
-  if (subEl) subEl.textContent = `₹ equivalent of $${escrowCtx.fee} held securely for ${escrowCtx.maskedName} (${escrowCtx.jobCategory})`;
-  openModal('escrow-modal');
+  if (!me) { openModal('login-modal'); return; }
+
+  // Gate 1: must have valid access (paid within last 60 days)
+  if (!isFeeValid()) {
+    openFeeModal();   // shows "Activate" or "Renew" depending on state
+    return;
+  }
+
+  // Gate 2: weekly request limit (5 per 7 days)
+  const weekCount = await getWeeklyRequestCount();
+  if (weekCount >= WEEKLY_REQUEST_LIMIT) {
+    const daysLeft = feeExpiresInDays();
+    toast(`You've reached ${WEEKLY_REQUEST_LIMIT} requests this week. Your limit resets in 7 days. Access valid for ${daysLeft} more days.`, 'error');
+    return;
+  }
+
+  // Gate 3: duplicate request check
+  try {
+    const { data: existing } = await SB.from('applications')
+      .select('id').eq('applicant_id', me.id).eq('referrer_id', referrerId).maybeSingle();
+    if (existing) {
+      toast('You already sent a request to this referrer. Check My Requests.','info');
+      dashNav('dash-requests'); return;
+    }
+  } catch(e) {}
+
+  // All gates passed — send request directly (no payment, fee already paid)
+  try {
+    await SB.from('applications').insert({
+      applicant_id: me.id,
+      referrer_id:  referrerId,
+      status:       'pending',
+      cover_letter: 'Referral request sent via InsiderHire.'
+    });
+    await SB.from('notifications').insert({
+      user_id:  referrerId,
+      title:    'New referral request!',
+      message:  `${profile?.full_name || 'A student'} sent you a referral request.`
+    });
+    const remaining = WEEKLY_REQUEST_LIMIT - weekCount - 1;
+    const daysLeft  = feeExpiresInDays();
+    toast(`✅ Request sent! ${remaining} of ${WEEKLY_REQUEST_LIMIT} requests remaining this week. Access valid ${daysLeft} more days.`, 'success');
+    dashNav('dash-requests');
+  } catch(e) {
+    toast('Failed to send request: ' + e.message, 'error');
+  }
 }
+
 
 async function confirmEscrow() {
   if (!requireSB() || !me) return;
@@ -2238,11 +2530,11 @@ async function confirmEscrow() {
   if(errEl) errEl.textContent='';
   if(btn) btn.disabled=true;
 
-  let amountPaise, orderId;
+  let curr, orderId;
   try {
-    amountPaise = await getINRAmount(escrowCtx.fee + PLATFORM_FEE_USD);
-    orderId     = await createRazorpayOrder(
-      amountPaise,
+    curr    = await convertUSD(escrowCtx.fee, escrowCtx.referrerLocation || '');
+    orderId = await createRazorpayOrder(
+      curr.amountSmallest,
       `escrow_${me.id}_${Date.now()}`,
       { type:'escrow', user_id: me.id, referrer_id: escrowCtx.referrerId, job_category: escrowCtx.jobCategory }
     );
@@ -2252,10 +2544,13 @@ async function confirmEscrow() {
     return;
   }
 
+  const escrowCurr = escrowCtx.currency || detectCurrency(escrowCtx.referrerLocation || '');
+  const displayAmt  = `${escrowCurr.symbol}${(escrowCtx.fee * escrowCurr.rate).toFixed(2)} ${escrowCurr.code}`;
   openRazorpay({
     orderId,
-    amountPaise,
-    description: `Escrow for ${escrowCtx.jobCategory} referral`,
+    amountSmallest: curr.amountSmallest,
+    currency:       curr.rzpCurrency,
+    description:    `Escrow ${displayAmt} for ${escrowCtx.jobCategory} referral`,
     prefill: { name: profile?.full_name||'', email: me?.email||'' },
     onSuccess: async (resp) => {
       if(btn) btn.disabled=false;
@@ -2482,7 +2777,7 @@ function renderBrowse(refs) {
         <div class="r-price">$${+(r.referral_fee)||500}</div>
         ${isUnlocked
           ? `<button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();dashNav('dash-chat')">Chat →</button>`
-          : `<button class="btn btn-white btn-sm" onclick="event.stopPropagation();openEscrowFor('${esc(r.id)}')">Request →</button>`
+          : `<button class="btn btn-white btn-sm" onclick="event.stopPropagation();payRequestFee('${esc(r.id)}','${esc(r.location||'')}')">Request →</button>`
         }
       </div>
     </div>`;
@@ -2625,15 +2920,20 @@ async function loadRequests() {
       const rName = a.referrer?.full_name || 'Referrer';
       const rCat  = a.referrer?.job_category || 'Odd Job';
       const rLoc  = a.referrer?.location || '';
+      const rCurr = detectCurrency(rLoc);
+      const escrowDisplay = `${rCurr.symbol}${(ESCROW_USD * rCurr.rate).toFixed(2)} ${rCurr.code}`;
+      const isAccepted = a.status === 'accepted' && !hasEscrow;
       return `<div class="req-card">
         <div class="r-avatar" style="background:linear-gradient(135deg,#1e3a8a,#2563EB);width:44px;height:44px;font-size:16px;flex-shrink:0">${ini(rName)}</div>
         <div style="flex:1">
           <div style="font-weight:600;font-size:14px">${esc(rName)} — ${esc(rCat)}</div>
-          <div style="font-size:12px;color:var(--text-2)">${esc(rLoc)} · ${fmtDate(a.applied_at)} · ${hasEscrow?'$'+a.escrow.amount+' locked':'Waiting'}</div>
+          <div style="font-size:12px;color:var(--text-2)">${esc(rLoc)} · ${fmtDate(a.applied_at)} · ${hasEscrow?rCurr.symbol+(a.escrow.amount*rCurr.rate).toFixed(2)+' '+rCurr.code+' locked':'Waiting for referrer'}</div>
+          ${isAccepted?`<div style="margin-top:6px;padding:8px 10px;border-radius:var(--r-md);background:var(--green-dim);border:1px solid rgba(22,163,74,.25);font-size:12px;color:#4ade80">✅ Referrer accepted! Deposit <strong>${escrowDisplay}</strong> escrow to unlock chat &amp; contact details.</div>`:''}
         </div>
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
           <span class="status-pill ${sp}">${sl}</span>
           ${hasEscrow?`<button class="btn btn-ghost btn-sm" onclick="dashNav('dash-chat')">Chat →</button><button class="btn btn-green btn-sm" onclick="openModal('payslip-modal')">Upload payslip</button>`:''}
+          ${isAccepted?`<button class="btn btn-white btn-sm" onclick="openEscrowFor('${a.referrer_id}')">Deposit ${escrowDisplay} →</button>`:''}
         </div>
       </div>`;
     }).join('');
