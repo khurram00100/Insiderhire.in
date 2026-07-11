@@ -66,17 +66,17 @@ input,select,textarea{font-family:inherit}
 .input{width:100%;padding:10px 14px;border-radius:var(--r-lg);border:1px solid var(--border-md);background:var(--elevated);color:var(--text-1);font-family:var(--font-body);font-size:14px;outline:none;transition:all var(--t)}.input:focus{border-color:rgba(255,255,255,0.3);background:var(--elevated-2)}.input::placeholder{color:var(--text-3)}.input-label{font-size:12px;font-weight:500;color:var(--text-2);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:6px;display:block}.input-group{display:flex;flex-direction:column;gap:0}
 select.input{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M2 4l4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);transition:all var(--t-slow)}.card:hover{border-color:var(--border-md)}.card-elevated{background:var(--elevated);border:1px solid var(--border-md)}
-.panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden}.panel-header{padding:18px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}.panel-title{font-size:14px;font-weight:600;letter-spacing:-0.01em}.panel-body{padding:24px}
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-2xl);overflow:hidden;transition:border-color var(--t)}.panel-header{padding:18px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}.panel-title{font-size:14px;font-weight:600;letter-spacing:-0.01em}.panel-body{padding:24px}
 .badge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:var(--r-full);font-size:11px;font-weight:500;letter-spacing:0.02em}.badge-white{background:var(--elevated-2);border:1px solid var(--border-md);color:var(--text-2)}.badge-blue{background:var(--blue-dim);border:1px solid rgba(37,99,235,.25);color:var(--blue-light)}.badge-green{background:var(--green-dim);border:1px solid rgba(22,163,74,.25);color:#4ade80}.badge-red{background:var(--red-dim);border:1px solid rgba(220,38,38,.25);color:#f87171}.badge-amber{background:var(--amber-dim);border:1px solid rgba(217,119,6,.25);color:#fbbf24}.badge-verified{background:rgba(37,99,235,.1);border:1px solid rgba(37,99,235,.3);color:var(--blue-light)}
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:60px;display:flex;align-items:center;padding:0 32px;background:rgba(0,0,0,0.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}.nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer;flex-shrink:0}.nav-logo-svg{width:32px;height:32px}.nav-wordmark{font-family:var(--font-body);font-size:17px;font-weight:700;letter-spacing:-0.03em;color:var(--white)}.nav-wordmark span{color:var(--blue-light)}.nav-domain{font-size:10px;font-family:var(--font-mono);color:var(--text-3);letter-spacing:0.05em;margin-left:2px;margin-top:1px}.nav-links{display:flex;align-items:center;gap:2px;margin:0 auto}.nav-link{padding:6px 14px;border-radius:var(--r-md);font-size:13px;color:var(--text-2);cursor:pointer;transition:all var(--t);font-weight:400}.nav-link:hover{color:var(--text-1);background:var(--elevated)}.nav-link.active{color:var(--text-1)}.nav-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}.nav-avatar{width:32px;height:32px;border-radius:50%;border:1px solid var(--border-md);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;background:var(--elevated);cursor:pointer;transition:all var(--t)}.nav-avatar:hover{border-color:var(--border-strong)}
-.section{padding:100px 32px}.container{max-width:1120px;margin:0 auto}.section-label{font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:20px;display:flex;align-items:center;gap:8px}.section-label::before{content:'';width:20px;height:1px;background:var(--text-3)}.section-title{font-family:var(--font-serif);font-size:clamp(36px,5vw,60px);font-weight:400;letter-spacing:-0.02em;line-height:1.08;margin-bottom:20px;color:var(--white)}.section-title em{font-style:italic;color:var(--text-2)}.section-sub{font-size:16px;color:var(--text-2);max-width:520px;line-height:1.7;font-weight:300}.divider{height:1px;background:var(--border);margin:0 32px}
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding-top:60px}.hero-canvas{position:absolute;inset:0;z-index:0}.hero-grid-overlay{position:absolute;inset:0;z-index:0;opacity:0.04;background-image:linear-gradient(var(--border-strong) 1px,transparent 1px),linear-gradient(90deg,var(--border-strong) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black,transparent)}.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,0.08) 0%,transparent 70%);left:50%;top:50%;transform:translate(-50%,-50%);z-index:0;pointer-events:none}.hero-content{position:relative;z-index:2;max-width:780px;padding:0 24px;animation:fadeUp .8s ease both}.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:var(--r-full);border:1px solid var(--border-md);background:var(--elevated);font-size:12px;color:var(--text-2);margin-bottom:32px;letter-spacing:0.04em}.hero-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--blue-light);animation:dotBlink 2s ease-in-out infinite}.hero-title{font-family:var(--font-serif);font-size:clamp(52px,9vw,96px);font-weight:400;letter-spacing:-0.04em;line-height:0.95;color:var(--white);margin-bottom:28px}.hero-title em{font-style:italic;color:var(--text-2)}.hero-sub{font-size:clamp(15px,2vw,18px);color:var(--text-2);max-width:500px;margin:0 auto 40px;line-height:1.7;font-weight:300}.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}.hero-stats{display:flex;align-items:center;justify-content:center;gap:0;margin-top:80px;border:1px solid var(--border);border-radius:var(--r-xl);background:var(--surface);overflow:hidden;max-width:680px;margin-left:auto;margin-right:auto}.hero-stat{flex:1;padding:24px 20px;text-align:center;border-right:1px solid var(--border)}.hero-stat:last-child{border-right:none}.hero-stat-val{font-family:var(--font-serif);font-size:28px;font-weight:400;color:var(--white);letter-spacing:-0.02em;line-height:1;margin-bottom:6px}.hero-stat-lbl{font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em}
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:62px;display:flex;align-items:center;padding:0 32px;background:rgba(3,3,3,0.85);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.06);box-shadow:0 1px 0 rgba(255,255,255,0.04)}.nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer;flex-shrink:0}.nav-logo-svg{width:32px;height:32px}.nav-wordmark{font-family:var(--font-body);font-size:18px;font-weight:800;letter-spacing:-0.04em;color:var(--white)}.nav-wordmark span{color:var(--blue-light)}.nav-domain{font-size:10px;font-family:var(--font-mono);color:var(--text-3);letter-spacing:0.05em;margin-left:2px;margin-top:1px}.nav-links{display:flex;align-items:center;gap:2px;margin:0 auto}.nav-link{padding:6px 14px;border-radius:var(--r-md);font-size:13px;color:var(--text-2);cursor:pointer;transition:all var(--t);font-weight:400}.nav-link:hover{color:var(--text-1);background:var(--elevated)}.nav-link.active{color:var(--text-1)}.nav-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}.nav-avatar{width:32px;height:32px;border-radius:50%;border:1px solid var(--border-md);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;background:var(--elevated);cursor:pointer;transition:all var(--t)}.nav-avatar:hover{border-color:var(--border-strong)}
+.section{padding:100px 32px}.container{max-width:1120px;margin:0 auto}.section-label{font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue-light);margin-bottom:16px;display:inline-flex;align-items:center;gap:8px;padding:4px 12px;border-radius:var(--r-full);background:var(--blue-dim);border:1px solid rgba(37,99,235,0.25)}.section-label::before{display:none}.section-title{font-family:var(--font-serif);font-size:clamp(34px,5vw,58px);font-weight:400;letter-spacing:-0.025em;line-height:1.1;margin-bottom:20px;color:var(--white)}.section-title em{font-style:italic;color:var(--text-2)}.section-sub{font-size:16px;color:var(--text-2);max-width:520px;line-height:1.7;font-weight:300}.divider{height:1px;background:var(--border);margin:0 32px}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding-top:62px}.hero-canvas{position:absolute;inset:0;z-index:0}.hero-grid-overlay{position:absolute;inset:0;z-index:0;opacity:0.04;background-image:linear-gradient(var(--border-strong) 1px,transparent 1px),linear-gradient(90deg,var(--border-strong) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black,transparent)}.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,0.08) 0%,transparent 70%);left:50%;top:50%;transform:translate(-50%,-50%);z-index:0;pointer-events:none}.hero-content{position:relative;z-index:2;max-width:780px;padding:0 24px;animation:fadeUp .8s ease both}.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:var(--r-full);border:1px solid var(--border-md);background:var(--elevated);font-size:12px;color:var(--text-2);margin-bottom:32px;letter-spacing:0.04em}.hero-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--blue-light);animation:dotBlink 2s ease-in-out infinite}.hero-title{font-family:var(--font-serif);font-size:clamp(52px,9vw,96px);font-weight:400;letter-spacing:-0.04em;line-height:0.95;color:var(--white);margin-bottom:28px}.hero-title em{font-style:italic;color:var(--text-2)}.hero-sub{font-size:clamp(15px,2vw,18px);color:var(--text-2);max-width:500px;margin:0 auto 40px;line-height:1.7;font-weight:300}.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}.hero-stats{display:flex;align-items:center;justify-content:center;gap:0;margin-top:80px;border:1px solid var(--border);border-radius:var(--r-xl);background:var(--surface);overflow:hidden;max-width:680px;margin-left:auto;margin-right:auto}.hero-stat{flex:1;padding:24px 20px;text-align:center;border-right:1px solid var(--border)}.hero-stat:last-child{border-right:none}.hero-stat-val{font-family:var(--font-serif);font-size:28px;font-weight:400;color:var(--white);letter-spacing:-0.02em;line-height:1;margin-bottom:6px}.hero-stat-lbl{font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em}
 .marquee-wrap{overflow:hidden;mask-image:linear-gradient(90deg,transparent,black 10%,black 90%,transparent)}.marquee-track{display:flex;gap:0;width:max-content;animation:marquee 30s linear infinite}.company-pill{padding:10px 28px;border-right:1px solid var(--border);font-size:13px;font-weight:500;color:var(--text-3);white-space:nowrap;letter-spacing:0.02em;transition:color var(--t)}.company-pill:hover{color:var(--text-2)}
-.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r-2xl);overflow:hidden;margin-top:64px}.step{padding:40px 32px;background:var(--surface);transition:background var(--t-slow)}.step:hover{background:var(--elevated)}.step-num{font-family:var(--font-mono);font-size:11px;color:var(--text-3);margin-bottom:32px;letter-spacing:0.08em}.step-icon{width:44px;height:44px;border-radius:var(--r-xl);border:1px solid var(--border-md);background:var(--elevated-2);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:20px;transition:all var(--t)}.step:hover .step-icon{border-color:var(--border-strong);background:rgba(255,255,255,0.05)}.step-title{font-size:15px;font-weight:600;margin-bottom:10px;color:var(--text-1);letter-spacing:-0.01em}.step-desc{font-size:13px;color:var(--text-2);line-height:1.7;font-weight:300}
-.referrers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r-2xl);overflow:hidden;margin-top:48px}.referrer-card{padding:28px;background:var(--surface);cursor:pointer;transition:background var(--t-slow);position:relative}.referrer-card:hover{background:var(--elevated)}.referrer-card::after{content:'→';position:absolute;top:28px;right:28px;font-size:16px;color:var(--text-3);transition:all var(--t);opacity:0}.referrer-card:hover::after{opacity:1;transform:translateX(4px)}.r-avatar{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;margin-bottom:16px;border:1px solid var(--border-md);flex-shrink:0}.r-name{font-size:15px;font-weight:600;letter-spacing:-0.01em;margin-bottom:3px}.r-role{font-size:13px;color:var(--text-2);margin-bottom:14px}.r-meta{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--text-3);margin-bottom:16px}.r-meta-item{display:flex;align-items:center;gap:4px}.r-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}.r-tag{padding:3px 9px;border-radius:var(--r-full);font-size:11px;background:var(--elevated-2);border:1px solid var(--border);color:var(--text-2)}.r-footer{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid var(--border)}.r-price{font-family:var(--font-serif);font-size:22px;color:var(--white)}.stars{color:var(--white);font-size:11px;letter-spacing:2px}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:32px;overflow:hidden;margin-top:64px}.step{padding:40px 32px;background:var(--surface);transition:background var(--t-slow)}.step:hover{background:var(--elevated)}.step-num{font-family:var(--font-mono);font-size:11px;color:var(--text-3);margin-bottom:32px;letter-spacing:0.08em}.step-icon{width:44px;height:44px;border-radius:var(--r-xl);border:1px solid var(--border-md);background:var(--elevated-2);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:20px;transition:all var(--t)}.step:hover .step-icon{border-color:var(--border-strong);background:rgba(255,255,255,0.05)}.step-title{font-size:15px;font-weight:600;margin-bottom:10px;color:var(--text-1);letter-spacing:-0.01em}.step-desc{font-size:13px;color:var(--text-2);line-height:1.7;font-weight:300}
+.referrers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r-2xl);overflow:hidden;margin-top:48px}.referrer-card{padding:28px;background:var(--surface);cursor:pointer;transition:background var(--t-slow),box-shadow var(--t-slow);position:relative}.referrer-card:hover{background:var(--elevated)}.referrer-card::after{content:'→';position:absolute;top:28px;right:28px;font-size:16px;color:var(--text-3);transition:all var(--t);opacity:0}.referrer-card:hover::after{opacity:1;transform:translateX(4px)}.r-avatar{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;margin-bottom:16px;border:1px solid var(--border-md);flex-shrink:0}.r-name{font-size:15px;font-weight:600;letter-spacing:-0.01em;margin-bottom:3px}.r-role{font-size:13px;color:var(--text-2);margin-bottom:14px}.r-meta{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--text-3);margin-bottom:16px}.r-meta-item{display:flex;align-items:center;gap:4px}.r-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}.r-tag{padding:3px 9px;border-radius:var(--r-full);font-size:11px;background:var(--elevated-2);border:1px solid var(--border);color:var(--text-2)}.r-footer{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid var(--border)}.r-price{font-family:var(--font-serif);font-size:22px;color:var(--white)}.stars{color:var(--white);font-size:11px;letter-spacing:2px}
 .flow-line{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding:1px;border:1px solid var(--border);border-radius:var(--r-2xl);background:var(--border);margin-top:64px}.flow-step{flex:1;min-width:180px;padding:32px 24px;background:var(--surface);text-align:center;position:relative;transition:background var(--t)}.flow-step:hover{background:var(--elevated)}.flow-step:first-child{border-radius:calc(var(--r-2xl) - 1px) 0 0 calc(var(--r-2xl) - 1px)}.flow-step:last-child{border-radius:0 calc(var(--r-2xl) - 1px) calc(var(--r-2xl) - 1px) 0}.flow-arrow{position:absolute;right:-14px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;background:var(--elevated-2);border:1px solid var(--border-md);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-3);z-index:1}.flow-step:last-child .flow-arrow{display:none}.flow-icon-wrap{width:52px;height:52px;border-radius:50%;background:var(--elevated-2);border:1px solid var(--border-md);display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 16px}.flow-title{font-size:13px;font-weight:600;margin-bottom:6px}.flow-desc{font-size:11px;color:var(--text-3);line-height:1.6}
-.trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r-2xl);overflow:hidden;margin-top:64px}.trust-item{padding:40px 36px;background:var(--surface);transition:background var(--t-slow)}.trust-item:hover{background:var(--elevated)}.trust-num{font-family:var(--font-mono);font-size:11px;color:var(--text-3);margin-bottom:24px}.trust-icon{font-size:28px;margin-bottom:16px}.trust-title{font-size:16px;font-weight:600;margin-bottom:10px;letter-spacing:-0.01em}.trust-desc{font-size:13px;color:var(--text-2);line-height:1.7;font-weight:300}
-.pricing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:800px;margin:64px auto 0}.price-card{padding:40px;border-radius:var(--r-2xl);border:1px solid var(--border);background:var(--surface);position:relative;overflow:hidden;transition:border-color var(--t-slow)}.price-card.featured{border-color:var(--border-strong);background:linear-gradient(135deg,rgba(37,99,235,0.05) 0%,var(--surface) 60%)}.price-card.featured:hover{border-color:rgba(255,255,255,0.22)}.price-card:not(.featured):hover{border-color:var(--border-md)}.price-tag{display:inline-block;padding:3px 10px;border-radius:var(--r-full);font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;background:var(--blue-dim);border:1px solid rgba(37,99,235,.3);color:var(--blue-light);margin-bottom:24px}.price-name{font-size:12px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px}.price-amount{font-family:var(--font-serif);font-size:52px;font-weight:400;letter-spacing:-0.04em;color:var(--white);line-height:1;margin-bottom:6px}.price-period{font-size:13px;color:var(--text-3);margin-bottom:32px}.price-features{margin-bottom:36px;display:flex;flex-direction:column;gap:12px}.price-feature{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-2)}.price-feature-check{color:var(--white);font-size:12px;flex-shrink:0}.price-feature-x{color:var(--text-4);font-size:12px;flex-shrink:0}.price-feature.disabled{color:var(--text-4)}
+.trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:32px;overflow:hidden;margin-top:64px}.trust-item{padding:40px 36px;background:var(--surface);transition:background var(--t-slow)}.trust-item:hover{background:var(--elevated)}.trust-num{font-family:var(--font-mono);font-size:11px;color:var(--text-3);margin-bottom:24px}.trust-icon{font-size:28px;margin-bottom:16px}.trust-title{font-size:16px;font-weight:600;margin-bottom:10px;letter-spacing:-0.01em}.trust-desc{font-size:13px;color:var(--text-2);line-height:1.7;font-weight:300}
+.pricing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:800px;margin:64px auto 0}.price-card{padding:36px;border-radius:28px;border:1px solid var(--border);background:var(--surface);position:relative;overflow:hidden;transition:border-color var(--t-slow),box-shadow var(--t-slow)}.price-card:hover{box-shadow:0 8px 32px rgba(0,0,0,0.4)}.price-card.featured{border-color:var(--border-strong);background:linear-gradient(135deg,rgba(37,99,235,0.05) 0%,var(--surface) 60%)}.price-card.featured:hover{border-color:rgba(255,255,255,0.22)}.price-card:not(.featured):hover{border-color:var(--border-md)}.price-tag{display:inline-block;padding:3px 10px;border-radius:var(--r-full);font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;background:var(--blue-dim);border:1px solid rgba(37,99,235,.3);color:var(--blue-light);margin-bottom:24px}.price-name{font-size:12px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px}.price-amount{font-family:var(--font-serif);font-size:52px;font-weight:400;letter-spacing:-0.04em;color:var(--white);line-height:1;margin-bottom:6px}.price-period{font-size:13px;color:var(--text-3);margin-bottom:32px}.price-features{margin-bottom:36px;display:flex;flex-direction:column;gap:12px}.price-feature{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-2)}.price-feature-check{color:var(--white);font-size:12px;flex-shrink:0}.price-feature-x{color:var(--text-4);font-size:12px;flex-shrink:0}.price-feature.disabled{color:var(--text-4)}
 .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r-2xl);overflow:hidden;margin-top:64px}.testi{padding:36px;background:var(--surface);transition:background var(--t-slow)}.testi:hover{background:var(--elevated)}.testi-quote{font-family:var(--font-serif);font-size:18px;font-weight:400;line-height:1.6;color:var(--text-1);margin-bottom:24px;font-style:italic}.testi-author{display:flex;align-items:center;gap:12px}.testi-avatar{width:36px;height:36px;border-radius:50%;border:1px solid var(--border-md);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}.testi-name{font-size:13px;font-weight:600}.testi-role{font-size:11px;color:var(--text-3)}.testi-stars{color:var(--white);font-size:11px;letter-spacing:1px;margin-bottom:16px}
 .dash{display:grid;grid-template-columns:220px 1fr;min-height:100vh;background:var(--black)}.dash-sidebar{background:var(--bg);border-right:1px solid var(--border);padding:20px 12px;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto}.dash-logo-area{padding:8px 10px 20px;border-bottom:1px solid var(--border);margin-bottom:16px}.dash-nav-section{font-size:10px;font-weight:500;color:var(--text-4);text-transform:uppercase;letter-spacing:0.08em;padding:8px 10px 4px;margin-top:8px}.dash-nav-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:var(--r-md);cursor:pointer;transition:all var(--t);font-size:13px;color:var(--text-2);margin-bottom:1px;position:relative}.dash-nav-item:hover{background:var(--elevated);color:var(--text-1)}.dash-nav-item.active{background:var(--elevated);color:var(--text-1)}.dash-nav-icon{width:16px;text-align:center;font-size:14px;flex-shrink:0}.dash-nav-badge{margin-left:auto;min-width:18px;height:18px;border-radius:var(--r-full);background:var(--blue);color:white;font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;padding:0 5px}.dash-user-area{border-top:1px solid var(--border);padding-top:12px;margin-top:auto;display:flex;align-items:center;gap:10px;padding:12px 10px}.dash-main{display:flex;flex-direction:column;min-height:100vh}.dash-topbar{height:60px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:var(--bg);position:sticky;top:0;z-index:100;flex-shrink:0}.dash-page-title{font-size:15px;font-weight:600;letter-spacing:-0.01em}.dash-content{padding:28px;flex:1;overflow-y:auto}.dash-sub-page{display:none;animation:fadeIn .25s ease}.dash-sub-page.active{display:block}
 .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;margin-bottom:24px}.stat-card{padding:24px;background:var(--surface)}.stat-label{font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-3);margin-bottom:8px;font-weight:500}.stat-val{font-family:var(--font-serif);font-size:32px;font-weight:400;color:var(--white);letter-spacing:-0.03em;line-height:1;margin-bottom:8px}.stat-change{font-size:12px;display:flex;align-items:center;gap:4px}.stat-up{color:#4ade80}.stat-down{color:#f87171}.stat-neutral{color:var(--text-3)}
@@ -103,8 +103,53 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
 .input.error{border-color:rgba(220,38,38,0.5);background:rgba(220,38,38,0.04)}.field-error{font-size:11px;color:#f87171;margin-top:4px}.btn:disabled{opacity:0.5;cursor:not-allowed;pointer-events:none}.btn-loading{position:relative;pointer-events:none;color:transparent!important}.btn-loading::after{content:'';position:absolute;width:14px;height:14px;border:2px solid transparent;border-top-color:white;border-radius:50%;animation:spin .7s linear infinite;top:50%;left:50%;transform:translate(-50%,-50%)}
 .job-pref-tile{padding:14px 8px;border-radius:var(--r-xl);border:1px solid var(--border);background:var(--elevated);cursor:pointer;transition:all var(--t);display:flex;flex-direction:column;align-items:center;position:relative}.job-pref-tile:hover{border-color:var(--border-strong);background:var(--elevated-2)}.job-pref-tile.on{border-color:var(--white);background:var(--elevated-2)}.job-pref-tile.on::after{content:'✓';position:absolute;top:6px;right:8px;font-size:11px;font-weight:700;color:var(--white)}
 .section-collapsed{display:none}
-@media(max-width:900px){.dash{grid-template-columns:1fr}.dash-sidebar{display:none}.steps-grid{grid-template-columns:1fr 1fr}.trust-grid{grid-template-columns:1fr}.testimonials-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}.chat-layout{grid-template-columns:1fr}.chat-list{display:none}.pricing-grid{grid-template-columns:1fr}}
-@media(max-width:600px){.nav-links{display:none}.section{padding:60px 20px}.steps-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.stats-row{grid-template-columns:1fr 1fr}}
+@media(max-width:900px){
+  .dash{grid-template-columns:1fr}
+  .dash-sidebar{display:none}
+  .steps-grid{grid-template-columns:1fr 1fr}
+  .trust-grid{grid-template-columns:1fr}
+  .testimonials-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .chat-layout{grid-template-columns:1fr}
+  .chat-list{display:none}
+  .pricing-grid{grid-template-columns:1fr}
+  .referrers-grid{grid-template-columns:1fr}
+  .flow-line{flex-direction:column}
+  .flow-step{border-radius:var(--r-xl)!important;min-width:unset}
+  .hero-stats{flex-direction:column;border-radius:var(--r-xl)}
+  .hero-stat{border-right:none!important;border-bottom:1px solid var(--border)}
+  .hero-stat:last-child{border-bottom:none}
+  .modal{padding:24px!important;margin:12px}
+  .stats-row{grid-template-columns:1fr 1fr}
+  .admin-metric-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .nav-links{display:none}
+  .nav{padding:0 16px}
+  .section{padding:48px 16px}
+  .steps-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:1fr}
+  .admin-metric-grid{grid-template-columns:1fr 1fr}
+  .hero-title{font-size:clamp(38px,12vw,64px)!important}
+  .hero-cta{flex-direction:column;align-items:center}
+  .btn-xl{padding:12px 22px!important;font-size:14px!important}
+  .dash-content{padding:16px!important}
+  .dash-topbar{padding:0 14px}
+  .req-card{flex-direction:column;align-items:flex-start}
+  .wallet-hero{padding:24px!important}
+  .wallet-amount{font-size:40px!important}
+  .modal{padding:20px!important;border-radius:var(--r-xl)!important}
+  .modal-overlay{padding:8px}
+  .price-card{padding:24px}
+  .trust-grid{grid-template-columns:1fr}
+  .verify-row{flex-direction:column;gap:8px}
+  .flow-step{padding:20px 16px}
+  .section-title{font-size:clamp(30px,9vw,48px)!important}
+  #sp-dash-browse > div{grid-template-columns:1fr!important}
+  .browse-filter-sidebar{display:none}
+  .chat-layout{height:calc(100vh - 120px)}
+}
 </style>
 </head>
 <body>
@@ -146,27 +191,47 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
     <span class="nav-link" onclick="dashNav('dash-wallet')">Wallet</span>
   </div>
   <div class="nav-actions">
+    <!-- Guest buttons -->
     <div id="nav-guest" style="display:flex;gap:8px">
       <button class="btn btn-ghost btn-sm" onclick="openModal('login-modal')">Sign in</button>
       <button class="btn btn-white btn-sm" onclick="openModal('signup-modal')">Get started</button>
     </div>
-    <div id="nav-user" style="display:none;align-items:center;gap:10px">
-      <div style="position:relative;cursor:pointer" onclick="this.querySelector('.dropdown-menu').classList.toggle('open')">
-        <div style="font-size:18px">🔔</div>
-        <div class="dropdown-menu" style="right:-8px">
-          <div class="dropdown-item">📋 New requests waiting</div>
-          <div class="dropdown-item">💬 Check your messages</div>
+
+    <!-- Logged-in buttons -->
+    <div id="nav-user" style="display:none;align-items:center;gap:12px">
+
+      <!-- Notifications -->
+      <div style="position:relative" id="notif-wrap">
+        <div onclick="toggleNotifDropdown()" style="font-size:18px;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--elevated);border:1px solid var(--border);transition:all var(--t)" onmouseenter="this.style.borderColor='var(--border-strong)'" onmouseleave="this.style.borderColor='var(--border)'">🔔</div>
+        <div id="notif-dropdown" style="display:none;position:absolute;top:calc(100% + 10px);right:0;min-width:220px;background:var(--elevated);border:1px solid var(--border-md);border-radius:var(--r-xl);overflow:hidden;z-index:9999;box-shadow:0 8px 32px rgba(0,0,0,0.7)">
+          <div style="padding:12px 16px;border-bottom:1px solid var(--border);font-size:12px;font-weight:600;color:var(--text-2)">Notifications</div>
+          <div id="notif-list" style="max-height:280px;overflow-y:auto">
+            <div style="padding:16px;text-align:center;font-size:12px;color:var(--text-3)">No new notifications</div>
+          </div>
+          <div style="padding:10px 16px;border-top:1px solid var(--border);text-align:center">
+            <button class="btn btn-ghost btn-sm" style="width:100%;font-size:12px" onclick="closeNotifDropdown();dashNav('dash-overview')">View dashboard →</button>
+          </div>
         </div>
       </div>
-      <div class="dropdown-wrap">
-        <div class="nav-avatar" id="nav-av" onclick="this.closest('.dropdown-wrap').querySelector('.dropdown-menu').classList.toggle('open')">?</div>
-        <div class="dropdown-menu">
-          <div class="dropdown-item" onclick="dashNav('dash-profile')">👤 Profile</div>
-          <div class="dropdown-item" onclick="dashNav('dash-settings')">⚙️ Settings</div>
-          <div class="dropdown-item" onclick="dashNav('dash-wallet')">💰 Wallet</div>
-          <div class="dropdown-item danger" onclick="doLogout()">← Sign out</div>
+
+      <!-- Avatar / Profile dropdown -->
+      <div style="position:relative" id="nav-av-wrap">
+        <div id="nav-av" onclick="toggleAvatarDropdown()" style="width:32px;height:32px;border-radius:50%;border:1px solid var(--border-md);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;background:linear-gradient(135deg,#1e3a8a,#2563EB);color:var(--blue-light);cursor:pointer;transition:all var(--t);user-select:none" onmouseenter="this.style.borderColor='var(--border-strong)'" onmouseleave="this.style.borderColor='var(--border-md)'">?</div>
+        <div id="nav-av-dropdown" style="display:none;position:absolute;top:calc(100% + 10px);right:0;min-width:180px;background:var(--elevated);border:1px solid var(--border-md);border-radius:var(--r-xl);overflow:hidden;z-index:9999;box-shadow:0 8px 32px rgba(0,0,0,0.7)">
+          <div style="padding:12px 16px;border-bottom:1px solid var(--border)">
+            <div style="font-size:13px;font-weight:600;color:var(--text-1)" id="nav-user-name">User</div>
+            <div style="font-size:11px;color:var(--text-3)" id="nav-user-email"></div>
+          </div>
+          <div style="padding:4px">
+            <div class="dropdown-item" style="border-radius:var(--r-md);border-bottom:none" onclick="closeAvatarDropdown();goProfile()">👤 Profile</div>
+            <div class="dropdown-item" style="border-radius:var(--r-md);border-bottom:none" onclick="closeAvatarDropdown();goSettings()">⚙️ Settings</div>
+            <div class="dropdown-item" style="border-radius:var(--r-md);border-bottom:none" onclick="closeAvatarDropdown();goWallet()">💰 Wallet</div>
+            <div style="height:1px;background:var(--border);margin:4px 8px"></div>
+            <div class="dropdown-item danger" style="border-radius:var(--r-md);border-bottom:none" onclick="closeAvatarDropdown();doLogout()">← Sign out</div>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </nav>
@@ -180,6 +245,7 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
     <p class="modal-sub">Sign in to InsiderHire</p>
     <div class="modal-form">
       <button class="social-btn" onclick="doGoogleAuth()"><svg width="16" height="16" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/><path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9 18z"/><path fill="#FBBC05" d="M3.964 10.71c-.18-.54-.282-1.117-.282-1.71s.102-1.17.282-1.71V4.958H.957C.347 6.173 0 7.548 0 9s.348 2.827.957 4.042l3.007-2.332z"/><path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z"/></svg> Continue with Google</button>
+      <button class="social-btn" onclick="doAppleAuth()" style="background:#000;border-color:#333;color:#fff"><svg width="16" height="16" viewBox="0 0 814 1000" fill="white"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 376 0 256.1 0 180.6c0-106.2 76-203.9 211.9-203.9 80.9 0 143 53.5 191.9 53.5 45.1 0 119.2-56.4 214.6-56.4 34.2 0 126.6 5.8 194.7 92.3z"/></svg> Continue with Apple</button>
       <div class="or-div"><span>or</span></div>
       <div class="input-group"><label class="input-label">Email</label><input class="input" type="email" placeholder="you@email.com" id="login-email"></div>
       <div class="input-group"><label class="input-label">Password</label><input class="input" type="password" placeholder="••••••••" id="login-pass" onkeydown="if(event.key==='Enter')doLogin()"></div>
@@ -188,6 +254,7 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
       <button class="btn btn-white" style="width:100%;padding:12px" id="login-btn" onclick="doLogin()">Sign in →</button>
     </div>
     <div class="modal-footer">No account? <a onclick="switchModal('login-modal','signup-modal')">Create one</a></div>
+    <div class="modal-footer" style="margin-top:8px">Referrer? <a onclick="resendConfirmation()">Resend confirmation email</a></div>
   </div>
 </div>
 
@@ -375,17 +442,52 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
   <div class="hero-grid-overlay"></div>
   <div class="hero-glow"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">
-      <div class="hero-eyebrow-dot"></div>
-      <svg width="16" height="16" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#111"/><circle cx="10" cy="7" r="2.5" fill="#2563EB"/><rect x="7.5" y="11" width="5" height="12" rx="1.8" fill="#2563EB"/><rect x="19.5" y="7" width="4.5" height="17" rx="1.8" fill="#1e3a8a"/></svg>
-      Trusted by 50,000+ international students · insiderhire.in
-      <div class="hero-eyebrow-dot"></div>
+    <!-- Floating badges -->
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:32px">
+      <div style="display:inline-flex;align-items:center;gap:7px;padding:6px 16px;border-radius:var(--r-full);background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);backdrop-filter:blur(10px);font-size:12px;color:var(--text-2)">
+        <div class="hero-eyebrow-dot"></div> Trusted by 50,000+ students
+      </div>
+      <div style="display:inline-flex;align-items:center;gap:7px;padding:6px 16px;border-radius:var(--r-full);background:var(--blue-dim);border:1px solid rgba(37,99,235,0.3);font-size:12px;color:var(--blue-light)">
+        🔐 Razorpay Escrow Protected
+      </div>
+      <div style="display:inline-flex;align-items:center;gap:7px;padding:6px 16px;border-radius:var(--r-full);background:rgba(22,163,74,0.08);border:1px solid rgba(22,163,74,0.2);font-size:12px;color:#4ade80">
+        ✅ 8,500+ Verified Insiders
+      </div>
     </div>
-    <h1 class="hero-title">Get referred<br><em>from the inside</em></h1>
-    <p class="hero-sub">Connect with verified local workers at hotels, restaurants, warehouses and more. Secure escrow payments. Find odd jobs near you.</p>
+
+    <h1 class="hero-title" style="background:linear-gradient(135deg,#fff 40%,rgba(255,255,255,0.55));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Get referred<br><em style="-webkit-text-fill-color:rgba(255,255,255,0.4)">from the inside</em></h1>
+
+    <!-- Job category pills -->
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:24px">
+      <span style="padding:5px 14px;border-radius:var(--r-full);background:var(--elevated);border:1px solid var(--border-md);font-size:12px;color:var(--text-2)">🏨 Hotel</span>
+      <span style="padding:5px 14px;border-radius:var(--r-full);background:var(--elevated);border:1px solid var(--border-md);font-size:12px;color:var(--text-2)">🍳 Kitchen</span>
+      <span style="padding:5px 14px;border-radius:var(--r-full);background:var(--elevated);border:1px solid var(--border-md);font-size:12px;color:var(--text-2)">📦 Warehouse</span>
+      <span style="padding:5px 14px;border-radius:var(--r-full);background:var(--elevated);border:1px solid var(--border-md);font-size:12px;color:var(--text-2)">🛒 Retail</span>
+      <span style="padding:5px 14px;border-radius:var(--r-full);background:var(--elevated);border:1px solid var(--border-md);font-size:12px;color:var(--text-2)">🔒 Security</span>
+      <span style="padding:5px 14px;border-radius:var(--r-full);background:var(--elevated);border:1px solid var(--border-md);font-size:12px;color:var(--text-2)">🚴 Delivery</span>
+      <span style="padding:5px 14px;border-radius:var(--r-full);background:var(--elevated);border:1px solid var(--border-md);font-size:12px;color:var(--text-2)">🧹 Cleaning</span>
+      <span style="padding:5px 14px;border-radius:var(--r-full);background:var(--elevated);border:1px solid var(--border-md);font-size:12px;color:var(--text-2)">🔧 Labour</span>
+    </div>
+
+    <p class="hero-sub" style="font-size:17px;max-width:520px;margin:0 auto 36px">Connect with verified local workers. Secure Razorpay escrow. Get insider referrals for odd jobs near you — in your local currency.</p>
     <div class="hero-cta">
-      <button class="btn btn-white btn-xl" onclick="openModal('signup-modal')">Start for free →</button>
-      <button class="btn btn-outline btn-xl" onclick="smooth('how-it-works')">See how it works</button>
+      <button class="btn btn-white btn-xl" style="box-shadow:0 0 32px rgba(255,255,255,0.15),0 4px 16px rgba(0,0,0,0.4);font-weight:700;letter-spacing:-0.02em" onclick="openModal('signup-modal')">Get started free →</button>
+      <button class="btn btn-outline btn-xl" style="backdrop-filter:blur(10px);background:rgba(255,255,255,0.04)" onclick="smooth('how-it-works')">See how it works</button>
+    </div>
+    <!-- Social proof row -->
+    <div style="margin-top:24px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--text-3)">
+      <div style="display:flex;align-items:center;gap:6px">
+        <div style="display:flex;gap:-4px">
+          <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#1e3a8a,#2563EB);border:2px solid var(--bg);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff">PK</div>
+          <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#134e4a,#0f766e);border:2px solid var(--bg);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;margin-left:-6px">RM</div>
+          <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#1e1b4b,#4338ca);border:2px solid var(--bg);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;margin-left:-6px">AN</div>
+        </div>
+        <span>50,000+ students joined</span>
+      </div>
+      <span style="color:var(--border-strong)">·</span>
+      <span>⭐⭐⭐⭐⭐ 4.9/5 rating</span>
+      <span style="color:var(--border-strong)">·</span>
+      <span>🌍 UK · USA · AU · DE</span>
     </div>
     <div class="hero-stats reveal">
       <div class="hero-stat"><div class="hero-stat-val" data-count="50247">0</div><div class="hero-stat-lbl">Active users</div></div>
@@ -990,7 +1092,7 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
           <div class="panel" style="margin-bottom:16px">
             <div class="panel-header"><div class="panel-title">🔐 Security</div></div>
             <div class="panel-body" style="display:flex;flex-direction:column;gap:8px">
-              <button class="btn btn-ghost" style="justify-content:flex-start" onclick="doPasswordReset()">🔑 Change password</button>
+              <button class="btn btn-ghost" style="justify-content:flex-start" onclick="changePasswordFromSettings()">🔑 Change password</button>
               <button class="btn btn-red" style="justify-content:flex-start" onclick="confirmDeleteAccount()">⚠️ Delete account</button>
             </div>
           </div>
@@ -1056,9 +1158,9 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
       <!-- REF OVERVIEW -->
       <div class="dash-sub-page active" id="sp-ref-overview">
         <div class="stats-row">
-          <div class="stat-card"><div class="stat-label">Total earned</div><div class="stat-val" id="ref-total-earn">$0</div><div class="stat-change stat-neutral">All time</div></div>
-          <div class="stat-card"><div class="stat-label">Active requests</div><div class="stat-val" id="ref-active-req">0</div><div class="stat-change stat-neutral">Awaiting action</div></div>
-          <div class="stat-card"><div class="stat-label">Referrals done</div><div class="stat-val" id="ref-done">0</div><div class="stat-change stat-neutral">Lifetime</div></div>
+          <div class="stat-card"><div class="stat-label">Total earned</div><div class="stat-val" id="ref-total-earn">$0</div><div class="stat-change stat-neutral">All time · net $400/referral</div></div>
+          <div class="stat-card"><div class="stat-label">Pending requests</div><div class="stat-val" id="ref-active-req">0</div><div class="stat-change stat-neutral">Awaiting your action</div></div>
+          <div class="stat-card"><div class="stat-label">Referrals done</div><div class="stat-val" id="ref-done">0</div><div class="stat-change stat-neutral">Lifetime successful</div></div>
           <div class="stat-card"><div class="stat-label">Avg rating</div><div class="stat-val" id="ref-rating">—</div><div class="stat-change stat-neutral">From reviews</div></div>
         </div>
         <div style="display:grid;grid-template-columns:2fr 1fr;gap:20px">
@@ -1488,6 +1590,20 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
       </div>
 
       <div>
+        <h2 style="font-size:17px;font-weight:600;color:var(--white);margin-bottom:12px;letter-spacing:-0.01em">4A. Pre-Chat Data & Restrictions</h2>
+        <p>InsiderHire operates a Pre-Chat verification system between freshers and referrers. The following rules apply to all pre-chat communications:</p>
+        <ul style="margin-top:10px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:6px">
+          <li style="display:flex;gap:8px"><span style="color:#f87171">✗</span> Phone numbers may not be shared in any chat</li>
+          <li style="display:flex;gap:8px"><span style="color:#f87171">✗</span> Exact physical addresses may not be shared</li>
+          <li style="display:flex;gap:8px"><span style="color:#f87171">✗</span> Free-text personal messages are not permitted in Pre-Chat</li>
+          <li style="display:flex;gap:8px"><span style="color:#4ade80">✓</span> Only pre-typed system messages are allowed in Pre-Chat</li>
+          <li style="display:flex;gap:8px"><span style="color:#4ade80">✓</span> All pre-chat messages are recorded and stored in our database</li>
+          <li style="display:flex;gap:8px"><span style="color:#4ade80">✓</span> Full chat (post-escrow) messages are also stored for dispute resolution</li>
+        </ul>
+        <p style="margin-top:10px">Pre-chat message data is retained for 2 years for dispute resolution and platform safety purposes. Users may request deletion subject to legal retention requirements.</p>
+      </div>
+
+      <div>
         <h2 style="font-size:17px;font-weight:600;color:var(--white);margin-bottom:12px;letter-spacing:-0.01em">5. Who We Share Data With</h2>
         <div style="display:flex;flex-direction:column;gap:8px">
           <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--blue-light);flex-shrink:0">→</span><span><strong style="color:var(--text-1)">Razorpay</strong> — payment processing. Their privacy policy applies to payment data: razorpay.com/privacy</span></div>
@@ -1640,6 +1756,10 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
           <div style="display:flex;gap:10px"><span style="color:#f87171;flex-shrink:0">✗</span><span>Harassing, threatening, or abusing other users</span></div>
           <div style="display:flex;gap:10px"><span style="color:#f87171;flex-shrink:0">✗</span><span>Attempting to transact outside the platform to avoid escrow</span></div>
           <div style="display:flex;gap:10px"><span style="color:#f87171;flex-shrink:0">✗</span><span>Using the platform for purposes other than odd job referrals</span></div>
+          <div style="display:flex;gap:10px"><span style="color:#f87171;flex-shrink:0">✗</span><span>Sharing phone numbers, personal addresses, or contact details in the Pre-Chat system</span></div>
+          <div style="display:flex;gap:10px"><span style="color:#f87171;flex-shrink:0">✗</span><span>Attempting to bypass the pre-typed message system in Pre-Chat</span></div>
+          <div style="display:flex;gap:10px"><span style="color:#f87171;flex-shrink:0">✗</span><span>Referrers accepting more than 5 requests per week (system-enforced)</span></div>
+          <div style="display:flex;gap:10px"><span style="color:#f87171;flex-shrink:0">✗</span><span>Freshers sending more than 5 requests per week (system-enforced)</span></div>
         </div>
       </div>
 
@@ -1721,6 +1841,11 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
           <div style="display:flex;gap:8px"><span style="color:var(--text-3)">·</span><span>Never request a referral</span></div>
           <div style="display:flex;gap:8px"><span style="color:var(--text-3)">·</span><span>Close your account immediately after payment</span></div>
           <div style="display:flex;gap:8px"><span style="color:var(--text-3)">·</span><span>Fail to find a suitable referrer</span></div>
+          <div style="display:flex;gap:8px"><span style="color:var(--text-3)">·</span><span>Do not use all 5 weekly requests during the 60-day period</span></div>
+          <div style="display:flex;gap:8px"><span style="color:var(--text-3)">·</span><span>Pay the renewal fee before the 60-day period expires</span></div>
+        </div>
+        <div style="margin-top:12px;padding:12px 14px;background:var(--elevated);border-radius:var(--r-lg);font-size:12px;color:var(--text-2)">
+          📅 The $10 access fee is valid for <strong>60 days</strong> from the date of payment. After 60 days, you must pay again to continue sending referral requests. You will receive a reminder 7 days before expiry.
         </div>
       </div>
 
@@ -2014,6 +2139,16 @@ function switchModal(a,b)    { closeModal(a); setTimeout(()=>openModal(b),100); 
 
 document.addEventListener('click', e => {
   if (e.target.classList.contains('modal-overlay')) closeModal(e.target.id);
+  // Close avatar dropdown on outside click
+  if (!e.target.closest('#nav-av-wrap')) {
+    const d = document.getElementById('nav-av-dropdown');
+    if (d) d.style.display = 'none';
+  }
+  // Close notification dropdown on outside click
+  if (!e.target.closest('#notif-wrap')) {
+    const d = document.getElementById('notif-dropdown');
+    if (d) d.style.display = 'none';
+  }
 });
 document.addEventListener('keydown', e => {
   if (e.key==='Escape') document.querySelectorAll('.modal-overlay.open').forEach(m=>closeModal(m.id));
@@ -2106,21 +2241,119 @@ function requireSB() {
 async function initAuth() {
   if (!SB) return;
   try {
+    // Check for password recovery link (user clicked forgot password email)
+    const hashParams = new URLSearchParams(window.location.hash.replace('#',''));
+    const queryParams = new URLSearchParams(window.location.search);
+    const isRecovery = hashParams.get('type') === 'recovery' ||
+                       queryParams.get('type') === 'recovery' ||
+                       hashParams.get('access_token');
+
     const { data: { session } } = await SB.auth.getSession();
     if (session) await onSession(session);
+
+    // If it's a recovery session, show change password modal
+    if (isRecovery || (session && queryParams.get('type') === 'recovery')) {
+      setTimeout(() => openChangePasswordModal(), 500);
+    }
+
     SB.auth.onAuthStateChange(async (ev, sess) => {
-      if (ev==='SIGNED_IN' && sess) await onSession(sess);
+      if (ev==='SIGNED_IN'  && sess) await onSession(sess);
+      if (ev==='PASSWORD_RECOVERY') {
+        // User clicked forgot password link
+        setTimeout(() => openChangePasswordModal(), 300);
+      }
       if (ev==='SIGNED_OUT') { me=null; profile=null; nav('landing'); updateNav(); }
     });
   } catch(e) { console.warn('Auth init:', e.message); }
 }
 
+function openChangePasswordModal() {
+  let modal = document.getElementById('change-pwd-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'change-pwd-modal';
+    modal.className = 'modal-overlay';
+    modal.innerHTML = `
+      <div class="modal" style="max-width:400px">
+        <h2 class="modal-title" style="font-size:22px">🔑 Set New Password</h2>
+        <p class="modal-sub">Enter your new password below.</p>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div class="input-group">
+            <label class="input-label">New Password</label>
+            <input class="input" type="password" id="new-pwd-input" placeholder="Min 8 characters">
+          </div>
+          <div class="input-group">
+            <label class="input-label">Confirm Password</label>
+            <input class="input" type="password" id="confirm-pwd-input" placeholder="Repeat password">
+          </div>
+          <div id="change-pwd-error" style="font-size:12px;color:#f87171;min-height:16px;text-align:center"></div>
+          <button class="btn btn-white" style="width:100%;padding:12px" onclick="submitNewPassword()">Update Password →</button>
+        </div>
+      </div>`;
+    document.body.appendChild(modal);
+  }
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+async function submitNewPassword() {
+  if (!requireSB()) return;
+  const pwd  = document.getElementById('new-pwd-input')?.value?.trim();
+  const conf = document.getElementById('confirm-pwd-input')?.value?.trim();
+  const errEl = document.getElementById('change-pwd-error');
+  if (errEl) errEl.textContent = '';
+  if (!pwd || pwd.length < 8) { if(errEl) errEl.textContent = 'Password must be at least 8 characters.'; return; }
+  if (pwd !== conf)            { if(errEl) errEl.textContent = 'Passwords do not match.'; return; }
+  try {
+    const { error } = await SB.auth.updateUser({ password: pwd });
+    if (error) throw error;
+    closeModal('change-pwd-modal');
+    toast('✅ Password updated successfully! You are now logged in.','success');
+    // Clean up URL hash
+    window.history.replaceState({}, document.title, window.location.pathname);
+  } catch(e) {
+    if (errEl) errEl.textContent = e.message;
+  }
+}
+
 async function onSession(sess) {
   me = sess.user;
   try {
-    const { data } = await SB.from('profiles').select('*').eq('id', me.id).single();
-    profile = data || null;
+    const { data, error } = await SB.from('profiles').select('*').eq('id', me.id).single();
+    if (error) {
+      console.warn('Profile fetch error:', error.message);
+      // If profile doesn't exist yet, create it (handles edge cases)
+      if (error.code === 'PGRST116') {
+        // Row not found — create profile from auth metadata
+        const meta = sess.user.user_metadata || {};
+        const role = meta.role || 'fresher';
+        await SB.from('profiles').upsert({
+          id:    me.id,
+          email: me.email,
+          full_name: meta.full_name || me.email?.split('@')[0] || '',
+          role
+        }, { onConflict: 'id' });
+        const { data: d2 } = await SB.from('profiles').select('*').eq('id', me.id).single();
+        profile = d2 || null;
+      }
+    } else {
+      profile = data || null;
+    }
   } catch(e) { console.warn('Profile fetch:', e.message); }
+
+  // If profile still null, build a minimal one from auth metadata
+  if (!profile && me) {
+    const meta = me.user_metadata || {};
+    profile = {
+      id:    me.id,
+      email: me.email,
+      full_name: meta.full_name || me.email?.split('@')[0] || '',
+      role:  meta.role || 'fresher',
+      signup_fee_paid: false,
+      is_verified: false,
+    };
+  }
+
   // Load unlocked refs for this user
   await loadUnlockedRefs();
   fillUI();
@@ -2128,18 +2361,23 @@ async function onSession(sess) {
   if (page==='landing') {
     const r = profile?.role || 'fresher';
     if (r==='admin')    nav('admin');
-    else if (r==='referrer') nav('referrer');
-    else {
-      // $10 access fee gate: valid for 60 days from fee_paid_at
-      if (!isFeeValid()) {
-        openFeeModal();  // first time or expired — ask for $10
-      } else {
-        const daysLeft = feeExpiresInDays();
-        if (daysLeft <= 7) {
-          toast(`Access expires in ${daysLeft} day${daysLeft === 1 ? '' : 's'}. Renew soon to keep sending requests.`, 'info');
-        }
-        nav('fresher');
+    else if (r==='referrer') {
+      nav('referrer');
+      // Welcome toast for newly confirmed referrers
+      if (me?.confirmed_at && new Date(me.confirmed_at) > new Date(Date.now()-30000)) {
+        toast('✅ Email confirmed! Welcome to InsiderHire as a Referrer 🎉','success');
       }
+    }
+    else if (r==='suspended') {
+      toast('Your account has been suspended. Contact support@insiderhire.in','error');
+    }
+    else {
+      // Fresher — go straight to dashboard, no fee gate at login
+      const daysLeft = feeExpiresInDays();
+      if (isFeeValid() && daysLeft <= 7) {
+        toast(`⚠️ Access expires in ${daysLeft} day${daysLeft===1?'':'s'}. Renew soon to keep sending requests.`, 'info');
+      }
+      nav('fresher');
     }
   }
 }
@@ -2157,9 +2395,18 @@ async function loadUnlockedRefs() {
 
 function fillUI() {
   if (!profile && !me) return;
-  const name = profile?.full_name || me?.email?.split('@')[0]?.replace(/[._-]/g,' ') || 'User';
-  const av   = ini(name);
-  const navAv = $('nav-av'); if(navAv) navAv.textContent = av;
+  const name  = profile?.full_name || me?.email?.split('@')[0]?.replace(/[._-]/g,' ') || 'User';
+  const email = profile?.email || me?.email || '';
+  const av    = ini(name);
+  // Nav avatar
+  const navAv = $('nav-av');
+  if (navAv) { navAv.textContent = av; navAv.title = name; }
+  // Nav dropdown name/email
+  const navName  = $('nav-user-name');
+  const navEmail = $('nav-user-email');
+  if (navName)  navName.textContent  = name;
+  if (navEmail) navEmail.textContent = email;
+  // Dashboard avatar
   const da = $('dash-av');
   if(da){ da.textContent=av; da.style.background='linear-gradient(135deg,#1e3a8a,#2563EB)'; da.style.color='var(--blue-light)'; }
   safe('dash-name', name);
@@ -2217,11 +2464,21 @@ async function doLogin() {
   if (!email || !pass) { if(errEl) errEl.textContent='Email and password required.'; return; }
   if (btn) { btn.classList.add('btn-loading'); btn.textContent=''; }
   try {
-    const { error } = await SB.auth.signInWithPassword({ email, password: pass });
-    if (error) throw error;
+    const { data, error } = await SB.auth.signInWithPassword({ email, password: pass });
+    if (error) {
+      // Give specific helpful messages
+      if (error.message?.toLowerCase().includes('invalid') || error.message?.toLowerCase().includes('credentials')) {
+        if(errEl) errEl.innerHTML = 'Wrong email or password.<br><span style="font-size:11px;color:var(--text-3)">Referrer? Make sure you confirmed your email first. <a onclick="resendConfirmation()" style="color:var(--blue-light);cursor:pointer">Resend confirmation →</a></span>';
+      } else if (error.message?.toLowerCase().includes('email') && error.message?.toLowerCase().includes('confirm')) {
+        if(errEl) errEl.innerHTML = '📧 Please confirm your email first. <a onclick="resendConfirmation()" style="color:var(--blue-light);cursor:pointer">Resend confirmation email →</a>';
+      } else {
+        if(errEl) errEl.textContent = error.message;
+      }
+      return;
+    }
     closeModal('login-modal');
     toast('Welcome back! 👋','success');
-  } catch(e) { if(errEl) errEl.textContent=e.message; }
+  } catch(e) { if(errEl) errEl.textContent = e.message; }
   finally { if(btn){ btn.classList.remove('btn-loading'); btn.textContent='Sign in →'; } }
 }
 
@@ -2252,20 +2509,35 @@ async function doSignup() {
     if (data?.user) {
       pendingUid = data.user.id;
       try {
+        // Save role in both auth metadata (fallback) AND profiles table
+        await SB.auth.updateUser({ data: { full_name: fullName, role: _selRole } });
         await SB.from('profiles').upsert({
-          id: data.user.id, full_name: fullName, email, role: _selRole,
-          signup_fee_paid: _selRole==='referrer',
-          created_at: new Date().toISOString()
-        });
-      } catch(e) { /* trigger may have already inserted */ }
+          id:              data.user.id,
+          full_name:       fullName,
+          email,
+          role:            _selRole,
+          signup_fee_paid: false,  // freshers pay on first request, referrers never pay
+          created_at:      new Date().toISOString()
+        }, { onConflict: 'id' });
+      } catch(e) {
+        console.warn('Profile upsert:', e.message);
+        // Even if profile upsert fails, role is in auth metadata as fallback
+      }
     }
     closeModal('signup-modal');
+    const emailUsed = getV('s-email');
     if (_selRole==='fresher') {
-      // onSession() will fire automatically after signUp and call isFeeValid()
-      // which routes to openFeeModal() for the $10 payment before dashboard access.
-      toast('Account created! Complete your $10 activation to start sending requests.','success');
+      toast('✅ Account created! Check your email to confirm, then log back in.','success');
+      const errEl = document.getElementById('signup-error');
+      if (errEl) { errEl.style.color='#4ade80'; errEl.textContent='Confirmation email sent to '+emailUsed+' — check inbox & spam.'; }
     } else {
-      toast('Account created! Welcome to InsiderHire 🎉','success');
+      // Referrer MUST confirm email before login
+      toast('🎉 Referrer account created! Check your email to confirm before logging in.','success');
+      const errEl = document.getElementById('signup-error');
+      if (errEl) {
+        errEl.style.color = '#4ade80';
+        errEl.innerHTML = `✅ Confirmation email sent to <strong>${emailUsed}</strong>.<br><span style="font-size:11px;color:var(--text-3)">Click the link in email → then login here. Check spam if not found.</span>`;
+      }
     }
   } catch(e) { if(errEl) errEl.textContent=e.message; }
   finally { if(btn){ btn.classList.remove('btn-loading'); btn.textContent='Create account →'; } }
@@ -2274,8 +2546,58 @@ async function doSignup() {
 async function doGoogleAuth() {
   if (!requireSB()) return;
   closeModal('login-modal'); closeModal('signup-modal');
-  const { error } = await SB.auth.signInWithOAuth({ provider:'google', options:{ redirectTo: location.href } });
-  if (error) toast(error.message,'error');
+  try {
+    const redirectTo = window.location.href.split('?')[0].split('#')[0];
+    const { error } = await SB.auth.signInWithOAuth({
+      provider:'google',
+      options:{ redirectTo, queryParams:{ access_type:'offline', prompt:'consent' } }
+    });
+    if (error) {
+      if (error.message?.includes('not enabled') || error.message?.includes('provider')) {
+        toast('Google sign-in not configured yet. Enable Google provider in Supabase Dashboard → Authentication → Providers → Google.','error');
+      } else throw error;
+    }
+  } catch(e) {
+    if (e.message?.includes('not enabled') || e.message?.includes('provider')) {
+      toast('Google sign-in: Enable it in Supabase Dashboard → Authentication → Providers → Google','error');
+    } else {
+      toast('Google sign-in failed: ' + e.message,'error');
+    }
+  }
+}
+
+async function doAppleAuth() {
+  if (!requireSB()) return;
+  closeModal('login-modal'); closeModal('signup-modal');
+  try {
+    const redirectTo = window.location.href.split('?')[0].split('#')[0];
+    const { error } = await SB.auth.signInWithOAuth({
+      provider:'apple',
+      options:{ redirectTo }
+    });
+    if (error) {
+      if (error.message?.includes('not enabled') || error.message?.includes('provider')) {
+        toast('Apple sign-in not configured yet. Enable Apple provider in Supabase Dashboard → Authentication → Providers → Apple.','error');
+      } else throw error;
+    }
+  } catch(e) {
+    if (e.message?.includes('not enabled') || e.message?.includes('provider')) {
+      toast('Apple sign-in: Enable it in Supabase Dashboard → Authentication → Providers → Apple','error');
+    } else {
+      toast('Apple sign-in failed: ' + e.message,'error');
+    }
+  }
+}
+
+async function changePasswordFromSettings() {
+  if (!requireSB() || !me) return;
+  // Send reset email then open modal when they come back
+  try {
+    const redirectTo = window.location.href.split('?')[0].split('#')[0];
+    const { error } = await SB.auth.resetPasswordForEmail(me.email, { redirectTo });
+    if (error) throw error;
+    toast('✅ Password reset email sent to ' + me.email + ' — click the link in email, then set your new password here.','success');
+  } catch(e) { toast(e.message, 'error'); }
 }
 
 async function doLogout() {
@@ -2286,11 +2608,48 @@ async function doLogout() {
 
 async function doPasswordReset() {
   if (!requireSB()) return;
-  const email = getV('login-email') || me?.email;
-  if (!email) { toast('Enter your email first.','info'); return; }
-  const { error } = await SB.auth.resetPasswordForEmail(email, { redirectTo: location.href });
-  if (error) toast(error.message,'error');
-  else toast('Reset link sent to '+email,'success');
+  const email = getV('login-email') || getV('reset-email-input') || me?.email;
+  if (!email) {
+    // Show reset email input
+    const errEl = $('login-error');
+    if (errEl) {
+      errEl.style.color='var(--blue-light)';
+      errEl.innerHTML='Enter your email above and click Forgot password again.';
+    }
+    const emailEl = $('login-email');
+    if (emailEl) emailEl.focus();
+    return;
+  }
+  try {
+    const { error } = await SB.auth.resetPasswordForEmail(email, {
+      redirectTo: window.location.origin + window.location.pathname
+    });
+    if (error) throw error;
+    closeModal('login-modal');
+    toast('✅ Password reset link sent to ' + email + ' — check your inbox & spam folder.','success');
+  } catch(e) {
+    const errEl = $('login-error');
+    if (errEl) { errEl.style.color='#f87171'; errEl.textContent = e.message; }
+  }
+}
+
+async function resendConfirmation() {
+  if (!requireSB()) return;
+  const email = getV('login-email');
+  if (!email) {
+    const errEl = $('login-error');
+    if (errEl) { errEl.style.color='var(--blue-light)'; errEl.textContent='Enter your email above first, then click Resend.'; }
+    $('login-email')?.focus();
+    return;
+  }
+  try {
+    const { error } = await SB.auth.resend({ type:'signup', email });
+    if (error) throw error;
+    toast('✅ Confirmation email resent to ' + email + ' — check inbox & spam.','success');
+    closeModal('login-modal');
+  } catch(e) {
+    toast(e.message,'error');
+  }
 }
 
 // ─── RAZORPAY ─────────────────────────────────────────────────
@@ -2522,6 +2881,185 @@ async function payRequestFee(referrerId, referrerLocation) {
 }
 
 
+// ── PRE-CHAT SYSTEM (post-accept, pre-escrow) ────────────────────────────────
+// Pre-typed messages only. No personal info. Saved to DB.
+// Both must agree on job availability, suitability, referrer help.
+// After all 3 YES answers → escrow payment button unlocks.
+
+const PRECHAT_QUESTIONS = [
+  {
+    id:'q1', ask:'Is the job currently available?',
+    opts:['Yes, there are openings now ✅','Not right now, check back ❌','Opening next week/month 📅','Seasonal work available 🌿']
+  },
+  {
+    id:'q2', ask:'What type of contract is offered?',
+    opts:['Full-time permanent 📋','Part-time (20hrs/week) 🕐','Zero-hours / flexible ⏱','Temporary / seasonal 📅']
+  },
+  {
+    id:'q3', ask:'Is this suitable for international students?',
+    opts:['Yes, students are welcome ✅','Work permit/visa required 🪪','Student visa (20hrs) accepted 📚','Need to check with HR 🔍']
+  },
+  {
+    id:'q4', ask:'Roughly how far is the workplace from city centre?',
+    opts:['Within 5 km 🏙️','5–15 km 🚌','15–30 km 🚗','30+ km (commute needed) 🚂']
+  },
+  {
+    id:'q5', ask:'What is the approximate pay rate?',
+    opts:['Minimum wage 💷','£1–2 above minimum wage 💷+','£13–16 per hour 💷💷','Depends on role/shift 📊']
+  },
+  {
+    id:'q6', ask:'Can you refer me for this position?',
+    opts:['Yes, I can refer you right away ✅','Yes, once you pay escrow I will start 🔐','Need to check current openings first 🔍','Sorry, not possible at this time ❌']
+  },
+];
+
+let preChatAppId  = null;
+let preChatData   = {}; // keyed by appId
+
+function openPreChat(appId, referrerId, referrerName, jobCat, refLoc) {
+  preChatAppId = appId;
+  if (!preChatData[appId])
+    preChatData[appId] = { referrerId, referrerName, jobCat, refLoc, answers:{}, msgs:[] };
+
+  let modal = document.getElementById('prechat-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id        = 'prechat-modal';
+    modal.className = 'modal-overlay';
+    document.body.appendChild(modal);
+  }
+  modal.innerHTML = `
+    <div class="modal" style="max-width:480px;padding:0;overflow:hidden;display:flex;flex-direction:column">
+      <div style="padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between">
+        <div>
+          <div style="font-size:14px;font-weight:600">Pre-Chat · ${esc(referrerName||'Referrer')}</div>
+          <div style="font-size:11px;color:var(--text-3)">${esc(jobCat||'Odd Job')} · ${esc(refLoc||'')}</div>
+        </div>
+        <span onclick="closeModal('prechat-modal')" style="cursor:pointer;font-size:20px;color:var(--text-3);line-height:1">×</span>
+      </div>
+      <div style="padding:8px 14px;background:rgba(37,99,235,.07);border-bottom:1px solid var(--border);font-size:11px;color:var(--blue-light)">
+        🔒 Pre-typed messages only · No phone/address sharing · All messages saved
+      </div>
+      <div id="pc-msgs" style="flex:1;min-height:220px;max-height:280px;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px"></div>
+      <div id="pc-opts" style="padding:12px 14px;border-top:1px solid var(--border)"></div>
+      <div id="pc-cta"  style="display:none;padding:12px 14px;border-top:1px solid var(--border);background:var(--green-dim)">
+        <div style="font-size:12px;color:#4ade80;font-weight:600;margin-bottom:8px">✅ All criteria matched! Deposit escrow to get full contact details.</div>
+        <button class="btn btn-white" style="width:100%" onclick="closeModal('prechat-modal');openEscrowCtxFor('${esc(referrerId||'')}','${esc(refLoc||'')}','${esc(jobCat||'')}')">
+          Deposit Escrow $500 →
+        </button>
+      </div>
+      <div id="pc-fail" style="display:none;padding:12px 14px;border-top:1px solid var(--border);background:var(--red-dim)">
+        <div style="font-size:12px;color:#f87171">❌ Criteria not matched. Try another referrer.</div>
+      </div>
+    </div>`;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  renderPreChat();
+}
+
+function openEscrowCtxFor(referrerId, refLoc, jobCat) {
+  const r = allReferrers.find(x => x.id === referrerId) || { id:referrerId, location:refLoc, job_category:jobCat, referral_fee:500 };
+  // Set escrowCtx manually
+  const curr = detectCurrency(refLoc||'');
+  escrowCtx = {
+    referrerId, maskedName:'Referrer', jobCategory: jobCat||'Odd Job',
+    fee: +(r.referral_fee)||500, referrerLocation: refLoc||'', currency: curr
+  };
+  const convertedEscrow = Math.round(escrowCtx.fee * curr.rate * 100)/100;
+  const subEl = document.getElementById('escrow-modal-sub');
+  if (subEl) subEl.textContent = `${curr.symbol}${convertedEscrow.toFixed(2)} ${curr.code} held securely`;
+  const amtEl = document.getElementById('escrow-amount-display');
+  if (amtEl) amtEl.textContent = `${curr.symbol}${convertedEscrow.toFixed(2)}`;
+  const currEl = document.getElementById('escrow-currency-display');
+  if (currEl) currEl.textContent = `${curr.code} — ${curr.name}`;
+  const totalEl = document.getElementById('escrow-total-display');
+  if (totalEl) totalEl.textContent = `${curr.symbol}${convertedEscrow.toFixed(2)} ${curr.code}`;
+  const btnText = document.getElementById('escrow-pay-btn-text');
+  if (btnText) btnText.textContent = `Deposit ${curr.symbol}${convertedEscrow.toFixed(2)} ${curr.code} via Razorpay`;
+  openModal('escrow-modal');
+}
+
+function renderPreChat() {
+  const state = preChatData[preChatAppId];
+  if (!state) return;
+  const msgsEl = document.getElementById('pc-msgs');
+  const optsEl = document.getElementById('pc-opts');
+  const ctaEl  = document.getElementById('pc-cta');
+  const failEl = document.getElementById('pc-fail');
+  if (!msgsEl) return;
+
+  msgsEl.innerHTML = state.msgs.map(m => `
+    <div class="msg ${m.from==='me'?'sent':'recv'}">
+      ${m.from!=='me'?`<div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#1e3a8a,#2563EB);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;color:#fff">R</div>`:''}
+      <div><div class="msg-bubble" style="${m.from==='me'?'background:var(--white);color:var(--black);font-weight:500':'background:var(--elevated)'}">${esc(m.text)}</div>
+      <div class="msg-time">${m.time}</div></div>
+      ${m.from==='me'?`<div style="width:26px;height:26px;border-radius:50%;background:#1e3a8a;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;color:#fff">Me</div>`:''}
+    </div>`).join('');
+  msgsEl.scrollTop = msgsEl.scrollHeight;
+
+  const nextQ      = PRECHAT_QUESTIONS.find(q => !state.answers[q.id]);
+  const allDone    = PRECHAT_QUESTIONS.every(q => state.answers[q.id]);
+  // Positive = q1 starts Yes, q3 starts Yes, q6 starts Yes
+  const allYes     = allDone &&
+    state.answers['q1']?.startsWith('Yes') &&
+    state.answers['q3']?.startsWith('Yes') &&
+    state.answers['q6']?.startsWith('Yes');
+
+  if (nextQ && !allDone) {
+    optsEl.innerHTML = `
+      <div style="font-size:12px;color:var(--text-2);margin-bottom:8px;font-weight:500">${esc(nextQ.ask)}</div>
+      ${nextQ.opts.map(o=>`<button class="btn btn-ghost" style="width:100%;justify-content:flex-start;font-size:13px;margin-bottom:4px;text-align:left" onclick="pcAnswer('${esc(o)}','${nextQ.id}')">${esc(o)}</button>`).join('')}`;
+  } else {
+    optsEl.innerHTML = '';
+  }
+
+  if (allDone) {
+    if (allYes)  { if(ctaEl) ctaEl.style.display=''; if(failEl) failEl.style.display='none'; }
+    else         { if(failEl) failEl.style.display=''; if(ctaEl) ctaEl.style.display='none'; }
+  }
+}
+
+async function pcAnswer(text, qId) {
+  const state = preChatData[preChatAppId];
+  if (!state) return;
+  const now = new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+  state.msgs.push({ from:'me', text, time:now });
+  state.answers[qId] = text;
+
+  // Save fresher message to DB
+  if (SB && me && preChatAppId) {
+    SB.from('prechat_messages').insert({
+      application_id: preChatAppId, sender_id: me.id,
+      question_id: qId, message: text, sender_role:'fresher'
+    }).catch(()=>{});
+  }
+
+  renderPreChat();
+
+  // Auto-reply from referrer after short delay
+  const autoReplies = {
+    q1: { 'Yes': 'Great news — there are openings right now!', default: 'Understood, thanks for asking.' },
+    q2: { 'Full': 'We offer full-time positions here.', 'Part': 'Yes, part-time shifts are available.', default: 'I can share more details once connected.' },
+    q3: { 'Yes': 'Absolutely — students are very welcome here.', default: 'Let me clarify that with my manager.' },
+    q4: { 'Within': 'Great, very accessible location!', default: 'The location details will be shared after escrow.' },
+    q5: { default: 'Pay details will be confirmed once connected properly.' },
+    q6: { 'Yes': 'Im ready to refer you — pay escrow and I ll get started immediately!', default: 'Got it, I understand.' },
+  };
+  const reply = autoReplies[qId];
+  const autoText = reply ? (text.startsWith('Yes') ? reply['Yes'] : reply.default) : 'Got it.';
+  setTimeout(() => {
+    const now2 = new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+    state.msgs.push({ from:'referrer', text:autoText, time:now2 });
+    if (SB && preChatAppId) {
+      SB.from('prechat_messages').insert({
+        application_id: preChatAppId, sender_id: null,
+        question_id: qId, message: autoText, sender_role:'referrer_auto'
+      }).catch(()=>{});
+    }
+    renderPreChat();
+  }, 700);
+}
+
 async function confirmEscrow() {
   if (!requireSB() || !me) return;
   if (!escrowCtx) { toast('No referrer selected.','error'); return; }
@@ -2632,52 +3170,8 @@ function setUserLoc(lat, lng, label) {
   applyFilters();
 }
 
-function drawMap(lat, lng) {
-  if (!mapsReady || !window.google) return;
-  const container=$('map-container'); if(!container) return;
-  container.style.display='block';
-  const center={lat, lng};
-  const zoom = radius<=10?12 : radius<=50?10 : radius<=100?8 : 5;
-  if (!gMap) {
-    gMap = new google.maps.Map(container, {
-      center, zoom, mapTypeId:'roadmap', disableDefaultUI:true, zoomControl:true,
-      styles:[
-        {elementType:'geometry',stylers:[{color:'#0a0a0a'}]},
-        {elementType:'labels.text.stroke',stylers:[{color:'#000'}]},
-        {elementType:'labels.text.fill',stylers:[{color:'#555'}]},
-        {featureType:'road',elementType:'geometry',stylers:[{color:'#1a1a1a'}]},
-        {featureType:'water',stylers:[{color:'#030303'}]},
-        {featureType:'poi',stylers:[{visibility:'off'}]},
-      ]
-    });
-  } else { gMap.setCenter(center); gMap.setZoom(zoom); }
-  gMarkers.forEach(m=>m.setMap(null)); gMarkers=[];
-  const um = new google.maps.Marker({ position:center, map:gMap,
-    icon:{path:google.maps.SymbolPath.CIRCLE,scale:8,fillColor:'#60A5FA',fillOpacity:1,strokeWeight:2,strokeColor:'#2563EB'} });
-  gMarkers.push(um);
-  if (gCircle) gCircle.setMap(null);
-  if (radius<99999) {
-    gCircle = new google.maps.Circle({
-      center, radius:radius*1000, map:gMap,
-      fillColor:'#2563EB', fillOpacity:0.06, strokeColor:'#2563EB', strokeOpacity:0.3, strokeWeight:1.5
-    });
-  }
-  allReferrers.forEach(r=>{
-    if (r.lat!=null && r.lng!=null) {
-      const m = new google.maps.Marker({
-        position:{lat:+r.lat,lng:+r.lng}, map:gMap,
-        title: maskName(r.full_name),
-        icon:{path:google.maps.SymbolPath.CIRCLE,scale:5,fillColor:'#4ade80',fillOpacity:1,strokeWeight:1,strokeColor:'#16a34a'}
-      });
-      const iw = new google.maps.InfoWindow({
-        content:`<div style="color:#000;font-family:sans-serif;font-size:12px"><b>${esc(maskName(r.full_name))}</b><br>${esc(r.job_category||'')} · ${esc(r.location||'')}<br>★ ${r.rating||4.5} · $${r.referral_fee||500}</div>`
-      });
-      m.addListener('click',()=>iw.open(gMap,m));
-      gMarkers.push(m);
-    }
-  });
-}
-
+// Old Google Maps drawMap removed — Leaflet version handles this
+function drawMap_UNUSED() {}
 function setRadius(r) {
   radius = r==='any' ? 99999 : +r;
   document.querySelectorAll('.radius-btn').forEach(b=>b.classList.remove('on'));
@@ -2933,7 +3427,7 @@ async function loadRequests() {
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
           <span class="status-pill ${sp}">${sl}</span>
           ${hasEscrow?`<button class="btn btn-ghost btn-sm" onclick="dashNav('dash-chat')">Chat →</button><button class="btn btn-green btn-sm" onclick="openModal('payslip-modal')">Upload payslip</button>`:''}
-          ${isAccepted?`<button class="btn btn-white btn-sm" onclick="openEscrowFor('${a.referrer_id}')">Deposit ${escrowDisplay} →</button>`:''}
+          ${isAccepted?`<button class="btn btn-white btn-sm" onclick="openPreChat('${a.id}','${a.referrer_id}','${esc(rName)}','${esc(rCat)}','${esc(rLoc)}')">💬 Start Pre-Chat →</button>`:''}
         </div>
       </div>`;
     }).join('');
@@ -3150,10 +3644,21 @@ async function loadRefRequests() {
   try {
     const { data, error } = await SB.from('applications')
       .select('*,applicant:profiles!applications_applicant_id_fkey(full_name,bio,skills,location,phone,email)')
-      .eq('referrer_id', me.id).eq('status','escrow_paid')
+      .eq('referrer_id', me.id)
+      .in('status', ['pending','escrow_paid','accepted'])
       .order('applied_at',{ascending:false}).limit(20);
     if (error) throw error;
-    if (!data?.length) { list.innerHTML='<div style="padding:40px;text-align:center;color:var(--text-3)">No incoming requests yet.</div>'; return; }
+    // Update badge
+    const badge = document.getElementById('ref-req-badge');
+    const pendingCount = (data||[]).filter(a => a.status==='pending').length;
+    if (badge) badge.textContent = pendingCount || '';
+    const countBadge = document.getElementById('ref-req-count-badge');
+    if (countBadge) countBadge.textContent = `${(data||[]).length} total · ${pendingCount} pending`;
+    // Update overview stat
+    const activeEl = document.getElementById('ref-active-req');
+    if (activeEl) activeEl.textContent = pendingCount;
+
+    if (!data?.length) { list.innerHTML='<div style="padding:40px;text-align:center;color:var(--text-3)">No incoming requests yet.<br><span style="font-size:12px">Share your InsiderHire profile link to get requests.</span></div>'; return; }
     list.innerHTML = data.map(a=>{
       const ap=a.applicant||{};
       return `<div class="card" style="padding:24px;margin-bottom:12px">
@@ -3169,9 +3674,17 @@ async function loadRefRequests() {
         ${ap.phone||ap.email?`<div style="font-size:12px;color:var(--text-2);margin-bottom:12px">
           ${ap.phone?`📞 ${esc(ap.phone)} `:''} ${ap.email?`📧 ${esc(ap.email)}`:''}
         </div>`:''}
-        <div style="display:flex;gap:8px;justify-content:flex-end">
-          <button class="btn btn-green btn-sm" onclick="refNav('ref-chat')">💬 Chat</button>
-          <button class="btn btn-white btn-sm" onclick="submitReferralProof()">✓ Submit referral proof</button>
+        <div style="display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap">
+          ${a.status==='pending' ? `
+            <span class="status-pill st-pending">⏳ Pending</span>
+            <button class="btn btn-red btn-sm" onclick="rejectApplication('${a.id}')">✗ Decline</button>
+            <button class="btn btn-green btn-sm" onclick="acceptApplication('${a.id}','${a.applicant_id}')">✓ Accept</button>
+          ` : a.status==='accepted' ? `
+            <span class="status-pill st-active">✅ Accepted</span>
+            <button class="btn btn-ghost btn-sm" onclick="refNav('ref-chat')">💬 Chat</button>
+          ` : `
+            <span class="status-pill st-rejected">${a.status}</span>
+          `}
         </div>
       </div>`;
     }).join('');
@@ -3196,6 +3709,60 @@ async function loadRefEarnings() {
       }).join('');
     }
   } catch(e) { console.warn('Earnings:', e.message); }
+}
+
+// ── REFERRER ACCEPT/REJECT + WEEKLY LIMIT ────────────────────────────────────
+const REFERRER_WEEKLY_ACCEPT_LIMIT = 5;
+
+async function getReferrerWeeklyAcceptCount() {
+  if (!SB || !me) return 0;
+  try {
+    const weekAgo = new Date(Date.now() - 7*24*60*60*1000).toISOString();
+    const { count } = await SB.from('applications')
+      .select('id', { count:'exact', head:true })
+      .eq('referrer_id', me.id)
+      .eq('status','accepted')
+      .gte('updated_at', weekAgo);
+    return count || 0;
+  } catch(e) { return 0; }
+}
+
+async function acceptApplication(appId, applicantId) {
+  if (!requireSB() || !me) return;
+  // Check weekly limit
+  const weekCount = await getReferrerWeeklyAcceptCount();
+  if (weekCount >= REFERRER_WEEKLY_ACCEPT_LIMIT) {
+    toast(`You can only accept ${REFERRER_WEEKLY_ACCEPT_LIMIT} requests per week. Limit resets in 7 days.`, 'error');
+    return;
+  }
+  try {
+    const { error } = await SB.from('applications')
+      .update({ status:'accepted' })
+      .eq('id', appId)
+      .eq('referrer_id', me.id);
+    if (error) throw error;
+    // Notify fresher
+    await SB.from('notifications').insert({
+      user_id: applicantId,
+      title: '🎉 Request accepted!',
+      message: `Your referral request was accepted! Go to My Requests and deposit $500 escrow to unlock the pre-chat and contact details.`
+    });
+    toast('Request accepted! Fresher has been notified to pay escrow.', 'success');
+    loadRefRequests();
+  } catch(e) { toast(e.message, 'error'); }
+}
+
+async function rejectApplication(appId) {
+  if (!requireSB() || !me) return;
+  try {
+    const { error } = await SB.from('applications')
+      .update({ status:'rejected' })
+      .eq('id', appId)
+      .eq('referrer_id', me.id);
+    if (error) throw error;
+    toast('Request declined.', 'info');
+    loadRefRequests();
+  } catch(e) { toast(e.message, 'error'); }
 }
 
 async function submitReferralProof() {
@@ -3225,12 +3792,14 @@ async function requestPayout() {
 async function loadAdminData() {
   if (!requireSB()) return;
   try {
-    const [{ count: uc },{ count: rc },{ count: ec },{ count: dc }] = await Promise.all([
+    const _adminResults = await Promise.allSettled([
       SB.from('profiles').select('id',{count:'exact',head:true}),
       SB.from('profiles').select('id',{count:'exact',head:true}).eq('role','referrer'),
       SB.from('escrow_transactions').select('id',{count:'exact',head:true}).eq('status','released'),
       SB.from('escrow_transactions').select('id',{count:'exact',head:true}).eq('status','refund_requested'),
     ]);
+    const [{ count: uc=0 },{ count: rc=0 },{ count: ec=0 },{ count: dc=0 }] =
+      _adminResults.map(r => r.status==='fulfilled' ? (r.value.data||r.value) : { count:0 });
     safe('am-users',(uc||0).toLocaleString()); safe('am-referrers',(rc||0).toLocaleString());
     safe('am-jobs',(ec||0).toLocaleString()); safe('am-disputes',dc||0);
     const { data: escrows } = await SB.from('escrow_transactions').select('amount').eq('status','released');
@@ -3378,6 +3947,10 @@ function saveAdminConfig()   { toast('Config saved!','success'); }
 // ─── PROFILE SAVE ─────────────────────────────────────────────
 async function saveProfile() {
   if (!requireSB() || !me) return;
+  // Ensure profile row exists first (handles new users)
+  try {
+    await SB.from('profiles').upsert({ id: me.id, email: me.email }, { onConflict: 'id', ignoreDuplicates: true });
+  } catch(e) {}
   const updates = {
     id: me.id,
     full_name:  getV('p-fn-full'),
@@ -3405,6 +3978,10 @@ async function saveProfile() {
 
 async function saveReferrerProfile() {
   if (!requireSB() || !me) return;
+  // Ensure profile row exists (new user fix)
+  try {
+    await SB.from('profiles').upsert({ id: me.id, email: me.email, role:'referrer' }, { onConflict:'id', ignoreDuplicates:true });
+  } catch(e) {}
   const refJobTypes=[...document.querySelectorAll('#ref-job-prefs-grid .job-pref-tile.on')].map(t=>t.dataset.job);
   const updates = {
     id: me.id,
@@ -3444,6 +4021,9 @@ async function saveReferrerProfile() {
 
 async function saveFullProfile() {
   if (!requireSB() || !me) return;
+  try {
+    await SB.from('profiles').upsert({ id: me.id, email: me.email }, { onConflict:'id', ignoreDuplicates:true });
+  } catch(e) {}
   const days    = ['mon','tue','wed','thu','fri','sat','sun'].filter(d=>$('day-'+d)?.classList.contains('on'));
   const shifts  = ['morning','afternoon','evening','night'].filter(s=>$('shift-'+s)?.checked);
   const jobPrefs= [...document.querySelectorAll('#job-prefs-grid .job-pref-tile.on')].map(t=>t.dataset.job);
@@ -3730,6 +4310,208 @@ function initReveal()   { const o=new IntersectionObserver(es=>es.forEach(e=>{if
 function initCounters() { const o=new IntersectionObserver(es=>{es.forEach(e=>{if(!e.isIntersecting||e.target.dataset.counted)return;e.target.dataset.counted='1';const t=parseInt(e.target.dataset.count),s=t/60;let c=0;const iv=setInterval(()=>{c=Math.min(c+s,t);e.target.textContent=Math.floor(c).toLocaleString();if(c>=t)clearInterval(iv);},16);});},{threshold:.5}); document.querySelectorAll('[data-count]').forEach(el=>o.observe(el)); }
 function initCursor()   { const c=$('cursor'); if(!c) return; document.addEventListener('mousemove',e=>{c.style.left=e.clientX+'px';c.style.top=e.clientY+'px';}); document.querySelectorAll('button,a,.referrer-card,.step,.trust-item,.testi,.chat-list-item,.dash-nav-item').forEach(el=>{el.addEventListener('mouseenter',()=>{c.style.transform='translate(-50%,-50%) scale(2.5)';c.style.opacity='.3';});el.addEventListener('mouseleave',()=>{c.style.transform='translate(-50%,-50%) scale(1)';c.style.opacity='.6';});}); }
 
+// ── NAV DROPDOWN HELPERS ─────────────────────────────────────────────────────
+function toggleAvatarDropdown() {
+  const d = document.getElementById('nav-av-dropdown');
+  const n = document.getElementById('notif-dropdown');
+  if (!d) return;
+  const isOpen = d.style.display === 'block';
+  if (n) n.style.display = 'none';
+  d.style.display = isOpen ? 'none' : 'block';
+}
+function closeAvatarDropdown() {
+  const d = document.getElementById('nav-av-dropdown');
+  if (d) d.style.display = 'none';
+}
+function toggleNotifDropdown() {
+  const d = document.getElementById('notif-dropdown');
+  const a = document.getElementById('nav-av-dropdown');
+  if (!d) return;
+  const isOpen = d.style.display === 'block';
+  if (a) a.style.display = 'none';
+  d.style.display = isOpen ? 'none' : 'block';
+  if (!isOpen) loadNotifications();
+}
+function closeNotifDropdown() {
+  const d = document.getElementById('notif-dropdown');
+  if (d) d.style.display = 'none';
+}
+// Legacy aliases
+function toggleNavDropdown() { toggleAvatarDropdown(); }
+function closeNavDropdown()   { closeAvatarDropdown();  }
+
+// Profile/Settings/Wallet navigation helpers
+function goProfile() {
+  if (profile?.role==='referrer') { nav('referrer'); setTimeout(()=>refNav('ref-profile'),150); }
+  else { nav('fresher'); setTimeout(()=>dashNav('dash-profile'),150); }
+}
+function goSettings() {
+  if (profile?.role==='referrer') { nav('referrer'); setTimeout(()=>refNav('ref-profile'),150); }
+  else { nav('fresher'); setTimeout(()=>dashNav('dash-settings'),150); }
+}
+function goWallet() {
+  nav('fresher'); setTimeout(()=>dashNav('dash-wallet'),150);
+}
+
+// Load notifications into dropdown
+async function loadNotifications() {
+  const list = document.getElementById('notif-list');
+  if (!list || !SB || !me) return;
+  try {
+    const { data } = await SB.from('notifications')
+      .select('*').eq('user_id', me.id)
+      .order('created_at',{ascending:false}).limit(10);
+    if (!data?.length) {
+      list.innerHTML = '<div style="padding:16px;text-align:center;font-size:12px;color:var(--text-3)">No notifications yet</div>';
+      return;
+    }
+    list.innerHTML = data.map(n => `
+      <div style="padding:12px 16px;border-bottom:1px solid var(--border);cursor:pointer" onclick="closeNotifDropdown()">
+        <div style="font-size:13px;font-weight:600;color:${n.read?'var(--text-2)':'var(--text-1)'};margin-bottom:3px">${esc(n.title)}</div>
+        <div style="font-size:11px;color:var(--text-3);line-height:1.5">${esc(n.message||'')}</div>
+      </div>`).join('');
+    // Mark as read
+    SB.from('notifications').update({read:true}).eq('user_id',me.id).eq('read',false).then(()=>{});
+  } catch(e) {}
+}
+
+// ── FREE MAP: OpenStreetMap + Nominatim (no API key needed) ──────────────────
+// Replaces Google Maps entirely. Uses Leaflet.js (free, open source).
+let leafletMap = null, leafletMarker = null, leafletCircle = null;
+
+function initLeafletMap() {
+  // Load Leaflet CSS + JS dynamically
+  if (document.getElementById('leaflet-css')) { setupLeafletMap(); return; }
+  const css = document.createElement('link');
+  css.id   = 'leaflet-css';
+  css.rel  = 'stylesheet';
+  css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+  document.head.appendChild(css);
+  const js = document.createElement('script');
+  js.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+  js.onload = setupLeafletMap;
+  document.head.appendChild(js);
+}
+
+function setupLeafletMap() {
+  const container = document.getElementById('map-container');
+  if (!container || leafletMap) return;
+  container.style.display = 'block';
+  container.style.height  = '200px';
+  leafletMap = L.map('map-container', { zoomControl: true }).setView([20, 0], 2);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors', maxZoom: 18
+  }).addTo(leafletMap);
+}
+
+// Geocode city name using Nominatim (free, no key)
+async function geocodeLocation(query) {
+  try {
+    const res  = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1`, {
+      headers: { 'Accept-Language': 'en', 'User-Agent': 'InsiderHire/1.0' }
+    });
+    const data = await res.json();
+    if (data?.length) return { lat: +data[0].lat, lng: +data[0].lon, label: data[0].display_name };
+  } catch(e) {}
+  return null;
+}
+
+function setLeafletLocation(lat, lng, label) {
+  if (!leafletMap) {
+    initLeafletMap();
+    // Use one-time callback instead of recursive setTimeout to prevent stack overflow
+    setTimeout(() => {
+      if (leafletMap) setLeafletLocation(lat, lng, label);
+      // else silently fail — map not ready yet
+    }, 900);
+    return;
+  }
+  // Guard: if called again before map ready, skip
+  if (typeof L === 'undefined') return;
+  leafletMap.setView([lat, lng], radius<=10?13:radius<=50?10:radius<=100?8:5);
+  if (leafletMarker) leafletMarker.remove();
+  leafletMarker = L.circleMarker([lat, lng], { radius:8, color:'#2563EB', fillColor:'#60A5FA', fillOpacity:1, weight:2 })
+    .addTo(leafletMap).bindPopup(label||'Your location').openPopup();
+  if (leafletCircle) leafletCircle.remove();
+  if (radius < 99999) {
+    leafletCircle = L.circle([lat, lng], { radius: radius*1000, color:'#2563EB', fillColor:'#2563EB', fillOpacity:0.06, weight:1.5 }).addTo(leafletMap);
+  }
+  // Add referrer markers
+  allReferrers.forEach(r => {
+    if (r.lat != null && r.lng != null) {
+      L.circleMarker([+r.lat, +r.lng], { radius:6, color:'#16a34a', fillColor:'#4ade80', fillOpacity:1, weight:1 })
+        .addTo(leafletMap)
+        .bindPopup(`<b>${maskName(r.full_name)}</b><br>${r.job_category||''} · ${r.location||''}<br>★ ${r.rating||4.5}`);
+    }
+  });
+}
+
+// Override onMapsLoaded — not needed with Leaflet, but keep for compatibility
+window.onMapsLoaded = function() { console.log('Google Maps skipped — using OpenStreetMap'); };
+
+// Override locateMe to use browser geolocation + Leaflet
+function locateMe() {
+  if (!navigator.geolocation) {
+    toast('Geolocation not supported in this browser. Type your city in the search box.','info');
+    const inp = document.getElementById('location-search-input');
+    if (inp) inp.focus();
+    return;
+  }
+  toast('Detecting your location...','info');
+  navigator.geolocation.getCurrentPosition(
+    pos => { setUserLoc(pos.coords.latitude, pos.coords.longitude, 'Your location'); },
+    err => {
+      // Handle iframe permission policy error gracefully
+      toast('Location access denied. Please type your city in the search box above.','info');
+      const inp = document.getElementById('location-search-input');
+      if (inp) { inp.focus(); inp.placeholder = 'Type your city here...'; }
+    },
+    { enableHighAccuracy:true, timeout:8000, maximumAge:60000 }
+  );
+}
+
+function setUserLoc(lat, lng, label) {
+  userLoc = { lat, lng, label };
+  const s = document.getElementById('location-status');
+  if (s) s.textContent = '📍 ' + (label || `${lat.toFixed(2)}, ${lng.toFixed(2)}`);
+  if (!leafletMap) {
+    initLeafletMap();
+    setTimeout(() => { if(leafletMap) setLeafletLocation(lat, lng, label); }, 950);
+  } else {
+    setLeafletLocation(lat, lng, label);
+  }
+  applyFilters();
+}
+
+// drawMap — used by setRadius/applyFilters (non-recursive safe version)
+function drawMap(lat, lng) {
+  if (!lat || !lng) return;
+  if (!leafletMap) { initLeafletMap(); return; } // map not ready, skip
+  setLeafletLocation(lat, lng, userLoc?.label || '');
+}
+
+// Autocomplete for location input using Nominatim
+function setupLocationAutocomplete(inputId) {
+  const el = document.getElementById(inputId); if (!el) return;
+  let timer;
+  el.addEventListener('input', function() {
+    clearTimeout(timer);
+    const q = this.value.trim(); if (q.length < 3) return;
+    timer = setTimeout(async () => {
+      const result = await geocodeLocation(q);
+      if (result && inputId === 'location-search-input') {
+        setUserLoc(result.lat, result.lng, result.label);
+      }
+    }, 600);
+  });
+  el.addEventListener('keydown', async function(e) {
+    if (e.key === 'Enter') {
+      const result = await geocodeLocation(this.value);
+      if (result) setUserLoc(result.lat, result.lng, result.label);
+    }
+  });
+}
+
 // ─── BOOTSTRAP ────────────────────────────────────────────────
 // ── PUBLIC CONFIG LOADER ─────────────────────────────────────────────────────
 // Fetches RAZORPAY_KEY_ID and GOOGLE_MAPS_API_KEY from the Supabase Edge
@@ -3757,15 +4539,8 @@ async function loadPublicConfig() {
   }
 }
 
-// Dynamically injects the Google Maps script tag after MAPS_KEY is fetched
-function loadMapsScript() {
-  if (!MAPS_KEY) { console.warn('[InsiderHire] Maps key not available — skipping Maps init.'); return; }
-  if (document.querySelector('script[data-maps]')) return; // already loaded
-  const s = document.createElement('script');
-  s.src = `https://maps.googleapis.com/maps/api/js?key=${MAPS_KEY}&libraries=places&callback=onMapsLoaded`;
-  s.async = true; s.defer = true; s.setAttribute('data-maps','1');
-  document.head.appendChild(s);
-}
+// Google Maps removed — using free OpenStreetMap/Leaflet instead
+// loadMapsScript() is no longer needed
 
 window.addEventListener('load', async ()=>{
   const cfg = window.INSIDERHIRE_CONFIG || {};
@@ -3787,8 +4562,14 @@ window.addEventListener('load', async ()=>{
   // Step 2: Fetch Razorpay key + Maps key from Edge Function
   await loadPublicConfig();
 
-  // Step 3: Load Google Maps script now that we have the key
-  loadMapsScript();
+  // Step 3: Init free OpenStreetMap (Leaflet) — no API key needed
+  initLeafletMap();
+  // Setup location autocomplete on browse page
+  setTimeout(()=>{
+    setupLocationAutocomplete('location-search-input');
+    setupLocationAutocomplete('p-location');
+    setupLocationAutocomplete('rp-location');
+  }, 1000);
 
   // Step 4: Init auth (requires Supabase)
   await initAuth();
