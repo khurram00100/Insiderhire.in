@@ -600,7 +600,12 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
     <!-- CTA below the preview cards -->
     <div style="text-align:center;margin-top:32px;padding:28px;background:var(--surface);border:1px solid var(--border-md);border-radius:var(--r-2xl)">
       <div style="font-size:14px;color:var(--text-2);margin-bottom:16px">Sign up as a Job Seeker · Pay ₹ equivalent of $10 platform fee · Browse 8,500+ verified referrers with masked info · Deposit $500 escrow to unlock full details</div>
-      <button class="btn btn-white btn-lg" onclick="openModal('signup-modal')">Get started — sign up free →</button>
+      <div id="ref-guest-btn">
+        <button class="btn btn-white btn-lg" onclick="openModal('signup-modal')">Get started — sign up free →</button>
+      </div>
+      <div id="ref-loggedin-btn" style="display:none">
+        <button class="btn btn-white btn-lg" onclick="nav('fresher')">Browse Referrers →</button>
+      </div>
     </div>
   </div>
 </section>
@@ -751,7 +756,7 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
         <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#1e3a8a,#2563EB);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;flex-shrink:0;border:1px solid rgba(37,99,235,0.4)">SK</div>
         <div>
           <div style="font-size:13px;font-weight:600;color:var(--text-1)">Built by Shamsheer Khan Khurram</div>
-          <div style="font-size:11px;color:var(--text-3)">AI/ML Engineer · Founder &amp; Developer · InsiderHire</div>
+          <div style="font-size:11px;color:var(--text-3)">AI/ML Engineer · Developer · InsiderHire</div>
         </div>
       </div>
       <a href="https://www.linkedin.com/in/shamsheer-khan-khurram/" target="_blank" rel="noopener noreferrer"
@@ -2198,19 +2203,25 @@ function updateNav() {
   if(ng) ng.style.display = loggedIn ? 'none':'flex';
   if(nu) nu.style.display = loggedIn ? 'flex':'none';
 
-  // Landing page CTA buttons — hide guest CTAs when logged in
+  // Landing page CTA buttons — hide ALL guest CTAs when logged in
   if (page === 'landing') {
     // Hero CTA
-    const hg = $('hero-guest-cta'),     hl = $('hero-loggedin-cta');
+    const hg = $('hero-guest-cta'),   hl = $('hero-loggedin-cta');
     if (hg) hg.style.display = loggedIn ? 'none' : 'flex';
     if (hl) hl.style.display = loggedIn ? 'flex' : 'none';
-    // Bottom CTA
-    const bg = $('bottom-guest-cta'),   bl = $('bottom-loggedin-cta');
+    // Bottom section CTA
+    const bg = $('bottom-guest-cta'), bl = $('bottom-loggedin-cta');
     if (bg) bg.style.display = loggedIn ? 'none' : 'flex';
     if (bl) bl.style.display = loggedIn ? 'flex' : 'none';
-    // Browse CTA button text
+    // Referrers section bottom CTA box
+    const rg = $('ref-guest-btn'),    rl = $('ref-loggedin-btn');
+    if (rg) rg.style.display = loggedIn ? 'none' : 'block';
+    if (rl) rl.style.display = loggedIn ? 'block' : 'none';
+    // Browse heading button
     const browsBtn = $('browse-cta-btn');
     if (browsBtn) browsBtn.textContent = loggedIn ? 'Go to Dashboard →' : 'Sign up to browse →';
+    // Hide "Sign in" links in nav-public section when logged in
+    // (already handled by nav-guest/nav-user toggle above)
   }
 }
 
@@ -2449,6 +2460,8 @@ function fillUI() {
   const da = $('dash-av');
   if(da){ da.textContent=av; da.style.background='linear-gradient(135deg,#1e3a8a,#2563EB)'; da.style.color='var(--blue-light)'; }
   safe('dash-name', name);
+  // Re-run nav updates so landing page CTAs update if still on landing
+  if (page === 'landing') updateNav();
 }
 
 // ── ACCESS STATUS WIDGET ─────────────────────────────────────────────────────
@@ -3082,7 +3095,7 @@ async function pcAnswer(text, qId) {
     q3: { 'Yes': 'Absolutely — students are very welcome here.', default: 'Let me clarify that with my manager.' },
     q4: { 'Within': 'Great, very accessible location!', default: 'The location details will be shared after escrow.' },
     q5: { default: 'Pay details will be confirmed once connected properly.' },
-    q6: { 'Yes': 'I m ready to refer you — pay escrow and I ll get started immediately!', default: 'Got it, I understand.' },
+    q6: { 'Yes': 'Im ready to refer you — pay escrow and Ill get started immediately!', default: 'Got it, I understand.' },
   };
   const reply = autoReplies[qId];
   const autoText = reply ? (text.startsWith('Yes') ? reply['Yes'] : reply.default) : 'Got it.';
