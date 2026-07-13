@@ -756,7 +756,7 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
         <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#1e3a8a,#2563EB);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;flex-shrink:0;border:1px solid rgba(37,99,235,0.4)">SK</div>
         <div>
           <div style="font-size:13px;font-weight:600;color:var(--text-1)">Built by Shamsheer Khan Khurram</div>
-          <div style="font-size:11px;color:var(--text-3)">AI/ML Engineer · Developer · InsiderHire</div>
+          <div style="font-size:11px;color:var(--text-3)">AI/ML Engineer · Founder &amp; Developer · InsiderHire</div>
         </div>
       </div>
       <a href="https://www.linkedin.com/in/shamsheer-khan-khurram/" target="_blank" rel="noopener noreferrer"
@@ -885,9 +885,20 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
                     <div class="radius-btn" id="rbtn-100" onclick="setRadius(100)">100 km</div>
                     <div class="radius-btn on" id="rbtn-500" onclick="setRadius(500)">500 km</div>
                   </div>
-                  <input class="input" type="text" id="location-search-input" placeholder="Enter your city..." style="margin-bottom:8px">
+                  <!-- Search type tabs -->
+                  <div style="display:flex;gap:4px;margin-bottom:8px">
+                    <button class="btn btn-sm" id="loc-tab-city" style="flex:1;font-size:11px;background:var(--white);color:var(--black);border-radius:var(--r-md)" onclick="setLocTab('city')">🏙️ City</button>
+                    <button class="btn btn-ghost btn-sm" id="loc-tab-post" style="flex:1;font-size:11px;border-radius:var(--r-md)" onclick="setLocTab('postcode')">📮 Postcode</button>
+                    <button class="btn btn-ghost btn-sm" id="loc-tab-area" style="flex:1;font-size:11px;border-radius:var(--r-md)" onclick="setLocTab('area')">📍 Area</button>
+                  </div>
+                  <div style="position:relative">
+                    <input class="input" type="text" id="location-search-input" placeholder="Enter city name..." style="margin-bottom:6px;padding-right:32px" oninput="onLocInput(this.value)">
+                    <span id="loc-spinner" style="display:none;position:absolute;right:10px;top:10px;font-size:14px">⏳</span>
+                  </div>
+                  <!-- Suggestions dropdown -->
+                  <div id="loc-suggestions" style="display:none;background:var(--elevated);border:1px solid var(--border-md);border-radius:var(--r-lg);overflow:hidden;margin-bottom:6px;max-height:160px;overflow-y:auto"></div>
                   <button class="btn btn-ghost btn-sm" style="width:100%;margin-bottom:6px" onclick="locateMe()">📍 Use my location</button>
-                  <div style="font-size:11px;color:var(--text-3)" id="location-status">Enter location to filter by distance</div>
+                  <div style="font-size:11px;color:var(--text-3)" id="location-status">Search by city, postcode or area</div>
                   <div id="map-container" style="height:160px;display:none;margin-top:8px"></div>
                 </div>
                 <div style="margin-bottom:20px">
@@ -914,10 +925,12 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
           <div>
             <div class="search-bar">
               <div class="search-wrap"><span style="color:var(--text-3);font-size:14px">🔍</span><input type="text" class="search-field" id="browse-search" placeholder="Search by job type, city, or name..." oninput="applyBrowseFilters()"></div>
-              <div class="filter-pill on" onclick="setBrowseFilter('all',this)">All</div>
-              <div class="filter-pill" onclick="setBrowseFilter('uk',this)">🇬🇧 UK</div>
-              <div class="filter-pill" onclick="setBrowseFilter('usa',this)">🇺🇸 USA</div>
-              <div class="filter-pill" onclick="setBrowseFilter('top',this)">⭐ Top rated</div>
+              <button class="filter-pill on" id="fpill-all"  onclick="setBrowseFilter('all',this)">All</button>
+              <button class="filter-pill"     id="fpill-uk"   onclick="setBrowseFilter('uk',this)">🇬🇧 UK</button>
+              <button class="filter-pill"     id="fpill-usa"  onclick="setBrowseFilter('usa',this)">🇺🇸 USA</button>
+              <button class="filter-pill"     id="fpill-au"   onclick="setBrowseFilter('au',this)">🇦🇺 AU</button>
+              <button class="filter-pill"     id="fpill-de"   onclick="setBrowseFilter('de',this)">🇩🇪 DE</button>
+              <button class="filter-pill"     id="fpill-top"  onclick="setBrowseFilter('top',this)">⭐ Top rated</button>
             </div>
             <div style="font-size:12px;color:var(--text-3);margin-bottom:16px" id="browse-count">Loading referrers...</div>
             <div class="referrers-grid" id="browse-grid" style="border-radius:var(--r-xl)"><div style="padding:40px;text-align:center;color:var(--text-3);grid-column:1/-1">Loading...</div></div>
@@ -3245,7 +3258,7 @@ async function loadBrowse() {
   if (countEl) countEl.textContent='Loading...';
   try {
     const { data, error, count } = await SB.from('profiles')
-      .select('*', { count:'exact' })
+      .select('id,full_name,role,job_category,location,postcode,lat,lng,rating,review_count,referral_count,success_rate,experience_years,referral_fee,gradient,is_verified', { count:'exact' })
       .eq('role','referrer')
       .eq('is_verified', true)
       .range(browseOffset, browseOffset+11);
@@ -3264,12 +3277,29 @@ function applyFilters() {
   const q = getV('browse-search').toLowerCase();
   const activeCats = JOB_CATS.filter(c=>{ const el=$('cat-'+c.id); return !el||el.checked; }).map(c=>c.label.toLowerCase());
   let list = allReferrers.map(r=>({...r,_dist:null}));
+
+  // Category filter
   if (activeCats.length < JOB_CATS.length)
     list = list.filter(r=>activeCats.some(c=>(r.job_category||'').toLowerCase().includes(c)));
+
+  // Text search (city, postcode, area, name, job type)
   if (q) list = list.filter(r=>
     (r.job_category||'').toLowerCase().includes(q) ||
     (r.location||'').toLowerCase().includes(q) ||
+    (r.postcode||'').toLowerCase().includes(q) ||
     maskName(r.full_name).toLowerCase().includes(q));
+
+  // Country pill filter
+  const countryMap = { uk:'uk united kingdom england london', usa:'us usa united states america', au:'au australia sydney melbourne', de:'de germany deutschland berlin munich' };
+  if (activePillFilter && activePillFilter !== 'all' && activePillFilter !== 'top') {
+    const keywords = countryMap[activePillFilter] || activePillFilter;
+    list = list.filter(r => keywords.split(' ').some(k => (r.location||'').toLowerCase().includes(k)));
+  }
+  if (activePillFilter === 'top') {
+    list = list.filter(r => (r.rating||0) >= 4.5).sort((a,b)=>(b.rating||0)-(a.rating||0));
+  }
+
+  // Distance filter
   if (userLoc && radius<99999) {
     list = list.map(r=>{
       if (r.lat!=null && r.lng!=null) r._dist=haversine(userLoc.lat,userLoc.lng,+r.lat,+r.lng);
@@ -3277,10 +3307,15 @@ function applyFilters() {
     }).filter(r=>r._dist==null||r._dist<=radius)
       .sort((a,b)=>(a._dist??9999)-(b._dist??9999));
   }
+
   const ce=$('browse-count');
-  if(ce) ce.textContent=`Showing ${list.length} verified workers${userLoc&&radius<99999?` within ${radius} km`:''}`;
+  if(ce) {
+    const locStr = userLoc&&radius<99999 ? ` within ${radius} km` : '';
+    const pillStr = activePillFilter !== 'all' ? ` · Filter: ${activePillFilter.toUpperCase()}` : '';
+    ce.textContent = `Showing ${list.length} verified workers${locStr}${pillStr}`;
+  }
   renderBrowse(list);
-  if (userLoc && mapsReady) drawMap(userLoc.lat, userLoc.lng);
+  if (userLoc && leafletMap) drawMap(userLoc.lat, userLoc.lng);
 }
 
 function applyBrowseFilters() { applyFilters(); }
@@ -3296,9 +3331,10 @@ function renderBrowse(refs) {
     const stars = '★'.repeat(Math.round(rat))+'☆'.repeat(5-Math.round(rat));
     const cat   = JOB_CATS.find(c=>c.label===(r.job_category||r.role_title));
     const emoji = cat?.emoji||'💼';
-    const dist  = r._dist!=null ? `<div class="r-distance">📍 ${Math.round(r._dist)} km</div>` : '';
+    const dist  = r._dist!=null ? `<div class="r-distance">📍 ${Math.round(r._dist)} km away</div>` : '';
     const gr    = esc(r.gradient||'#1e3a8a,#2563EB');
     const isUnlocked = unlockedRefs.has(r.id);
+    const locDisplay = [r.postcode, r.location].filter(Boolean).join(' · ') || '';
     return `<div class="referrer-card" onclick="openEscrowFor('${esc(r.id)}')">
       <div style="display:flex;align-items:flex-start;justify-content:space-between">
         <div class="r-avatar" style="background:linear-gradient(135deg,${gr})">${ini(r.full_name)}</div>
@@ -3309,7 +3345,7 @@ function renderBrowse(refs) {
         </div>
       </div>
       <div class="r-name">${isUnlocked ? esc(r.full_name) : esc(maskName(r.full_name))}</div>
-      <div class="r-role">${emoji} ${esc(r.job_category||r.role_title||'Odd Job')} · ${esc(r.location||'')}</div>
+      <div class="r-role">${emoji} ${esc(r.job_category||r.role_title||'Odd Job')} · ${esc(locDisplay)}</div>
       <div class="r-meta">
         <span class="r-meta-item">📋 ${r.referral_count||0} referrals</span>
         ${r.success_rate!=null?`<span class="r-meta-item">✅ ${r.success_rate}% success</span>`:''}
@@ -3366,9 +3402,22 @@ function resetFilters() {
   loadBrowse();
 }
 
+let activePillFilter = 'all';
+
 function setBrowseFilter(type, el) {
-  document.querySelectorAll('#sp-dash-browse .search-bar .filter-pill').forEach(p=>p.classList.remove('on'));
-  if(el) el.classList.add('on');
+  activePillFilter = type;
+  // Update pill styles
+  document.querySelectorAll('#sp-dash-browse .filter-pill').forEach(p => {
+    p.classList.remove('on');
+    p.style.background = '';
+    p.style.color = '';
+    p.style.borderColor = '';
+  });
+  if (el) {
+    el.classList.add('on');
+    el.style.background = 'var(--white)';
+    el.style.color = 'var(--black)';
+  }
   applyFilters();
 }
 
@@ -4021,8 +4070,12 @@ async function saveProfile() {
     linkedin:   getV('p-linkedin'),
     skills:     getV('p-skills').split(',').map(s=>s.trim()).filter(Boolean),
   };
-  if (updates.location && mapsReady && window.google) {
-    await new Promise(res=>{ new google.maps.Geocoder().geocode({address:updates.location},(r,s)=>{ if(s==='OK'&&r[0]){ updates.lat=r[0].geometry.location.lat(); updates.lng=r[0].geometry.location.lng(); } res(); }); });
+  if (updates.location) {
+    try {
+      const _gr = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(updates.location)}&format=json&limit=1`,{headers:{'Accept-Language':'en','User-Agent':'InsiderHire/1.0'}});
+      const _gd = await _gr.json();
+      if (_gd?.length) { updates.lat=parseFloat(_gd[0].lat); updates.lng=parseFloat(_gd[0].lon); }
+    } catch(e) {}
   }
   const { error } = await SB.from('profiles').upsert(updates);
   if (error) { toast(error.message,'error'); return; }
@@ -4063,8 +4116,19 @@ async function saveReferrerProfile() {
     additional_info:     getV('rp-add-info'),
     referral_fee:        +($('rp-fee')?.value||500),
   };
-  if (updates.location && mapsReady && window.google) {
-    await new Promise(res=>{ new google.maps.Geocoder().geocode({address:updates.location},(r,s)=>{ if(s==='OK'&&r[0]){ updates.lat=r[0].geometry.location.lat(); updates.lng=r[0].geometry.location.lng(); } res(); }); });
+  // Geocode location using Nominatim (free, no API key)
+  if (updates.location) {
+    try {
+      const geoRes = await fetch(
+        `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(updates.location)}&format=json&limit=1`,
+        { headers:{ 'Accept-Language':'en', 'User-Agent':'InsiderHire/1.0' } }
+      );
+      const geoData = await geoRes.json();
+      if (geoData?.length) {
+        updates.lat = parseFloat(geoData[0].lat);
+        updates.lng = parseFloat(geoData[0].lon);
+      }
+    } catch(e) { /* geocoding optional */ }
   }
   const { error } = await SB.from('profiles').upsert(updates);
   if (error) { toast(error.message,'error'); return; }
@@ -4106,8 +4170,12 @@ async function saveFullProfile() {
     available_shifts: shifts,
     job_preferences:  jobPrefs,
   };
-  if (updates.location && mapsReady && window.google) {
-    await new Promise(res=>{ new google.maps.Geocoder().geocode({address:updates.location},(r,s)=>{ if(s==='OK'&&r[0]){ updates.lat=r[0].geometry.location.lat(); updates.lng=r[0].geometry.location.lng(); } res(); }); });
+  if (updates.location) {
+    try {
+      const _gr = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(updates.location)}&format=json&limit=1`,{headers:{'Accept-Language':'en','User-Agent':'InsiderHire/1.0'}});
+      const _gd = await _gr.json();
+      if (_gd?.length) { updates.lat=parseFloat(_gd[0].lat); updates.lng=parseFloat(_gd[0].lon); }
+    } catch(e) {}
   }
   const { error } = await SB.from('profiles').upsert(updates);
   if (error) { toast(error.message,'error'); return; }
@@ -4579,6 +4647,121 @@ function setupLocationAutocomplete(inputId) {
 }
 
 // ─── BOOTSTRAP ────────────────────────────────────────────────
+// ── LOCATION SEARCH TABS + SUGGESTIONS ──────────────────────────────────────
+let locTab = 'city';
+let locSearchTimer = null;
+
+function setLocTab(tab) {
+  locTab = tab;
+  // Update tab button styles
+  ['city','postcode','area'].forEach(t => {
+    const btn = document.getElementById('loc-tab-'+t);
+    if (!btn) return;
+    if (t === tab) {
+      btn.style.background = 'var(--white)';
+      btn.style.color = 'var(--black)';
+      btn.classList.remove('btn-ghost');
+    } else {
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.classList.add('btn-ghost');
+    }
+  });
+  // Update placeholder
+  const inp = document.getElementById('location-search-input');
+  if (!inp) return;
+  const placeholders = {
+    city:     'Enter city name... (e.g. London)',
+    postcode: 'Enter postcode... (e.g. SW1A 1AA)',
+    area:     'Enter area or neighbourhood...'
+  };
+  inp.placeholder = placeholders[tab] || 'Search...';
+  inp.value = '';
+  hideSuggestions();
+}
+
+function onLocInput(val) {
+  clearTimeout(locSearchTimer);
+  const q = val.trim();
+  if (q.length < 2) { hideSuggestions(); return; }
+  const spinner = document.getElementById('loc-spinner');
+  if (spinner) spinner.style.display = 'inline';
+  locSearchTimer = setTimeout(async () => {
+    await fetchLocSuggestions(q);
+    if (spinner) spinner.style.display = 'none';
+  }, 400);
+}
+
+async function fetchLocSuggestions(q) {
+  const sugEl = document.getElementById('loc-suggestions');
+  if (!sugEl) return;
+  try {
+    // Add country hint based on active pill filter
+    const countryHints = { uk:'GB', usa:'US', au:'AU', de:'DE' };
+    const countryCode = countryHints[activePillFilter] || '';
+    const countryParam = countryCode ? `&countrycodes=${countryCode}` : '';
+    const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}${countryParam}&format=json&limit=5&addressdetails=1`;
+    const res = await fetch(url, { headers:{ 'Accept-Language':'en', 'User-Agent':'InsiderHire/1.0' } });
+    const data = await res.json();
+    if (!data?.length) { hideSuggestions(); return; }
+    sugEl.style.display = 'block';
+    sugEl.innerHTML = data.map(d => {
+      const addr = d.address || {};
+      const postcode = addr.postcode || '';
+      const city = addr.city || addr.town || addr.village || addr.county || '';
+      const country = addr.country || '';
+      const label = [postcode, city, country].filter(Boolean).join(', ') || d.display_name;
+      return `<div onclick="selectLocSuggestion(${d.lat},${d.lon},'${label.replace(/'/g,"\'")}','${postcode.replace(/'/g,"\'")}','${city.replace(/'/g,"\'")}','${country.replace(/'/g,"\'")}' )"
+        style="padding:10px 14px;cursor:pointer;font-size:13px;color:var(--text-1);border-bottom:1px solid var(--border);transition:background var(--t)"
+        onmouseenter="this.style.background='var(--elevated-2)'"
+        onmouseleave="this.style.background=''">
+        <div style="font-weight:500">${postcode ? '<span style="color:var(--blue-light);font-family:var(--font-mono);font-size:12px">'+postcode+'</span> · ' : ''}${city}</div>
+        <div style="font-size:11px;color:var(--text-3)">${country}</div>
+      </div>`;
+    }).join('');
+  } catch(e) {
+    hideSuggestions();
+  }
+}
+
+function hideSuggestions() {
+  const s = document.getElementById('loc-suggestions');
+  if (s) s.style.display = 'none';
+}
+
+async function selectLocSuggestion(lat, lng, label, postcode, city, country) {
+  const inp = document.getElementById('location-search-input');
+  if (inp) inp.value = postcode || city || label;
+  hideSuggestions();
+
+  // Save to user profile in Supabase
+  if (SB && me) {
+    const updates = { id: me.id };
+    if (postcode) updates.postcode = postcode;
+    if (city)     updates.location = [city, country].filter(Boolean).join(', ');
+    if (lat)      updates.lat = parseFloat(lat);
+    if (lng)      updates.lng = parseFloat(lng);
+    SB.from('profiles').update(updates).eq('id', me.id).then(({error}) => {
+      if (!error && profile) {
+        if (postcode) profile.postcode = postcode;
+        if (city)     profile.location = updates.location;
+        if (lat)      profile.lat = parseFloat(lat);
+        if (lng)      profile.lng = parseFloat(lng);
+      }
+    });
+  }
+
+  setUserLoc(parseFloat(lat), parseFloat(lng), label);
+  toast(`📍 Location set: ${label}`, 'success');
+}
+
+// Close suggestions on outside click
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('#loc-suggestions') && !e.target.closest('#location-search-input')) {
+    hideSuggestions();
+  }
+});
+
 // ── PUBLIC CONFIG LOADER ─────────────────────────────────────────────────────
 // Fetches RAZORPAY_KEY_ID and GOOGLE_MAPS_API_KEY from the Supabase Edge
 // Function "public-config". These keys never appear in frontend source code.
