@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- InsiderHire — www.insiderhire.in · Refer. Connect. Get Hired. -->
+<!-- InsiderHire · www.insiderhire.in · Refer. Connect. Get Hired. -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>InsiderHire — Refer. Connect. Get Hired.</title>
+<title>InsiderHire · Refer. Connect. Get Hired.</title>
 <meta name="description" content="The world's most trusted job referral marketplace for international students. Find hotel, kitchen, warehouse, retail and other local odd jobs through verified insiders. Secure Razorpay escrow payments. www.insiderhire.in">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.insiderhire.in">
@@ -16,7 +16,7 @@
 
 <!-- ============================================================
      INSIDERHIRE CONFIG
-     Only Supabase URL + anon key live here — both are intentionally
+     Only Supabase URL + anon key live here · both are intentionally
      public (Supabase anon key is designed to be client-side).
      RAZORPAY_KEY_ID and GOOGLE_MAPS_API_KEY are fetched at startup
      from the Supabase Edge Function "public-config" and never appear
@@ -29,7 +29,60 @@ window.INSIDERHIRE_CONFIG = {
 };
 </script>
 <style>
+/* background set by JS */
 :root{--black:#000000;--bg:#030303;--surface:#0a0a0a;--elevated:#111111;--elevated-2:#181818;--border:rgba(255,255,255,0.07);--border-md:rgba(255,255,255,0.11);--border-strong:rgba(255,255,255,0.18);--white:#ffffff;--text-1:#f7f7f7;--text-2:#999999;--text-3:#555555;--text-4:#333333;--blue:#2563EB;--blue-light:#60A5FA;--blue-dim:rgba(37,99,235,0.12);--blue-glow:rgba(37,99,235,0.3);--green:#16a34a;--green-dim:rgba(22,163,74,0.12);--red:#dc2626;--red-dim:rgba(220,38,38,0.12);--amber:#d97706;--amber-dim:rgba(217,119,6,0.12);--font-serif:'Instrument Serif',Georgia,serif;--font-body:'DM Sans',system-ui,sans-serif;--font-mono:'JetBrains Mono',monospace;--r-sm:4px;--r-md:8px;--r-lg:12px;--r-xl:16px;--r-2xl:24px;--r-full:9999px;--t:200ms cubic-bezier(0.4,0,0.2,1);--t-slow:400ms cubic-bezier(0.4,0,0.2,1);--t-spring:500ms cubic-bezier(0.34,1.56,0.64,1)}
+html[data-theme="light"]{--black:#f8fafc;--bg:#f1f5f9;--surface:#ffffff;--elevated:#f8fafc;--elevated-2:#e2e8f0;--border:rgba(0,0,0,0.07);--border-md:rgba(0,0,0,0.11);--border-strong:rgba(0,0,0,0.2);--white:#0f172a;--text-1:rgba(0,0,0,0.9);--text-2:rgba(0,0,0,0.58);--text-3:rgba(0,0,0,0.36);--text-4:rgba(0,0,0,0.2);--blue:#2563EB;--blue-light:#1d4ed8;--blue-dim:rgba(37,99,235,0.08);--green-dim:rgba(22,163,74,0.06);--red-dim:rgba(220,38,38,0.06)}
+html[data-theme="light"] body{color:#0f172a!important;background:#f1f5f9!important}
+/* Dark mode body — always black */
+body{background:#030303;color:#f7f7f7}
+html[data-theme="light"] .hero{background:#0f172a}
+html[data-theme="light"] .hero,.hero *{color:#f8fafc}
+html[data-theme="light"] .hero .section-sub{color:rgba(248,250,252,0.7)}
+html[data-theme="light"] canvas{opacity:0.15}
+html[data-theme="light"] .nav{background:rgba(248,250,252,0.95);border-bottom-color:rgba(0,0,0,0.08)}
+html[data-theme="light"] .nav-link{color:rgba(0,0,0,0.65)}
+html[data-theme="light"] .nav-wordmark{color:#0f172a}
+html[data-theme="light"] .dash-sidebar{background:#ffffff;border-right-color:rgba(0,0,0,0.07)}
+html[data-theme="light"] .dash-main{background:#f1f5f9}
+html[data-theme="light"] .dash-nav-item{color:rgba(0,0,0,0.65)}
+html[data-theme="light"] .dash-nav-item:hover,html[data-theme="light"] .dash-nav-item.active{background:rgba(37,99,235,0.08);color:#1d4ed8}
+html[data-theme="light"] .dash-nav-section{color:rgba(0,0,0,0.35)}
+html[data-theme="light"] .panel,.stat-card,.req-card{color:#0f172a}
+html[data-theme="light"] .stat-val{color:#0f172a}
+html[data-theme="light"] .stat-label{color:rgba(0,0,0,0.5)}
+html[data-theme="light"] .input{background:#fff;border-color:rgba(0,0,0,0.12);color:#0f172a}
+html[data-theme="light"] .input::placeholder{color:rgba(0,0,0,0.3)}
+html[data-theme="light"] .btn-ghost{color:rgba(0,0,0,0.65);border-color:rgba(0,0,0,0.12)}
+html[data-theme="light"] .btn-ghost:hover{background:rgba(0,0,0,0.05);color:#0f172a}
+html[data-theme="light"] .btn-outline{border-color:rgba(0,0,0,0.2);color:#0f172a}
+html[data-theme="light"] .modal{background:#fff;color:#0f172a}
+html[data-theme="light"] .modal-title{color:#0f172a}
+html[data-theme="light"] .modal-sub{color:rgba(0,0,0,0.55)}
+html[data-theme="light"] .dropdown-menu{background:#fff;border-color:rgba(0,0,0,0.1)}
+html[data-theme="light"] .dropdown-item{color:rgba(0,0,0,0.7)}
+html[data-theme="light"] .dropdown-item:hover{background:rgba(0,0,0,0.04);color:#0f172a}
+html[data-theme="light"] .footer{background:#050505!important;color:rgba(255,255,255,0.7)!important}
+html[data-theme="light"] .footer *{color:rgba(248,250,252,0.7)}
+html[data-theme="light"] .footer-bottom{color:rgba(248,250,252,0.5)}
+html[data-theme="light"] .section{background:#f1f5f9}
+html[data-theme="light"] section{background:#f1f5f9}
+html[data-theme="light"] .section-title{color:#0f172a}
+html[data-theme="light"] .section-sub{color:rgba(0,0,0,0.55)}
+html[data-theme="light"] .step-item{background:#fff;border-color:rgba(0,0,0,0.08)}
+html[data-theme="light"] .trust-item{background:#fff}
+html[data-theme="light"] .referrer-card{background:#fff;color:#0f172a}
+html[data-theme="light"] .r-name{color:#0f172a}
+html[data-theme="light"] .r-role{color:rgba(0,0,0,0.55)}
+html[data-theme="light"] .price-card{background:#fff;color:#0f172a}
+html[data-theme="light"] .price-name,.price-amount{color:#0f172a}
+html[data-theme="light"] .price-period,.price-feature{color:rgba(0,0,0,0.55)}
+html[data-theme="light"] .data-table th{color:rgba(0,0,0,0.45);background:#f8fafc}
+html[data-theme="light"] .data-table td{color:#0f172a;border-color:rgba(0,0,0,0.07)}
+html[data-theme="light"] .dash-topbar{background:#fff;border-color:rgba(0,0,0,0.07)}
+html[data-theme="light"] .dash-page-title{color:#0f172a}
+html[data-theme="light"] .wallet-hero{background:linear-gradient(135deg,#1e3a8a,#2563EB)}
+html[data-theme="light"] .chatbot-window{background:#fff;border-color:rgba(0,0,0,0.1)}
+html[data-theme="light"] .chat-msgs,.chatbot-messages{background:#f8fafc}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 body{font-family:var(--font-body);background:var(--black);color:var(--text-1);line-height:1.6;overflow-x:hidden;font-size:15px;font-weight:400}
@@ -50,7 +103,7 @@ input,select,textarea{font-family:inherit}
 @keyframes dotBlink{0%,100%{opacity:1}50%{opacity:0}}
 @keyframes progressWidth{from{width:0}to{width:var(--w)}}
 .hidden{display:none!important}
-.page{display:none;min-height:100vh;animation:fadeIn .3s ease}
+.page{display:none;min-height:100vh;animation:fadeIn .3s ease;background:var(--bg)}
 .page.active{display:block}
 .serif{font-family:var(--font-serif)}.mono{font-family:var(--font-mono)}.text-blue{color:var(--blue-light)}.text-muted{color:var(--text-2)}.text-dim{color:var(--text-3)}
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.34,1.2,.64,1),transform .7s cubic-bezier(.34,1.2,.64,1)}
@@ -69,9 +122,9 @@ select.input{appearance:none;cursor:pointer;background-image:url("data:image/svg
 .panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-2xl);overflow:hidden;transition:border-color var(--t)}.panel-header{padding:18px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}.panel-title{font-size:14px;font-weight:600;letter-spacing:-0.01em}.panel-body{padding:24px}
 .badge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:var(--r-full);font-size:11px;font-weight:500;letter-spacing:0.02em}.badge-white{background:var(--elevated-2);border:1px solid var(--border-md);color:var(--text-2)}.badge-blue{background:var(--blue-dim);border:1px solid rgba(37,99,235,.25);color:var(--blue-light)}.badge-green{background:var(--green-dim);border:1px solid rgba(22,163,74,.25);color:#4ade80}.badge-red{background:var(--red-dim);border:1px solid rgba(220,38,38,.25);color:#f87171}.badge-amber{background:var(--amber-dim);border:1px solid rgba(217,119,6,.25);color:#fbbf24}.badge-verified{background:rgba(37,99,235,.1);border:1px solid rgba(37,99,235,.3);color:var(--blue-light)}
 .nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:62px;display:flex;align-items:center;padding:0 32px;background:rgba(3,3,3,0.85);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.06);box-shadow:0 1px 0 rgba(255,255,255,0.04)}.nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer;flex-shrink:0}.nav-logo-svg{width:32px;height:32px}.nav-wordmark{font-family:var(--font-body);font-size:18px;font-weight:800;letter-spacing:-0.04em;color:var(--white)}.nav-wordmark span{color:var(--blue-light)}.nav-domain{font-size:10px;font-family:var(--font-mono);color:var(--text-3);letter-spacing:0.05em;margin-left:2px;margin-top:1px}.nav-links{display:flex;align-items:center;gap:2px;margin:0 auto}.nav-link{padding:6px 14px;border-radius:var(--r-md);font-size:13px;color:var(--text-2);cursor:pointer;transition:all var(--t);font-weight:400}.nav-link:hover{color:var(--text-1);background:var(--elevated)}.nav-link.active{color:var(--text-1)}.nav-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}.nav-avatar{width:32px;height:32px;border-radius:50%;border:1px solid var(--border-md);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;background:var(--elevated);cursor:pointer;transition:all var(--t)}.nav-avatar:hover{border-color:var(--border-strong)}
-.section{padding:100px 32px}.container{max-width:1120px;margin:0 auto}.section-label{font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue-light);margin-bottom:16px;display:inline-flex;align-items:center;gap:8px;padding:4px 12px;border-radius:var(--r-full);background:var(--blue-dim);border:1px solid rgba(37,99,235,0.25)}.section-label::before{display:none}.section-title{font-family:var(--font-serif);font-size:clamp(34px,5vw,58px);font-weight:400;letter-spacing:-0.025em;line-height:1.1;margin-bottom:20px;color:var(--white)}.section-title em{font-style:italic;color:var(--text-2)}.section-sub{font-size:16px;color:var(--text-2);max-width:520px;line-height:1.7;font-weight:300}.divider{height:1px;background:var(--border);margin:0 32px}
+.section{padding:100px 32px;background:var(--bg)}.container{max-width:1120px;margin:0 auto}.section-label{font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue-light);margin-bottom:16px;display:inline-flex;align-items:center;gap:8px;padding:4px 12px;border-radius:var(--r-full);background:var(--blue-dim);border:1px solid rgba(37,99,235,0.25)}.section-label::before{display:none}.section-title{font-family:var(--font-serif);font-size:clamp(34px,5vw,58px);font-weight:400;letter-spacing:-0.025em;line-height:1.1;margin-bottom:20px;color:var(--white)}.section-title em{font-style:italic;color:var(--text-2)}.section-sub{font-size:16px;color:var(--text-2);max-width:520px;line-height:1.7;font-weight:300}.divider{height:1px;background:var(--border);margin:0 32px}
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding-top:62px}.hero-canvas{position:absolute;inset:0;z-index:0}.hero-grid-overlay{position:absolute;inset:0;z-index:0;opacity:0.04;background-image:linear-gradient(var(--border-strong) 1px,transparent 1px),linear-gradient(90deg,var(--border-strong) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black,transparent)}.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,0.08) 0%,transparent 70%);left:50%;top:50%;transform:translate(-50%,-50%);z-index:0;pointer-events:none}.hero-content{position:relative;z-index:2;max-width:780px;padding:0 24px;animation:fadeUp .8s ease both}.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:var(--r-full);border:1px solid var(--border-md);background:var(--elevated);font-size:12px;color:var(--text-2);margin-bottom:32px;letter-spacing:0.04em}.hero-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--blue-light);animation:dotBlink 2s ease-in-out infinite}.hero-title{font-family:var(--font-serif);font-size:clamp(52px,9vw,96px);font-weight:400;letter-spacing:-0.04em;line-height:0.95;color:var(--white);margin-bottom:28px}.hero-title em{font-style:italic;color:var(--text-2)}.hero-sub{font-size:clamp(15px,2vw,18px);color:var(--text-2);max-width:500px;margin:0 auto 40px;line-height:1.7;font-weight:300}.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}.hero-stats{display:flex;align-items:center;justify-content:center;gap:0;margin-top:80px;border:1px solid var(--border);border-radius:var(--r-xl);background:var(--surface);overflow:hidden;max-width:680px;margin-left:auto;margin-right:auto}.hero-stat{flex:1;padding:24px 20px;text-align:center;border-right:1px solid var(--border)}.hero-stat:last-child{border-right:none}.hero-stat-val{font-family:var(--font-serif);font-size:28px;font-weight:400;color:var(--white);letter-spacing:-0.02em;line-height:1;margin-bottom:6px}.hero-stat-lbl{font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em}
-.marquee-wrap{overflow:hidden;mask-image:linear-gradient(90deg,transparent,black 10%,black 90%,transparent)}.marquee-track{display:flex;gap:0;width:max-content;animation:marquee 30s linear infinite}.company-pill{padding:10px 28px;border-right:1px solid var(--border);font-size:13px;font-weight:500;color:var(--text-3);white-space:nowrap;letter-spacing:0.02em;transition:color var(--t)}.company-pill:hover{color:var(--text-2)}
+.marquee-wrap{overflow:hidden;mask-image:linear-gradient(90deg,transparent,black 10%,black 90%,transparent);background:#000}.marquee-track{display:flex;gap:0;width:max-content;animation:marquee 30s linear infinite}.company-pill{padding:10px 28px;border-right:1px solid var(--border);font-size:13px;font-weight:500;color:var(--text-3);white-space:nowrap;letter-spacing:0.02em;transition:color var(--t)}.company-pill:hover{color:var(--text-2)}
 .steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:32px;overflow:hidden;margin-top:64px}.step{padding:40px 32px;background:var(--surface);transition:background var(--t-slow)}.step:hover{background:var(--elevated)}.step-num{font-family:var(--font-mono);font-size:11px;color:var(--text-3);margin-bottom:32px;letter-spacing:0.08em}.step-icon{width:44px;height:44px;border-radius:var(--r-xl);border:1px solid var(--border-md);background:var(--elevated-2);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:20px;transition:all var(--t)}.step:hover .step-icon{border-color:var(--border-strong);background:rgba(255,255,255,0.05)}.step-title{font-size:15px;font-weight:600;margin-bottom:10px;color:var(--text-1);letter-spacing:-0.01em}.step-desc{font-size:13px;color:var(--text-2);line-height:1.7;font-weight:300}
 .referrers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r-2xl);overflow:hidden;margin-top:48px}.referrer-card{padding:28px;background:var(--surface);cursor:pointer;transition:background var(--t-slow),box-shadow var(--t-slow);position:relative}.referrer-card:hover{background:var(--elevated)}.referrer-card::after{content:'→';position:absolute;top:28px;right:28px;font-size:16px;color:var(--text-3);transition:all var(--t);opacity:0}.referrer-card:hover::after{opacity:1;transform:translateX(4px)}.r-avatar{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;margin-bottom:16px;border:1px solid var(--border-md);flex-shrink:0}.r-name{font-size:15px;font-weight:600;letter-spacing:-0.01em;margin-bottom:3px}.r-role{font-size:13px;color:var(--text-2);margin-bottom:14px}.r-meta{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--text-3);margin-bottom:16px}.r-meta-item{display:flex;align-items:center;gap:4px}.r-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}.r-tag{padding:3px 9px;border-radius:var(--r-full);font-size:11px;background:var(--elevated-2);border:1px solid var(--border);color:var(--text-2)}.r-footer{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid var(--border)}.r-price{font-family:var(--font-serif);font-size:22px;color:var(--white)}.stars{color:var(--white);font-size:11px;letter-spacing:2px}
 .flow-line{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding:1px;border:1px solid var(--border);border-radius:var(--r-2xl);background:var(--border);margin-top:64px}.flow-step{flex:1;min-width:180px;padding:32px 24px;background:var(--surface);text-align:center;position:relative;transition:background var(--t)}.flow-step:hover{background:var(--elevated)}.flow-step:first-child{border-radius:calc(var(--r-2xl) - 1px) 0 0 calc(var(--r-2xl) - 1px)}.flow-step:last-child{border-radius:0 calc(var(--r-2xl) - 1px) calc(var(--r-2xl) - 1px) 0}.flow-arrow{position:absolute;right:-14px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;background:var(--elevated-2);border:1px solid var(--border-md);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-3);z-index:1}.flow-step:last-child .flow-arrow{display:none}.flow-icon-wrap{width:52px;height:52px;border-radius:50%;background:var(--elevated-2);border:1px solid var(--border-md);display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 16px}.flow-title{font-size:13px;font-weight:600;margin-bottom:6px}.flow-desc{font-size:11px;color:var(--text-3);line-height:1.6}
@@ -93,7 +146,7 @@ select.input{appearance:none;cursor:pointer;background-image:url("data:image/svg
 .profile-completion{padding:20px 24px;border-radius:var(--r-xl);border:1px solid var(--border);background:var(--surface);margin-bottom:20px}.completion-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.completion-pct{font-family:var(--font-serif);font-size:20px;font-weight:400;color:var(--white)}
 .dropzone{border:1px dashed var(--border-md);border-radius:var(--r-xl);padding:40px 24px;text-align:center;cursor:pointer;transition:all var(--t)}.dropzone:hover{border-color:var(--border-strong);background:var(--elevated)}
 .admin-metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;margin-bottom:24px}.admin-metric{padding:24px;background:var(--surface);text-align:center}.admin-metric-icon{font-size:22px;margin-bottom:8px}.admin-metric-val{font-family:var(--font-serif);font-size:28px;font-weight:400;color:var(--white);letter-spacing:-0.03em;margin-bottom:4px}.admin-metric-lbl{font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.05em}.verify-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 24px;border-bottom:1px solid var(--border);flex-wrap:wrap}.verify-row:last-child{border-bottom:none}.dispute-item{padding:20px 24px;border-bottom:1px solid var(--border)}.dispute-item:last-child{border-bottom:none}.dispute-item.urgent{border-left:2px solid var(--red)}.bar-chart{display:flex;align-items:flex-end;gap:8px;height:120px;padding-bottom:16px;border-bottom:1px solid var(--border)}.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%}.bar-fill-wrap{flex:1;width:100%;display:flex;align-items:flex-end}.bar-fill{width:100%;border-radius:4px 4px 0 0;background:var(--white);min-height:4px;transition:height 1s ease}.bar-lbl{font-size:10px;color:var(--text-3)}
-.footer{border-top:1px solid var(--border);padding:64px 32px 32px;background:var(--bg)}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}.footer-brand-desc{font-size:13px;color:var(--text-3);line-height:1.7;max-width:260px;margin-top:12px;font-weight:300}.footer-domain-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:var(--r-full);border:1px solid var(--border);background:var(--elevated);font-size:11px;font-family:var(--font-mono);color:var(--text-3);margin-top:12px}.footer-col-title{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:16px}.footer-link{display:block;font-size:13px;color:var(--text-3);padding:5px 0;cursor:pointer;transition:color var(--t);font-weight:300}.footer-link:hover{color:var(--text-1)}.footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--text-4);flex-wrap:wrap;gap:12px}
+.footer{border-top:1px solid var(--border);padding:64px 32px 32px;background:var(--bg)}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}.footer-brand-desc{font-size:13px;color:var(--text-3);line-height:1.7;max-width:260px;margin-top:12px;font-weight:300}.footer-domain-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:var(--r-full);border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);font-size:11px;font-family:var(--font-mono);color:rgba(255,255,255,0.4);margin-top:12px}.footer-col-title{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:16px}.footer-link{display:block;font-size:13px;color:var(--text-3);padding:5px 0;cursor:pointer;transition:color var(--t);font-weight:300}.footer-link:hover{color:var(--text-1)}.footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--text-4);flex-wrap:wrap;gap:12px}
 #loading{position:fixed;inset:0;z-index:9999;background:var(--black);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px}.loading-logo{display:flex;align-items:center;gap:10px;animation:fadeUp .5s ease}.loading-wordmark{font-size:22px;font-weight:700;letter-spacing:-0.03em;font-family:var(--font-body)}.loading-wordmark span{color:var(--blue-light)}.loading-bar-bg{width:160px;height:2px;background:var(--elevated-2);border-radius:99px;overflow:hidden}.loading-bar{height:100%;background:var(--white);border-radius:99px;animation:progressWidth 1.4s ease forwards;--w:100%}.loading-text{font-size:11px;color:var(--text-4);font-family:var(--font-mono);letter-spacing:0.05em}
 .cursor{width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,0.6);position:fixed;pointer-events:none;z-index:99999;mix-blend-mode:difference;transition:transform .1s ease;transform:translate(-50%,-50%)}
 .status-pill{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:var(--r-full);font-size:11px;font-weight:500}.st-pending{background:var(--amber-dim);border:1px solid rgba(217,119,6,.25);color:#fbbf24}.st-active{background:var(--blue-dim);border:1px solid rgba(37,99,235,.25);color:var(--blue-light)}.st-done{background:var(--green-dim);border:1px solid rgba(22,163,74,.25);color:#4ade80}.st-rejected{background:var(--red-dim);border:1px solid rgba(220,38,38,.25);color:#f87171}.st-escrow{background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.25);color:#c4b5fd}
@@ -123,6 +176,12 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
   .stats-row{grid-template-columns:1fr 1fr}
   .admin-metric-grid{grid-template-columns:1fr 1fr}
 }
+@media(max-width:768px){
+  /* Hero split → stack on mobile */
+  #hero-sec > div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;gap:32px!important}
+  #hero-sec img{aspect-ratio:16/9!important}
+  #hero-sec > div > div:last-child > div:last-child{position:static!important;margin-top:16px!important;right:auto!important;bottom:auto!important}
+}
 @media(max-width:600px){
   .nav-links{display:none}
   .nav{padding:0 16px}
@@ -131,9 +190,6 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
   .footer-grid{grid-template-columns:1fr}
   .stats-row{grid-template-columns:1fr}
   .admin-metric-grid{grid-template-columns:1fr 1fr}
-  .hero-title{font-size:clamp(38px,12vw,64px)!important}
-  .hero-cta{flex-direction:column;align-items:center}
-  .btn-xl{padding:12px 22px!important;font-size:14px!important}
   .dash-content{padding:16px!important}
   .dash-topbar{padding:0 14px}
   .req-card{flex-direction:column;align-items:flex-start}
@@ -149,6 +205,8 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
   #sp-dash-browse > div{grid-template-columns:1fr!important}
   .browse-filter-sidebar{display:none}
   .chat-layout{height:calc(100vh - 120px)}
+  #hero-sec{padding:80px 16px 60px!important}
+  #hero-sec h1{font-size:36px!important}
 }
 </style>
 </head>
@@ -163,7 +221,7 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
   <div class="loading-text">www.insiderhire.in</div>
 </div>
 
-<div class="cursor" id="cursor"></div>
+
 <div class="toast-area" id="toast-area"></div>
 
 <!-- CHATBOT FAB -->
@@ -178,27 +236,31 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
     <span class="nav-link" onclick="smooth('how-it-works')">How it works</span>
     <span class="nav-link" onclick="smooth('referrers-sec')">Find Referrers</span>
     <span class="nav-link" onclick="smooth('pricing-sec')">Pricing</span>
-    <span class="nav-link" onclick="smooth('trust-sec')">Trust &amp; Safety</span>
+    <span class="nav-link" onclick="nav('about')">About Us</span>
     <span class="nav-link" onclick="nav('privacy')">Privacy</span>
     <span class="nav-link" onclick="nav('terms')">Terms</span>
     <span class="nav-link" onclick="nav('refund')">Refund</span>
   </div>
   <div class="nav-links" id="nav-dash" style="display:none">
-    <span class="nav-link" onclick="dashNav('dash-overview')">Overview</span>
-    <span class="nav-link" onclick="dashNav('dash-browse')">Browse</span>
-    <span class="nav-link" onclick="dashNav('dash-requests')">Requests</span>
-    <span class="nav-link" onclick="dashNav('dash-chat')">Chat</span>
-    <span class="nav-link" onclick="dashNav('dash-wallet')">Wallet</span>
+    <!-- Dashboard nav handled by left sidebar · no duplicate links here -->
   </div>
   <div class="nav-actions">
     <!-- Guest buttons -->
-    <div id="nav-guest" style="display:flex;gap:8px">
+    <div id="nav-guest" style="display:flex;align-items:center;gap:8px">
+      <button id="theme-toggle-btn-guest" onclick="toggleTheme()"
+        style="width:32px;height:32px;border-radius:50%;background:var(--elevated);border:1px solid var(--border-md);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all var(--t)"
+        title="Toggle light/dark mode">🌙</button>
       <button class="btn btn-ghost btn-sm" onclick="openModal('login-modal')">Sign in</button>
       <button class="btn btn-white btn-sm" onclick="openModal('signup-modal')">Get started</button>
     </div>
 
     <!-- Logged-in buttons -->
     <div id="nav-user" style="display:none;align-items:center;gap:12px">
+
+      <!-- Theme toggle -->
+      <button id="theme-toggle-btn" onclick="toggleTheme()"
+        style="width:32px;height:32px;border-radius:50%;background:var(--elevated);border:1px solid var(--border-md);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all var(--t);flex-shrink:0"
+        title="Toggle light/dark mode">🌙</button>
 
       <!-- Notifications -->
       <div style="position:relative" id="notif-wrap">
@@ -296,10 +358,10 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
   </div>
 </div>
 
-<!-- ACCESS FEE MODAL — $10 every 60 days, 5 requests/week -->
+<!-- ACCESS FEE MODAL · $10 every 60 days, 5 requests/week -->
 <div class="modal-overlay" id="fresher-fee-modal">
   <div class="modal" style="max-width:420px">
-    <h2 class="modal-title" style="font-size:22px">Activate Account — $10</h2>
+    <h2 class="modal-title" style="font-size:22px">Activate Account · $10</h2>
     <p class="modal-sub" id="fee-modal-sub">Pay ≈$10 to activate your InsiderHire account for 60 days. Send up to 5 referral requests per week.</p>
 
     <!-- What you get -->
@@ -333,7 +395,7 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
     </div>
 
     <div style="background:var(--elevated);border:1px solid var(--border);border-radius:var(--r-lg);padding:11px 14px;margin-bottom:16px;font-size:12px;color:var(--text-2);line-height:1.7">
-      🔄 Renews every 60 days — you'll be reminded 7 days before expiry.<br>
+      🔄 Renews every 60 days · you'll be reminded 7 days before expiry.<br>
       💬 After a referrer <strong>accepts</strong> your request, pay the $500 escrow in their currency to unlock full contact details &amp; chat.
     </div>
 
@@ -364,7 +426,7 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
   </div>
 </div>
 
-<!-- ESCROW MODAL — amounts updated dynamically by openEscrowFor() -->
+<!-- ESCROW MODAL · amounts updated dynamically by openEscrowFor() -->
 <div class="modal-overlay" id="escrow-modal">
   <div class="modal" style="max-width:460px">
     <div class="modal-x" onclick="closeModal('escrow-modal')">✕</div>
@@ -435,71 +497,145 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
 </div>
 
 <!-- ============================================================ PAGE 1: LANDING ============================================================ -->
-<div id="page-landing" class="page active">
+<div id="page-landing" class="page active" style="background:var(--bg)">
 
-<section class="hero" id="hero-sec">
-  <canvas class="hero-canvas" id="hero-canvas"></canvas>
-  <div class="hero-grid-overlay"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-content">
-    <!-- Floating badges -->
-    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:32px">
-      <div style="display:inline-flex;align-items:center;gap:7px;padding:6px 16px;border-radius:var(--r-full);background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);backdrop-filter:blur(10px);font-size:12px;color:var(--text-2)">
-        <div class="hero-eyebrow-dot"></div> Trusted by 50,000+ students
+<section class="hero" id="hero-sec" style="min-height:100vh;padding-top:62px;display:flex;align-items:center;background:#000;position:relative;overflow:hidden">
+  <canvas class="hero-canvas" id="hero-canvas" style="position:absolute;inset:0;opacity:0.4"></canvas>
+  <div class="hero-glow" style="position:absolute;top:20%;left:30%;width:500px;height:500px;background:radial-gradient(ellipse,rgba(37,99,235,0.15),transparent 70%);pointer-events:none"></div>
+
+  <div style="max-width:1200px;margin:0 auto;padding:40px 32px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;width:100%;position:relative;z-index:1">
+
+    <!-- LEFT: Text content -->
+    <div>
+      <!-- Eyebrow badge -->
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:99px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:28px">
+        <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 1l1.5 4.5H14L10.5 8l1.5 4.5L8 10l-4 2.5L5.5 8 2 5.5h4.5z" fill="#60A5FA"/></svg>
+        Made for students. Powered by referrals.
       </div>
-      <div style="display:inline-flex;align-items:center;gap:7px;padding:6px 16px;border-radius:var(--r-full);background:var(--blue-dim);border:1px solid rgba(37,99,235,0.3);font-size:12px;color:var(--blue-light)">
-        🔐 Razorpay Escrow Protected
+
+      <!-- Headline — keep existing slogan -->
+      <h1 style="font-size:clamp(38px,4.5vw,58px);font-weight:800;letter-spacing:-0.03em;line-height:1.1;color:#fff;margin-bottom:20px">
+        Get referred<br><span style="color:#2563EB">from the inside</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p style="font-size:17px;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:32px;max-width:440px">
+        Skip endless applications. Get referred by real employees at cafés, hotels, warehouses, retail and more. Start earning sooner.
+      </p>
+
+      <!-- CTA buttons -->
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px" id="hero-guest-cta">
+        <button onclick="openModal('signup-modal')" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:10px;background:#2563EB;color:#fff;font-size:15px;font-weight:700;border:none;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 20px rgba(37,99,235,0.4)" onmouseenter="this.style.background='#1d4ed8';this.style.transform='translateY(-1px)'" onmouseleave="this.style.background='#2563EB';this.style.transform='translateY(0)'">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke="white" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+          Find Part-Time Jobs
+        </button>
+        <button onclick="openModal('signup-modal')" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:10px;background:transparent;color:#fff;font-size:15px;font-weight:600;border:1.5px solid rgba(255,255,255,0.2);cursor:pointer;transition:all 0.2s" onmouseenter="this.style.background='rgba(255,255,255,0.06)';this.style.borderColor='rgba(255,255,255,0.4)'" onmouseleave="this.style.background='transparent';this.style.borderColor='rgba(255,255,255,0.2)'">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="white" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="white" stroke-width="2"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+          Become a Referrer
+        </button>
       </div>
-      <div style="display:inline-flex;align-items:center;gap:7px;padding:6px 16px;border-radius:var(--r-full);background:rgba(22,163,74,0.08);border:1px solid rgba(22,163,74,0.2);font-size:12px;color:#4ade80">
-        ✅ 8,500+ Verified Insiders
+      <div style="display:none;gap:12px;flex-wrap:wrap;margin-bottom:36px" id="hero-loggedin-cta">
+        <button onclick="nav('fresher')" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:10px;background:#2563EB;color:#fff;font-size:15px;font-weight:700;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(37,99,235,0.4)">
+          Go to Dashboard →
+        </button>
       </div>
-    </div>
 
-    <h1 class="hero-title" style="background:linear-gradient(135deg,#fff 40%,rgba(255,255,255,0.55));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Get referred<br><em style="-webkit-text-fill-color:rgba(255,255,255,0.4)">from the inside</em></h1>
-
-    <!-- Job category pills -->
-    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:24px">
-      <span style="padding:5px 14px;border-radius:var(--r-full);background:var(--elevated);border:1px solid var(--border-md);font-size:12px;color:var(--text-2)">🏨 Hotel</span>
-      <span style="padding:5px 14px;border-radius:var(--r-full);background:var(--elevated);border:1px solid var(--border-md);font-size:12px;color:var(--text-2)">🍳 Kitchen</span>
-      <span style="padding:5px 14px;border-radius:var(--r-full);background:var(--elevated);border:1px solid var(--border-md);font-size:12px;color:var(--text-2)">📦 Warehouse</span>
-      <span style="padding:5px 14px;border-radius:var(--r-full);background:var(--elevated);border:1px solid var(--border-md);font-size:12px;color:var(--text-2)">🛒 Retail</span>
-      <span style="padding:5px 14px;border-radius:var(--r-full);background:var(--elevated);border:1px solid var(--border-md);font-size:12px;color:var(--text-2)">🔒 Security</span>
-      <span style="padding:5px 14px;border-radius:var(--r-full);background:var(--elevated);border:1px solid var(--border-md);font-size:12px;color:var(--text-2)">🚴 Delivery</span>
-      <span style="padding:5px 14px;border-radius:var(--r-full);background:var(--elevated);border:1px solid var(--border-md);font-size:12px;color:var(--text-2)">🧹 Cleaning</span>
-      <span style="padding:5px 14px;border-radius:var(--r-full);background:var(--elevated);border:1px solid var(--border-md);font-size:12px;color:var(--text-2)">🔧 Labour</span>
-    </div>
-
-    <p class="hero-sub" style="font-size:17px;max-width:520px;margin:0 auto 36px">Connect with verified local workers. Secure Razorpay escrow. Get insider referrals for odd jobs near you — in your local currency.</p>
-    <div class="hero-cta" id="hero-guest-cta">
-      <button class="btn btn-white btn-xl" style="box-shadow:0 0 32px rgba(255,255,255,0.15),0 4px 16px rgba(0,0,0,0.4);font-weight:700;letter-spacing:-0.02em" onclick="openModal('signup-modal')">Get started free →</button>
-      <button class="btn btn-outline btn-xl" style="backdrop-filter:blur(10px);background:rgba(255,255,255,0.04)" onclick="smooth('how-it-works')">See how it works</button>
-    </div>
-    <div class="hero-cta" id="hero-loggedin-cta" style="display:none">
-      <button class="btn btn-white btn-xl" style="box-shadow:0 0 32px rgba(255,255,255,0.15),0 4px 16px rgba(0,0,0,0.4);font-weight:700;letter-spacing:-0.02em" onclick="nav('fresher')">Go to Dashboard →</button>
-      <button class="btn btn-outline btn-xl" style="backdrop-filter:blur(10px);background:rgba(255,255,255,0.04)" onclick="smooth('how-it-works')">See how it works</button>
-    </div>
-    <!-- Social proof row -->
-    <div style="margin-top:24px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--text-3)">
-      <div style="display:flex;align-items:center;gap:6px">
-        <div style="display:flex;gap:-4px">
-          <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#1e3a8a,#2563EB);border:2px solid var(--bg);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff">PK</div>
-          <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#134e4a,#0f766e);border:2px solid var(--bg);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;margin-left:-6px">RM</div>
-          <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#1e1b4b,#4338ca);border:2px solid var(--bg);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;margin-left:-6px">AN</div>
+      <!-- Trust badges -->
+      <div style="display:flex;gap:20px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,0.45)">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/></svg>
+          100% Student Community
         </div>
-        <span>50,000+ students joined</span>
+        <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,0.45)">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2"/></svg>
+          Safe &amp; Secure Payments
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,0.45)">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          No Hidden Charges
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,0.45)">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="2"/><polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="2"/></svg>
+          Trusted Network
+        </div>
       </div>
-      <span style="color:var(--border-strong)">·</span>
-      <span>⭐⭐⭐⭐⭐ 4.9/5 rating</span>
-      <span style="color:var(--border-strong)">·</span>
-      <span>🌍 UK · USA · AU · DE</span>
     </div>
-    <div class="hero-stats reveal">
-      <div class="hero-stat"><div class="hero-stat-val" data-count="50247">0</div><div class="hero-stat-lbl">Active users</div></div>
-      <div class="hero-stat"><div class="hero-stat-val" data-count="8542">0</div><div class="hero-stat-lbl">Verified insiders</div></div>
-      <div class="hero-stat"><div class="hero-stat-val" data-count="12847">0</div><div class="hero-stat-lbl">Jobs landed</div></div>
-      <div class="hero-stat"><div class="hero-stat-val">98.2%</div><div class="hero-stat-lbl">Satisfaction rate</div></div>
+
+    <!-- RIGHT: Photo + Popular jobs card -->
+    <div style="position:relative">
+      <!-- Hero image -->
+      <div style="border-radius:20px;overflow:hidden;position:relative;aspect-ratio:4/3;background:linear-gradient(135deg,#0a1628,#1e3a8a)">
+        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80"
+          alt="Students smiling outside a café"
+          style="width:100%;height:100%;object-fit:cover;opacity:0.85"
+          onerror="this.style.display='none'">
+        <!-- Fallback gradient with emoji if image fails -->
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:80px;opacity:0.3">👥</div>
+      </div>
+
+      <!-- Floating popular jobs card -->
+      <div style="position:absolute;bottom:-20px;right:-16px;background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:16px 20px;min-width:280px;box-shadow:0 20px 60px rgba(0,0,0,0.6)">
+        <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.5);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.06em">Popular Jobs for Students</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+          <div style="text-align:center;padding:8px 4px;border-radius:10px;background:rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s" onmouseenter="this.style.background='rgba(37,99,235,0.12)'" onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
+            <div style="font-size:22px;margin-bottom:4px">☕</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.3">Café &amp;<br>Restaurant</div>
+          </div>
+          <div style="text-align:center;padding:8px 4px;border-radius:10px;background:rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s" onmouseenter="this.style.background='rgba(37,99,235,0.12)'" onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
+            <div style="font-size:22px;margin-bottom:4px">🛒</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.3">Retail &amp;<br>Sales</div>
+          </div>
+          <div style="text-align:center;padding:8px 4px;border-radius:10px;background:rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s" onmouseenter="this.style.background='rgba(37,99,235,0.12)'" onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
+            <div style="font-size:22px;margin-bottom:4px">📦</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.3">Warehouse<br></div>
+          </div>
+          <div style="text-align:center;padding:8px 4px;border-radius:10px;background:rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s" onmouseenter="this.style.background='rgba(37,99,235,0.12)'" onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
+            <div style="font-size:22px;margin-bottom:4px">🚴</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.3">Delivery<br></div>
+          </div>
+          <div style="text-align:center;padding:8px 4px;border-radius:10px;background:rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s" onmouseenter="this.style.background='rgba(37,99,235,0.12)'" onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
+            <div style="font-size:22px;margin-bottom:4px">🏨</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.3">Hotel<br>Staff</div>
+          </div>
+          <div style="text-align:center;padding:8px 4px;border-radius:10px;background:rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s" onmouseenter="this.style.background='rgba(37,99,235,0.12)'" onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
+            <div style="font-size:22px;margin-bottom:4px">🔒</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.3">Security<br></div>
+          </div>
+          <div style="text-align:center;padding:8px 4px;border-radius:10px;background:rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s" onmouseenter="this.style.background='rgba(37,99,235,0.12)'" onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
+            <div style="font-size:22px;margin-bottom:4px">📚</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.3">Tutoring<br></div>
+          </div>
+          <div style="text-align:center;padding:8px 4px;border-radius:10px;background:rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s" onmouseenter="this.style.background='rgba(37,99,235,0.12)'" onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
+            <div style="font-size:22px;margin-bottom:4px">✨</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.3">More...<br></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
+  <!-- Stats bar at bottom -->
+  <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(255,255,255,0.03);border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:center">
+    <div style="max-width:1200px;width:100%;display:grid;grid-template-columns:repeat(4,1fr)">
+      <div class="hero-stat" style="padding:16px 24px;text-align:center;border-right:1px solid rgba(255,255,255,0.06)">
+        <div class="hero-stat-val" data-count="50247" style="font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.02em">0</div>
+        <div class="hero-stat-lbl" style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px">Active users</div>
+      </div>
+      <div class="hero-stat" style="padding:16px 24px;text-align:center;border-right:1px solid rgba(255,255,255,0.06)">
+        <div class="hero-stat-val" data-count="8542" style="font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.02em">0</div>
+        <div class="hero-stat-lbl" style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px">Verified insiders</div>
+      </div>
+      <div class="hero-stat" style="padding:16px 24px;text-align:center;border-right:1px solid rgba(255,255,255,0.06)">
+        <div class="hero-stat-val" data-count="12847" style="font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.02em">0</div>
+        <div class="hero-stat-lbl" style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px">Jobs landed</div>
+      </div>
+      <div class="hero-stat" style="padding:16px 24px;text-align:center">
+        <div class="hero-stat-val" style="font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.02em">98.2%</div>
+        <div class="hero-stat-lbl" style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px">Satisfaction rate</div>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <div class="divider"></div>
@@ -520,10 +656,10 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
     <h2 class="section-title reveal delay-1">From unknown<br>to <em>hired</em></h2>
     <p class="section-sub reveal delay-2">Four steps to land your odd job through the power of insider referrals.</p>
     <div class="steps-grid reveal delay-2">
-      <div class="step"><div class="step-num">01 / DISCOVER</div><div class="step-icon">🔍</div><div class="step-title">Browse verified insiders</div><div class="step-desc">Search verified local workers in Hotel, Kitchen, Warehouse, Retail, Security and more — filtered by job type and distance (10/50/100/500 km).</div></div>
+      <div class="step"><div class="step-num">01 / DISCOVER</div><div class="step-icon">🔍</div><div class="step-title">Browse verified insiders</div><div class="step-desc">Search verified local workers in Hotel, Kitchen, Warehouse, Retail, Security and more · filtered by job type and distance (10/50/100/500 km).</div></div>
       <div class="step"><div class="step-num">02 / SECURE</div><div class="step-icon">🔒</div><div class="step-title">Deposit to escrow</div><div class="step-desc">Your ₹ equivalent of $500 is held securely by Razorpay escrow. No one can access it until your job is confirmed. Zero risk, complete protection.</div></div>
-      <div class="step"><div class="step-num">03 / CONNECT</div><div class="step-icon">💬</div><div class="step-title">Chat &amp; get referred</div><div class="step-desc">Referrer's full name, phone, email and workplace are revealed. Chat opens — share your CV and get your internal referral submitted directly.</div></div>
-      <div class="step"><div class="step-num">04 / SUCCEED</div><div class="step-icon">🏆</div><div class="step-title">Start the job</div><div class="step-desc">Upload your first payslip. Admin verifies. Escrow releases automatically — referrer earns $400, you start your job. Everyone wins.</div></div>
+      <div class="step"><div class="step-num">03 / CONNECT</div><div class="step-icon">💬</div><div class="step-title">Chat &amp; get referred</div><div class="step-desc">Referrer's full name, phone, email and workplace are revealed. Chat opens · share your CV and get your internal referral submitted directly.</div></div>
+      <div class="step"><div class="step-num">04 / SUCCEED</div><div class="step-icon">🏆</div><div class="step-title">Start the job</div><div class="step-desc">Upload your first payslip. Admin verifies. Escrow releases automatically · referrer earns $400, you start your job. Everyone wins.</div></div>
     </div>
   </div>
 </section>
@@ -601,7 +737,7 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
     <div style="text-align:center;margin-top:32px;padding:28px;background:var(--surface);border:1px solid var(--border-md);border-radius:var(--r-2xl)">
       <div style="font-size:14px;color:var(--text-2);margin-bottom:16px">Sign up as a Job Seeker · Pay ₹ equivalent of $10 platform fee · Browse 8,500+ verified referrers with masked info · Deposit $500 escrow to unlock full details</div>
       <div id="ref-guest-btn">
-        <button class="btn btn-white btn-lg" onclick="openModal('signup-modal')">Get started — sign up free →</button>
+        <button class="btn btn-white btn-lg" onclick="openModal('signup-modal')">Get started · sign up free →</button>
       </div>
       <div id="ref-loggedin-btn" style="display:none">
         <button class="btn btn-white btn-lg" onclick="nav('fresher')">Browse Referrers →</button>
@@ -636,7 +772,7 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
     <h2 class="section-title reveal delay-1">Security built<br>into <em>everything</em></h2>
     <div class="trust-grid reveal delay-2">
       <div class="trust-item"><div class="trust-num">01</div><div class="trust-icon">🔐</div><div class="trust-title">Razorpay-powered escrow</div><div class="trust-desc">Bank-grade payment security with PCI-DSS compliance. Your funds are in a regulated Razorpay escrow, not our bank account.</div></div>
-      <div class="trust-item"><div class="trust-num">02</div><div class="trust-icon">✅</div><div class="trust-title">Manual verification</div><div class="trust-desc">Every referrer is manually verified — work email, company badge, and government ID before they go live.</div></div>
+      <div class="trust-item"><div class="trust-num">02</div><div class="trust-icon">✅</div><div class="trust-title">Manual verification</div><div class="trust-desc">Every referrer is manually verified · work email, company badge, and government ID before they go live.</div></div>
       <div class="trust-item"><div class="trust-num">03</div><div class="trust-icon">🔒</div><div class="trust-title">Info masking until payment</div><div class="trust-desc">Referrer's name, phone, email and workplace are masked until you confirm escrow. No risk of identity exposure.</div></div>
       <div class="trust-item"><div class="trust-num">04</div><div class="trust-icon">📄</div><div class="trust-title">Payslip verification</div><div class="trust-desc">Both parties upload first payslip. Admin cross-verifies both before releasing any escrow funds.</div></div>
       <div class="trust-item"><div class="trust-num">05</div><div class="trust-icon">💸</div><div class="trust-title">14-day auto-refund</div><div class="trust-desc">If no referral is submitted within 14 days, $485 is automatically refunded to your Razorpay payment method.</div></div>
@@ -652,8 +788,8 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
     <div class="section-label reveal">Stories</div>
     <h2 class="section-title reveal delay-1">Real students,<br><em>real results</em></h2>
     <div class="testimonials-grid reveal delay-2">
-      <div class="testi"><div class="testi-stars">★★★★★</div><div class="testi-quote">"Got my hotel staff job in London within 3 weeks. The escrow system gave me complete peace of mind — I knew my money was safe the entire time."</div><div class="testi-author"><div class="testi-avatar" style="background:#1e3a8a">PK</div><div><div class="testi-name">Priya Krishnan</div><div class="testi-role">Hotel Staff · London 🇬🇧</div></div></div></div>
-      <div class="testi"><div class="testi-stars">★★★★★</div><div class="testi-quote">"As an international student from India, finding warehouse work in Germany felt impossible. InsiderHire made it happen — got the referral and started within a month."</div><div class="testi-author"><div class="testi-avatar" style="background:#134e4a">RM</div><div><div class="testi-name">Ravi Mehta</div><div class="testi-role">Warehouse Worker · Berlin 🇩🇪</div></div></div></div>
+      <div class="testi"><div class="testi-stars">★★★★★</div><div class="testi-quote">"Got my hotel staff job in London within 3 weeks. The escrow system gave me complete peace of mind · I knew my money was safe the entire time."</div><div class="testi-author"><div class="testi-avatar" style="background:#1e3a8a">PK</div><div><div class="testi-name">Priya Krishnan</div><div class="testi-role">Hotel Staff · London 🇬🇧</div></div></div></div>
+      <div class="testi"><div class="testi-stars">★★★★★</div><div class="testi-quote">"As an international student from India, finding warehouse work in Germany felt impossible. InsiderHire made it happen · got the referral and started within a month."</div><div class="testi-author"><div class="testi-avatar" style="background:#134e4a">RM</div><div><div class="testi-name">Ravi Mehta</div><div class="testi-role">Warehouse Worker · Berlin 🇩🇪</div></div></div></div>
       <div class="testi"><div class="testi-stars">★★★★★</div><div class="testi-quote">"I've earned over $4,200 as a referrer and helped 6 students find kitchen jobs in the UK. Payments always arrive on time, platform is clean and transparent."</div><div class="testi-author"><div class="testi-avatar" style="background:#1e1b4b">AN</div><div><div class="testi-name">Aisha Nwosu</div><div class="testi-role">Referrer · Kitchen Staff 🇬🇧 · $4.2K earned</div></div></div></div>
     </div>
   </div>
@@ -744,29 +880,14 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
       </div>
       <div>
         <div class="footer-col-title">Legal</div>
+        <a class="footer-link" onclick="nav('about')">About Us</a>
         <a class="footer-link" onclick="nav('privacy')">Privacy Policy</a>
         <a class="footer-link" onclick="nav('terms')">Terms of Service</a>
         <a class="footer-link" onclick="nav('refund')">Refund Policy</a>
-        <a class="footer-link" href="mailto:support@insiderhire.in">Contact Us</a>
+        <a class="footer-link" href="mailto:insiderhire.org@gmail.com">Contact Us</a>
       </div>
     </div>
-    <!-- Founder section -->
-    <div style="padding:24px 0;border-top:1px solid var(--border);margin-bottom:0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
-      <div style="display:flex;align-items:center;gap:14px">
-        <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#1e3a8a,#2563EB);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;flex-shrink:0;border:1px solid rgba(37,99,235,0.4)">SK</div>
-        <div>
-          <div style="font-size:13px;font-weight:600;color:var(--text-1)">Built by Shamsheer Khan Khurram</div>
-          <div style="font-size:11px;color:var(--text-3)">AI/ML Engineer · Founder &amp; Developer · InsiderHire</div>
-        </div>
-      </div>
-      <a href="https://www.linkedin.com/in/shamsheer-khan-khurram/" target="_blank" rel="noopener noreferrer"
-         style="display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:var(--r-full);background:rgba(37,99,235,0.1);border:1px solid rgba(37,99,235,0.25);color:var(--blue-light);font-size:12px;font-weight:500;text-decoration:none;transition:all var(--t);cursor:pointer"
-         onmouseenter="this.style.background='rgba(37,99,235,0.2)';this.style.borderColor='rgba(37,99,235,0.5)'"
-         onmouseleave="this.style.background='rgba(37,99,235,0.1)';this.style.borderColor='rgba(37,99,235,0.25)'">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        Connect on LinkedIn
-      </a>
-    </div>
+
     <div class="footer-bottom">
       <span>© 2025 InsiderHire. All rights reserved.</span>
       <div style="display:flex;align-items:center;gap:16px">
@@ -879,11 +1000,12 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
                 <div style="margin-bottom:20px">
                   <div style="font-size:11px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">📍 Location radius</div>
                   <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">
-                    <div class="radius-btn" id="rbtn-any" onclick="setRadius('any')">🌍 Any</div>
+                    <div class="radius-btn on" id="rbtn-any" onclick="setRadius('any')">🌍 Any</div>
+                    <div class="radius-btn" id="rbtn-5" onclick="setRadius(5)">5 km</div>
                     <div class="radius-btn" id="rbtn-10" onclick="setRadius(10)">10 km</div>
+                    <div class="radius-btn" id="rbtn-25" onclick="setRadius(25)">25 km</div>
                     <div class="radius-btn" id="rbtn-50" onclick="setRadius(50)">50 km</div>
                     <div class="radius-btn" id="rbtn-100" onclick="setRadius(100)">100 km</div>
-                    <div class="radius-btn on" id="rbtn-500" onclick="setRadius(500)">500 km</div>
                   </div>
                   <!-- Search type tabs -->
                   <div style="display:flex;gap:4px;margin-bottom:8px">
@@ -897,9 +1019,8 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
                   </div>
                   <!-- Suggestions dropdown -->
                   <div id="loc-suggestions" style="display:none;background:var(--elevated);border:1px solid var(--border-md);border-radius:var(--r-lg);overflow:hidden;margin-bottom:6px;max-height:160px;overflow-y:auto"></div>
-                  <button class="btn btn-ghost btn-sm" style="width:100%;margin-bottom:6px" onclick="locateMe()">📍 Use my location</button>
-                  <div style="font-size:11px;color:var(--text-3)" id="location-status">Search by city, postcode or area</div>
-                  <div id="map-container" style="height:160px;display:none;margin-top:8px"></div>
+                  <button class="btn btn-ghost btn-sm" style="width:100%;margin-bottom:6px" onclick="locateMe()">📍 Detect my location</button>
+                  <div style="font-size:11px;color:var(--text-3);padding:4px 0" id="location-status">Search by city, postcode or area</div>
                 </div>
                 <div style="margin-bottom:20px">
                   <div style="font-size:11px;font-weight:500;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">Job Category</div>
@@ -1158,7 +1279,7 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
               <div class="input-group" style="margin-bottom:14px"><label class="input-label">Subject</label><select class="input"><option>Payment / Escrow issue</option><option>Referral dispute</option><option>Account problem</option><option>Report fraud</option><option>Other</option></select></div>
               <div class="input-group" style="margin-bottom:20px"><label class="input-label">Describe your issue</label><textarea class="input" id="support-msg" rows="5" placeholder="Describe your issue in detail..."></textarea></div>
               <button class="btn btn-white" style="width:100%" onclick="submitSupportTicket()">Submit ticket →</button>
-              <div style="margin-top:20px;padding:16px;border-radius:var(--r-xl);border:1px solid var(--border);background:var(--elevated);font-size:13px;color:var(--text-2);line-height:2">📧 support@insiderhire.in<br>⏱ Response within 24 hours</div>
+              <div style="margin-top:20px;padding:16px;border-radius:var(--r-xl);border:1px solid var(--border);background:var(--elevated);font-size:13px;color:var(--text-2);line-height:2">📧 insiderhire.org@gmail.com<br>⏱ Response within 24 hours</div>
             </div>
           </div>
         </div>
@@ -1325,7 +1446,7 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
                   <div style="font-size:20px;font-weight:700;letter-spacing:-0.02em" id="ref-profile-display-name">Loading...</div>
                   <span class="badge badge-verified" id="ref-v-badge">✓ Verified</span>
                 </div>
-                <div style="font-size:13px;color:var(--text-2);margin-bottom:4px" id="rp-role-display">🏢 — at —</div>
+                <div style="font-size:13px;color:var(--text-2);margin-bottom:4px" id="rp-role-display">🏢 · at —</div>
                 <div style="font-size:13px;color:var(--text-2)" id="rp-loc-display">📍 —</div>
               </div>
             </div>
@@ -1422,7 +1543,7 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
                 <span id="rv-id" class="badge badge-amber">⏳ Pending</span>
               </div>
               <button class="btn btn-white" style="margin-top:8px" onclick="startKYC()">Start KYC Verification →</button>
-              <p style="font-size:12px;color:var(--text-3);text-align:center">Email support@insiderhire.in with your work badge photo to complete verification</p>
+              <p style="font-size:12px;color:var(--text-3);text-align:center">Email insiderhire.org@gmail.com with your work badge photo to complete verification</p>
             </div>
           </div>
         </div>
@@ -1590,7 +1711,7 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
           </div>
           <div style="padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg)">
             <div style="font-weight:600;color:var(--text-1);margin-bottom:4px">Payment Data</div>
-            <div style="font-size:13px">Transaction IDs, Razorpay payment references, escrow amounts, payout details (bank account/UPI for referrers). We do NOT store card numbers — Razorpay handles all card data under PCI-DSS compliance.</div>
+            <div style="font-size:13px">Transaction IDs, Razorpay payment references, escrow amounts, payout details (bank account/UPI for referrers). We do NOT store card numbers · Razorpay handles all card data under PCI-DSS compliance.</div>
           </div>
           <div style="padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg)">
             <div style="font-weight:600;color:var(--text-1);margin-bottom:4px">Usage & Location Data</div>
@@ -1598,7 +1719,7 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
           </div>
           <div style="padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg)">
             <div style="font-weight:600;color:var(--text-1);margin-bottom:4px">Verification Documents</div>
-            <div style="font-size:13px">Payslips, passport copies, visa documents, employment verification documents — stored encrypted in private Supabase Storage.</div>
+            <div style="font-size:13px">Payslips, passport copies, visa documents, employment verification documents · stored encrypted in private Supabase Storage.</div>
           </div>
           <div style="padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg)">
             <div style="font-weight:600;color:var(--text-1);margin-bottom:4px">Communications</div>
@@ -1610,12 +1731,12 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
       <div>
         <h2 style="font-size:17px;font-weight:600;color:var(--white);margin-bottom:12px;letter-spacing:-0.01em">3. Why We Collect It</h2>
         <div style="display:flex;flex-direction:column;gap:8px">
-          <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--blue-light);flex-shrink:0">→</span><span><strong style="color:var(--text-1)">Service delivery</strong> — matching job seekers to referrers, processing escrow payments, releasing funds after job confirmation.</span></div>
-          <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--blue-light);flex-shrink:0">→</span><span><strong style="color:var(--text-1)">Identity verification</strong> — confirming referrers work where they claim, preventing fraud.</span></div>
-          <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--blue-light);flex-shrink:0">→</span><span><strong style="color:var(--text-1)">Payment processing</strong> — via Razorpay for escrow, platform fees, and payouts.</span></div>
-          <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--blue-light);flex-shrink:0">→</span><span><strong style="color:var(--text-1)">Location-based search</strong> — showing referrers within your chosen radius (10/50/100/500km). We do not track your location continuously.</span></div>
-          <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--blue-light);flex-shrink:0">→</span><span><strong style="color:var(--text-1)">Legal compliance</strong> — maintaining records required by tax authorities and payment regulations.</span></div>
-          <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--blue-light);flex-shrink:0">→</span><span><strong style="color:var(--text-1)">Safety</strong> — detecting fraud, resolving disputes, enforcing our Terms of Service.</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--blue-light);flex-shrink:0">→</span><span><strong style="color:var(--text-1)">Service delivery</strong> · matching job seekers to referrers, processing escrow payments, releasing funds after job confirmation.</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--blue-light);flex-shrink:0">→</span><span><strong style="color:var(--text-1)">Identity verification</strong> · confirming referrers work where they claim, preventing fraud.</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--blue-light);flex-shrink:0">→</span><span><strong style="color:var(--text-1)">Payment processing</strong> · via Razorpay for escrow, platform fees, and payouts.</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--blue-light);flex-shrink:0">→</span><span><strong style="color:var(--text-1)">Location-based search</strong> · showing referrers within your chosen radius (10/50/100/500km). We do not track your location continuously.</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--blue-light);flex-shrink:0">→</span><span><strong style="color:var(--text-1)">Legal compliance</strong> · maintaining records required by tax authorities and payment regulations.</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--blue-light);flex-shrink:0">→</span><span><strong style="color:var(--text-1)">Safety</strong> · detecting fraud, resolving disputes, enforcing our Terms of Service.</span></div>
         </div>
       </div>
 
@@ -1648,11 +1769,11 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
       <div>
         <h2 style="font-size:17px;font-weight:600;color:var(--white);margin-bottom:12px;letter-spacing:-0.01em">5. Who We Share Data With</h2>
         <div style="display:flex;flex-direction:column;gap:8px">
-          <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--blue-light);flex-shrink:0">→</span><span><strong style="color:var(--text-1)">Razorpay</strong> — payment processing. Their privacy policy applies to payment data: razorpay.com/privacy</span></div>
-          <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--blue-light);flex-shrink:0">→</span><span><strong style="color:var(--text-1)">Supabase</strong> — database and file storage infrastructure (EU-based servers).</span></div>
-          <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--blue-light);flex-shrink:0">→</span><span><strong style="color:var(--text-1)">Google Maps</strong> — location and mapping data when you use radius filtering.</span></div>
-          <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--blue-light);flex-shrink:0">→</span><span><strong style="color:var(--text-1)">Between users</strong> — after escrow payment, your contact details are shared with your matched referrer/fresher.</span></div>
-          <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--blue-light);flex-shrink:0">→</span><span><strong style="color:var(--text-1)">Law enforcement</strong> — when legally required to prevent fraud or comply with court orders.</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--blue-light);flex-shrink:0">→</span><span><strong style="color:var(--text-1)">Razorpay</strong> · payment processing. Their privacy policy applies to payment data: razorpay.com/privacy</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--blue-light);flex-shrink:0">→</span><span><strong style="color:var(--text-1)">Supabase</strong> · database and file storage infrastructure (EU-based servers).</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--blue-light);flex-shrink:0">→</span><span><strong style="color:var(--text-1)">Google Maps</strong> · location and mapping data when you use radius filtering.</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--blue-light);flex-shrink:0">→</span><span><strong style="color:var(--text-1)">Between users</strong> · after escrow payment, your contact details are shared with your matched referrer/fresher.</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--blue-light);flex-shrink:0">→</span><span><strong style="color:var(--text-1)">Law enforcement</strong> · when legally required to prevent fraud or comply with court orders.</span></div>
         </div>
         <p style="margin-top:12px;padding:12px 16px;background:var(--elevated);border-radius:var(--r-md);font-size:13px">We do <strong>not</strong> sell your personal data to advertisers, data brokers, or any third party for commercial purposes.</p>
       </div>
@@ -1748,26 +1869,26 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
 
       <div>
         <h2 style="font-size:17px;font-weight:600;color:var(--white);margin-bottom:12px;letter-spacing:-0.01em">3. Account Registration</h2>
-        <p>You are responsible for maintaining the security of your account credentials. You must immediately notify us at support@insiderhire.in of any unauthorised access. Each person may hold only one account. Multiple accounts will be permanently banned.</p>
+        <p>You are responsible for maintaining the security of your account credentials. You must immediately notify us at insiderhire.org@gmail.com of any unauthorised access. Each person may hold only one account. Multiple accounts will be permanently banned.</p>
       </div>
 
       <div>
         <h2 style="font-size:17px;font-weight:600;color:var(--white);margin-bottom:12px;letter-spacing:-0.01em">4. Fees and Payments</h2>
         <div style="display:flex;flex-direction:column;gap:10px">
           <div style="padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg)">
-            <div style="font-weight:600;color:var(--text-1);margin-bottom:4px">Platform Access Fee — $10 USD</div>
+            <div style="font-weight:600;color:var(--text-1);margin-bottom:4px">Platform Access Fee · $10 USD</div>
             <div style="font-size:13px">Charged to Job Seekers only. One-time, non-refundable. Grants access to browse and request referrers. Payable in INR equivalent via Razorpay.</div>
           </div>
           <div style="padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg)">
-            <div style="font-weight:600;color:var(--text-1);margin-bottom:4px">Referral Escrow — $500 USD</div>
+            <div style="font-weight:600;color:var(--text-1);margin-bottom:4px">Referral Escrow · $500 USD</div>
             <div style="font-size:13px">Held in escrow upon Job Seeker's payment after Referrer accepts request. Payable in INR equivalent via Razorpay. Funds are locked until job confirmation or 14-day auto-release.</div>
           </div>
           <div style="padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg)">
-            <div style="font-weight:600;color:var(--text-1);margin-bottom:4px">Platform Commission — $100 USD (20%)</div>
+            <div style="font-weight:600;color:var(--text-1);margin-bottom:4px">Platform Commission · $100 USD (20%)</div>
             <div style="font-size:13px">Deducted from the $500 escrow upon successful job confirmation. Referrer receives $400. Job Seeker pays nothing additional beyond the $500 escrow.</div>
           </div>
           <div style="padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg)">
-            <div style="font-weight:600;color:var(--text-1);margin-bottom:4px">Referrer Registration — Free</div>
+            <div style="font-weight:600;color:var(--text-1);margin-bottom:4px">Referrer Registration · Free</div>
             <div style="font-size:13px">Referrers do not pay any fee to join. They earn $400 per successful referral.</div>
           </div>
         </div>
@@ -1807,7 +1928,7 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
 
       <div>
         <h2 style="font-size:17px;font-weight:600;color:var(--white);margin-bottom:12px;letter-spacing:-0.01em">7. Disputes</h2>
-        <p>Disputes must be raised within 14 days of the triggering event via the Support page or support@insiderhire.in. InsiderHire's admin team will review chat logs, payment records, and uploaded documents. Admin decisions on escrow release are final. For unresolved disputes exceeding ₹50,000 in value, Indian arbitration law under the Arbitration and Conciliation Act 1996 applies.</p>
+        <p>Disputes must be raised within 14 days of the triggering event via the Support page or insiderhire.org@gmail.com. InsiderHire's admin team will review chat logs, payment records, and uploaded documents. Admin decisions on escrow release are final. For unresolved disputes exceeding ₹50,000 in value, Indian arbitration law under the Arbitration and Conciliation Act 1996 applies.</p>
       </div>
 
       <div>
@@ -1874,7 +1995,7 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
       </div>
 
       <div>
-        <h2 style="font-size:17px;font-weight:600;color:var(--white);margin-bottom:12px;letter-spacing:-0.01em">1. Platform Access Fee — $10</h2>
+        <h2 style="font-size:17px;font-weight:600;color:var(--white);margin-bottom:12px;letter-spacing:-0.01em">1. Platform Access Fee · $10</h2>
         <div style="padding:16px 20px;background:rgba(220,38,38,0.06);border:1px solid rgba(220,38,38,0.2);border-radius:var(--r-xl);margin-bottom:12px">
           <strong style="color:#f87171">This fee is strictly non-refundable.</strong> It covers the cost of account setup, identity verification infrastructure, and platform access. It is charged at signup and cannot be reversed regardless of subsequent account activity.
         </div>
@@ -1892,7 +2013,7 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
       </div>
 
       <div>
-        <h2 style="font-size:17px;font-weight:600;color:var(--white);margin-bottom:12px;letter-spacing:-0.01em">2. Escrow Payment — $500</h2>
+        <h2 style="font-size:17px;font-weight:600;color:var(--white);margin-bottom:12px;letter-spacing:-0.01em">2. Escrow Payment · $500</h2>
 
         <div style="display:flex;flex-direction:column;gap:16px">
 
@@ -1931,19 +2052,19 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
         <div style="display:flex;flex-direction:column;gap:10px">
           <div style="display:flex;gap:12px;align-items:flex-start">
             <div style="width:24px;height:24px;border-radius:50%;background:var(--elevated-2);border:1px solid var(--border-md);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;color:var(--text-1)">1</div>
-            <div><strong style="color:var(--text-1)">Go to Wallet</strong> — Dashboard → Escrow Wallet → Active Locks → "Request Refund" button on the relevant escrow.</div>
+            <div><strong style="color:var(--text-1)">Go to Wallet</strong> · Dashboard → Escrow Wallet → Active Locks → "Request Refund" button on the relevant escrow.</div>
           </div>
           <div style="display:flex;gap:12px;align-items:flex-start">
             <div style="width:24px;height:24px;border-radius:50%;background:var(--elevated-2);border:1px solid var(--border-md);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;color:var(--text-1)">2</div>
-            <div><strong style="color:var(--text-1)">Admin review</strong> — Our team reviews the request, chat logs, and referral submission records within 2 business days.</div>
+            <div><strong style="color:var(--text-1)">Admin review</strong> · Our team reviews the request, chat logs, and referral submission records within 2 business days.</div>
           </div>
           <div style="display:flex;gap:12px;align-items:flex-start">
             <div style="width:24px;height:24px;border-radius:50%;background:var(--elevated-2);border:1px solid var(--border-md);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;color:var(--text-1)">3</div>
-            <div><strong style="color:var(--text-1)">Decision</strong> — You receive an email with the admin's decision and reason within 2 business days.</div>
+            <div><strong style="color:var(--text-1)">Decision</strong> · You receive an email with the admin's decision and reason within 2 business days.</div>
           </div>
           <div style="display:flex;gap:12px;align-items:flex-start">
             <div style="width:24px;height:24px;border-radius:50%;background:var(--elevated-2);border:1px solid var(--border-md);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;color:var(--text-1)">4</div>
-            <div><strong style="color:var(--text-1)">Refund processed</strong> — If approved, Razorpay processes the refund to your original payment method within 5–7 business days. Bank transfer times vary.</div>
+            <div><strong style="color:var(--text-1)">Refund processed</strong> · If approved, Razorpay processes the refund to your original payment method within 5–7 business days. Bank transfer times vary.</div>
           </div>
         </div>
       </div>
@@ -1954,7 +2075,7 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
       </div>
 
       <div>
-        <h2 style="font-size:17px;font-weight:600;color:var(--white);margin-bottom:12px;letter-spacing:-0.01em">5. Referrer Earnings — No Clawback After Release</h2>
+        <h2 style="font-size:17px;font-weight:600;color:var(--white);margin-bottom:12px;letter-spacing:-0.01em">5. Referrer Earnings · No Clawback After Release</h2>
         <p>Once escrow has been released to a Referrer's wallet following successful verification, that amount cannot be reversed or reclaimed by InsiderHire unless fraud is proven through legal process. Job Seekers should raise disputes before escrow is released.</p>
       </div>
 
@@ -1981,9 +2102,117 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
   </div>
 </div>
 
+<!-- PAGE 8: ABOUT US -->
+<div id="page-about" class="page" style="padding-top:62px">
+  <div style="max-width:860px;margin:0 auto;padding:60px 32px">
+
+    <!-- Header -->
+    <div style="margin-bottom:56px;text-align:center">
+      <span class="section-label" style="margin-bottom:16px;display:inline-flex">About InsiderHire</span>
+      <h1 style="font-family:var(--font-serif);font-size:clamp(40px,6vw,64px);font-weight:400;letter-spacing:-0.025em;line-height:1.1;color:var(--white);margin-bottom:20px">
+        Real Connections.<br><em style="color:rgba(255,255,255,0.45)">Part-Time Jobs.</em>
+      </h1>
+    </div>
+
+    <!-- About InsiderHire -->
+    <div style="padding:40px;background:var(--surface);border:1px solid var(--border-md);border-radius:28px;margin-bottom:32px">
+      <div style="font-size:13px;font-weight:600;color:var(--blue-light);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px">Our Mission</div>
+      <p style="font-size:17px;color:var(--text-1);line-height:1.8;font-weight:300">
+        InsiderHire is a referral-based job platform designed to connect job seekers with trusted employee referrals, helping candidates access opportunities that are often difficult to secure through traditional job applications.
+      </p>
+      <p style="font-size:15px;color:var(--text-2);line-height:1.8;font-weight:300;margin-top:16px">
+        Our mission is to make hiring more transparent, faster, and community-driven by rewarding genuine referrals and creating meaningful connections between employers, employees, and job seekers. We believe that great talent deserves great opportunities, and trusted referrals can bridge that gap.
+      </p>
+    </div>
+
+    <!-- Values grid -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:24px;overflow:hidden;margin-bottom:48px">
+      <div style="padding:28px;background:var(--surface)">
+        <div style="font-size:28px;margin-bottom:12px">🤝</div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:8px;color:var(--text-1)">Trust-first</div>
+        <div style="font-size:13px;color:var(--text-2);line-height:1.7">Every referrer is manually verified before going live on the platform.</div>
+      </div>
+      <div style="padding:28px;background:var(--surface)">
+        <div style="font-size:28px;margin-bottom:12px">🔐</div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:8px;color:var(--text-1)">Secure by design</div>
+        <div style="font-size:13px;color:var(--text-2);line-height:1.7">Razorpay escrow holds your money safely until the job is confirmed.</div>
+      </div>
+      <div style="padding:28px;background:var(--surface)">
+        <div style="font-size:28px;margin-bottom:12px">🌍</div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:8px;color:var(--text-1)">Global reach</div>
+        <div style="font-size:13px;color:var(--text-2);line-height:1.7">Supporting international students across UK, USA, Australia, Germany and more.</div>
+      </div>
+    </div>
+
+    <!-- Meet the Team -->
+    <div style="margin-bottom:48px">
+      <div style="font-size:13px;font-weight:600;color:var(--blue-light);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:24px;text-align:center">Meet the Team</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+
+        <!-- Sheeban Ahmed Khan -->
+        <div style="padding:32px;background:var(--surface);border:1px solid var(--border-md);border-radius:24px;text-align:center;transition:border-color var(--t)" onmouseenter="this.style.borderColor='rgba(37,99,235,0.4)'" onmouseleave="this.style.borderColor='var(--border-md)'">
+          <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#1e3a8a,#2563EB);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;color:#fff;margin:0 auto 16px;border:2px solid rgba(37,99,235,0.3)">SA</div>
+          <div style="font-size:16px;font-weight:700;color:var(--white);margin-bottom:4px">Sheeban Ahmed Khan</div>
+          <div style="font-size:12px;color:var(--blue-light);font-weight:500;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:12px">Founder & CEO</div>
+          <p style="font-size:13px;color:var(--text-2);line-height:1.7">Visionary behind InsiderHire. Building the future of student employment through the power of referrals.</p>
+        </div>
+
+        <!-- Shamsheer Khan Khurram -->
+        <div style="padding:32px;background:var(--surface);border:1px solid var(--border-md);border-radius:24px;text-align:center;transition:border-color var(--t)" onmouseenter="this.style.borderColor='rgba(37,99,235,0.4)'" onmouseleave="this.style.borderColor='var(--border-md)'">
+          <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#0c4a6e,#0284c7);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;color:#fff;margin:0 auto 16px;border:2px solid rgba(2,132,199,0.3)">SK</div>
+          <div style="font-size:16px;font-weight:700;color:var(--white);margin-bottom:4px">Shamsheer Khan Khurram</div>
+          <div style="font-size:12px;color:var(--blue-light);font-weight:500;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:12px">Lead Developer</div>
+          <p style="font-size:13px;color:var(--text-2);line-height:1.7">AI/ML Engineer building the InsiderHire platform end-to-end · from Supabase backend to Razorpay escrow to the UI you're using right now.</p>
+          <a href="https://www.linkedin.com/in/shamsheer-khan-khurram/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:6px 14px;border-radius:var(--r-full);background:var(--blue-dim);border:1px solid rgba(37,99,235,0.25);color:var(--blue-light);font-size:11px;font-weight:500;text-decoration:none">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats row -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:24px;overflow:hidden;margin-bottom:40px">
+      <div style="padding:24px;background:var(--surface);text-align:center">
+        <div style="font-family:var(--font-serif);font-size:32px;font-weight:400;color:var(--white);line-height:1;margin-bottom:6px">50K+</div>
+        <div style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em">Students</div>
+      </div>
+      <div style="padding:24px;background:var(--surface);text-align:center">
+        <div style="font-family:var(--font-serif);font-size:32px;font-weight:400;color:var(--white);line-height:1;margin-bottom:6px">8.5K+</div>
+        <div style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em">Referrers</div>
+      </div>
+      <div style="padding:24px;background:var(--surface);text-align:center">
+        <div style="font-family:var(--font-serif);font-size:32px;font-weight:400;color:var(--white);line-height:1;margin-bottom:6px">12K+</div>
+        <div style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em">Jobs Landed</div>
+      </div>
+      <div style="padding:24px;background:var(--surface);text-align:center">
+        <div style="font-family:var(--font-serif);font-size:32px;font-weight:400;color:var(--white);line-height:1;margin-bottom:6px">4</div>
+        <div style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em">Countries</div>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div style="padding:28px;background:var(--surface);border:1px solid var(--border-md);border-radius:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+      <div>
+        <div style="font-size:14px;font-weight:600;color:var(--text-1);margin-bottom:4px">Get in touch</div>
+        <div style="font-size:13px;color:var(--text-2)">Questions, partnerships, or just want to say hi?</div>
+      </div>
+      <a href="mailto:insiderhire.org@gmail.com" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:var(--r-full);background:var(--white);color:var(--black);font-size:13px;font-weight:600;text-decoration:none">
+        ✉️ insiderhire.org@gmail.com
+      </a>
+    </div>
+
+    <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);display:flex;gap:12px;flex-wrap:wrap">
+      <button class="btn btn-outline" onclick="nav('landing')">← Back to home</button>
+      <button class="btn btn-ghost" onclick="nav('privacy')">Privacy Policy</button>
+      <button class="btn btn-ghost" onclick="nav('terms')">Terms of Service</button>
+    </div>
+  </div>
+</div>
+
 
 <!-- ============================================================
-     SECTION: ALL JAVASCRIPT — Production Logic
+     SECTION: ALL JAVASCRIPT · Production Logic
      Razorpay escrow · Supabase auth & DB · Google Maps · Real masking
      No demo fallbacks. All real.
      ============================================================ -->
@@ -2200,12 +2429,17 @@ document.addEventListener('keydown', e => {
 function nav(p) {
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
   page = p;
-  const map = {landing:'page-landing',fresher:'page-fresher-dash',referrer:'page-referrer-dash',admin:'page-admin-dash',privacy:'page-privacy',terms:'page-terms',refund:'page-refund'};
+  const map = {landing:'page-landing',fresher:'page-fresher-dash',referrer:'page-referrer-dash',admin:'page-admin-dash',privacy:'page-privacy',terms:'page-terms',refund:'page-refund',about:'page-about'};
   const el = $(map[p]); if(el){el.classList.add('active');window.scrollTo(0,0);}
   updateNav();
   if(p==='fresher')  { loadWallet(); loadRequests(); loadBrowse(); }
   if(p==='referrer') { loadRefRequests(); loadRefEarnings(); }
   if(p==='admin')    { loadAdminData(); }
+  if(p==='landing')  {
+    // Re-apply theme so hero/marquee get correct background
+    const heroEl = document.getElementById('hero-sec');
+    if (heroEl) heroEl.style.background = currentTheme === 'light' ? '#0a0f1e' : '#000000';
+  }
 }
 
 function updateNav() {
@@ -2294,7 +2528,7 @@ function adminNav(p) {
 // ─── SUPABASE GUARD ───────────────────────────────────────────
 function requireSB() {
   if (!SB) {
-    toast('Service not configured. Contact support@insiderhire.in', 'error');
+    toast('Service not configured. Contact insiderhire.org@gmail.com', 'error');
     return false;
   }
   return true;
@@ -2432,7 +2666,7 @@ async function onSession(sess) {
       }
     }
     else if (r==='suspended') {
-      toast('Your account has been suspended. Contact support@insiderhire.in','error');
+      toast('Your account has been suspended. Contact insiderhire.org@gmail.com','error');
     }
     else {
       // Fresher — go straight to dashboard, no fee gate at login
@@ -2871,7 +3105,7 @@ async function paySignupFee() {
         toast('✅ Access activated for 60 days! Send up to 5 requests per week. 🎉','success');
         nav('fresher');
       } catch(e) {
-        if(errEl) errEl.textContent='Payment captured but activation failed. Contact support@insiderhire.in — Payment ID: '+resp.razorpay_payment_id;
+        if(errEl) errEl.textContent='Payment captured but activation failed. Contact insiderhire.org@gmail.com — Payment ID: '+resp.razorpay_payment_id;
       }
     },
     onFailure: (e) => {
@@ -3020,6 +3254,13 @@ function openPreChat(appId, referrerId, referrerName, jobCat, refLoc) {
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
   renderPreChat();
+}
+
+// Alias — openEscrowFor still used in several places
+function openEscrowFor(refId) {
+  const r = allReferrers.find(x => x.id === refId);
+  if (!r) { toast('Referrer not found. Go to Browse Workers.','error'); return; }
+  openEscrowCtxFor(r.id, r.location||'', r.job_category||'Odd Job');
 }
 
 function openEscrowCtxFor(referrerId, refLoc, jobCat) {
@@ -3193,7 +3434,7 @@ async function confirmEscrow() {
         loadWallet(); loadRequests();
         setTimeout(()=>dashNav('dash-chat'), 1200);
       } catch(e) {
-        if(errEl) errEl.textContent = 'Payment captured but escrow setup failed. Contact support@insiderhire.in — payment ID: '+resp.razorpay_payment_id;
+        if(errEl) errEl.textContent = 'Payment captured but escrow setup failed. Contact insiderhire.org@gmail.com — payment ID: '+resp.razorpay_payment_id;
       }
     },
     onFailure: (e) => {
@@ -3239,9 +3480,16 @@ function setUserLoc(lat, lng, label) {
 function drawMap_UNUSED() {}
 function setRadius(r) {
   radius = r==='any' ? 99999 : +r;
-  document.querySelectorAll('.radius-btn').forEach(b=>b.classList.remove('on'));
-  const btn=$('rbtn-'+r); if(btn) btn.classList.add('on');
-  if (userLoc) drawMap(userLoc.lat, userLoc.lng);
+  document.querySelectorAll('.radius-btn').forEach(b=>{
+    b.classList.remove('on');
+    b.style.background=''; b.style.color=''; b.style.borderColor='';
+  });
+  const btn=$('rbtn-'+r);
+  if(btn){
+    btn.classList.add('on');
+    btn.style.background='var(--blue)'; btn.style.color='#fff'; btn.style.borderColor='var(--blue)';
+  }
+  if (userLoc && radius < 99999) drawMap(userLoc.lat, userLoc.lng);
   applyFilters();
 }
 
@@ -3261,7 +3509,8 @@ async function loadBrowse() {
       .select('id,full_name,role,job_category,location,postcode,lat,lng,rating,review_count,referral_count,success_rate,experience_years,referral_fee,gradient,is_verified', { count:'exact' })
       .eq('role','referrer')
       .eq('is_verified', true)
-      .range(browseOffset, browseOffset+11);
+      .order('rating', { ascending: false })
+      .range(browseOffset, browseOffset+23);  // load more upfront
     if (error) throw error;
     allReferrers = browseOffset===0 ? (data||[]) : [...allReferrers,...(data||[])];
     if (countEl) countEl.textContent = `Showing ${allReferrers.length} of ${count||0} verified workers`;
@@ -3299,20 +3548,31 @@ function applyFilters() {
     list = list.filter(r => (r.rating||0) >= 4.5).sort((a,b)=>(b.rating||0)-(a.rating||0));
   }
 
-  // Distance filter
-  if (userLoc && radius<99999) {
-    list = list.map(r=>{
-      if (r.lat!=null && r.lng!=null) r._dist=haversine(userLoc.lat,userLoc.lng,+r.lat,+r.lng);
+  // Distance filter — only apply when user has set location AND chosen a km radius
+  if (userLoc && radius < 99999) {
+    list = list.map(r => {
+      if (r.lat != null && r.lng != null)
+        r._dist = haversine(userLoc.lat, userLoc.lng, +r.lat, +r.lng);
       return r;
-    }).filter(r=>r._dist==null||r._dist<=radius)
-      .sort((a,b)=>(a._dist??9999)-(b._dist??9999));
+    })
+    // If referrer has no lat/lng stored yet, still show them (don't exclude)
+    .filter(r => r._dist == null || r._dist <= radius)
+    .sort((a,b) => (a._dist ?? 9999) - (b._dist ?? 9999));
+  } else if (userLoc && radius === 99999) {
+    // Has location but "Any" selected — show all, just sort by distance
+    list = list.map(r => {
+      if (r.lat != null && r.lng != null)
+        r._dist = haversine(userLoc.lat, userLoc.lng, +r.lat, +r.lng);
+      return r;
+    }).sort((a,b) => (a._dist ?? 9999) - (b._dist ?? 9999));
   }
 
   const ce=$('browse-count');
   if(ce) {
-    const locStr = userLoc&&radius<99999 ? ` within ${radius} km` : '';
-    const pillStr = activePillFilter !== 'all' ? ` · Filter: ${activePillFilter.toUpperCase()}` : '';
-    ce.textContent = `Showing ${list.length} verified workers${locStr}${pillStr}`;
+    const locStr  = userLoc && radius < 99999 ? ` within ${radius} km of you` : userLoc ? ' · sorted by distance' : '';
+    const pillStr = activePillFilter && activePillFilter !== 'all' ? ` · ${activePillFilter.toUpperCase()}` : '';
+    const total   = allReferrers.length;
+    ce.textContent = `Showing ${list.length}${total > list.length ? ' of '+total : ''} verified workers${locStr}${pillStr}`;
   }
   renderBrowse(list);
   if (userLoc && leafletMap) drawMap(userLoc.lat, userLoc.lng);
@@ -3500,15 +3760,29 @@ async function loadRequests() {
   const list=$('requests-list'); if(!list) return;
   if (!requireSB() || !me) return;
   try {
+    // Fetch applications first
     const { data, error } = await SB.from('applications')
-      .select('*,escrow:escrow_transactions(status,amount,created_at,auto_release_at,referrer_id),referrer:profiles!applications_referrer_id_fkey(full_name,job_category,location)')
+      .select('*,referrer:profiles!applications_referrer_id_fkey(id,full_name,job_category,location,postcode)')
       .eq('applicant_id', me.id).order('applied_at',{ascending:false});
     if (error) throw error;
-    if (!data?.length) {
+
+    // Fetch escrow separately to avoid schema cache join error
+    let escrowMap = {};
+    if (data?.length) {
+      const refIds = [...new Set(data.map(a => a.referrer_id).filter(Boolean))];
+      const { data: escrows } = await SB.from('escrow_transactions')
+        .select('applicant_id,referrer_id,status,amount,created_at,auto_release_at')
+        .eq('applicant_id', me.id)
+        .in('referrer_id', refIds);
+      (escrows||[]).forEach(e => { escrowMap[e.referrer_id] = e; });
+    }
+    // Attach escrow to each application
+    const enriched = (data||[]).map(a => ({ ...a, escrow: escrowMap[a.referrer_id] || null }));
+    if (!enriched?.length) {
       list.innerHTML='<div style="padding:40px;text-align:center;color:var(--text-3)">No requests yet. <button class="btn btn-outline btn-sm" onclick="dashNav(\'dash-browse\')">Browse workers →</button></div>';
       return;
     }
-    list.innerHTML = data.map(a=>{
+    list.innerHTML = enriched.map(a=>{
       const hasEscrow = a.escrow?.status==='locked';
       const sp = hasEscrow?'st-escrow': a.status==='pending'?'st-pending': a.status==='accepted'?'st-active':'st-done';
       const sl = hasEscrow?'Escrow Active': a.status;
@@ -3962,7 +4236,7 @@ function adminApproveVerify(uid, name) { adminApprove(uid, name); }
 
 async function adminReject(uid) {
   if (!requireSB()) return;
-  await SB.from('notifications').insert({ user_id:uid, title:'Verification update', message:'Your documents need re-submission. Please contact support@insiderhire.in' });
+  await SB.from('notifications').insert({ user_id:uid, title:'Verification update', message:'Your documents need re-submission. Please contact insiderhire.org@gmail.com' });
   toast('Verification rejected. User notified.','error');
   loadAdminVerify();
 }
@@ -4351,7 +4625,7 @@ function toggleJobPref(tile) { tile.classList.toggle('on'); }
 function saveAvail()         { clearTimeout(saveAvail._t); saveAvail._t=setTimeout(()=>saveFullProfile(),600); }
 function filterRequests(t,el){ document.querySelectorAll('#sp-dash-requests .filter-pill').forEach(p=>p.classList.remove('on')); if(el) el.classList.add('on'); }
 function confirmDeleteAccount() { if(!confirm('Delete account permanently? This cannot be undone.')) return; doLogout(); }
-function startKYC()          { toast('Identity verification — contact support@insiderhire.in to start KYC.','info'); }
+function startKYC()          { toast('Identity verification — contact insiderhire.org@gmail.com to start KYC.','info'); }
 function goReferrerDetail(id){ openEscrowFor(id); }
 function uploadOfferLetter() { openModal('payslip-modal'); }
 function openFileUpload()    { const i=document.createElement('input'); i.type='file'; i.accept='.pdf,.doc,.docx'; i.onchange=()=>toast('File ready to upload','info'); i.click(); }
@@ -4383,26 +4657,131 @@ const KB = {
 
   mask:`🔒 Privacy Protection:\n\nBefore paying escrow, referrer info is hidden:\n• Name: Shamsheer Khan → Sham**** Kh**\n• Phone: 6303716492 → ********92\n• Email: john@gmail.com → jo***@gmail.com\n• Company: Hidden\n• Workplace address: Hidden\n\n✅ After $${ESCROW_USD} escrow deposit:\n• Full name revealed\n• Phone number revealed\n• Email address revealed\n• Company & workplace revealed\n• Chat unlocked immediately`,
 
-  refund:`💸 Refund Policy:\n\n• Conditions: Referrer fails to submit referral within 14 days\n• Refund amount: $${ESCROW_USD} minus $${REFUND_PROC_FEE} processing fee = $${ESCROW_USD-REFUND_PROC_FEE} returned\n• Timeline: 5–7 business days to original payment method\n• How to request: Wallet → Active Escrow → Request Refund\n• Disputes: Raise a support ticket at support@insiderhire.in`,
+  refund:`💸 Refund Policy:\n\n• Conditions: Referrer fails to submit referral within 14 days\n• Refund amount: $${ESCROW_USD} minus $${REFUND_PROC_FEE} processing fee = $${ESCROW_USD-REFUND_PROC_FEE} returned\n• Timeline: 5–7 business days to original payment method\n• How to request: Wallet → Active Escrow → Request Refund\n• Disputes: Raise a support ticket at insiderhire.org@gmail.com`,
 
   how:`📋 How InsiderHire Works:\n\n1. Sign up as a Job Seeker (fresher)\n2. Pay ₹ equivalent of $${PLATFORM_FEE_USD} one-time activation fee\n3. Search referrers by job type & distance (10/50/100/500km)\n4. Send a referral request — free\n5. Referrer accepts your request\n6. Deposit ₹ equivalent of $${ESCROW_USD} escrow via Razorpay\n7. Contact details & workplace revealed immediately\n8. Chat with referrer, share your CV & documents\n9. Referrer submits your job application internally\n10. Start the job & upload your first payslip\n11. Admin verifies → referrer gets $${REFERRER_PAYOUT}`,
 
   payment:`📱 Payment Methods (Razorpay):\n\n• UPI (Google Pay, PhonePe, Paytm)\n• Debit & Credit Cards (Visa, Mastercard, Rupay)\n• Net Banking (all major banks)\n• Wallets (Paytm, Mobikwik)\n\nAll payments in INR at current exchange rates.\nReceipts emailed automatically.\nPCI-DSS Level 1 compliant.`,
 
-  navigate:`🗺️ Navigation Guide:\n\n• Browse — find workers by job type & location\n• Requests — track your referral applications\n• Messages — chat with referrers (unlocks after escrow)\n• Wallet — view escrow locks & request refunds\n• Profile — update your details for better matches\n\nNeed more help? Email support@insiderhire.in`,
+  navigate:`🗺️ Navigation Guide:\n\n• Browse — find workers by job type & location\n• Requests — track your referral applications\n• Messages — chat with referrers (unlocks after escrow)\n• Wallet — view escrow locks & request refunds\n• Profile — update your details for better matches\n\nNeed more help? Email insiderhire.org@gmail.com`,
 };
 
 function botAnswer(q) {
-  const m=q.toLowerCase();
+  const m = q.toLowerCase();
+  // Escrow & payments
   if (m.includes('escrow')||m.includes('deposit')||m.includes('how do i pay')||m.includes('payment process')) return KB.escrow;
-  if (m.includes('cost')||m.includes('price')||m.includes('fee')||m.includes('how much')||m.includes('₹')||m.includes('rupee')||m.includes('charge')) return KB.pricing;
-  if (m.includes('razorpay')||m.includes('upi')||m.includes('card')||m.includes('payment method')||m.includes('net banking')) return KB.payment;
-  if (m.includes('job')||m.includes('hotel')||m.includes('kitchen')||m.includes('warehouse')||m.includes('retail')||m.includes('security')||m.includes('delivery')||m.includes('clean')||m.includes('labour')||m.includes('work')) return KB.jobs;
-  if (m.includes('how')||m.includes('work')||m.includes('process')||m.includes('step')||m.includes('explain')||m.includes('getting started')) return KB.how;
-  if (m.includes('refund')||m.includes('money back')||m.includes('no job')||m.includes('cancel')||m.includes('failed')) return KB.refund;
-  if (m.includes('mask')||m.includes('hidden')||m.includes('privacy')||m.includes('reveal')||m.includes('unlock')||m.includes('see full')||m.includes('contact')) return KB.mask;
+  if (m.includes('cost')||m.includes('price')||m.includes('fee')||m.includes('how much')||m.includes('charge')||m.includes('₹')||m.includes('rupee')) return KB.pricing;
+  if (m.includes('razorpay')||m.includes('upi')||m.includes('card')||m.includes('net banking')||m.includes('payment method')) return KB.payment;
+  if (m.includes('refund')||m.includes('money back')||m.includes('cancel')||m.includes('failed')||m.includes('no job')) return KB.refund;
+  // Platform info
+  if (m.includes('how')||m.includes('process')||m.includes('step')||m.includes('explain')||m.includes('getting started')||m.includes('work')) return KB.how;
+  if (m.includes('mask')||m.includes('hidden')||m.includes('privacy')||m.includes('reveal')||m.includes('unlock')||m.includes('contact')) return KB.mask;
   if (m.includes('navigat')||m.includes('where')||m.includes('find')||m.includes('browse')||m.includes('dashboard')) return KB.navigate;
-  return `I can help with:\n\n💰 Escrow & payment process\n💳 Pricing & fees\n📱 Razorpay payment methods\n🔧 Available job types\n🔒 Privacy & info masking\n🔄 How it works\n💸 Refund policy\n🗺️ Navigation help\n\nJust type your question!`;
+  // Job category INFO only (not recommendations)
+  if (m.includes('what job')||m.includes('which job')||m.includes('type of job')||m.includes('available job')||m.includes('job categor')) return KB.jobs;
+  // Block job search / recommendation requests
+  if (m.includes('find me a job')||m.includes('get me a job')||m.includes('recommend a job')||m.includes('best job for me')||m.includes('which referrer')||m.includes('suggest a referrer')) {
+    return `🤖 I'm a support assistant — I can't recommend specific jobs or referrers.
+
+To find referrers near you:
+→ Go to Dashboard → Browse Workers
+→ Filter by job type and location
+→ Click "Request →" on any referrer
+
+Need help with something else?`;
+  }
+  // General job type query — explain categories, not recommend
+  if (m.includes('job')||m.includes('work')||m.includes('hotel')||m.includes('kitchen')||m.includes('warehouse')||m.includes('retail')||m.includes('security')||m.includes('delivery')||m.includes('clean')||m.includes('labour')) return KB.jobs;
+
+  // Identity questions
+  if (m.includes('who are you')||m.includes('what are you')||m.includes('are you ai')||m.includes('are you a bot')||m.includes('are you human')||m.includes('are you real'))
+    return `Hi! I'm InsiderBot, InsiderHire's support assistant.
+
+I help with payments, accounts, referrals, and platform questions. I'm not human, but I'm here to help! 🤖
+
+What can I help you with?`;
+
+  if (m.includes('who made')||m.includes('who built')||m.includes('who created')||m.includes('who is founder')||m.includes('founder')||m.includes('ceo'))
+    return `InsiderHire was founded by Sheeban Ahmed Khan (Founder & CEO).
+
+The platform was built by Shamsheer Khan Khurram, AI/ML Engineer and Lead Developer.
+
+You can learn more on our About Us page.`;
+
+  if (m.includes('who is developer')||m.includes('who is shamsheer')||m.includes('shamsheer')||m.includes('lead developer'))
+    return `Shamsheer Khan Khurram is the Lead Developer and AI/ML Engineer behind InsiderHire.
+
+He built the entire platform including the Supabase backend, Razorpay escrow system, and the UI you're using right now.
+
+LinkedIn: linkedin.com/in/shamsheer-khan-khurram`;
+
+  if (m.includes('sheeban')||m.includes('who is sheeban'))
+    return `Sheeban Ahmed Khan is the Founder & CEO of InsiderHire.
+
+He had the vision to create a referral-based platform that helps international students find part-time jobs through trusted employee connections.`;
+
+  if (m.includes('what is insiderhire')||m.includes('about insiderhire')||m.includes('what does insiderhire do')||m.includes('tell me about'))
+    return `InsiderHire is a referral-based job platform for international students.
+
+How it works:
+1. Browse verified workers (Insiders) in your city
+2. Send a request for £/$/€10
+3. If they accept, pay £/$/€500 escrow
+4. Pre-chat to confirm job availability
+5. Get referred, get hired!
+
+We cover hotel, kitchen, warehouse, retail, security, delivery, cleaning and labour jobs.`;
+
+  if (m.includes('hello')||m.includes('hi ')||m.includes('hey ')||m.includes('good morning')||m.includes('good evening')||m.includes('sup'))
+    return `Hey! 👋 Welcome to InsiderHire support.
+
+I can help you with payments, account issues, referrals, and how the platform works.
+
+What do you need help with?`;
+
+  if (m.includes('thank')||m.includes('thanks')||m.includes('great')||m.includes('awesome')||m.includes('perfect'))
+    return `Happy to help! 😊
+
+Let me know if you need anything else.`;
+
+  if (m.includes('contact')||m.includes('email')||m.includes('support email')||m.includes('reach'))
+    return `You can reach our team at:
+📧 insiderhire.org@gmail.com
+
+We typically respond within 24 hours.`;
+
+  if (m.includes('trust')||m.includes('safe')||m.includes('scam')||m.includes('legit')||m.includes('real'))
+    return `InsiderHire is a legitimate platform with:
+
+✅ Razorpay escrow — money is held securely, not sent directly to anyone
+✅ All referrers manually verified before going live
+✅ 14-day auto-refund if referral not submitted
+✅ Full PCI-DSS compliant payment processing
+
+Your money is always protected.`;
+
+  if (m.includes('country')||m.includes('available in')||m.includes('which countries')||m.includes('uk')||m.includes('usa')||m.includes('australia')||m.includes('germany'))
+    return `InsiderHire is currently active in:
+
+🇬🇧 United Kingdom (GBP)
+🇺🇸 USA (USD)
+🇦🇺 Australia (AUD)
+🇩🇪 Germany (EUR)
+
+Payments are charged in your local currency automatically.`;
+
+  return `I can help with:
+
+💰 Escrow & payment process
+💳 Pricing & fees
+📱 Payment methods (Razorpay)
+🔒 Privacy & info masking
+🔄 How InsiderHire works
+💸 Refund policy
+👥 About InsiderHire & team
+🗺️ Navigation & account help
+
+Just type your question!`;
 }
 
 function chatbotSend(txt) {
@@ -4442,9 +4821,97 @@ function initCanvas() {
 }
 function initReveal()   { const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.1}); document.querySelectorAll('.reveal').forEach(el=>o.observe(el)); }
 function initCounters() { const o=new IntersectionObserver(es=>{es.forEach(e=>{if(!e.isIntersecting||e.target.dataset.counted)return;e.target.dataset.counted='1';const t=parseInt(e.target.dataset.count),s=t/60;let c=0;const iv=setInterval(()=>{c=Math.min(c+s,t);e.target.textContent=Math.floor(c).toLocaleString();if(c>=t)clearInterval(iv);},16);});},{threshold:.5}); document.querySelectorAll('[data-count]').forEach(el=>o.observe(el)); }
-function initCursor()   { const c=$('cursor'); if(!c) return; document.addEventListener('mousemove',e=>{c.style.left=e.clientX+'px';c.style.top=e.clientY+'px';}); document.querySelectorAll('button,a,.referrer-card,.step,.trust-item,.testi,.chat-list-item,.dash-nav-item').forEach(el=>{el.addEventListener('mouseenter',()=>{c.style.transform='translate(-50%,-50%) scale(2.5)';c.style.opacity='.3';});el.addEventListener('mouseleave',()=>{c.style.transform='translate(-50%,-50%) scale(1)';c.style.opacity='.6';});}); }
+function initCursor()   { return; // cursor animation disabled
+  const c=$('cursor'); if(!c) return; document.addEventListener('mousemove',e=>{c.style.left=e.clientX+'px';c.style.top=e.clientY+'px';}); document.querySelectorAll('button,a,.referrer-card,.step,.trust-item,.testi,.chat-list-item,.dash-nav-item').forEach(el=>{el.addEventListener('mouseenter',()=>{c.style.transform='translate(-50%,-50%) scale(2.5)';c.style.opacity='.3';});el.addEventListener('mouseleave',()=>{c.style.transform='translate(-50%,-50%) scale(1)';c.style.opacity='.6';});}); }
 
 // ── NAV DROPDOWN HELPERS ─────────────────────────────────────────────────────
+// ── THEME TOGGLE ─────────────────────────────────────────────────────────────
+let currentTheme = localStorage.getItem('ih-theme') || 'dark';
+
+function applyTheme(theme) {
+  currentTheme = theme;
+  document.documentElement.setAttribute('data-theme', theme === 'light' ? 'light' : '');
+
+  // Dynamic style tag — bypasses all CSS specificity issues
+  let dynStyle = document.getElementById('ih-dynamic-theme');
+  if (!dynStyle) {
+    dynStyle = document.createElement('style');
+    dynStyle.id = 'ih-dynamic-theme';
+    document.head.appendChild(dynStyle);
+  }
+
+  if (theme === 'light') {
+    dynStyle.textContent = `
+      html,body{background:#f1f5f9!important;color:#0f172a!important}
+      .page{background:#f1f5f9!important}
+      .section,section{background:#f1f5f9!important}
+      .nav{background:rgba(255,255,255,0.97)!important;border-bottom-color:rgba(0,0,0,0.08)!important}
+      .nav-link{color:rgba(0,0,0,0.6)!important}
+      .nav-wordmark{color:#0f172a!important}
+      .panel,.stat-card,.req-card,.referrer-card,.price-card,.step-card,.trust-item,.testimonial{background:#ffffff!important;color:#0f172a!important}
+      .step-num{background:#2563EB!important;color:#fff!important}
+      .section-label{color:#1d4ed8!important;background:rgba(37,99,235,0.1)!important;border-color:rgba(37,99,235,0.2)!important}
+      .dash-sidebar{background:#ffffff!important;border-right-color:rgba(0,0,0,0.07)!important}
+      .dash-main{background:#f1f5f9!important}
+      .dash-nav-item{color:rgba(0,0,0,0.65)!important}
+      .dash-nav-item.active,.dash-nav-item:hover{background:rgba(37,99,235,0.08)!important;color:#1d4ed8!important}
+      .dash-topbar{background:#fff!important;border-color:rgba(0,0,0,0.07)!important}
+      .dash-page-title,.stat-val,.r-name,.section-title{color:#0f172a!important}
+      .stat-label,.stat-change,.r-role,.section-sub{color:rgba(0,0,0,0.5)!important}
+      .input,textarea,select{background:#fff!important;color:#0f172a!important;border-color:rgba(0,0,0,0.15)!important}
+      .btn-ghost{color:rgba(0,0,0,0.65)!important;border-color:rgba(0,0,0,0.15)!important}
+      .modal{background:#fff!important;color:#0f172a!important}
+      .modal-title{color:#0f172a!important}
+      .modal-sub{color:rgba(0,0,0,0.55)!important}
+      .data-table th{background:#f8fafc!important;color:rgba(0,0,0,0.45)!important}
+      .data-table td{color:#0f172a!important;border-color:rgba(0,0,0,0.06)!important}
+      .dropdown-menu{background:#fff!important;border-color:rgba(0,0,0,0.1)!important}
+      .dropdown-item{color:rgba(0,0,0,0.7)!important}
+      #hero-sec{background:#0a0f1e!important}
+      #hero-sec h1,#hero-sec .hero-stat-val,#hero-sec strong{color:#ffffff!important}
+      #hero-sec p,#hero-sec .hero-stat-lbl{color:rgba(255,255,255,0.6)!important}
+      #hero-sec .hero-stat{background:transparent!important}
+      #hero-sec .hero-stat-val[data-count]{color:#ffffff!important}
+      #hero-sec div[style*="background:rgba(255,255,255,0.03)"]{background:rgba(255,255,255,0.04)!important}
+      #hero-sec button{color:#ffffff}
+      .footer,.footer *{background:#050505!important;color:rgba(255,255,255,0.6)!important}
+      .footer-bottom{background:#030303!important;color:rgba(255,255,255,0.35)!important}
+      .marquee-wrap,.marquee-wrap *{background:#0a0a0a!important;color:rgba(255,255,255,0.5)!important}
+    `;
+  } else {
+    dynStyle.textContent = `
+      html,body{background:#030303!important;color:#f7f7f7!important}
+      .page,.section,section{background:var(--bg)!important}
+      .nav{background:rgba(3,3,3,0.85)!important;border-bottom-color:rgba(255,255,255,0.06)!important}
+    `;
+  }
+
+  // Set hero section inline background based on theme
+  const heroEl = document.getElementById('hero-sec');
+  if (heroEl) heroEl.style.background = theme === 'light' ? '#0a0f1e' : '#000000';
+
+  // Update toggle button icons
+  const icon = theme === 'light' ? '☀️' : '🌙';
+  const ttl  = theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode';
+  ['theme-toggle-btn','theme-toggle-btn-guest'].forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) { btn.textContent = icon; btn.title = ttl; }
+  });
+
+  localStorage.setItem('ih-theme', theme);
+}
+
+function toggleTheme() {
+  applyTheme(currentTheme === 'light' ? 'dark' : 'light');
+}
+
+// Apply saved theme on load (called from bootstrap)
+function initTheme() {
+  const saved = localStorage.getItem('ih-theme') || 'dark';
+  // Apply immediately — applyTheme injects dynamic <style> which overrides everything
+  applyTheme(saved);
+}
+
 function toggleAvatarDropdown() {
   const d = document.getElementById('nav-av-dropdown');
   const n = document.getElementById('notif-dropdown');
@@ -4586,21 +5053,55 @@ window.onMapsLoaded = function() { console.log('Google Maps skipped — using Op
 // Override locateMe to use browser geolocation + Leaflet
 function locateMe() {
   if (!navigator.geolocation) {
-    toast('Geolocation not supported in this browser. Type your city in the search box.','info');
-    const inp = document.getElementById('location-search-input');
-    if (inp) inp.focus();
+    toast('Geolocation not supported. Type your city in the search box.','info');
+    document.getElementById('location-search-input')?.focus();
     return;
   }
-  toast('Detecting your location...','info');
+  const statusEl = document.getElementById('location-status');
+  if (statusEl) statusEl.textContent = '⏳ Detecting location...';
   navigator.geolocation.getCurrentPosition(
-    pos => { setUserLoc(pos.coords.latitude, pos.coords.longitude, 'Your location'); },
-    err => {
-      // Handle iframe permission policy error gracefully
-      toast('Location access denied. Please type your city in the search box above.','info');
-      const inp = document.getElementById('location-search-input');
-      if (inp) { inp.focus(); inp.placeholder = 'Type your city here...'; }
+    async (pos) => {
+      const lat = pos.coords.latitude, lng = pos.coords.longitude;
+      // Reverse geocode to get city + postcode
+      try {
+        const res  = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`,
+          { headers:{ 'Accept-Language':'en','User-Agent':'InsiderHire/1.0' } });
+        const data = await res.json();
+        const addr = data.address || {};
+        const postcode = addr.postcode || '';
+        const city     = addr.city || addr.town || addr.village || addr.county || '';
+        const country  = addr.country || '';
+        const label    = [postcode, city, country].filter(Boolean).join(', ');
+        // Update input to show postcode + city
+        const inp = document.getElementById('location-search-input');
+        if (inp) inp.value = postcode ? `${postcode} ${city}` : city;
+        // Save to Supabase profile
+        if (SB && me) {
+          const updates = { id: me.id, lat, lng };
+          if (postcode) updates.postcode = postcode;
+          if (city)     updates.location = [city, country].filter(Boolean).join(', ');
+          SB.from('profiles').update(updates).eq('id', me.id).then(({error})=>{
+            if (!error && profile) {
+              profile.lat = lat; profile.lng = lng;
+              if (postcode) profile.postcode = postcode;
+              if (city)     profile.location = updates.location;
+            }
+          });
+        }
+        setUserLoc(lat, lng, label || 'Your location');
+        toast(`📍 Location detected: ${label || 'Your location'}`, 'success');
+      } catch(e) {
+        setUserLoc(lat, lng, 'Your location');
+        toast('📍 Location detected', 'success');
+      }
     },
-    { enableHighAccuracy:true, timeout:8000, maximumAge:60000 }
+    err => {
+      if (statusEl) statusEl.textContent = 'Search by city, postcode or area';
+      toast('Location access denied. Type your city in the search box.','info');
+      const inp = document.getElementById('location-search-input');
+      if (inp) { inp.focus(); inp.placeholder = 'e.g. London or SW1A 1AA'; }
+    },
+    { enableHighAccuracy: true, timeout: 8000, maximumAge: 60000 }
   );
 }
 
@@ -4801,6 +5302,9 @@ window.addEventListener('load', async ()=>{
   if (!cfg.SUPABASE_ANON_KEY || cfg.SUPABASE_ANON_KEY==='YOUR_SUPABASE_ANON_KEY') {
     console.error('[InsiderHire] SUPABASE_ANON_KEY is not set. Edit the config block in the HTML.');
   }
+
+  // Step 0: Apply saved theme before anything renders
+  initTheme();
 
   // Step 1: Init Supabase client (needs URL + anon key from HTML)
   if (cfg.SUPABASE_URL && cfg.SUPABASE_URL!=='YOUR_SUPABASE_PROJECT_URL') {
