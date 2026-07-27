@@ -3,7 +3,7 @@
 <head>
 <!-- InsiderHire · www.insiderhire.in · Refer. Connect. Get Hired. -->
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 <title>InsiderHire · Refer. Connect. Get Hired.</title>
 <meta name="description" content="The world's most trusted job referral marketplace for international students. Find hotel, kitchen, warehouse, retail and other local odd jobs through verified insiders. Secure Razorpay escrow payments. www.insiderhire.in">
 <meta name="robots" content="index, follow">
@@ -208,6 +208,87 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
   #hero-sec{padding:80px 16px 60px!important}
   #hero-sec h1{font-size:36px!important}
 }
+
+/* ═══════════════════════════════════════
+   MOBILE RESPONSIVE
+   ═══════════════════════════════════════ */
+html,body{overflow-x:hidden!important;width:100%!important}
+*{box-sizing:border-box}
+
+@media(max-width:480px){
+  .nav{padding:0 14px!important;height:56px!important}
+  .nav-links,.nav-sub{display:none!important}
+  #hero-sec{padding-top:56px!important;min-height:auto!important}
+  #hero-sec>div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;gap:20px!important;padding:20px 16px 60px!important}
+  #hero-sec h1{font-size:30px!important;text-align:center!important}
+  #hero-sec p{font-size:14px!important;text-align:center!important}
+  #hero-sec>div>div:first-child{align-items:center!important;display:flex!important;flex-direction:column!important;text-align:center!important}
+  #hero-sec>div>div:last-child>div:last-child{position:static!important;margin-top:12px!important;width:100%!important}
+  #hero-guest-cta,#hero-loggedin-cta{flex-direction:column!important;width:100%!important}
+  #hero-guest-cta button,#hero-loggedin-cta button{width:100%!important;justify-content:center!important}
+  .hero-stat-val{font-size:18px!important}
+  .section{padding:36px 14px!important}
+  .section-title{font-size:26px!important}
+  .steps-grid,.trust-grid{grid-template-columns:1fr!important;border-radius:18px!important}
+  .pricing-grid{grid-template-columns:1fr!important}
+  .testimonials-grid{grid-template-columns:1fr!important}
+  .footer-grid{grid-template-columns:1fr 1fr!important;gap:20px!important}
+  .footer{padding:36px 0 0!important}
+  .dash{grid-template-columns:1fr!important}
+  .dash-sidebar{display:none!important}
+  .dash-content{padding:14px!important}
+  .dash-topbar{padding:0 12px!important}
+  .stats-row{grid-template-columns:1fr 1fr!important;gap:8px!important}
+  .stat-card{padding:14px!important}
+  .browse-filter-sidebar,#browse-filter-panel{display:none!important}
+  .chat-layout{grid-template-columns:1fr!important;height:calc(100vh - 56px)!important}
+  .chat-list{display:none!important}
+  .modal-overlay{padding:6px!important;align-items:flex-end!important}
+  .modal{border-radius:20px 20px 0 0!important;padding:18px 14px!important;max-height:90vh!important;overflow-y:auto!important;width:100%!important}
+  .data-table{display:block!important;overflow-x:auto!important}
+  .admin-metric-grid{grid-template-columns:1fr 1fr!important}
+  .req-card{flex-direction:column!important;gap:10px!important}
+  .wallet-hero{padding:20px 14px!important}
+  .wallet-amount{font-size:36px!important}
+  .referrers-grid{grid-template-columns:1fr!important}
+  #page-about div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}
+  #page-about div[style*="repeat(4"]{grid-template-columns:1fr 1fr!important}
+  #page-about div[style*="repeat(3"]{grid-template-columns:1fr!important}
+  .panel-header{flex-wrap:wrap!important;gap:8px!important}
+  .dash-page-title{font-size:18px!important}
+  ::-webkit-scrollbar{width:3px!important;height:3px!important}
+}
+
+@media(max-width:768px){
+  .dash{grid-template-columns:1fr!important}
+  .dash-sidebar{display:none!important}
+  .steps-grid{grid-template-columns:1fr 1fr!important}
+  .footer-grid{grid-template-columns:1fr 1fr!important}
+  .browse-filter-sidebar{display:none!important}
+  .nav-links{display:none!important}
+  #hero-sec>div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;padding:24px 20px 70px!important}
+  #hero-sec>div>div:last-child>div:last-child{position:static!important;margin-top:16px!important}
+  .pricing-grid{grid-template-columns:1fr!important}
+}
+
+/* Mobile bottom nav */
+.mobile-bottom-nav{display:none}
+@media(max-width:768px){
+  .mobile-bottom-nav{
+    display:flex!important;position:fixed!important;bottom:0!important;left:0!important;right:0!important;
+    z-index:900!important;padding:6px 0 max(6px,env(safe-area-inset-bottom)) 0!important;
+    background:var(--elevated)!important;border-top:1px solid var(--border-md)!important;
+  }
+  .mobile-bottom-nav button{
+    flex:1!important;display:flex!important;flex-direction:column!important;
+    align-items:center!important;gap:2px!important;font-size:9px!important;
+    color:var(--text-3)!important;background:none!important;border:none!important;
+    cursor:pointer!important;padding:4px 0!important;
+  }
+  .mobile-bottom-nav button.mob-active{color:var(--blue-light)!important}
+  .dash-main{padding-bottom:65px!important}
+}
+.hero-bg{background:#000000}
 </style>
 </head>
 <body>
@@ -499,7 +580,7 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
 <!-- ============================================================ PAGE 1: LANDING ============================================================ -->
 <div id="page-landing" class="page active" style="background:var(--bg)">
 
-<section class="hero" id="hero-sec" style="min-height:100vh;padding-top:62px;display:flex;align-items:center;background:#000;position:relative;overflow:hidden">
+<section class="hero hero-bg" id="hero-sec" style="min-height:100vh;padding-top:62px;display:flex;align-items:center;position:relative;overflow:hidden">
   <canvas class="hero-canvas" id="hero-canvas" style="position:absolute;inset:0;opacity:0.4"></canvas>
   <div class="hero-glow" style="position:absolute;top:20%;left:30%;width:500px;height:500px;background:radial-gradient(ellipse,rgba(37,99,235,0.15),transparent 70%);pointer-events:none"></div>
 
@@ -925,6 +1006,15 @@ input[type=range]{width:100%;appearance:none;height:2px;background:var(--elevate
       <div><div style="font-size:12px;font-weight:600" id="dash-name">Loading...</div><div style="font-size:10px;color:var(--text-3)">Job Seeker</div></div>
     </div>
   </aside>
+
+  <!-- Mobile bottom nav (phones only) -->
+  <nav class="mobile-bottom-nav" id="mob-dash-nav">
+    <button id="mob-btn-overview" onclick="dashNav('dash-overview')"><span style="font-size:17px">⊞</span>Home</button>
+    <button id="mob-btn-browse"   onclick="dashNav('dash-browse')"><span style="font-size:17px">🔍</span>Browse</button>
+    <button id="mob-btn-requests" onclick="dashNav('dash-requests')"><span style="font-size:17px">📋</span>Requests</button>
+    <button id="mob-btn-chat"     onclick="dashNav('dash-chat')"><span style="font-size:17px">💬</span>Chat</button>
+    <button id="mob-btn-wallet"   onclick="dashNav('dash-wallet')"><span style="font-size:17px">💰</span>Wallet</button>
+  </nav>
 
   <main class="dash-main">
     <div class="dash-topbar">
@@ -2437,8 +2527,7 @@ function nav(p) {
   if(p==='admin')    { loadAdminData(); }
   if(p==='landing')  {
     // Re-apply theme so hero/marquee get correct background
-    const heroEl = document.getElementById('hero-sec');
-    if (heroEl) heroEl.style.background = currentTheme === 'light' ? '#0a0f1e' : '#000000';
+    // hero bg handled by CSS class
   }
 }
 
@@ -2502,6 +2591,11 @@ function dashNav(p) {
   if(p==='dash-txns')     loadTxns();
   if(p==='dash-profile')  loadFullFresherProfile();
   if(p==='dash-overview') updateAccessStatusWidget();
+  // Update mobile bottom nav active state
+  document.querySelectorAll('.mobile-bottom-nav button').forEach(b=>b.classList.remove('mob-active'));
+  const mobKey = p.replace('dash-','');
+  const mobBtn = document.getElementById('mob-btn-'+mobKey);
+  if (mobBtn) mobBtn.classList.add('mob-active');
 }
 
 function refNav(p) {
@@ -4843,6 +4937,7 @@ function applyTheme(theme) {
   if (theme === 'light') {
     dynStyle.textContent = `
       html,body{background:#f1f5f9!important;color:#0f172a!important}
+      html{--bg:#f1f5f9;--surface:#ffffff;--elevated:#f1f5f9;--elevated-2:#e2e8f0;--border:rgba(0,0,0,0.07);--border-md:rgba(0,0,0,0.11);--text-1:rgba(0,0,0,0.9);--text-2:rgba(0,0,0,0.58);--text-3:rgba(0,0,0,0.36);--white:#0f172a;--black:#f8fafc}
       .page{background:#f1f5f9!important}
       .section,section{background:#f1f5f9!important}
       .nav{background:rgba(255,255,255,0.97)!important;border-bottom-color:rgba(0,0,0,0.08)!important}
@@ -4863,10 +4958,12 @@ function applyTheme(theme) {
       .modal{background:#fff!important;color:#0f172a!important}
       .modal-title{color:#0f172a!important}
       .modal-sub{color:rgba(0,0,0,0.55)!important}
+      .divider{background:rgba(0,0,0,0.08)!important}
       .data-table th{background:#f8fafc!important;color:rgba(0,0,0,0.45)!important}
       .data-table td{color:#0f172a!important;border-color:rgba(0,0,0,0.06)!important}
       .dropdown-menu{background:#fff!important;border-color:rgba(0,0,0,0.1)!important}
       .dropdown-item{color:rgba(0,0,0,0.7)!important}
+      .hero-bg{background:#0a0f1e!important}
       #hero-sec{background:#0a0f1e!important}
       #hero-sec h1,#hero-sec .hero-stat-val,#hero-sec strong{color:#ffffff!important}
       #hero-sec p,#hero-sec .hero-stat-lbl{color:rgba(255,255,255,0.6)!important}
@@ -4882,13 +4979,12 @@ function applyTheme(theme) {
     dynStyle.textContent = `
       html,body{background:#030303!important;color:#f7f7f7!important}
       .page,.section,section{background:var(--bg)!important}
+      .hero-bg{background:#000000!important}
       .nav{background:rgba(3,3,3,0.85)!important;border-bottom-color:rgba(255,255,255,0.06)!important}
     `;
   }
 
-  // Set hero section inline background based on theme
-  const heroEl = document.getElementById('hero-sec');
-  if (heroEl) heroEl.style.background = theme === 'light' ? '#0a0f1e' : '#000000';
+  // hero bg handled by .hero-bg CSS class in dynamic style
 
   // Update toggle button icons
   const icon = theme === 'light' ? '☀️' : '🌙';
