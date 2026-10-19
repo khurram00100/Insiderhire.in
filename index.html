@@ -35,9 +35,9 @@ html[data-theme="light"]{--black:#f8fafc;--bg:#f1f5f9;--surface:#ffffff;--elevat
 html[data-theme="light"] body{color:#0f172a!important;background:#f1f5f9!important}
 /* Dark mode body — always black */
 body{background:#030303;color:#f7f7f7}
-html[data-theme="light"] .hero{background:#0f172a}
-html[data-theme="light"] .hero,.hero *{color:#f8fafc}
-html[data-theme="light"] .hero .section-sub{color:rgba(248,250,252,0.7)}
+html[data-theme="light"] .hero{background:#ffffff}
+html[data-theme="light"] .hero{color:#0f172a}
+html[data-theme="light"] .hero .section-sub{color:#475569}
 html[data-theme="light"] canvas{opacity:0.15}
 html[data-theme="light"] .nav{background:rgba(248,250,252,0.95);border-bottom-color:rgba(0,0,0,0.08)}
 html[data-theme="light"] .nav-link{color:rgba(0,0,0,0.65)}
@@ -493,6 +493,31 @@ button,a,[onclick]{-webkit-tap-highlight-color:transparent;touch-action:manipula
 .modal{-webkit-overflow-scrolling:touch}
 img{max-width:100%;height:auto}
 input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input focus */
+
+/* Targeted navigation and street-map refinements. */
+#main-nav{gap:24px}
+#nav-public{gap:2px;min-width:0;justify-content:center}
+#nav-public .nav-link{font-family:var(--font-body);font-size:12px;font-weight:500;line-height:1.4;letter-spacing:.01em;white-space:nowrap;padding:9px 11px;border:0;background:transparent;flex-shrink:0}
+#nav-public .nav-link:hover{background:var(--elevated);color:var(--text-1)}
+#nav-public .nav-link:focus-visible{outline:2px solid var(--blue-light);outline-offset:2px}
+#main-nav .nav-actions{margin-left:auto}
+.street-map-panel{border:1px solid var(--border-md);border-radius:20px;overflow:hidden;background:var(--surface);margin:0 0 24px;box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.street-map-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:17px 20px;border-bottom:1px solid var(--border)}
+.street-map-heading{font-size:13px;font-weight:600;letter-spacing:-.015em;color:var(--text-1)}
+.street-map-caption{font-size:11px;color:var(--text-2);margin-top:3px}
+.street-map-header button{border:1px solid var(--border-md);border-radius:9px;padding:7px 11px;color:var(--text-1);font-size:11px;white-space:nowrap;background:var(--elevated)}
+#map-container{height:340px;width:100%;border:0;border-radius:0;margin:0;z-index:0;isolation:isolate;background:#e8edf0}
+.street-map-footer{display:flex;align-items:center;flex-wrap:wrap;gap:16px;font-size:10px;color:var(--text-2);padding:11px 20px;border-top:1px solid var(--border)}
+.street-map-legend{display:inline-flex;align-items:center;gap:6px}.street-map-dot{width:7px;height:7px;border-radius:50%;background:#2563eb}.street-map-dot.worker{background:#159477}
+.street-map-error{font-size:12px;color:var(--text-2);padding:14px 20px;border-top:1px solid var(--border)}.street-map-error[hidden]{display:none}
+#map-container .leaflet-control-zoom{border:1px solid #cbd5e1;border-radius:10px;overflow:hidden;box-shadow:0 4px 16px #0f172a18}
+#map-container .leaflet-control-zoom a{background:#fff;color:#0f172a;font-weight:400;border-color:#e2e8f0}
+#map-container .leaflet-control-attribution{font-size:10px;color:#334155;background:rgba(255,255,255,.94)}
+#map-container .leaflet-popup-content-wrapper{border-radius:12px;background:var(--surface);color:var(--text-1);box-shadow:0 8px 24px #0003}
+#map-container .leaflet-popup-tip{background:var(--surface)}#map-container .leaflet-popup-content{font-family:var(--font-body);line-height:1.7;margin:12px 16px}
+@media(min-width:901px) and (max-width:1200px){#main-nav{gap:14px;padding-inline:22px}#nav-public .nav-link{font-size:11px;padding-inline:7px}#main-nav .nav-domain{font-size:9px}#main-nav .nav-wordmark{font-size:17px}}
+@media(max-width:600px){.street-map-header{padding:14px;align-items:flex-start}#map-container{height:290px}.street-map-footer{padding:11px 14px;gap:10px}.street-map-caption{max-width:190px;line-height:1.6}}
+
 </style>
 </head>
 <body>
@@ -518,13 +543,13 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
     <div><div class="nav-wordmark">Insider<span>Hire</span></div><div class="nav-domain">www.insiderhire.in</div></div>
   </div>
   <div class="nav-links" id="nav-public">
-    <span class="nav-link" onclick="smooth('how-it-works')">How it works</span>
-    <span class="nav-link" onclick="smooth('referrers-sec')">Find Referrers</span>
-    <span class="nav-link" onclick="smooth('pricing-sec')">Pricing</span>
-    <span class="nav-link" onclick="nav('about')">About Us</span>
-    <span class="nav-link" onclick="nav('privacy')">Privacy</span>
-    <span class="nav-link" onclick="nav('terms')">Terms</span>
-    <span class="nav-link" onclick="nav('refund')">Refund</span>
+    <button type="button" class="nav-link" onclick="smooth('how-it-works')">How it works</button>
+    <button type="button" class="nav-link" onclick="smooth('referrers-sec')">Find Referrers</button>
+    <button type="button" class="nav-link" onclick="smooth('pricing-sec')">Pricing</button>
+    <button type="button" class="nav-link" onclick="nav('about')">About Us</button>
+    <button type="button" class="nav-link" onclick="nav('privacy')">Privacy</button>
+    <button type="button" class="nav-link" onclick="nav('terms')">Terms</button>
+    <button type="button" class="nav-link" onclick="nav('refund')">Refund</button>
   </div>
   <div class="nav-links" id="nav-dash" style="display:none">
     <!-- Dashboard nav handled by left sidebar · no duplicate links here -->
@@ -793,7 +818,7 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
     <!-- LEFT: Text content -->
     <div>
       <!-- Eyebrow badge -->
-      <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:99px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:28px">
+      <div class="hero-badge" style="display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:99px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:28px">
         <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 1l1.5 4.5H14L10.5 8l1.5 4.5L8 10l-4 2.5L5.5 8 2 5.5h4.5z" fill="#60A5FA"/></svg>
         Made for students. Powered by referrals.
       </div>
@@ -814,7 +839,7 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
           <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke="white" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
           Find Part-Time Jobs
         </button>
-        <button onclick="openModal('signup-modal')" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:10px;background:transparent;color:#fff;font-size:15px;font-weight:600;border:1.5px solid rgba(255,255,255,0.2);cursor:pointer;transition:all 0.2s" onmouseenter="this.style.background='rgba(255,255,255,0.06)';this.style.borderColor='rgba(255,255,255,0.4)'" onmouseleave="this.style.background='transparent';this.style.borderColor='rgba(255,255,255,0.2)'">
+        <button class="hero-secondary-cta" onclick="openModal('signup-modal')" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:10px;background:transparent;color:#fff;font-size:15px;font-weight:600;border:1.5px solid rgba(255,255,255,0.2);cursor:pointer;transition:all 0.2s" onmouseenter="this.style.background='rgba(255,255,255,0.06)';this.style.borderColor='rgba(255,255,255,0.4)'" onmouseleave="this.style.background='transparent';this.style.borderColor='rgba(255,255,255,0.2)'">
           <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="white" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="white" stroke-width="2"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
           Become a Referrer
         </button>
@@ -827,19 +852,19 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
 
       <!-- Trust badges -->
       <div style="display:flex;gap:20px;flex-wrap:wrap">
-        <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,0.45)">
+        <div class="hero-trust-item" style="display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,0.45)">
           <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/></svg>
           100% Student Community
         </div>
-        <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,0.45)">
+        <div class="hero-trust-item" style="display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,0.45)">
           <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2"/></svg>
           Safe &amp; Secure Payments
         </div>
-        <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,0.45)">
+        <div class="hero-trust-item" style="display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,0.45)">
           <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           No Hidden Charges
         </div>
-        <div style="display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,0.45)">
+        <div class="hero-trust-item" style="display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,0.45)">
           <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="2"/><polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="2"/></svg>
           Trusted Network
         </div>
@@ -859,40 +884,40 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
       </div>
 
       <!-- Floating popular jobs card -->
-      <div style="position:absolute;bottom:-20px;right:-16px;background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:16px 20px;min-width:280px;box-shadow:0 20px 60px rgba(0,0,0,0.6)">
-        <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.5);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.06em">Popular Jobs for Students</div>
+      <div class="popular-jobs-card" style="position:absolute;bottom:-20px;right:-16px;background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:16px 20px;min-width:280px;box-shadow:0 20px 60px rgba(0,0,0,0.6)">
+        <div class="popular-jobs-heading" style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.5);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.06em">Popular Jobs for Students</div>
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
-          <div style="text-align:center;padding:8px 4px;border-radius:10px;background:rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s" onmouseenter="this.style.background='rgba(37,99,235,0.12)'" onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
+          <div class="popular-job" style="text-align:center;padding:8px 4px;border-radius:10px;background:rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s" onmouseenter="this.style.background='rgba(37,99,235,0.12)'" onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
             <div style="font-size:22px;margin-bottom:4px">☕</div>
-            <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.3">Café &amp;<br>Restaurant</div>
+            <div class="popular-job-label" style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.3">Café &amp;<br>Restaurant</div>
           </div>
-          <div style="text-align:center;padding:8px 4px;border-radius:10px;background:rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s" onmouseenter="this.style.background='rgba(37,99,235,0.12)'" onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
+          <div class="popular-job" style="text-align:center;padding:8px 4px;border-radius:10px;background:rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s" onmouseenter="this.style.background='rgba(37,99,235,0.12)'" onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
             <div style="font-size:22px;margin-bottom:4px">🛒</div>
-            <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.3">Retail &amp;<br>Sales</div>
+            <div class="popular-job-label" style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.3">Retail &amp;<br>Sales</div>
           </div>
-          <div style="text-align:center;padding:8px 4px;border-radius:10px;background:rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s" onmouseenter="this.style.background='rgba(37,99,235,0.12)'" onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
+          <div class="popular-job" style="text-align:center;padding:8px 4px;border-radius:10px;background:rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s" onmouseenter="this.style.background='rgba(37,99,235,0.12)'" onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
             <div style="font-size:22px;margin-bottom:4px">📦</div>
-            <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.3">Warehouse<br></div>
+            <div class="popular-job-label" style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.3">Warehouse<br></div>
           </div>
-          <div style="text-align:center;padding:8px 4px;border-radius:10px;background:rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s" onmouseenter="this.style.background='rgba(37,99,235,0.12)'" onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
+          <div class="popular-job" style="text-align:center;padding:8px 4px;border-radius:10px;background:rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s" onmouseenter="this.style.background='rgba(37,99,235,0.12)'" onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
             <div style="font-size:22px;margin-bottom:4px">🚴</div>
-            <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.3">Delivery<br></div>
+            <div class="popular-job-label" style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.3">Delivery<br></div>
           </div>
-          <div style="text-align:center;padding:8px 4px;border-radius:10px;background:rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s" onmouseenter="this.style.background='rgba(37,99,235,0.12)'" onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
+          <div class="popular-job" style="text-align:center;padding:8px 4px;border-radius:10px;background:rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s" onmouseenter="this.style.background='rgba(37,99,235,0.12)'" onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
             <div style="font-size:22px;margin-bottom:4px">🏨</div>
-            <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.3">Hotel<br>Staff</div>
+            <div class="popular-job-label" style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.3">Hotel<br>Staff</div>
           </div>
-          <div style="text-align:center;padding:8px 4px;border-radius:10px;background:rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s" onmouseenter="this.style.background='rgba(37,99,235,0.12)'" onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
+          <div class="popular-job" style="text-align:center;padding:8px 4px;border-radius:10px;background:rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s" onmouseenter="this.style.background='rgba(37,99,235,0.12)'" onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
             <div style="font-size:22px;margin-bottom:4px">🔒</div>
-            <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.3">Security<br></div>
+            <div class="popular-job-label" style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.3">Security<br></div>
           </div>
-          <div style="text-align:center;padding:8px 4px;border-radius:10px;background:rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s" onmouseenter="this.style.background='rgba(37,99,235,0.12)'" onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
+          <div class="popular-job" style="text-align:center;padding:8px 4px;border-radius:10px;background:rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s" onmouseenter="this.style.background='rgba(37,99,235,0.12)'" onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
             <div style="font-size:22px;margin-bottom:4px">📚</div>
-            <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.3">Tutoring<br></div>
+            <div class="popular-job-label" style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.3">Tutoring<br></div>
           </div>
-          <div style="text-align:center;padding:8px 4px;border-radius:10px;background:rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s" onmouseenter="this.style.background='rgba(37,99,235,0.12)'" onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
+          <div class="popular-job" style="text-align:center;padding:8px 4px;border-radius:10px;background:rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s" onmouseenter="this.style.background='rgba(37,99,235,0.12)'" onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
             <div style="font-size:22px;margin-bottom:4px">✨</div>
-            <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.3">More...<br></div>
+            <div class="popular-job-label" style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.3">More...<br></div>
           </div>
         </div>
       </div>
@@ -1348,6 +1373,12 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
               <button class="filter-pill"     id="fpill-top"  onclick="setBrowseFilter('top',this)">⭐ Top rated</button>
             </div>
             <div style="font-size:12px;color:var(--text-3);margin-bottom:16px" id="browse-count">Loading referrers...</div>
+            <section class="street-map-panel" aria-label="Referrer street map">
+              <div class="street-map-header"><div><h3 class="street-map-heading">Explore referrers nearby</h3><p class="street-map-caption">Street view of the area. Search a location to focus the map.</p></div><button type="button" onclick="focusStreetMap()">Reset map view</button></div>
+              <div id="map-container" aria-label="Interactive street map" role="region"></div>
+              <div id="street-map-error" class="street-map-error" role="status" hidden></div>
+              <div class="street-map-footer"><span class="street-map-legend"><i class="street-map-dot"></i>Search location</span><span class="street-map-legend"><i class="street-map-dot worker"></i>Referrer location</span><span>Only shared locations are shown; no location is inferred.</span></div>
+            </section>
             <div class="referrers-grid" id="browse-grid" style="border-radius:var(--r-xl)"><div style="padding:40px;text-align:center;color:var(--text-3);grid-column:1/-1">Loading...</div></div>
             <div style="text-align:center;margin-top:20px"><button class="btn btn-outline" id="load-more-btn" onclick="loadMoreReferrers()" style="display:none">Load more</button></div>
           </div>
@@ -2788,7 +2819,7 @@ function dashNav(p) {
   const pt=$('dash-pg-title'),ps=$('dash-pg-sub');
   if(t&&pt) pt.textContent=t[0];
   if(t&&ps) ps.textContent=t[1];
-  if(p==='dash-browse')   loadBrowse();
+  if(p==='dash-browse') { loadBrowse(); initLeafletMap(); if(leafletMap) requestAnimationFrame(()=>leafletMap.invalidateSize()); }
   if(p==='dash-chat')     loadFresherChat();
   if(p==='dash-wallet')   loadWallet();
   if(p==='dash-requests') loadRequests();
@@ -3879,6 +3910,8 @@ function applyFilters() {
 function applyBrowseFilters() { applyFilters(); }
 
 function renderBrowse(refs) {
+  streetReferrers = refs;
+  syncStreetMarkers();
   const g=$('browse-grid'); if(!g) return;
   if (!refs.length) {
     g.innerHTML='<div style="padding:40px;text-align:center;color:var(--text-3);grid-column:1/-1">No workers found. <button class="btn btn-outline btn-sm" onclick="resetFilters()">Reset filters</button></div>';
@@ -3954,7 +3987,9 @@ function resetFilters() {
   const bs=$('browse-search'); if(bs) bs.value='';
   userLoc=null;
   const s=$('location-status'); if(s) s.textContent='📍 Enter location or use current location';
-  const mc=$('map-container'); if(mc) mc.style.display='none';
+  if(leafletMarker){leafletMarker.remove();leafletMarker=null;}
+  if(leafletCircle){leafletCircle.remove();leafletCircle=null;}
+  focusStreetMap();
   JOB_CATS.forEach(c=>{ const e=$('cat-'+c.id); if(e) e.checked=true; });
   setRadius(500);
   loadBrowse();
@@ -5167,13 +5202,20 @@ function applyTheme(theme) {
       .data-table td{color:#0f172a!important;border-color:rgba(0,0,0,0.06)!important}
       .dropdown-menu{background:#fff!important;border-color:rgba(0,0,0,0.1)!important}
       .dropdown-item{color:rgba(0,0,0,0.7)!important}
-      .hero-bg{background:#0a0f1e!important}
-      #hero-sec{background:#0a0f1e!important}
-      #hero-sec h1,#hero-sec .hero-stat-val,#hero-sec strong{color:#ffffff!important}
-      #hero-sec p,#hero-sec .hero-stat-lbl{color:rgba(255,255,255,0.6)!important}
+      #hero-sec.hero-bg{background:#ffffff!important;color:#0f172a!important}
+      #hero-sec h1,#hero-sec .hero-stat-val,#hero-sec strong{color:#0f172a!important}
+      #hero-sec p,#hero-sec .hero-stat-lbl{color:#475569!important}
       #hero-sec .hero-stat{background:transparent!important}
-      #hero-sec .hero-stat-val[data-count]{color:#ffffff!important}
-      #hero-sec div[style*="background:rgba(255,255,255,0.03)"]{background:rgba(255,255,255,0.04)!important}
+      #hero-sec .hero-stat-val[data-count]{color:#0f172a!important}
+      #hero-sec .hero-glow,#hero-sec .hero-canvas{opacity:0!important}
+      #hero-sec .hero-badge{background:#f8fafc!important;border-color:#e2e8f0!important;color:#475569!important}
+      #hero-sec .hero-trust-item{color:#64748b!important}
+      #hero-sec .hero-secondary-cta{color:#0f172a!important;border-color:#cbd5e1!important}
+      #hero-sec .hero-secondary-cta svg [stroke="white"]{stroke:currentColor}
+      #hero-sec .popular-jobs-card{background:rgba(255,255,255,.97)!important;border-color:#e2e8f0!important;box-shadow:0 16px 40px rgba(15,23,42,.12)!important}
+      #hero-sec .popular-jobs-heading{color:#475569!important}
+      #hero-sec .popular-job{background:#f1f5f9!important}
+      #hero-sec .popular-job-label{color:#475569!important}
       #hero-sec button{color:#ffffff}
       .footer,.footer *{background:#050505!important;color:rgba(255,255,255,0.6)!important}
       .footer-bottom{background:#030303!important;color:rgba(255,255,255,0.35)!important}
@@ -5279,30 +5321,74 @@ async function loadNotifications() {
 // ── FREE MAP: OpenStreetMap + Nominatim (no API key needed) ──────────────────
 // Replaces Google Maps entirely. Uses Leaflet.js (free, open source).
 let leafletMap = null, leafletMarker = null, leafletCircle = null;
+let streetReferrers = [], streetReferrerLayer = null, streetMapLoading = null;
+
+function validStreetCoordinates(lat,lng) {
+  return lat!==null && lat!=='' && lng!==null && lng!=='' && Number.isFinite(+lat) && Number.isFinite(+lng) && Math.abs(+lat)<=90 && Math.abs(+lng)<=180;
+}
+
+function streetMapError(message) {
+  const status=document.getElementById('street-map-error');
+  if(status){status.hidden=!message;status.textContent=message;}
+}
 
 function initLeafletMap() {
-  // Load Leaflet CSS + JS dynamically
-  if (document.getElementById('leaflet-css')) { setupLeafletMap(); return; }
-  const css = document.createElement('link');
-  css.id   = 'leaflet-css';
-  css.rel  = 'stylesheet';
-  css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
-  document.head.appendChild(css);
-  const js = document.createElement('script');
-  js.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-  js.onload = setupLeafletMap;
-  document.head.appendChild(js);
+  const container=document.getElementById('map-container');
+  if(!container || !container.getClientRects().length) return Promise.resolve(null);
+  if(leafletMap){leafletMap.invalidateSize();return Promise.resolve(leafletMap);}
+  if(typeof L!=='undefined'){setupLeafletMap();return Promise.resolve(leafletMap);}
+  if(streetMapLoading)return streetMapLoading;
+  streetMapError('Loading street map…');
+  streetMapLoading=Promise.all([
+    new Promise((resolve,reject)=>{
+      let css=document.getElementById('leaflet-css');
+      if(css?.sheet){resolve();return;}
+      if(!css){css=document.createElement('link');css.id='leaflet-css';css.rel='stylesheet';css.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';document.head.append(css);}
+      css.addEventListener('load',resolve,{once:true});css.addEventListener('error',()=>{css.remove();reject(Error('Map styles unavailable'));},{once:true});
+    }),
+    new Promise((resolve,reject)=>{
+      const js=document.createElement('script');js.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+      js.onload=resolve;js.onerror=()=>{js.remove();reject(Error('Map library unavailable'));};document.head.append(js);
+    })
+  ]).then(()=>{setupLeafletMap();streetMapError('');return leafletMap;}).catch(()=>{
+    streetMapError('Street map could not load. Check your internet connection and select Reset map view to retry.');return null;
+  }).finally(()=>{streetMapLoading=null;});
+  return streetMapLoading;
 }
 
 function setupLeafletMap() {
-  const container = document.getElementById('map-container');
-  if (!container || leafletMap) return;
-  container.style.display = 'block';
-  container.style.height  = '200px';
-  leafletMap = L.map('map-container', { zoomControl: true }).setView([20, 0], 2);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors', maxZoom: 18
+  const container=document.getElementById('map-container');
+  if(!container||leafletMap||typeof L==='undefined')return;
+  leafletMap=L.map(container,{zoomControl:false,scrollWheelZoom:false}).setView([20,0],2);
+  L.control.zoom({position:'topright'}).addTo(leafletMap);
+  const tiles=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>',maxZoom:19,minZoom:2
   }).addTo(leafletMap);
+  tiles.on('tileerror',()=>streetMapError('Some streets could not load. Check your connection or try another zoom level.'));
+  tiles.on('load',()=>streetMapError(''));
+  streetReferrerLayer=L.layerGroup().addTo(leafletMap);
+  new ResizeObserver(()=>leafletMap?.invalidateSize({pan:false})).observe(container);
+  syncStreetMarkers();focusStreetMap();
+}
+
+function syncStreetMarkers() {
+  if(!streetReferrerLayer)return;
+  streetReferrerLayer.clearLayers();
+  streetReferrers.forEach(r=>{
+    if(!validStreetCoordinates(r.lat,r.lng))return;
+    const popup=document.createElement('div'),name=document.createElement('strong'),detail=document.createElement('div');
+    name.textContent=maskName(r.full_name);detail.textContent=[r.job_category,r.location].filter(Boolean).join(' · ');popup.append(name,detail);
+    L.circleMarker([+r.lat,+r.lng],{radius:6,color:'#fff',weight:2,fillColor:'#159477',fillOpacity:1}).addTo(streetReferrerLayer).bindPopup(popup);
+  });
+}
+
+function focusStreetMap() {
+  if(!leafletMap){initLeafletMap();return;}
+  leafletMap.invalidateSize();
+  if(userLoc&&validStreetCoordinates(userLoc.lat,userLoc.lng)){setLeafletLocation(userLoc.lat,userLoc.lng,userLoc.label);return;}
+  const points=streetReferrers.filter(r=>validStreetCoordinates(r.lat,r.lng)).map(r=>[+r.lat,+r.lng]);
+  if(points.length)leafletMap.fitBounds(points,{padding:[35,35],maxZoom:13});
+  else leafletMap.setView([20,0],2);
 }
 
 // Geocode city name using Nominatim (free, no key)
@@ -5318,33 +5404,16 @@ async function geocodeLocation(query) {
 }
 
 function setLeafletLocation(lat, lng, label) {
-  if (!leafletMap) {
-    initLeafletMap();
-    // Use one-time callback instead of recursive setTimeout to prevent stack overflow
-    setTimeout(() => {
-      if (leafletMap) setLeafletLocation(lat, lng, label);
-      // else silently fail — map not ready yet
-    }, 900);
-    return;
-  }
-  // Guard: if called again before map ready, skip
-  if (typeof L === 'undefined') return;
-  leafletMap.setView([lat, lng], radius<=10?13:radius<=50?10:radius<=100?8:5);
+  if (!validStreetCoordinates(lat, lng)) return;
+  if (!leafletMap) { initLeafletMap(); return; }
+  leafletMap.invalidateSize();
+  leafletMap.setView([+lat,+lng], radius<=10?13:radius<=50?10:radius<=100?8:radius<99999?6:12);
   if (leafletMarker) leafletMarker.remove();
-  leafletMarker = L.circleMarker([lat, lng], { radius:8, color:'#2563EB', fillColor:'#60A5FA', fillOpacity:1, weight:2 })
-    .addTo(leafletMap).bindPopup(label||'Your location').openPopup();
-  if (leafletCircle) leafletCircle.remove();
-  if (radius < 99999) {
-    leafletCircle = L.circle([lat, lng], { radius: radius*1000, color:'#2563EB', fillColor:'#2563EB', fillOpacity:0.06, weight:1.5 }).addTo(leafletMap);
-  }
-  // Add referrer markers
-  allReferrers.forEach(r => {
-    if (r.lat != null && r.lng != null) {
-      L.circleMarker([+r.lat, +r.lng], { radius:6, color:'#16a34a', fillColor:'#4ade80', fillOpacity:1, weight:1 })
-        .addTo(leafletMap)
-        .bindPopup(`<b>${maskName(r.full_name)}</b><br>${r.job_category||''} · ${r.location||''}<br>★ ${r.rating||4.5}`);
-    }
-  });
+  leafletMarker = L.circleMarker([+lat,+lng],{radius:7,color:'#fff',fillColor:'#2563eb',fillOpacity:1,weight:2}).addTo(leafletMap);
+  const popup=document.createElement('span');popup.textContent=label||'Search location';leafletMarker.bindPopup(popup);
+  if (leafletCircle) {leafletCircle.remove();leafletCircle=null;}
+  if(radius<99999) leafletCircle=L.circle([+lat,+lng],{radius:radius*1000,color:'#2563eb',fillColor:'#2563eb',fillOpacity:.045,weight:1.25}).addTo(leafletMap);
+  syncStreetMarkers();
 }
 
 // Override onMapsLoaded — not needed with Leaflet, but keep for compatibility
@@ -5420,7 +5489,7 @@ function setUserLoc(lat, lng, label) {
 
 // drawMap — used by setRadius/applyFilters (non-recursive safe version)
 function drawMap(lat, lng) {
-  if (!lat || !lng) return;
+  if (!validStreetCoordinates(lat, lng)) return;
   if (!leafletMap) { initLeafletMap(); return; } // map not ready, skip
   setLeafletLocation(lat, lng, userLoc?.label || '');
 }
