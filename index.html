@@ -518,6 +518,69 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
 @media(min-width:901px) and (max-width:1200px){#main-nav{gap:14px;padding-inline:22px}#nav-public .nav-link{font-size:11px;padding-inline:7px}#main-nav .nav-domain{font-size:9px}#main-nav .nav-wordmark{font-size:17px}}
 @media(max-width:600px){.street-map-header{padding:14px;align-items:flex-start}#map-container{height:290px}.street-map-footer{padding:11px 14px;gap:10px}.street-map-caption{max-width:190px;line-height:1.6}}
 
+
+
+
+/* Scoped mobile sizing and legal navigation. Desktop layout is preserved. */
+.mobile-menu-toggle{display:none}.mobile-site-menu[hidden]{display:none!important}
+.browse-filter-toggle{display:none}
+.mobile-site-menu{position:fixed;top:70px;right:16px;left:auto;width:min(310px,calc(100vw - 32px));max-height:calc(100dvh - 90px);overflow-y:auto;z-index:1100;border:1px solid var(--border-md);border-radius:16px;padding:8px;background:var(--surface);box-shadow:0 18px 50px #0004}
+.mobile-site-menu a,.mobile-site-menu button{display:flex;width:100%;padding:12px 14px;font:500 13px var(--font-body);text-align:left;min-height:44px;color:var(--text-1);background:none;border:0;border-radius:9px;text-decoration:none;align-items:center}
+.mobile-site-menu a:hover,.mobile-site-menu button:hover{background:var(--elevated)}
+.mobile-site-menu :focus-visible,.mobile-menu-toggle:focus-visible{outline:2px solid var(--blue-light);outline-offset:2px}
+#how-it-works,#referrers-sec,#pricing-sec{scroll-margin-top:74px}
+@media(max-width:900px){
+  #main-nav{padding-inline:16px;gap:10px!important}#main-nav #nav-public{display:none!important}
+  #main-nav .mobile-menu-toggle{display:flex;align-items:center;justify-content:center;width:38px;height:38px;flex:0 0 38px;border:1px solid var(--border-md);border-radius:11px;color:var(--text-1);background:var(--elevated);cursor:pointer}
+  #main-nav .nav-actions{min-width:0;flex-shrink:1;margin-left:auto}#main-nav .nav-domain{display:none}
+  #sp-dash-browse>div{grid-template-columns:1fr!important;gap:18px!important}#sp-dash-browse>div>div{min-width:0}
+  #sp-dash-browse .search-bar{flex-wrap:wrap;gap:8px}#sp-dash-browse .search-wrap{flex-basis:100%;min-width:0}
+  #sp-dash-browse .referrers-grid{grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr))!important}
+  #sp-dash-browse .browse-filter-toggle{display:inline-flex;margin-bottom:16px;min-height:42px}
+  #sp-dash-browse .browse-filter-sidebar{display:none!important;position:static!important}
+  #sp-dash-browse .browse-filter-sidebar[data-mobile-open="true"]{display:block!important}
+}
+@media(max-width:800px){
+  #hero-sec>div.hero-layout{grid-template-columns:1fr!important;gap:28px!important;padding:32px 22px 30px!important;min-width:0;max-width:100%!important}
+  #hero-sec>.hero-layout>.hero-copy{padding:0!important;width:100%!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;text-align:left!important;min-width:0}
+  #hero-sec .hero-copy h1{font-size:clamp(34px,7.9vw,48px)!important;line-height:1.12!important;letter-spacing:-.035em!important;margin-bottom:18px!important;text-align:left!important}
+  #hero-sec .hero-copy>p{font-size:15px!important;line-height:1.8!important;max-width:560px!important;margin-bottom:26px!important;text-align:left!important}
+  #hero-sec .hero-badge{max-width:100%;font-size:11px!important;line-height:1.6;white-space:normal;margin-bottom:22px!important}
+  #hero-sec .hero-copy>.hero-trust{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important;width:100%!important;margin:0!important}
+  #hero-sec .hero-copy>.hero-trust>.hero-trust-item{font-size:10px!important;line-height:1.5!important;padding:9px 10px!important;min-width:0;align-items:center!important;gap:7px!important}
+  #hero-sec .hero-copy>.hero-trust>.hero-trust-item svg{flex-shrink:0}
+  #hero-sec>.hero-layout>.hero-media{position:relative!important;display:block!important;width:100%!important;padding:0!important;margin:0!important;min-width:0}
+  #hero-sec .hero-media>.hero-photo{position:relative!important;aspect-ratio:16/10!important;max-height:340px!important;border-radius:20px!important;overflow:hidden}
+  #hero-sec .hero-media>.hero-photo>img{width:100%!important;height:100%!important;object-fit:cover!important;aspect-ratio:auto!important}
+  #hero-sec .hero-media>.popular-jobs-card{position:relative!important;inset:auto!important;min-width:0!important;width:100%!important;margin:14px 0 0!important;padding:18px!important;border-radius:18px!important}
+  #hero-sec .popular-jobs-card>.popular-jobs-heading{font-size:10px!important;line-height:1.5!important;margin-bottom:13px!important;letter-spacing:.08em!important}
+  #hero-sec .popular-jobs-card>.popular-jobs-heading+div{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:8px!important}
+  #hero-sec .popular-jobs-card .popular-job{min-width:0;padding:10px 3px!important}.popular-job-label{overflow-wrap:anywhere}
+  html[data-theme="light"] #hero-sec>.hero-layout>.hero-media>.popular-jobs-card{background:#fff!important;border-color:#e2e8f0!important;box-shadow:0 8px 24px #0f172a10!important}
+  html[data-theme="light"] #hero-sec .hero-media .popular-jobs-card .popular-jobs-heading{color:#475569!important}
+  html[data-theme="light"] #hero-sec .hero-media .popular-jobs-card .popular-job{background:#f1f5f9!important}
+  html[data-theme="light"] #hero-sec .hero-media .popular-jobs-card .popular-job-label{color:#475569!important}
+  #hero-sec #hero-stats-bar{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:0!important;position:relative!important;width:100%!important;padding:0 18px 22px!important;margin-top:10px!important}
+  #hero-sec #hero-stats-bar>div{width:auto!important;padding:14px 8px!important;min-width:0!important}
+  .modal{width:min(100%,480px)!important;max-height:calc(100dvh - 24px)!important;overflow-y:auto!important;margin:0!important}.modal-overlay{padding:12px!important;align-items:center!important}
+  .section{padding:56px 20px!important}.steps-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.step{padding:26px 20px!important;min-width:0}
+  .dash-content{min-width:0}.street-map-header{flex-wrap:wrap}#map-container{height:300px}
+}
+@media(max-width:480px){
+  #main-nav{height:58px!important;padding-inline:12px!important;gap:7px!important}#main-nav .nav-logo{gap:6px!important}#main-nav .nav-logo-svg{width:26px;height:26px}#main-nav .nav-wordmark{font-size:14px!important}
+  #main-nav #nav-guest,#main-nav #nav-user{gap:6px!important}#main-nav #nav-guest>.btn-white{display:none}
+  #main-nav .btn-sm{padding:8px 10px;font-size:11px}#main-nav #nav-user>button{width:29px!important;height:29px!important;flex-shrink:0}
+  #main-nav .mobile-menu-toggle{width:34px;height:34px;flex-basis:34px}#main-nav .nav-avatar{width:29px;height:29px}
+  .mobile-site-menu{top:66px;right:12px;width:calc(100vw - 24px)}
+  #hero-sec{padding-top:58px!important;padding-inline:0!important;padding-bottom:24px!important;min-height:0!important}
+  #hero-sec>div.hero-layout{padding:28px 18px 20px!important;gap:24px!important}
+  #hero-sec .hero-copy h1{font-size:clamp(33px,8.9vw,42px)!important}
+  #hero-sec .hero-copy>.hero-trust>.hero-trust-item{background:var(--elevated)!important;border-color:var(--border)!important;color:var(--text-2)!important}
+  #hero-sec .hero-media>.popular-jobs-card{padding:15px!important}#hero-sec .popular-job>div:first-child{font-size:21px!important}#hero-sec .popular-job>.popular-job-label{font-size:9px!important;line-height:1.5!important}
+  .steps-grid{grid-template-columns:1fr!important}.footer-grid{grid-template-columns:1fr!important}.section-title{font-size:34px!important}.section-sub{font-size:14px!important}
+  .chatbot-window{width:calc(100vw - 24px)!important;max-width:380px!important;right:12px!important}.chatbot-bubble{right:16px!important;bottom:20px!important}
+}
+
 </style>
 </head>
 <body>
@@ -547,9 +610,9 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
     <button type="button" class="nav-link" onclick="smooth('referrers-sec')">Find Referrers</button>
     <button type="button" class="nav-link" onclick="smooth('pricing-sec')">Pricing</button>
     <button type="button" class="nav-link" onclick="nav('about')">About Us</button>
-    <button type="button" class="nav-link" onclick="nav('privacy')">Privacy</button>
-    <button type="button" class="nav-link" onclick="nav('terms')">Terms</button>
-    <button type="button" class="nav-link" onclick="nav('refund')">Refund</button>
+    <a type="button" class="nav-link" href="privacy.html">Privacy</a>
+    <a type="button" class="nav-link" href="terms.html">Terms</a>
+    <a type="button" class="nav-link" href="refund.html">Refund</a>
   </div>
   <div class="nav-links" id="nav-dash" style="display:none">
     <!-- Dashboard nav handled by left sidebar · no duplicate links here -->
@@ -606,7 +669,14 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
 
     </div>
   </div>
+
+<button id="mobile-menu-toggle" class="mobile-menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-site-menu" onclick="toggleMobileMenu()"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
 </nav>
+<nav id="mobile-site-menu" class="mobile-site-menu" aria-label="Mobile navigation" hidden>
+  <a href="index.html">Home</a><a href="index.html#how-it-works">How it works</a><a href="index.html#referrers-sec">Find Referrers</a><a href="index.html#pricing-sec">Pricing</a>
+  <button type="button" onclick="nav('about')">About Us</button><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="refund.html">Refund Policy</a>
+</nav>
+
 
 <!-- LOGIN MODAL -->
 <div class="modal-overlay" id="login-modal">
@@ -813,10 +883,10 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
   <canvas class="hero-canvas" id="hero-canvas" style="position:absolute;inset:0;opacity:0.4"></canvas>
   <div class="hero-glow" style="position:absolute;top:20%;left:30%;width:500px;height:500px;background:radial-gradient(ellipse,rgba(37,99,235,0.15),transparent 70%);pointer-events:none"></div>
 
-  <div style="max-width:1200px;margin:0 auto;padding:40px 32px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;width:100%;position:relative;z-index:1">
+  <div class="hero-layout" style="max-width:1200px;margin:0 auto;padding:40px 32px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;width:100%;position:relative;z-index:1">
 
     <!-- LEFT: Text content -->
-    <div>
+    <div class="hero-copy">
       <!-- Eyebrow badge -->
       <div class="hero-badge" style="display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:99px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:28px">
         <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 1l1.5 4.5H14L10.5 8l1.5 4.5L8 10l-4 2.5L5.5 8 2 5.5h4.5z" fill="#60A5FA"/></svg>
@@ -851,7 +921,7 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
       </div>
 
       <!-- Trust badges -->
-      <div style="display:flex;gap:20px;flex-wrap:wrap">
+      <div class="hero-trust" style="display:flex;gap:20px;flex-wrap:wrap">
         <div class="hero-trust-item" style="display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,0.45)">
           <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/></svg>
           100% Student Community
@@ -872,9 +942,9 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
     </div>
 
     <!-- RIGHT: Photo + Popular jobs card -->
-    <div style="position:relative">
+    <div class="hero-media" style="position:relative">
       <!-- Hero image -->
-      <div style="border-radius:20px;overflow:hidden;position:relative;aspect-ratio:4/3;background:linear-gradient(135deg,#0a1628,#1e3a8a)">
+      <div class="hero-photo" style="border-radius:20px;overflow:hidden;position:relative;aspect-ratio:4/3;background:linear-gradient(135deg,#0a1628,#1e3a8a)">
         <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80"
           alt="Students smiling outside a café"
           style="width:100%;height:100%;object-fit:cover;opacity:0.85"
@@ -1191,9 +1261,9 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
       <div>
         <div class="footer-col-title">Legal</div>
         <a class="footer-link" onclick="nav('about')">About Us</a>
-        <a class="footer-link" onclick="nav('privacy')">Privacy Policy</a>
-        <a class="footer-link" onclick="nav('terms')">Terms of Service</a>
-        <a class="footer-link" onclick="nav('refund')">Refund Policy</a>
+        <a class="footer-link" href="privacy.html">Privacy Policy</a>
+        <a class="footer-link" href="terms.html">Terms of Service</a>
+        <a class="footer-link" href="refund.html">Refund Policy</a>
         <a class="footer-link" href="mailto:insiderhire.org@gmail.com">Contact Us</a>
       </div>
     </div>
@@ -1203,9 +1273,9 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
       <div style="display:flex;align-items:center;gap:16px">
         <span style="display:flex;align-items:center;gap:5px"><span style="color:#4ade80;font-size:8px">●</span> All systems operational</span>
         <span>🔒 PCI-DSS</span>
-        <a onclick="nav('privacy')" style="cursor:pointer;color:var(--text-4)">Privacy</a>
-        <a onclick="nav('terms')" style="cursor:pointer;color:var(--text-4)">Terms</a>
-        <a onclick="nav('refund')" style="cursor:pointer;color:var(--text-4)">Refunds</a>
+        <a href="privacy.html" style="cursor:pointer;color:var(--text-4)">Privacy</a>
+        <a href="terms.html" style="cursor:pointer;color:var(--text-4)">Terms</a>
+        <a href="refund.html" style="cursor:pointer;color:var(--text-4)">Refunds</a>
       </div>
     </div>
   </div>
@@ -1311,8 +1381,9 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
 
       <!-- BROWSE -->
       <div class="dash-sub-page" id="sp-dash-browse">
+        <button class="btn btn-outline btn-sm browse-filter-toggle" type="button" aria-expanded="false" aria-controls="browse-mobile-filters" onclick="const filters=document.getElementById('browse-mobile-filters');const open=filters.dataset.mobileOpen!=='true';filters.dataset.mobileOpen=String(open);this.setAttribute('aria-expanded',String(open));this.textContent=open?'Hide filters':'Location &amp; job filters'">Location &amp; job filters</button>
         <div style="display:grid;grid-template-columns:220px 1fr;gap:20px">
-          <div style="position:sticky;top:80px">
+          <div class="browse-filter-sidebar" id="browse-mobile-filters" style="position:sticky;top:80px">
             <div class="panel">
               <div class="panel-header"><div class="panel-title">Filters</div><button class="btn btn-ghost btn-sm" onclick="resetFilters()">Reset</button></div>
               <div class="panel-body">
@@ -1587,9 +1658,9 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
           <div class="panel">
             <div class="panel-header"><div class="panel-title">📋 Legal</div></div>
             <div class="panel-body" style="display:flex;flex-direction:column;gap:8px">
-              <button class="btn btn-ghost" style="justify-content:flex-start" onclick="nav('privacy')">🔒 Privacy Policy</button>
-              <button class="btn btn-ghost" style="justify-content:flex-start" onclick="nav('terms')">📄 Terms of Service</button>
-              <button class="btn btn-ghost" style="justify-content:flex-start" onclick="nav('refund')">💸 Refund Policy</button>
+              <a class="btn btn-ghost" style="justify-content:flex-start" href="privacy.html">🔒 Privacy Policy</a>
+              <a class="btn btn-ghost" style="justify-content:flex-start" href="terms.html">📄 Terms of Service</a>
+              <a class="btn btn-ghost" style="justify-content:flex-start" href="refund.html">💸 Refund Policy</a>
             </div>
           </div>
         </div>
@@ -2150,8 +2221,8 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
     </div>
     <div style="margin-top:40px;padding-top:24px;border-top:1px solid var(--border);display:flex;gap:12px;flex-wrap:wrap">
       <button class="btn btn-outline" onclick="nav('landing')">← Back to home</button>
-      <button class="btn btn-ghost" onclick="nav('terms')">Terms of Service →</button>
-      <button class="btn btn-ghost" onclick="nav('refund')">Refund Policy →</button>
+      <a class="btn btn-ghost" href="terms.html">Terms of Service →</a>
+      <a class="btn btn-ghost" href="refund.html">Refund Policy →</a>
     </div>
   </div>
 </div>
@@ -2282,8 +2353,8 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
     </div>
     <div style="margin-top:40px;padding-top:24px;border-top:1px solid var(--border);display:flex;gap:12px;flex-wrap:wrap">
       <button class="btn btn-outline" onclick="nav('landing')">← Back to home</button>
-      <button class="btn btn-ghost" onclick="nav('privacy')">Privacy Policy →</button>
-      <button class="btn btn-ghost" onclick="nav('refund')">Refund Policy →</button>
+      <a class="btn btn-ghost" href="privacy.html">Privacy Policy →</a>
+      <a class="btn btn-ghost" href="refund.html">Refund Policy →</a>
     </div>
   </div>
 </div>
@@ -2421,8 +2492,8 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
     </div>
     <div style="margin-top:40px;padding-top:24px;border-top:1px solid var(--border);display:flex;gap:12px;flex-wrap:wrap">
       <button class="btn btn-outline" onclick="nav('landing')">← Back to home</button>
-      <button class="btn btn-ghost" onclick="nav('privacy')">Privacy Policy →</button>
-      <button class="btn btn-ghost" onclick="nav('terms')">Terms of Service →</button>
+      <a class="btn btn-ghost" href="privacy.html">Privacy Policy →</a>
+      <a class="btn btn-ghost" href="terms.html">Terms of Service →</a>
     </div>
   </div>
 </div>
@@ -2529,8 +2600,8 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
 
     <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);display:flex;gap:12px;flex-wrap:wrap">
       <button class="btn btn-outline" onclick="nav('landing')">← Back to home</button>
-      <button class="btn btn-ghost" onclick="nav('privacy')">Privacy Policy</button>
-      <button class="btn btn-ghost" onclick="nav('terms')">Terms of Service</button>
+      <a class="btn btn-ghost" href="privacy.html">Privacy Policy</a>
+      <a class="btn btn-ghost" href="terms.html">Terms of Service</a>
     </div>
   </div>
 </div>
@@ -2752,6 +2823,9 @@ document.addEventListener('keydown', e => {
 
 // ─── NAVIGATION ──────────────────────────────────────────────
 function nav(p) {
+  const policyPages={privacy:'privacy.html',terms:'terms.html',refund:'refund.html'};
+  if(policyPages[p]){window.location.assign(policyPages[p]);return;}
+  closeMobileMenu();
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
   page = p;
   const map = {landing:'page-landing',fresher:'page-fresher-dash',referrer:'page-referrer-dash',admin:'page-admin-dash',privacy:'page-privacy',terms:'page-terms',refund:'page-refund',about:'page-about'};
@@ -5704,6 +5778,14 @@ window.addEventListener('load', async ()=>{
   }, SB ? 1800 : 1000);
 });
 
+</script>
+<script>
+function closeMobileMenu(){const menu=document.getElementById('mobile-site-menu'),button=document.getElementById('mobile-menu-toggle');if(menu)menu.hidden=true;if(button){button.setAttribute('aria-expanded','false');button.setAttribute('aria-label','Open menu');}}
+function toggleMobileMenu(){const menu=document.getElementById('mobile-site-menu'),button=document.getElementById('mobile-menu-toggle');if(!menu||!button)return;menu.hidden=!menu.hidden;button.setAttribute('aria-expanded',String(!menu.hidden));button.setAttribute('aria-label',menu.hidden?'Open menu':'Close menu');}
+document.addEventListener('click',e=>{if(e.target.closest('#mobile-site-menu a'))closeMobileMenu();else if(!e.target.closest('#mobile-site-menu,#mobile-menu-toggle'))closeMobileMenu();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){const open=document.getElementById('mobile-site-menu')?.hidden===false;closeMobileMenu();if(open)document.getElementById('mobile-menu-toggle')?.focus();}});
+window.addEventListener('resize',()=>{if(innerWidth>900)closeMobileMenu();});
+window.addEventListener('load',()=>{const target=['#how-it-works','#referrers-sec','#pricing-sec'].includes(location.hash)?document.querySelector(location.hash):null;if(target)target.scrollIntoView();});
 </script>
 </body>
 </html>
