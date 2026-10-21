@@ -2956,13 +2956,18 @@ async function initAuth() {
       setTimeout(() => openChangePasswordModal(), 500);
     }
 
-    SB.auth.onAuthStateChange(async (ev, sess) => {
-      if (ev==='SIGNED_IN'  && sess) await onSession(sess);
+    SB.auth.onAuthStateChange((ev, sess) => {
+      if (ev==='SIGNED_IN' && sess) setTimeout(() => onSession(sess).catch(e => toast(e.message, 'error')), 0);
       if (ev==='PASSWORD_RECOVERY') {
         // User clicked forgot password link
         setTimeout(() => openChangePasswordModal(), 300);
       }
-      if (ev==='SIGNED_OUT') { me=null; profile=null; nav('landing'); updateNav(); }
+      if (ev==='SIGNED_OUT') {
+        me=null; profile=null; unlockedRefs.clear(); preChatData={};
+        clearInterval(ihPrechatTimer);
+        if (ihMessageChannel) { SB.removeChannel(ihMessageChannel); ihMessageChannel=null; }
+        nav('landing'); updateNav();
+      }
     });
   } catch(e) { console.warn('Auth init:', e.message); }
 }
@@ -3018,57 +3023,19 @@ async function submitNewPassword() {
 
 async function onSession(sess) {
   me = sess.user;
+  profile = null;
   try {
-    const { data, error } = await SB.from('profiles').select('*').eq('id', me.id).single();
-    if (error) {
-      console.warn('Profile fetch error:', error.message);
-      // If profile doesn't exist yet, create it (handles edge cases)
-      if (error.code === 'PGRST116') {
-        // Row not found — create profile from auth metadata
-        const meta = sess.user.user_metadata || {};
-        const role = meta.role === 'referrer' ? 'referrer' : 'fresher';
-        await SB.from('profiles').upsert({
-          id:    me.id,
-          email: me.email,
-          full_name: meta.full_name || me.email?.split('@')[0] || '',
-          role
-        }, { onConflict: 'id' });
-        const { data: d2 } = await SB.from('profiles').select('*').eq('id', me.id).single();
-        profile = d2 || null;
-      }
-    } else {
-      profile = data || null;
-    }
-  } catch(e) { console.warn('Profile fetch:', e.message); }
-
-  // If profile still null, build a minimal one from auth metadata
-  if (!profile && me) {
-    const meta = me.user_metadata || {};
-    profile = {
-      id:    me.id,
-      email: me.email,
-      full_name: meta.full_name || me.email?.split('@')[0] || '',
-      role:  meta.role === 'referrer' ? 'referrer' : 'fresher',
-      signup_fee_paid: false,
-      is_verified: false,
-    };
-  }
-
-  // Only server-managed app metadata can authorize the admin interface.
-  // getUser validates the session with Auth instead of trusting editable profile data.
-  const { data: authData, error: authError } = await SB.auth.getUser();
-  if (authError || !authData?.user || authData.user.id !== me.id) {
-    profile = null;
-    toast('Session could not be verified. Please sign in again.', 'error');
+    const { data, error } = await SB.rpc('ih_my_profile');
+    if (error || !data) throw error || new Error('Profile is unavailable.');
+    profile = data;
+  } catch (e) {
+    toast('Could not load your account: ' + e.message, 'error');
+    updateNav();
     return;
-  }
-  if (profile) {
-    if (authData.user.app_metadata?.role === 'admin') profile.role = 'admin';
-    else if (profile.role === 'admin') profile.role = 'fresher';
   }
 
   // Load unlocked refs for this user
-  await loadUnlockedRefs();
+  try { await loadUnlockedRefs(); } catch (e) { toast(e.message, 'error'); }
   fillUI();
   updateNav();
   if (page==='landing') {
@@ -3096,14 +3063,11 @@ async function onSession(sess) {
 }
 
 async function loadUnlockedRefs() {
+  unlockedRefs.clear();
   if (!SB || !me) return;
-  try {
-    const { data } = await SB.from('escrow_transactions')
-      .select('referrer_id')
-      .eq('applicant_id', me.id)
-      .in('status', ['locked','released','refund_requested']);
-    if (data) data.forEach(r => unlockedRefs.add(r.referrer_id));
-  } catch(e) {}
+  const { data, error } = await SB.rpc('ih_connected_ids');
+  if (error) throw error;
+  (data || []).forEach(id => unlockedRefs.add(id));
 }
 
 function fillUI() {
@@ -3223,20 +3187,9 @@ async function doSignup() {
     if (error) throw error;
     if (data?.user) {
       pendingUid = data.user.id;
-      try {
-        // Save role in both auth metadata (fallback) AND profiles table
-        await SB.auth.updateUser({ data: { full_name: fullName, role: _selRole } });
-        await SB.from('profiles').upsert({
-          id:              data.user.id,
-          full_name:       fullName,
-          email,
-          role:            _selRole,
-          signup_fee_paid: false,  // freshers pay on first request, referrers never pay
-          created_at:      new Date().toISOString()
-        }, { onConflict: 'id' });
-      } catch(e) {
-        console.warn('Profile upsert:', e.message);
-        // Even if profile upsert fails, role is in auth metadata as fallback
+      if (data.session) {
+        const { error: profileError } = await SB.rpc('ih_my_profile');
+        if (profileError) throw profileError;
       }
     }
     closeModal('signup-modal');
@@ -3370,14 +3323,8 @@ async function resendConfirmation() {
 // ─── RAZORPAY ─────────────────────────────────────────────────
 // getINRAmount() removed — replaced by convertUSD() which handles all currencies
 
-async function createRazorpayOrder(amountPaise, receipt, notes) {
-  if (!SB) throw new Error('Supabase not configured');
-  const { data, error } = await SB.functions.invoke('razorpay-create-order', {
-    body: { amount: amountPaise, currency:'INR', receipt, notes }
-  });
-  if (error) throw new Error(error.message || 'Order creation failed');
-  if (!data?.id) throw new Error('Invalid order response');
-  return data.id;
+async function createRazorpayOrder() {
+  throw new Error('Payments are not enabled yet. Contact support.');
 }
 
 async function verifyRazorpayPayment(payload) {
@@ -3504,19 +3451,9 @@ async function paySignupFee() {
           razorpay_signature:  resp.razorpay_signature,
           type:'access_fee', user_id: uid
         });
-        const now = new Date().toISOString();
-        await SB.from('profiles').update({
-          signup_fee_paid: true,
-          fee_paid_at:     now
-        }).eq('id', uid);
-        await SB.from('transactions').insert({
-          user_id: uid, type:'access_fee', amount: PLATFORM_FEE_USD,
-          status:'paid', payment_id: resp.razorpay_payment_id,
-          razorpay_order_id: resp.razorpay_order_id,
-          description:`Access fee 60-day — ${curr.display}`
-        });
-        // Update local profile state
-        if(profile) { profile.signup_fee_paid = true; profile.fee_paid_at = now; }
+        const { data: paidProfile, error: paidError } = await SB.rpc('ih_my_profile');
+        if (paidError || !paidProfile?.signup_fee_paid || !paidProfile.fee_paid_at || Date.now() - new Date(paidProfile.fee_paid_at).getTime() >= 60 * 86400000) throw paidError || new Error('Backend confirmation pending.');
+        profile = paidProfile;
         closeModal('fresher-fee-modal');
         toast('✅ Access activated for 60 days! Send up to 5 requests per week. 🎉','success');
         nav('fresher');
@@ -3575,17 +3512,13 @@ async function payRequestFee(referrerId, referrerLocation) {
 
   // All gates passed — send request directly (no payment, fee already paid)
   try {
-    await SB.from('applications').insert({
+    const { error: insertError } = await SB.from('applications').insert({
       applicant_id: me.id,
       referrer_id:  referrerId,
       status:       'pending',
       cover_letter: 'Referral request sent via InsiderHire.'
     });
-    await SB.from('notifications').insert({
-      user_id:  referrerId,
-      title:    'New referral request!',
-      message:  `${profile?.full_name || 'A student'} sent you a referral request.`
-    });
+    if (insertError) throw insertError;
     const remaining = WEEKLY_REQUEST_LIMIT - weekCount - 1;
     const daysLeft  = feeExpiresInDays();
     toast(`✅ Request sent! ${remaining} of ${WEEKLY_REQUEST_LIMIT} requests remaining this week. Access valid ${daysLeft} more days.`, 'success');
@@ -3631,7 +3564,7 @@ const PRECHAT_QUESTIONS = [
 let preChatAppId  = null;
 let preChatData   = {}; // keyed by appId
 
-function openPreChat(appId, referrerId, referrerName, jobCat, refLoc) {
+async function openPreChat(appId, referrerId, referrerName, jobCat, refLoc) {
   preChatAppId = appId;
   if (!preChatData[appId])
     preChatData[appId] = { referrerId, referrerName, jobCat, refLoc, answers:{}, msgs:[] };
@@ -3659,7 +3592,7 @@ function openPreChat(appId, referrerId, referrerName, jobCat, refLoc) {
       <div id="pc-opts" style="padding:12px 14px;border-top:1px solid var(--border)"></div>
       <div id="pc-cta"  style="display:none;padding:12px 14px;border-top:1px solid var(--border);background:var(--green-dim)">
         <div style="font-size:12px;color:#4ade80;font-weight:600;margin-bottom:8px">✅ All criteria matched! Deposit escrow to get full contact details.</div>
-        <button class="btn btn-white" style="width:100%" onclick="closeModal('prechat-modal');openEscrowCtxFor('${esc(referrerId||'')}','${esc(refLoc||'')}','${esc(jobCat||'')}')">
+        <button class="btn btn-white" style="width:100%" onclick="closeModal('prechat-modal');openEscrowCtxFor(${ihArg(referrerId||'')},${ihArg(refLoc||'')},${ihArg(jobCat||'')})">
           Deposit Escrow $500 →
         </button>
       </div>
@@ -3669,7 +3602,13 @@ function openPreChat(appId, referrerId, referrerName, jobCat, refLoc) {
     </div>`;
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
-  renderPreChat();
+  try { await ihLoadPrechat(appId); }
+  catch (e) { toast(e.message, 'error'); }
+  clearInterval(ihPrechatTimer);
+  ihPrechatTimer = setInterval(() => {
+    if (!$('prechat-modal')?.classList.contains('open') || !me) { clearInterval(ihPrechatTimer); return; }
+    ihLoadPrechat(appId).catch(e => { clearInterval(ihPrechatTimer); toast(e.message, 'error'); });
+  }, 5000);
 }
 
 // Alias — openEscrowFor still used in several places
@@ -3723,63 +3662,51 @@ function renderPreChat() {
   const allDone    = PRECHAT_QUESTIONS.every(q => state.answers[q.id]);
   // Positive = q1 starts Yes, q3 starts Yes, q6 starts Yes
   const allYes     = allDone &&
-    state.answers['q1']?.startsWith('Yes') &&
-    state.answers['q3']?.startsWith('Yes') &&
-    state.answers['q6']?.startsWith('Yes');
+    state.confirmedAnswers?.['q1']?.startsWith('Yes') &&
+    state.confirmedAnswers?.['q3']?.startsWith('Yes') &&
+    state.confirmedAnswers?.['q6']?.startsWith('Yes');
 
   if (nextQ && !allDone) {
     optsEl.innerHTML = `
       <div style="font-size:12px;color:var(--text-2);margin-bottom:8px;font-weight:500">${esc(nextQ.ask)}</div>
-      ${nextQ.opts.map(o=>`<button class="btn btn-ghost" style="width:100%;justify-content:flex-start;font-size:13px;margin-bottom:4px;text-align:left" onclick="pcAnswer('${esc(o)}','${nextQ.id}')">${esc(o)}</button>`).join('')}`;
+      ${nextQ.opts.map(o=>`<button class="btn btn-ghost" style="width:100%;justify-content:flex-start;font-size:13px;margin-bottom:4px;text-align:left" onclick="pcAnswer(${ihArg(o)},'${nextQ.id}')">${esc(o)}</button>`).join('')}`;
   } else {
     optsEl.innerHTML = '';
   }
 
-  if (allDone) {
-    if (allYes)  { if(ctaEl) ctaEl.style.display=''; if(failEl) failEl.style.display='none'; }
+  if (allDone && Object.keys(state.confirmedAnswers || {}).length === PRECHAT_QUESTIONS.length) {
+    if (allYes && profile?.role === 'fresher')  { if(ctaEl) ctaEl.style.display=''; if(failEl) failEl.style.display='none'; }
     else         { if(failEl) failEl.style.display=''; if(ctaEl) ctaEl.style.display='none'; }
   }
 }
 
-async function pcAnswer(text, qId) {
-  const state = preChatData[preChatAppId];
+let ihPrechatTimer = null;
+async function ihLoadPrechat(appId) {
+  const { data, error } = await SB.from('prechat_messages').select('*')
+    .eq('application_id', appId).not('sender_id', 'is', null)
+    .in('sender_role', ['fresher','referrer']).order('created_at', {ascending:true}).limit(200);
+  if (error) throw error;
+  const state = preChatData[appId];
   if (!state) return;
-  const now = new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
-  state.msgs.push({ from:'me', text, time:now });
-  state.answers[qId] = text;
-
-  // Save fresher message to DB
-  if (SB && me && preChatAppId) {
-    SB.from('prechat_messages').insert({
-      application_id: preChatAppId, sender_id: me.id,
-      question_id: qId, message: text, sender_role:'fresher'
-    }).catch(()=>{});
-  }
-
-  renderPreChat();
-
-  // Auto-reply from referrer after short delay
-  const autoReplies = {
-    q1: { 'Yes': 'Great news — there are openings right now!', default: 'Understood, thanks for asking.' },
-    q2: { 'Full': 'We offer full-time positions here.', 'Part': 'Yes, part-time shifts are available.', default: 'I can share more details once connected.' },
-    q3: { 'Yes': 'Absolutely — students are very welcome here.', default: 'Let me clarify that with my manager.' },
-    q4: { 'Within': 'Great, very accessible location!', default: 'The location details will be shared after escrow.' },
-    q5: { default: 'Pay details will be confirmed once connected properly.' },
-    q6: { 'Yes': 'Im ready to refer you — pay escrow and Ill get started immediately!', default: 'Got it, I understand.' },
-  };
-  const reply = autoReplies[qId];
-  const autoText = reply ? (text.startsWith('Yes') ? reply['Yes'] : reply.default) : 'Got it.';
-  setTimeout(() => {
-    const now2 = new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
-    state.msgs.push({ from:'referrer', text:autoText, time:now2 });
-    if (SB && preChatAppId) {
-      SB.from('prechat_messages').insert({
-        application_id: preChatAppId, sender_id: null,
-        question_id: qId, message: autoText, sender_role:'referrer_auto'
-      }).catch(()=>{});
-    }
-    renderPreChat();
-  }, 700);
+  state.answers = {}; state.confirmedAnswers = {};
+  state.msgs = (data || []).map(m => {
+    if (m.sender_id === me.id) state.answers[m.question_id] = m.message;
+    if (m.sender_role === 'referrer') state.confirmedAnswers[m.question_id] = m.message;
+    return {from: m.sender_id === me.id ? 'me' : 'referrer', text:m.message,
+      time:new Date(m.created_at).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})};
+  });
+  if (preChatAppId === appId) renderPreChat();
+}
+async function pcAnswer(text, qId) {
+  const appId = preChatAppId;
+  const question = PRECHAT_QUESTIONS.find(q => q.id === qId);
+  if (!SB || !me || !question?.opts.includes(text)) return;
+  try {
+    const { error } = await SB.from('prechat_messages').insert({application_id:appId,
+      sender_id:me.id, sender_role:profile.role === 'referrer' ? 'referrer' : 'fresher', question_id:qId, message:text});
+    if (error) throw error;
+    await ihLoadPrechat(appId);
+  } catch (e) { toast('Message not saved: ' + e.message, 'error'); }
 }
 
 async function confirmEscrow() {
@@ -3821,30 +3748,8 @@ async function confirmEscrow() {
           razorpay_signature:  resp.razorpay_signature,
           type:'escrow', user_id: me.id, referrer_id: escrowCtx.referrerId
         });
-        const dueDate = new Date(); dueDate.setDate(dueDate.getDate()+ESCROW_AUTO_DAYS);
-        await SB.from('escrow_transactions').insert({
-          applicant_id:    me.id,
-          referrer_id:     escrowCtx.referrerId,
-          amount:          escrowCtx.fee,
-          platform_fee:    PLATFORM_FEE_USD,
-          payment_id:      resp.razorpay_payment_id,
-          order_id:        resp.razorpay_order_id,
-          status:          'locked',
-          job_category:    escrowCtx.jobCategory,
-          auto_release_at: dueDate.toISOString()
-        });
-        await SB.from('applications').insert({
-          applicant_id: me.id,
-          referrer_id:  escrowCtx.referrerId,
-          status:       'escrow_paid',
-          cover_letter: `Escrow for ${escrowCtx.jobCategory} referral`
-        });
-        await SB.from('notifications').insert({
-          user_id:  escrowCtx.referrerId,
-          title:    'New paid referral request!',
-          message:  `A student deposited ₹ equivalent of $${escrowCtx.fee} for ${escrowCtx.jobCategory} referral`
-        });
-        unlockedRefs.add(escrowCtx.referrerId);
+        await loadUnlockedRefs();
+        if (!unlockedRefs.has(escrowCtx.referrerId)) throw new Error('Backend confirmation pending.');
         closeModal('escrow-modal');
         toast('Payment successful! Referrer contact details unlocked 🔓','success');
         loadWallet(); loadRequests();
@@ -3921,7 +3826,7 @@ async function loadBrowse() {
   const countEl=$('browse-count');
   if (countEl) countEl.textContent='Loading...';
   try {
-    const { data, error, count } = await SB.from('profiles')
+    const { data, error, count } = await SB.from('referrer_directory')
       .select('id,full_name,role,job_category,location,postcode,lat,lng,rating,review_count,referral_count,success_rate,experience_years,referral_fee,gradient,is_verified', { count:'exact' })
       .eq('role','referrer')
       .eq('is_verified', true)
@@ -4013,7 +3918,7 @@ function renderBrowse(refs) {
     const gr    = esc(r.gradient||'#1e3a8a,#2563EB');
     const isUnlocked = unlockedRefs.has(r.id);
     const locDisplay = [r.postcode, r.location].filter(Boolean).join(' · ') || '';
-    return `<div class="referrer-card" onclick="openEscrowFor('${esc(r.id)}')">
+    return `<div class="referrer-card" onclick="openEscrowFor(${ihArg(r.id)})">
       <div style="display:flex;align-items:flex-start;justify-content:space-between">
         <div class="r-avatar" style="background:linear-gradient(135deg,${gr})">${ini(r.full_name)}</div>
         <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px">
@@ -4037,7 +3942,7 @@ function renderBrowse(refs) {
         <div class="r-price">$${+(r.referral_fee)||500}</div>
         ${isUnlocked
           ? `<button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();dashNav('dash-chat')">Chat →</button>`
-          : `<button class="btn btn-white btn-sm" onclick="event.stopPropagation();payRequestFee('${esc(r.id)}','${esc(r.location||'')}')">Request →</button>`
+          : `<button class="btn btn-white btn-sm" onclick="event.stopPropagation();payRequestFee(${ihArg(r.id)},${ihArg(r.location||'')})">Request →</button>`
         }
       </div>
     </div>`;
@@ -4062,7 +3967,7 @@ function renderRecs() {
       </div>
       ${isUnlocked
         ? `<button class="btn btn-ghost btn-sm" onclick="dashNav('dash-chat')">Chat</button>`
-        : `<button class="btn btn-white btn-sm" onclick="openEscrowFor('${esc(r.id)}')">Request</button>`
+        : `<button class="btn btn-white btn-sm" onclick="openEscrowFor(${ihArg(r.id)})">Request</button>`
       }
     </div>`;
   }).join('');
@@ -4102,14 +4007,81 @@ function setBrowseFilter(type, el) {
 }
 
 // ─── WALLET ───────────────────────────────────────────────────
+function ihArg(value) { return esc(JSON.stringify(value)); }
+
+async function ihOpenReviewFiles(userId) {
+  if (!requireSB() || profile?.role !== 'admin') return;
+  const preview = window.open('about:blank', '_blank');
+  if (preview) preview.opener = null;
+  try {
+    const [docs, slips] = await Promise.all([
+      SB.from('user_documents').select('file_url,file_name').eq('user_id', userId),
+      SB.from('payslip_verifications').select('file_url').eq('uploaded_by', userId)
+    ]);
+    if (docs.error || slips.error) throw docs.error || slips.error;
+    const files = [...(docs.data || []).map(x => ({...x, bucket:'documents'})),
+      ...(slips.data || []).map(x => ({...x, bucket:'payslips', file_name:'Payslip'}))];
+    if (!files.length) throw new Error('No submitted documents.');
+    let index = 0;
+    if (files.length > 1) {
+      const choice = window.prompt(files.map((f,i) => `${i+1}. ${f.file_name || 'Document'}`).join('\n'), '1');
+      if (choice === null) { preview?.close(); return; }
+      index = Number(choice) - 1;
+    }
+    const file = files[index];
+    if (!file) throw new Error('Choose a valid document number.');
+    let path = file.file_url;
+    if (/^https?:/i.test(path)) {
+      const parsed = new URL(path);
+      const trusted = new URL(window.INSIDERHIRE_CONFIG.SUPABASE_URL);
+      if (parsed.origin !== trusted.origin) throw new Error('Untrusted file URL.');
+      const prefix = `/storage/v1/object/public/${file.bucket}/`;
+      if (!parsed.pathname.startsWith(prefix)) throw new Error('Invalid file reference.');
+      path = decodeURIComponent(parsed.pathname.slice(prefix.length));
+    }
+    if (!path.startsWith(userId + '/') || path.includes('..')) throw new Error('Invalid file owner.');
+    const { data, error } = await SB.storage.from(file.bucket).createSignedUrl(path, 60);
+    if (error || !data?.signedUrl) throw error || new Error('Could not open document.');
+    if (preview) preview.location.replace(data.signedUrl);
+    else toast('Allow popups to open submitted documents.', 'error');
+  } catch (e) { preview?.close(); toast(e.message, 'error'); }
+}
+
+async function ihEnrichPartners(result) {
+  if (result.error) throw result.error;
+  if (!result.data?.length) return result;
+  const ids = [...new Set(result.data.flatMap(row => [row.applicant_id, row.referrer_id]).filter(id => id && id !== me.id))];
+  const cards = new Map();
+  for (let offset = 0; offset < ids.length; offset += 100) {
+    const { data, error } = await SB.rpc('ih_partner_cards', { ids: ids.slice(offset, offset + 100) });
+    if (error) throw error;
+    (data || []).forEach(card => cards.set(card.id, card));
+  }
+  result.data.forEach(row => {
+    row.applicant = row.applicant_id === me.id ? profile : cards.get(row.applicant_id) || {};
+    row.referrer = row.referrer_id === me.id ? profile : cards.get(row.referrer_id) || {};
+  });
+  return result;
+}
+
+async function ihUpload(bucket, path, file) {
+  const allowed = bucket === 'avatars' ? ['image/jpeg','image/png','image/webp'] :
+    ['application/pdf','image/jpeg','image/png','image/webp', ...(bucket === 'documents' ?
+    ['application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document'] : [])];
+  if (!allowed.includes(file.type)) throw new Error('Unsupported file type.');
+  const max = (bucket === 'avatars' ? 5 : 10) * 1024 * 1024;
+  if (!file.size || file.size > max) throw new Error('File exceeds the allowed size.');
+  return SB.storage.from(bucket).upload(path, file, { upsert: false, contentType: file.type });
+}
+
 async function loadWallet() {
   if (!requireSB() || !me) return;
   const amtEl=$('wallet-amount'), stEl=$('wallet-status'), lockEl=$('escrow-locks-list');
   try {
     const { data: locks } = await SB.from('escrow_transactions')
-      .select('*,referrer:profiles!escrow_transactions_referrer_id_fkey(full_name,job_category)')
+      .select('*')
       .eq('applicant_id', me.id)
-      .in('status',['locked','refund_requested']);
+      .in('status',['locked','refund_requested']).then(ihEnrichPartners);
     const total = (locks||[]).reduce((s,l)=>s+(l.amount||0),0);
     if(amtEl) amtEl.textContent=total;
     if(stEl)  stEl.textContent = locks?.length ? `🔐 ${locks.length} active lock${locks.length>1?'s':''}` : 'No active escrow locks';
@@ -4144,9 +4116,8 @@ async function requestRefund(escrowId) {
   try {
     const { error } = await SB.from('escrow_transactions')
       .update({ status:'refund_requested', refund_requested_at: new Date().toISOString() })
-      .eq('id', escrowId).eq('applicant_id', me.id);
+      .eq('id', escrowId).eq('applicant_id', me.id).select('id').single();
     if (error) throw error;
-    await SB.from('notifications').insert({ user_id:'admin', title:'Refund requested', message:`Fresher ${profile?.full_name} requested refund on escrow ${escrowId}` });
     toast('Refund requested. Admin will process within 5–7 business days.','info');
     loadWallet();
   } catch(e) { toast(e.message,'error'); }
@@ -4182,8 +4153,8 @@ async function loadRequests() {
   try {
     // Fetch applications first
     const { data, error } = await SB.from('applications')
-      .select('*,referrer:profiles!applications_referrer_id_fkey(id,full_name,job_category,location,postcode)')
-      .eq('applicant_id', me.id).order('applied_at',{ascending:false});
+      .select('*')
+      .eq('applicant_id', me.id).order('applied_at',{ascending:false}).then(ihEnrichPartners);
     if (error) throw error;
 
     // Fetch escrow separately to avoid schema cache join error
@@ -4203,7 +4174,7 @@ async function loadRequests() {
       return;
     }
     list.innerHTML = enriched.map(a=>{
-      const hasEscrow = a.escrow?.status==='locked';
+      const hasEscrow = a.escrow?.status==='locked' && a.referrer?.contact_unlocked;
       const sp = hasEscrow?'st-escrow': a.status==='pending'?'st-pending': a.status==='accepted'?'st-active':'st-done';
       const sl = hasEscrow?'Escrow Active': a.status;
       const rName = a.referrer?.full_name || 'Referrer';
@@ -4222,7 +4193,7 @@ async function loadRequests() {
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
           <span class="status-pill ${sp}">${sl}</span>
           ${hasEscrow?`<button class="btn btn-ghost btn-sm" onclick="dashNav('dash-chat')">Chat →</button><button class="btn btn-green btn-sm" onclick="openModal('payslip-modal')">Upload payslip</button>`:''}
-          ${isAccepted?`<button class="btn btn-white btn-sm" onclick="openPreChat('${a.id}','${a.referrer_id}','${esc(rName)}','${esc(rCat)}','${esc(rLoc)}')">💬 Start Pre-Chat →</button>`:''}
+          ${isAccepted?`<button class="btn btn-white btn-sm" onclick="openPreChat('${a.id}','${a.referrer_id}',${ihArg(rName)},${ihArg(rCat)},${ihArg(rLoc)})">💬 Start Pre-Chat →</button>`:''}
         </div>
       </div>`;
     }).join('');
@@ -4244,14 +4215,13 @@ async function submitPayslip() {
   try {
     const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
     const path = `${me.id}/${Date.now()}_${safeName}`;
-    const { error: upErr } = await SB.storage.from('payslips').upload(path, file, { cacheControl:'3600', upsert:true });
+    const { error: upErr } = await ihUpload('payslips', path, file);
     if (upErr) throw upErr;
-    const { data: { publicUrl } } = SB.storage.from('payslips').getPublicUrl(path);
-    await SB.from('payslip_verifications').insert({
-      uploaded_by: me.id, file_url: publicUrl,
+    const { error: saveError } = await SB.from('payslip_verifications').insert({
+      uploaded_by: me.id, file_url: path,
       employer_name: employer, start_date: startDate, status:'pending'
     });
-    await SB.from('notifications').insert({ user_id:'admin', title:'Payslip submitted', message:`${profile?.full_name} uploaded payslip for ${employer}` });
+    if (saveError) throw saveError;
     if(btn) { btn.classList.remove('btn-loading'); btn.textContent='Submit Payslip →'; }
     closeModal('payslip-modal');
     toast('Payslip submitted! Admin will verify and release escrow within 24–48h. 🎉','success');
@@ -4269,8 +4239,9 @@ async function loadFresherChat() {
   if (!requireSB() || !me) { list.innerHTML='<div style="padding:24px;text-align:center;color:var(--text-3);font-size:13px">Sign in to view messages.</div>'; return; }
   try {
     const { data: locks } = await SB.from('escrow_transactions')
-      .select('*,referrer:profiles!escrow_transactions_referrer_id_fkey(id,full_name,job_category,location,gradient,phone,email,company)')
-      .eq('applicant_id', me.id).eq('status','locked');
+      .select('*')
+      .eq('applicant_id', me.id).eq('status','locked').then(ihEnrichPartners);
+    if (locks) locks.splice(0, locks.length, ...locks.filter(l => l.referrer?.contact_unlocked || l.applicant?.contact_unlocked));
     if (!locks?.length) {
       list.innerHTML='<div style="padding:24px;text-align:center;color:var(--text-3);font-size:13px">No active chats.<br>Deposit escrow to unlock a referrer\'s chat.</div>';
       return;
@@ -4278,7 +4249,7 @@ async function loadFresherChat() {
     list.innerHTML = locks.map((l,i)=>{
       const r=l.referrer||{};
       const gr=esc(r.gradient||'#1e3a8a,#2563EB');
-      return `<div class="chat-list-item${i===0?' active':''}" onclick="openFresherChat('${l.referrer_id}','${ini(r.full_name)}','${esc(r.full_name)}','${esc(r.job_category||'')} · ${esc(r.location||'')}','${gr}',${JSON.stringify(r).replace(/'/g,"\\'")})">
+      return `<div class="chat-list-item${i===0?' active':''}" onclick="openFresherChat(${ihArg(l.referrer_id)},${ihArg(ini(r.full_name))},${ihArg(r.full_name)},${ihArg((r.job_category||'') + ' · ' + (r.location||''))},${ihArg(gr)},${ihArg(r)})">
         <div class="chat-av" style="background:linear-gradient(135deg,${gr})">${ini(r.full_name)}</div>
         <div style="flex:1;min-width:0">
           <div style="display:flex;justify-content:space-between"><span style="font-size:13px;font-weight:600">${esc(r.full_name)}</span><span style="font-size:10px;color:var(--text-3)">Now</span></div>
@@ -4298,15 +4269,16 @@ async function loadRefChat() {
   if (!requireSB() || !me) { list.innerHTML='<div style="padding:24px;text-align:center;color:var(--text-3);font-size:13px">Sign in to view messages.</div>'; return; }
   try {
     const { data: locks } = await SB.from('escrow_transactions')
-      .select('*,applicant:profiles!escrow_transactions_applicant_id_fkey(id,full_name,location,phone,email)')
-      .eq('referrer_id', me.id).eq('status','locked');
+      .select('*')
+      .eq('referrer_id', me.id).eq('status','locked').then(ihEnrichPartners);
+    if (locks) locks.splice(0, locks.length, ...locks.filter(l => l.referrer?.contact_unlocked || l.applicant?.contact_unlocked));
     if (!locks?.length) {
       list.innerHTML='<div style="padding:24px;text-align:center;color:var(--text-3);font-size:13px">No active chats yet.<br>Accept requests to unlock conversations.</div>';
       return;
     }
     list.innerHTML = locks.map((l,i)=>{
       const a=l.applicant||{};
-      return `<div class="chat-list-item${i===0?' active':''}" onclick="openRefChat('${l.applicant_id}','${ini(a.full_name)}','${esc(a.full_name)}','Job Seeker · ${esc(a.location||'')}','#1e3a8a,#2563EB')">
+      return `<div class="chat-list-item${i===0?' active':''}" onclick="openRefChat(${ihArg(l.applicant_id)},${ihArg(ini(a.full_name))},${ihArg(a.full_name)},${ihArg('Job Seeker · ' + (a.location||''))},${ihArg('#1e3a8a,#2563EB')})">
         <div class="chat-av" style="background:linear-gradient(135deg,#1e3a8a,#2563EB)">${ini(a.full_name)}</div>
         <div style="flex:1;min-width:0">
           <div style="display:flex;justify-content:space-between"><span style="font-size:13px;font-weight:600">${esc(a.full_name)}</span><span style="font-size:10px;color:var(--text-3)">Now</span></div>
@@ -4323,7 +4295,7 @@ async function loadRefChat() {
 
 function openFresherChat(partnerId, av, name, role, gr, referrerData) {
   const avEl=$('chat-partner-av'), nmEl=$('chat-partner-name'), roEl=$('chat-partner-role');
-  if(avEl){ avEl.textContent=av; avEl.style.background=`linear-gradient(135deg,${gr||'#1e3a8a,#2563EB'})`; }
+  if(avEl){ avEl.dataset.partnerId=partnerId; avEl.textContent=av; avEl.style.background=`linear-gradient(135deg,${gr||'#1e3a8a,#2563EB'})`; }
   if(nmEl) nmEl.textContent=name;
   if(roEl) roEl.textContent=role;
   const msgs=$('chat-msgs'); if(!msgs) return;
@@ -4340,42 +4312,36 @@ function openFresherChat(partnerId, av, name, role, gr, referrerData) {
       </div>
     </div>`;
   }
-  msgs.innerHTML=detailsHtml+`
-    <div class="msg recv">
-      <div class="chat-av" style="background:linear-gradient(135deg,${esc(gr||'#1e3a8a,#2563EB')});width:28px;height:28px;font-size:10px;flex-shrink:0">${esc(av)}</div>
-      <div><div class="msg-bubble">Hi! Chat is now unlocked. Please share your CV and I'll get started on your referral application.</div><div class="msg-time">${ts()}</div></div>
-    </div>`;
+  msgs.innerHTML=detailsHtml;
   msgs.scrollTop=msgs.scrollHeight;
   if (SB && me) loadRealMsgs(msgs, partnerId, av, gr, false);
 }
 
 function openRefChat(partnerId, av, name, role, gr) {
   const avEl=$('ref-chat-partner-av'), nmEl=$('ref-chat-partner-name');
-  if(avEl){ avEl.textContent=av; avEl.style.background=`linear-gradient(135deg,${gr||'#1e3a8a,#2563EB'})`; }
+  if(avEl){ avEl.dataset.partnerId=partnerId; avEl.textContent=av; avEl.style.background=`linear-gradient(135deg,${gr||'#1e3a8a,#2563EB'})`; }
   if(nmEl) nmEl.textContent=name;
   const msgs=$('ref-chat-msgs'); if(!msgs) return;
-  msgs.innerHTML=`
-    <div class="msg recv">
-      <div class="chat-av" style="background:linear-gradient(135deg,${esc(gr||'#1e3a8a,#2563EB')});width:28px;height:28px;font-size:10px;flex-shrink:0">${esc(av)}</div>
-      <div><div class="msg-bubble">Hi! I've deposited the escrow. Can you please start the referral process?</div><div class="msg-time">${ts()}</div></div>
-    </div>`;
+  msgs.innerHTML='';
   msgs.scrollTop=msgs.scrollHeight;
   if (SB && me) loadRealMsgs(msgs, partnerId, av, gr, true);
 }
 
+let ihMessageChannel = null;
 async function loadRealMsgs(container, partnerId, av, gr, isRef) {
   if (!SB || !me || !partnerId) return;
   try {
     // Load messages between me and partner
-    const { data } = await SB.from('messages')
+    const { data, error } = await SB.from('messages')
       .select('*')
       .or(`and(sender_id.eq.${me.id},receiver_id.eq.${partnerId}),and(sender_id.eq.${partnerId},receiver_id.eq.${me.id})`)
-      .order('created_at',{ascending:true}).limit(100);
-    if (data?.length) {
+      .order('created_at',{ascending:false}).limit(100);
+    if (error) throw error;
+    {
       // Keep unlocked details panel at top
       const existingDetails = container.querySelector('div[style*="green-dim"]');
       const detailsHtml = existingDetails ? existingDetails.outerHTML : '';
-      container.innerHTML = detailsHtml + data.map(m=>{
+      container.innerHTML = detailsHtml + [...(data || [])].reverse().map(m=>{
         const isMe=m.sender_id===me.id;
         return `<div class="msg ${isMe?'sent':'recv'}">
           ${!isMe?`<div class="chat-av" style="background:linear-gradient(135deg,${esc(gr)});width:28px;height:28px;font-size:10px;flex-shrink:0">${esc(av)}</div>`:''}
@@ -4386,10 +4352,11 @@ async function loadRealMsgs(container, partnerId, av, gr, isRef) {
       container.scrollTop=container.scrollHeight;
     }
     // Real-time subscription
-    SB.channel('msgs_'+partnerId)
+    if (ihMessageChannel) await SB.removeChannel(ihMessageChannel);
+    ihMessageChannel = SB.channel('msgs_'+partnerId)
       .on('postgres_changes',{event:'INSERT',schema:'public',table:'messages'},payload=>{
         const m=payload.new;
-        if ((m.sender_id===me.id&&m.receiver_id===partnerId)||(m.sender_id===partnerId&&m.receiver_id===me.id)) {
+        if (me && ((m.sender_id===me.id&&m.receiver_id===partnerId)||(m.sender_id===partnerId&&m.receiver_id===me.id))) {
           const isMe=m.sender_id===me.id;
           appendMsg(container, m.content, isMe?'sent':'recv', isMe?ini(profile?.full_name||'U'):av, isMe?'#1e3a8a':gr);
         }
@@ -4405,8 +4372,8 @@ async function sendMsg() {
   const partnerId=$('chat-partner-av')?.dataset?.partnerId || null;
   if (!partnerId) { toast('No active chat selected.','error'); return; }
   try {
-    await SB.from('messages').insert({ sender_id: me.id, receiver_id: partnerId, content: text });
-    appendMsg($('chat-msgs'), text, 'sent', ini(profile?.full_name||'U'), '#1e3a8a');
+    const { error } = await SB.from('messages').insert({ sender_id: me.id, receiver_id: partnerId, content: text });
+    if (error) throw error;
   } catch(e) { toast('Send failed: '+e.message,'error'); }
 }
 
@@ -4418,8 +4385,8 @@ async function sendRefMsg() {
   const partnerId=$('ref-chat-partner-av')?.dataset?.partnerId || null;
   if (!partnerId) { toast('No active chat selected.','error'); return; }
   try {
-    await SB.from('messages').insert({ sender_id: me.id, receiver_id: partnerId, content: text });
-    appendMsg($('ref-chat-msgs'), text, 'sent', ini(profile?.full_name||'R'), 'linear-gradient(135deg,#1e3a8a,#2563EB)');
+    const { error } = await SB.from('messages').insert({ sender_id: me.id, receiver_id: partnerId, content: text });
+    if (error) throw error;
   } catch(e) { toast('Send failed: '+e.message,'error'); }
 }
 
@@ -4439,10 +4406,10 @@ async function loadRefRequests() {
   if (!requireSB() || !me) { list.innerHTML='<div style="padding:40px;text-align:center;color:var(--text-3)">Sign in to view requests.</div>'; return; }
   try {
     const { data, error } = await SB.from('applications')
-      .select('*,applicant:profiles!applications_applicant_id_fkey(full_name,bio,skills,location,phone,email)')
+      .select('*')
       .eq('referrer_id', me.id)
       .in('status', ['pending','escrow_paid','accepted'])
-      .order('applied_at',{ascending:false}).limit(20);
+      .order('applied_at',{ascending:false}).limit(20).then(ihEnrichPartners);
     if (error) throw error;
     // Update badge
     const badge = document.getElementById('ref-req-badge');
@@ -4464,7 +4431,7 @@ async function loadRefRequests() {
             <div style="font-weight:600;font-size:14px">${esc(ap.full_name||'Applicant')}</div>
             <div style="font-size:12px;color:var(--text-2)">${esc(toArr(ap.skills).slice(0,3).join(', ')||ap.bio||'')} · ${esc(ap.location||'')}</div>
           </div>
-          <span class="status-pill st-escrow">Escrow Paid</span>
+          <span class="status-pill st-escrow">${a.status==='escrow_paid' ? 'Escrow Paid' : esc(a.status)}</span>
         </div>
         <div style="padding:10px 12px;border-radius:var(--r-lg);background:var(--elevated-2);border:1px solid var(--border);font-size:13px;color:var(--text-2);margin-bottom:14px;line-height:1.7">${esc(a.cover_letter||'Referral request')}</div>
         ${ap.phone||ap.email?`<div style="font-size:12px;color:var(--text-2);margin-bottom:12px">
@@ -4477,7 +4444,7 @@ async function loadRefRequests() {
             <button class="btn btn-green btn-sm" onclick="acceptApplication('${a.id}','${a.applicant_id}')">✓ Accept</button>
           ` : a.status==='accepted' ? `
             <span class="status-pill st-active">✅ Accepted</span>
-            <button class="btn btn-ghost btn-sm" onclick="refNav('ref-chat')">💬 Chat</button>
+            <button class="btn btn-ghost btn-sm" onclick="openPreChat('${a.id}','${a.referrer_id}',${ihArg(ap.full_name||'Applicant')},${ihArg(profile?.job_category||'')},${ihArg(ap.location||'')})">💬 Chat</button>
           ` : `
             <span class="status-pill st-rejected">${a.status}</span>
           `}
@@ -4535,14 +4502,9 @@ async function acceptApplication(appId, applicantId) {
     const { error } = await SB.from('applications')
       .update({ status:'accepted' })
       .eq('id', appId)
-      .eq('referrer_id', me.id);
+      .eq('referrer_id', me.id).select('id').single();
     if (error) throw error;
     // Notify fresher
-    await SB.from('notifications').insert({
-      user_id: applicantId,
-      title: '🎉 Request accepted!',
-      message: `Your referral request was accepted! Go to My Requests and deposit $500 escrow to unlock the pre-chat and contact details.`
-    });
     toast('Request accepted! Fresher has been notified to pay escrow.', 'success');
     loadRefRequests();
   } catch(e) { toast(e.message, 'error'); }
@@ -4554,7 +4516,7 @@ async function rejectApplication(appId) {
     const { error } = await SB.from('applications')
       .update({ status:'rejected' })
       .eq('id', appId)
-      .eq('referrer_id', me.id);
+      .eq('referrer_id', me.id).select('id').single();
     if (error) throw error;
     toast('Request declined.', 'info');
     loadRefRequests();
@@ -4566,8 +4528,8 @@ async function submitReferralProof() {
   try {
     const { data: lock } = await SB.from('escrow_transactions').select('id').eq('referrer_id',me.id).eq('status','locked').single();
     if (!lock) { toast('No active escrow found.','error'); return; }
-    await SB.from('escrow_transactions').update({ referral_proof_submitted:true, referral_submitted_at: new Date().toISOString() }).eq('id',lock.id);
-    await SB.from('notifications').insert({ user_id:'admin', title:'Referral proof submitted', message:`Referrer ${profile?.full_name} submitted proof for escrow ${lock.id}` });
+    const { error } = await SB.from('escrow_transactions').update({ referral_proof_submitted:true, referral_submitted_at: new Date().toISOString() }).eq('id',lock.id).select('id').single();
+    if (error) throw error;
     toast('Referral proof submitted! Admin will verify payslips and release escrow within 24–48h.','success');
   } catch(e) { toast(e.message,'error'); }
 }
@@ -4578,8 +4540,8 @@ async function requestPayout() {
     const { data: ready } = await SB.from('escrow_transactions').select('amount').eq('referrer_id',me.id).eq('status','released').eq('payout_requested',false);
     if (!ready?.length) { toast('No funds available for payout.','info'); return; }
     const total=(ready||[]).reduce((s,r)=>s+r.amount-COMMISSION_USD,0);
-    await SB.from('escrow_transactions').update({ payout_requested:true }).eq('referrer_id',me.id).eq('status','released').eq('payout_requested',false);
-    await SB.from('notifications').insert({ user_id:'admin', title:'Payout requested', message:`Referrer ${profile?.full_name} requested payout of $${total}` });
+    const { data: changed, error } = await SB.from('escrow_transactions').update({ payout_requested:true }).eq('referrer_id',me.id).eq('status','released').eq('payout_requested',false).select('id');
+    if (error || !changed?.length) throw error || new Error('No eligible payout requests.');
     toast(`Payout of $${total} requested — arrives in 2–3 business days.`,'success');
   } catch(e) { toast(e.message,'error'); }
 }
@@ -4616,7 +4578,7 @@ async function loadAdminUsers() {
       <td>${esc(u.location||'—')}</td>
       <td class="mono" style="font-size:11px">${fmtDate(u.created_at)}</td>
       <td><span class="badge ${u.signup_fee_paid?'badge-green':'badge-amber'}">${u.signup_fee_paid?'Active':'Pending fee'}</span></td>
-      <td><button class="btn btn-red btn-sm" onclick="adminSuspend('${u.id}','${esc(u.full_name||'')}')">Suspend</button></td>
+      <td><button class="btn btn-red btn-sm" onclick="adminSuspend('${u.id}',${ihArg(u.full_name||'')})">Suspend</button></td>
     </tr>`).join('');
   } catch(e) { tbody.innerHTML=`<tr><td colspan="6" style="color:var(--red);padding:16px">${esc(e.message)}</td></tr>`; }
 }
@@ -4630,14 +4592,14 @@ async function loadAdminVerify() {
     list.innerHTML = data.map(u=>`<div class="verify-row">
       <div style="display:flex;align-items:center;gap:10px">
         <div class="chat-av" style="background:linear-gradient(135deg,#1e3a8a,#2563EB)">${ini(u.full_name||'?')}</div>
-        <div><div style="font-weight:600;font-size:13px">${esc(u.full_name||'Unknown')}</div>
+        <div><div style="font-weight:600;font-size:13px" title="Open submitted documents" onclick="ihOpenReviewFiles('${u.id}')">${esc(u.full_name||'Unknown')}</div>
         <div style="font-size:11px;color:var(--text-2)">${esc(u.job_category||u.role_title||'Referrer')} · ${esc(u.location||'')} · ${esc(u.email||'')}</div>
         <div style="font-size:10px;color:var(--text-3)">Submitted ${fmtDate(u.created_at)}</div></div>
       </div>
       <div style="display:flex;gap:8px;align-items:center">
         <span class="status-pill st-pending">Pending</span>
         <button class="btn btn-red btn-sm" onclick="adminReject('${u.id}')">✗ Reject</button>
-        <button class="btn btn-green btn-sm" onclick="adminApprove('${u.id}','${esc(u.full_name||'')}')">✓ Verify</button>
+        <button class="btn btn-green btn-sm" onclick="adminApprove('${u.id}',${ihArg(u.full_name||'')})">✓ Verify</button>
       </div>
     </div>`).join('');
   } catch(e) { list.innerHTML=`<div style="padding:24px;color:var(--red)">${esc(e.message)}</div>`; }
@@ -4645,10 +4607,9 @@ async function loadAdminVerify() {
 
 async function adminApprove(uid, name) {
   if (!requireSB()) return;
-  const { error } = await SB.from('profiles').update({ is_verified:true }).eq('id',uid);
-  if (error) { toast(error.message,'error'); return; }
-  await SB.from('notifications').insert({ user_id:uid, title:'You are verified! ✅', message:'Your InsiderHire referrer account is now verified and live. You can start accepting referral requests.' });
-  toast(`${name||'Referrer'} is now verified!`,'success');
+  const { error } = await SB.rpc('ih_review_profile', { target_id: uid, approved: true });
+  if (error) { toast(error.message, 'error'); return; }
+  toast(`${name || 'Referrer'} is now verified!`, 'success');
   loadAdminVerify();
 }
 
@@ -4656,15 +4617,17 @@ function adminApproveVerify(uid, name) { adminApprove(uid, name); }
 
 async function adminReject(uid) {
   if (!requireSB()) return;
-  await SB.from('notifications').insert({ user_id:uid, title:'Verification update', message:'Your documents need re-submission. Please contact insiderhire.org@gmail.com' });
-  toast('Verification rejected. User notified.','error');
+  const { error } = await SB.rpc('ih_review_profile', { target_id: uid, approved: false });
+  if (error) { toast(error.message, 'error'); return; }
+  toast('Verification rejected. User notified.', 'info');
   loadAdminVerify();
 }
 
 async function adminSuspend(uid, name) {
   if (!confirm(`Suspend ${name||'this user'}?`)) return;
   if (!requireSB()) return;
-  await SB.from('profiles').update({ role:'suspended' }).eq('id',uid);
+  const { error } = await SB.from('profiles').update({ role:'suspended' }).eq('id',uid).select('id').single();
+  if (error) { toast(error.message, 'error'); return; }
   toast(`${name||'User'} suspended.`,'error');
   loadAdminUsers();
 }
@@ -4674,8 +4637,8 @@ async function loadAdminDisputes() {
   if (!requireSB()) return;
   try {
     const { data } = await SB.from('escrow_transactions')
-      .select('*,applicant:profiles!escrow_transactions_applicant_id_fkey(full_name,email),referrer:profiles!escrow_transactions_referrer_id_fkey(full_name)')
-      .eq('status','refund_requested').order('created_at',{ascending:false});
+      .select('*')
+      .eq('status','refund_requested').order('created_at',{ascending:false}).then(ihEnrichPartners);
     if (!data?.length) { list.innerHTML='<div style="padding:24px;text-align:center;color:var(--text-3)">No active disputes</div>'; return; }
     list.innerHTML = data.map(d=>`<div class="dispute-item urgent">
       <div style="display:flex;justify-content:space-between;margin-bottom:10px">
@@ -4694,24 +4657,12 @@ async function loadAdminDisputes() {
   } catch(e) { list.innerHTML=`<div style="padding:24px;color:var(--red)">${esc(e.message)}</div>`; }
 }
 
-async function adminRelease(escrowId, referrerId, amount) {
-  if (!requireSB()) return;
-  await SB.from('escrow_transactions').update({ status:'released', released_at: new Date().toISOString() }).eq('id',escrowId);
-  await SB.from('notifications').insert({ user_id:referrerId, title:'Escrow released! 💰', message:`$${amount-COMMISSION_USD} added to your wallet. Request payout anytime.` });
-  // Trigger Razorpay payout via edge function
-  SB.functions.invoke('razorpay-payout',{ body:{ referrer_id:referrerId, amount:(amount-COMMISSION_USD)*INR_RATE*100, escrow_id:escrowId } }).catch(()=>{});
-  toast(`$${amount-COMMISSION_USD} released to referrer.`,'success');
-  loadAdminDisputes();
+async function adminRelease() {
+  toast('Payments are not enabled. A verified backend must process this action.', 'error');
 }
 
-async function adminRefund(escrowId, applicantId, amount) {
-  if (!requireSB()) return;
-  const net = amount-REFUND_PROC_FEE;
-  await SB.from('escrow_transactions').update({ status:'refunded', refunded_at: new Date().toISOString(), refund_amount: net }).eq('id',escrowId);
-  await SB.from('notifications').insert({ user_id:applicantId, title:'Refund processed 💸', message:`$${net} refunded. ($${REFUND_PROC_FEE} processing fee deducted). Allow 5–7 business days.` });
-  SB.functions.invoke('razorpay-refund',{ body:{ applicant_id:applicantId, amount:net*INR_RATE*100, escrow_id:escrowId } }).catch(()=>{});
-  toast(`$${net} refunded to fresher.`,'info');
-  loadAdminDisputes();
+async function adminRefund() {
+  toast('Payments are not enabled. A verified backend must process this action.', 'error');
 }
 
 async function loadAdminPayments() {
@@ -4719,8 +4670,8 @@ async function loadAdminPayments() {
   if (!requireSB()) return;
   try {
     const { data } = await SB.from('escrow_transactions')
-      .select('*,applicant:profiles!escrow_transactions_applicant_id_fkey(full_name),referrer:profiles!escrow_transactions_referrer_id_fkey(full_name)')
-      .order('created_at',{ascending:false}).limit(25);
+      .select('*')
+      .order('created_at',{ascending:false}).limit(25).then(ihEnrichPartners);
     if (!data?.length) { tbody.innerHTML='<tr><td colspan="6" style="text-align:center;color:var(--text-3);padding:24px">No payments yet</td></tr>'; return; }
     tbody.innerHTML = data.map(t=>{
       const pill={locked:'st-escrow',released:'st-done',refund_requested:'st-pending',refunded:'st-rejected'}[t.status]||'st-neutral';
@@ -4736,17 +4687,16 @@ async function loadAdminPayments() {
   } catch(e) { tbody.innerHTML=`<tr><td colspan="6" style="color:var(--red);padding:16px">${esc(e.message)}</td></tr>`; }
 }
 
-function emergencyStop() { if(!confirm('⚠️ Pause ALL payments?')) return; toast('Emergency stop activated. Contact your Razorpay dashboard to freeze transactions.','error'); }
+function emergencyStop() { toast('Pause payments in your payment-provider dashboard. No payment settings were changed here.', 'info'); }
 function exportAdminReport() { toast('Export functionality — pull from Supabase Dashboard > Table Editor > Export CSV.','info'); }
-function saveAdminConfig()   { toast('Config saved!','success'); }
+function saveAdminConfig() { toast('Configuration changes require the backend administrator; nothing was saved.', 'info'); }
 
 // ─── PROFILE SAVE ─────────────────────────────────────────────
 async function saveProfile() {
   if (!requireSB() || !me) return;
   // Ensure profile row exists first (handles new users)
-  try {
-    await SB.from('profiles').upsert({ id: me.id, email: me.email }, { onConflict: 'id', ignoreDuplicates: true });
-  } catch(e) {}
+  const { error: ensureError } = await SB.rpc('ih_my_profile');
+  if (ensureError) { toast(ensureError.message, 'error'); return; }
   const updates = {
     id: me.id,
     full_name:  getV('p-fn-full'),
@@ -4779,9 +4729,8 @@ async function saveProfile() {
 async function saveReferrerProfile() {
   if (!requireSB() || !me) return;
   // Ensure profile row exists (new user fix)
-  try {
-    await SB.from('profiles').upsert({ id: me.id, email: me.email, role:'referrer' }, { onConflict:'id', ignoreDuplicates:true });
-  } catch(e) {}
+  const { error: ensureError } = await SB.rpc('ih_my_profile');
+  if (ensureError) { toast(ensureError.message, 'error'); return; }
   const refJobTypes=[...document.querySelectorAll('#ref-job-prefs-grid .job-pref-tile.on')].map(t=>t.dataset.job);
   const updates = {
     id: me.id,
@@ -4832,9 +4781,8 @@ async function saveReferrerProfile() {
 
 async function saveFullProfile() {
   if (!requireSB() || !me) return;
-  try {
-    await SB.from('profiles').upsert({ id: me.id, email: me.email }, { onConflict:'id', ignoreDuplicates:true });
-  } catch(e) {}
+  const { error: ensureError } = await SB.rpc('ih_my_profile');
+  if (ensureError) { toast(ensureError.message, 'error'); return; }
   const days    = ['mon','tue','wed','thu','fri','sat','sun'].filter(d=>$('day-'+d)?.classList.contains('on'));
   const shifts  = ['morning','afternoon','evening','night'].filter(s=>$('shift-'+s)?.checked);
   const jobPrefs= [...document.querySelectorAll('#job-prefs-grid .job-pref-tile.on')].map(t=>t.dataset.job);
@@ -4986,10 +4934,11 @@ async function handlePhotoUpload(input, role) {
   try {
     const ext = file.name.split('.').pop().replace(/[^a-zA-Z0-9]/g,'');
     const path = `${me.id}/avatar_${Date.now()}.${ext}`;
-    const { error } = await SB.storage.from('avatars').upload(path, file, { upsert:true });
+    const { error } = await ihUpload('avatars', path, file);
     if (error) throw error;
     const { data:{ publicUrl } } = SB.storage.from('avatars').getPublicUrl(path);
-    await SB.from('profiles').update({ avatar_url:publicUrl }).eq('id',me.id);
+    const { error: saveError } = await SB.from('profiles').update({ avatar_url:publicUrl }).eq('id',me.id).select('id').single();
+    if (saveError) throw saveError;
     toast('Profile photo updated!','success');
   } catch(e) { toast(e.message,'error'); }
 }
@@ -5006,19 +4955,20 @@ async function uploadDoc(type) {
       // Sanitise filename
       const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
       const path = `${me.id}/${type}_${Date.now()}_${safeName}`;
-      const { error: upErr } = await SB.storage.from('documents').upload(path, file, { upsert:true });
+      const { error: upErr } = await ihUpload('documents', path, file);
       if (upErr) throw upErr;
-      const { data:{ publicUrl } } = SB.storage.from('documents').getPublicUrl(path);
       // Upsert instead of insert to avoid duplicate errors
       const { error: dbErr } = await SB.from('user_documents').upsert({
         user_id:   me.id,
         doc_type:  type,
-        file_url:  publicUrl,
+        file_url:  path,
         file_name: file.name
       }, { onConflict: 'user_id,doc_type' });
       if (dbErr) {
         // If upsert fails, try plain insert (onConflict column might not exist)
-        await SB.from('user_documents').insert({ user_id:me.id, doc_type:type, file_url:publicUrl, file_name:file.name });
+        if (dbErr.code !== '42P10') throw dbErr;
+        const { error: insertError } = await SB.from('user_documents').insert({ user_id:me.id, doc_type:type, file_url:path, file_name:file.name });
+        if (insertError) throw insertError;
       }
       toast(`✅ ${type.charAt(0).toUpperCase()+type.slice(1)} uploaded!`,'success');
     } catch(e) { toast('Upload failed: ' + e.message,'error'); }
@@ -5033,7 +4983,8 @@ async function submitSupportTicket() {
   const m=$('support-msg')?.value?.trim(); if(!m) { toast('Please describe your issue.','error'); return; }
   if (!requireSB() || !me) { toast('Sign in to submit a ticket.','error'); return; }
   try {
-    await SB.from('support_tickets').insert({ user_id:me.id, message:m, status:'open', created_at:new Date().toISOString() });
+    const { error } = await SB.from('support_tickets').insert({ user_id:me.id, message:m, status:'open' });
+    if (error) throw error;
     toast('Ticket created! We respond within 24h.','success');
     const e=$('support-msg'); if(e) e.value='';
   } catch(e) { toast(e.message,'error'); }
@@ -5389,7 +5340,7 @@ async function loadNotifications() {
   if (!list || !SB || !me) return;
   try {
     const { data } = await SB.from('notifications')
-      .select('*').eq('user_id', me.id)
+      .select('*').in('user_id', profile?.role==='admin' ? [me.id,'admin'] : [me.id])
       .order('created_at',{ascending:false}).limit(10);
     if (!data?.length) {
       list.innerHTML = '<div style="padding:16px;text-align:center;font-size:12px;color:var(--text-3)">No notifications yet</div>';
@@ -5401,7 +5352,7 @@ async function loadNotifications() {
         <div style="font-size:11px;color:var(--text-3);line-height:1.5">${esc(n.message||'')}</div>
       </div>`).join('');
     // Mark as read
-    SB.from('notifications').update({read:true}).eq('user_id',me.id).eq('read',false).then(()=>{});
+    SB.from('notifications').update({read:true}).in('user_id',profile?.role==='admin' ? [me.id,'admin'] : [me.id]).eq('read',false).then(()=>{});
   } catch(e) {}
 }
 
