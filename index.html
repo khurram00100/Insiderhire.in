@@ -3026,7 +3026,7 @@ async function onSession(sess) {
       if (error.code === 'PGRST116') {
         // Row not found — create profile from auth metadata
         const meta = sess.user.user_metadata || {};
-        const role = meta.role || 'fresher';
+        const role = meta.role === 'referrer' ? 'referrer' : 'fresher';
         await SB.from('profiles').upsert({
           id:    me.id,
           email: me.email,
@@ -3048,10 +3048,23 @@ async function onSession(sess) {
       id:    me.id,
       email: me.email,
       full_name: meta.full_name || me.email?.split('@')[0] || '',
-      role:  meta.role || 'fresher',
+      role:  meta.role === 'referrer' ? 'referrer' : 'fresher',
       signup_fee_paid: false,
       is_verified: false,
     };
+  }
+
+  // Only server-managed app metadata can authorize the admin interface.
+  // getUser validates the session with Auth instead of trusting editable profile data.
+  const { data: authData, error: authError } = await SB.auth.getUser();
+  if (authError || !authData?.user || authData.user.id !== me.id) {
+    profile = null;
+    toast('Session could not be verified. Please sign in again.', 'error');
+    return;
+  }
+  if (profile) {
+    if (authData.user.app_metadata?.role === 'admin') profile.role = 'admin';
+    else if (profile.role === 'admin') profile.role = 'fresher';
   }
 
   // Load unlocked refs for this user
@@ -4758,7 +4771,7 @@ async function saveProfile() {
       if (_gd?.length) { updates.lat=parseFloat(_gd[0].lat); updates.lng=parseFloat(_gd[0].lon); }
     } catch(e) {}
   }
-  const { error } = await SB.from('profiles').upsert(updates);
+  const { error } = await SB.from('profiles').update(updates).eq('id', me.id).select('id').single();
   if (error) { toast(error.message,'error'); return; }
   profile={ ...profile, ...updates }; fillUI(); toast('Profile saved! ✓','success');
 }
@@ -4811,7 +4824,7 @@ async function saveReferrerProfile() {
       }
     } catch(e) { /* geocoding optional */ }
   }
-  const { error } = await SB.from('profiles').upsert(updates);
+  const { error } = await SB.from('profiles').update(updates).eq('id', me.id).select('id').single();
   if (error) { toast(error.message,'error'); return; }
   profile={ ...profile, ...updates };
   toast('Profile updated! ✓','success');
@@ -4858,7 +4871,7 @@ async function saveFullProfile() {
       if (_gd?.length) { updates.lat=parseFloat(_gd[0].lat); updates.lng=parseFloat(_gd[0].lon); }
     } catch(e) {}
   }
-  const { error } = await SB.from('profiles').upsert(updates);
+  const { error } = await SB.from('profiles').update(updates).eq('id', me.id).select('id').single();
   if (error) { toast(error.message,'error'); return; }
   profile={ ...profile, ...updates }; fillUI(); loadFullFresherProfile();
   toast('Profile saved! ✓','success');
