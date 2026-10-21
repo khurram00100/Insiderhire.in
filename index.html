@@ -598,7 +598,7 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
 <div class="toast-area" id="toast-area"></div>
 
 <!-- CHATBOT FAB -->
-<div id="chatbot-fab" style="position:fixed;bottom:28px;right:28px;z-index:999;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#1e3a8a,#2563EB);display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;box-shadow:0 4px 20px rgba(37,99,235,0.4);transition:transform .2s ease" onclick="openModal('chatbot-modal')" title="Chat with InsiderBot">🤖</div>
+<div id="chatbot-fab" style="position:fixed;bottom:28px;right:28px;z-index:999;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#1e3a8a,#2563EB);display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;box-shadow:0 4px 20px rgba(37,99,235,0.4);transition:transform .2s ease" onclick="openModal('chatbot-modal')" title="InsiderHire help">?</div>
 
 <nav class="nav" id="main-nav">
   <div class="nav-logo" onclick="nav('landing')">
@@ -849,15 +849,15 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
   <div class="modal" style="max-width:420px;padding:0;overflow:hidden">
     <div style="padding:18px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between">
       <div style="display:flex;align-items:center;gap:10px">
-        <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#1e3a8a,#2563EB);display:flex;align-items:center;justify-content:center;font-size:16px">🤖</div>
-        <div><div style="font-size:13px;font-weight:600">InsiderBot</div><div style="font-size:11px;color:var(--text-3)">● Online · Instant replies</div></div>
+        <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#1e3a8a,#2563EB);display:flex;align-items:center;justify-content:center;font-size:16px">?</div>
+        <div><div style="font-size:13px;font-weight:600">InsiderHire Help</div><div style="font-size:11px;color:var(--text-3)">Built-in help guide</div></div>
       </div>
       <span style="cursor:pointer;font-size:18px;color:var(--text-3)" onclick="closeModal('chatbot-modal')">✕</span>
     </div>
     <div id="chatbot-msgs" style="height:300px;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px">
       <div class="msg recv">
-        <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#1e3a8a,#2563EB);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0">🤖</div>
-        <div><div class="msg-bubble">Hi! I'm InsiderBot 👋 I help international students find hotel, kitchen, warehouse, retail, security, delivery, cleaning and labour jobs through verified local referrers. What do you need?</div></div>
+        <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#1e3a8a,#2563EB);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0">?</div>
+        <div><div class="msg-bubble">Hi! I'm InsiderHire Help 👋 I help international students find hotel, kitchen, warehouse, retail, security, delivery, cleaning and labour jobs through verified local referrers. What do you need?</div></div>
       </div>
       <div style="display:flex;gap:6px;flex-wrap:wrap" id="chatbot-quick-btns">
         <button class="btn btn-ghost btn-sm" onclick="chatbotSend('How does escrow work?')">How escrow works</button>
@@ -915,7 +915,7 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
         </button>
       </div>
       <div style="display:none;gap:12px;flex-wrap:wrap;margin-bottom:36px" id="hero-loggedin-cta">
-        <button onclick="nav('fresher')" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:10px;background:#2563EB;color:#fff;font-size:15px;font-weight:700;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(37,99,235,0.4)">
+        <button onclick="goDashboard()" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:10px;background:#2563EB;color:#fff;font-size:15px;font-weight:700;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(37,99,235,0.4)">
           Go to Dashboard →
         </button>
       </div>
@@ -998,20 +998,20 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
   <div id="hero-stats-bar" style="position:absolute;bottom:0;left:0;right:0;background:rgba(255,255,255,0.03);border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:center">
     <div style="max-width:1200px;width:100%;display:grid;grid-template-columns:repeat(4,1fr)">
       <div class="hero-stat" style="padding:16px 24px;text-align:center;border-right:1px solid rgba(255,255,255,0.06)">
-        <div class="hero-stat-val" data-count="50247" style="font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.02em">0</div>
-        <div class="hero-stat-lbl" style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px">Active users</div>
+        <div class="hero-stat-val" data-count="8" style="font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.02em">0</div>
+        <div class="hero-stat-lbl" style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px">Job categories</div>
       </div>
       <div class="hero-stat" style="padding:16px 24px;text-align:center;border-right:1px solid rgba(255,255,255,0.06)">
-        <div class="hero-stat-val" data-count="8542" style="font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.02em">0</div>
-        <div class="hero-stat-lbl" style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px">Verified insiders</div>
+        <div class="hero-stat-val" data-count="2" style="font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.02em">0</div>
+        <div class="hero-stat-lbl" style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px">Account types</div>
       </div>
       <div class="hero-stat" style="padding:16px 24px;text-align:center;border-right:1px solid rgba(255,255,255,0.06)">
-        <div class="hero-stat-val" data-count="12847" style="font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.02em">0</div>
-        <div class="hero-stat-lbl" style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px">Jobs landed</div>
+        <div class="hero-stat-val" data-count="5" style="font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.02em">0</div>
+        <div class="hero-stat-lbl" style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px">Requests per week</div>
       </div>
       <div class="hero-stat" style="padding:16px 24px;text-align:center">
-        <div class="hero-stat-val" style="font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.02em">98.2%</div>
-        <div class="hero-stat-lbl" style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px">Satisfaction rate</div>
+        <div class="hero-stat-val" style="font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.02em">Private</div>
+        <div class="hero-stat-lbl" style="font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px">Document storage</div>
       </div>
     </div>
   </div>
@@ -1050,9 +1050,9 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
   <div class="container">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-bottom:0">
       <div>
-        <div class="section-label reveal">Top insiders</div>
-        <h2 class="section-title reveal delay-1">Meet your<br><em>referrers</em></h2>
-        <p class="section-sub reveal delay-2" style="margin-top:8px">Sign up to browse 8,500+ verified referrers by job type &amp; distance. Full name, phone, email &amp; workplace unlock only after your $500 escrow deposit.</p>
+        <div class="section-label reveal">Job categories</div>
+        <h2 class="section-title reveal delay-1">Explore job<br><em>categories</em></h2>
+        <p class="section-sub reveal delay-2" style="margin-top:8px">Sign up to browse verified referrers by job type &amp; distance. Full name, phone, email &amp; workplace unlock only after your $500 escrow deposit.</p>
       </div>
       <button class="btn btn-outline reveal" id="browse-cta-btn" onclick="me ? nav('fresher') : openModal('signup-modal')">Sign up to browse →</button>
     </div>
@@ -1061,7 +1061,7 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
       <div style="padding:28px;background:var(--surface)">
         <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px">
           <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#1e3a8a,#2563EB);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;border:1px solid var(--border-md)">🏨</div>
-          <span class="badge badge-verified">✓ Verified</span>
+          <span class="badge badge-verified">Job category</span>
         </div>
         <div style="font-size:15px;font-weight:600;margin-bottom:4px">Hotel Staff Referrer</div>
         <div style="font-size:13px;color:var(--text-2);margin-bottom:14px">🇬🇧 UK · Front Desk · Hospitality</div>
@@ -1070,7 +1070,7 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
       <div style="padding:28px;background:var(--surface)">
         <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px">
           <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#0c4a6e,#0284c7);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;border:1px solid var(--border-md)">🍳</div>
-          <span class="badge badge-verified">✓ Verified</span>
+          <span class="badge badge-verified">Job category</span>
         </div>
         <div style="font-size:15px;font-weight:600;margin-bottom:4px">Kitchen Staff Referrer</div>
         <div style="font-size:13px;color:var(--text-2);margin-bottom:14px">🇩🇪 Germany · Food Prep · Kitchen</div>
@@ -1079,7 +1079,7 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
       <div style="padding:28px;background:var(--surface)">
         <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px">
           <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#134e4a,#0f766e);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;border:1px solid var(--border-md)">📦</div>
-          <span class="badge badge-verified">✓ Verified</span>
+          <span class="badge badge-verified">Job category</span>
         </div>
         <div style="font-size:15px;font-weight:600;margin-bottom:4px">Warehouse Worker Referrer</div>
         <div style="font-size:13px;color:var(--text-2);margin-bottom:14px">🇦🇺 Australia · Forklift · Packing</div>
@@ -1088,7 +1088,7 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
       <div style="padding:28px;background:var(--surface)">
         <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px">
           <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#1e1b4b,#4338ca);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;border:1px solid var(--border-md)">🛒</div>
-          <span class="badge badge-verified">✓ Verified</span>
+          <span class="badge badge-verified">Job category</span>
         </div>
         <div style="font-size:15px;font-weight:600;margin-bottom:4px">Retail Assistant Referrer</div>
         <div style="font-size:13px;color:var(--text-2);margin-bottom:14px">🇸🇪 Sweden · POS Systems · Retail</div>
@@ -1097,7 +1097,7 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
       <div style="padding:28px;background:var(--surface)">
         <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px">
           <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#1a1a1a,#374151);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;border:1px solid var(--border-md)">🔒</div>
-          <span class="badge badge-verified">✓ Verified</span>
+          <span class="badge badge-verified">Job category</span>
         </div>
         <div style="font-size:15px;font-weight:600;margin-bottom:4px">Security Guard Referrer</div>
         <div style="font-size:13px;color:var(--text-2);margin-bottom:14px">🇺🇸 USA · SIA Licence · CCTV</div>
@@ -1106,7 +1106,7 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
       <div style="padding:28px;background:var(--surface)">
         <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px">
           <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#3b0764,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;border:1px solid var(--border-md)">🚴</div>
-          <span class="badge badge-verified">✓ Verified</span>
+          <span class="badge badge-verified">Job category</span>
         </div>
         <div style="font-size:15px;font-weight:600;margin-bottom:4px">Delivery Rider Referrer</div>
         <div style="font-size:13px;color:var(--text-2);margin-bottom:14px">🇦🇺 Australia · Delivery · E-Bike</div>
@@ -1115,7 +1115,7 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
     </div>
     <!-- CTA below the preview cards -->
     <div style="text-align:center;margin-top:32px;padding:28px;background:var(--surface);border:1px solid var(--border-md);border-radius:var(--r-2xl)">
-      <div style="font-size:14px;color:var(--text-2);margin-bottom:16px">Sign up as a Job Seeker · Pay ₹ equivalent of $10 platform fee · Browse 8,500+ verified referrers with masked info · Deposit $500 escrow to unlock full details</div>
+      <div style="font-size:14px;color:var(--text-2);margin-bottom:16px">Sign up as a Job Seeker · Pay ₹ equivalent of $10 platform fee · Browse verified referrers with masked info · Deposit $500 escrow to unlock full details</div>
       <div id="ref-guest-btn">
         <button class="btn btn-white btn-lg" onclick="openModal('signup-modal')">Get started · sign up free →</button>
       </div>
@@ -1137,7 +1137,7 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
       <div class="flow-step"><div class="flow-arrow">→</div><div class="flow-icon-wrap">💳</div><div class="flow-title">Pay $510</div><div class="flow-desc">$500 referral + $10 platform fee via Razorpay</div></div>
       <div class="flow-step"><div class="flow-arrow">→</div><div class="flow-icon-wrap">🏦</div><div class="flow-title">Escrow holds</div><div class="flow-desc">Funds locked. Neither party can access them</div></div>
       <div class="flow-step"><div class="flow-arrow">→</div><div class="flow-icon-wrap">🔓</div><div class="flow-title">Details revealed</div><div class="flow-desc">Full name, phone, email &amp; workplace unlocked</div></div>
-      <div class="flow-step"><div class="flow-arrow">→</div><div class="flow-icon-wrap">💬</div><div class="flow-title">Chat unlocks</div><div class="flow-desc">Encrypted messaging + file sharing begins</div></div>
+      <div class="flow-step"><div class="flow-arrow">→</div><div class="flow-icon-wrap">💬</div><div class="flow-title">Chat unlocks</div><div class="flow-desc">Private messaging + file sharing begins</div></div>
       <div class="flow-step"><div class="flow-arrow">→</div><div class="flow-icon-wrap">📄</div><div class="flow-title">Job confirmed</div><div class="flow-desc">Both parties upload payslip as proof</div></div>
       <div class="flow-step"><div class="flow-icon-wrap" style="background:rgba(255,255,255,0.06);border-color:var(--border-strong)">💰</div><div class="flow-title">Escrow releases</div><div class="flow-desc">Referrer $400 · Platform $100 commission</div></div>
     </div>
@@ -1152,11 +1152,11 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
     <h2 class="section-title reveal delay-1">Security built<br>into <em>everything</em></h2>
     <div class="trust-grid reveal delay-2">
       <div class="trust-item"><div class="trust-num">01</div><div class="trust-icon">🔐</div><div class="trust-title">Razorpay-powered escrow</div><div class="trust-desc">Bank-grade payment security with PCI-DSS compliance. Your funds are in a regulated Razorpay escrow, not our bank account.</div></div>
-      <div class="trust-item"><div class="trust-num">02</div><div class="trust-icon">✅</div><div class="trust-title">Manual verification</div><div class="trust-desc">Every referrer is manually verified · work email, company badge, and government ID before they go live.</div></div>
-      <div class="trust-item"><div class="trust-num">03</div><div class="trust-icon">🔒</div><div class="trust-title">Info masking until payment</div><div class="trust-desc">Referrer's name, phone, email and workplace are masked until you confirm escrow. No risk of identity exposure.</div></div>
+      <div class="trust-item"><div class="trust-num">02</div><div class="trust-icon">✅</div><div class="trust-title">Manual verification</div><div class="trust-desc">Referrer accounts require administrator approval before appearing in the verified directory. Documents are reviewed manually.</div></div>
+      <div class="trust-item"><div class="trust-num">03</div><div class="trust-icon">🔒</div><div class="trust-title">Info masking until payment</div><div class="trust-desc">Referrer's name, phone, email and workplace are masked until you confirm escrow. Only limited directory details are shown before a verified connection.</div></div>
       <div class="trust-item"><div class="trust-num">04</div><div class="trust-icon">📄</div><div class="trust-title">Payslip verification</div><div class="trust-desc">Both parties upload first payslip. Admin cross-verifies both before releasing any escrow funds.</div></div>
       <div class="trust-item"><div class="trust-num">05</div><div class="trust-icon">💸</div><div class="trust-title">14-day auto-refund</div><div class="trust-desc">If no referral is submitted within 14 days, $485 is automatically refunded to your Razorpay payment method.</div></div>
-      <div class="trust-item"><div class="trust-num">06</div><div class="trust-icon">🆘</div><div class="trust-title">24/7 dispute resolution</div><div class="trust-desc">Admin team can freeze accounts, hold payments and resolve disputes with full chat log access any time.</div></div>
+      <div class="trust-item"><div class="trust-num">06</div><div class="trust-icon">🆘</div><div class="trust-title">Support ticket review</div><div class="trust-desc">Admin team can freeze accounts, hold payments and resolve disputes with full chat log access any time.</div></div>
     </div>
   </div>
 </section>
@@ -1165,12 +1165,12 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
 
 <section class="section" style="background:var(--bg)">
   <div class="container">
-    <div class="section-label reveal">Stories</div>
-    <h2 class="section-title reveal delay-1">Real students,<br><em>real results</em></h2>
+    <div class="section-label reveal">For our community</div>
+    <h2 class="section-title reveal delay-1">Built for students,<br><em>powered by insiders</em></h2>
     <div class="testimonials-grid reveal delay-2">
-      <div class="testi"><div class="testi-stars">★★★★★</div><div class="testi-quote">"Got my hotel staff job in London within 3 weeks. The escrow system gave me complete peace of mind · I knew my money was safe the entire time."</div><div class="testi-author"><div class="testi-avatar" style="background:#1e3a8a">PK</div><div><div class="testi-name">Priya Krishnan</div><div class="testi-role">Hotel Staff · London 🇬🇧</div></div></div></div>
-      <div class="testi"><div class="testi-stars">★★★★★</div><div class="testi-quote">"As an international student from India, finding warehouse work in Germany felt impossible. InsiderHire made it happen · got the referral and started within a month."</div><div class="testi-author"><div class="testi-avatar" style="background:#134e4a">RM</div><div><div class="testi-name">Ravi Mehta</div><div class="testi-role">Warehouse Worker · Berlin 🇩🇪</div></div></div></div>
-      <div class="testi"><div class="testi-stars">★★★★★</div><div class="testi-quote">"I've earned over $4,200 as a referrer and helped 6 students find kitchen jobs in the UK. Payments always arrive on time, platform is clean and transparent."</div><div class="testi-author"><div class="testi-avatar" style="background:#1e1b4b">AN</div><div><div class="testi-name">Aisha Nwosu</div><div class="testi-role">Referrer · Kitchen Staff 🇬🇧 · $4.2K earned</div></div></div></div>
+      <div class="testi"><div class="testi-stars">Students</div><div class="testi-quote">Find local workers by job category and distance. Send a request and discuss the opportunity using the platform.</div><div class="testi-author"><div class="testi-avatar" style="background:#1e3a8a">JS</div><div><div class="testi-name">Job seekers</div><div class="testi-role">Discover local opportunities</div></div></div></div>
+      <div class="testi"><div class="testi-stars">Referrers</div><div class="testi-quote">Share relevant experience and submit your documents for administrator review before appearing in the verified directory.</div><div class="testi-author"><div class="testi-avatar" style="background:#134e4a">RF</div><div><div class="testi-name">Referrers</div><div class="testi-role">Build a verified profile</div></div></div></div>
+      <div class="testi"><div class="testi-stars">Privacy</div><div class="testi-quote">Your documents stay in private storage. Other users cannot browse your bank details or personal identity documents.</div><div class="testi-author"><div class="testi-avatar" style="background:#1e1b4b">PR</div><div><div class="testi-name">Private documents</div><div class="testi-role">Access is restricted</div></div></div></div>
     </div>
   </div>
 </section>
@@ -1181,12 +1181,12 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
   <div class="container" style="text-align:center">
     <div class="section-label reveal" style="justify-content:center">Pricing</div>
     <h2 class="section-title reveal delay-1">Simple,<br><em>transparent</em> pricing</h2>
-    <p class="section-sub reveal delay-2" style="margin:0 auto">Pay only when you succeed. Zero hidden fees.</p>
+    <p class="section-sub reveal delay-2" style="margin:0 auto">Payments are currently disabled. Review the published fees before activation.</p>
     <div class="pricing-grid">
       <div class="price-card reveal">
         <div class="price-name">Access Fee</div><div class="price-amount">$10</div><div class="price-period">per 60 days · non-refundable · 5 requests/week</div>
         <div class="price-features">
-          <div class="price-feature"><span class="price-feature-check">✓</span> Browse all 8,500+ insiders</div>
+          <div class="price-feature"><span class="price-feature-check">✓</span> Browse verified insiders</div>
           <div class="price-feature"><span class="price-feature-check">✓</span> Send up to 5 requests/week</div>
           <div class="price-feature"><span class="price-feature-check">✓</span> View ratings &amp; reviews</div>
           <div class="price-feature"><span class="price-feature-check">✓</span> Valid for 60 days</div>
@@ -1201,7 +1201,7 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
         <div class="price-features">
           <div class="price-feature"><span class="price-feature-check">✓</span> Everything in access</div>
           <div class="price-feature"><span class="price-feature-check">✓</span> Full referrer contact details</div>
-          <div class="price-feature"><span class="price-feature-check">✓</span> Encrypted chat + file share</div>
+          <div class="price-feature"><span class="price-feature-check">✓</span> Private chat + file share</div>
           <div class="price-feature"><span class="price-feature-check">✓</span> Razorpay escrow protection</div>
           <div class="price-feature"><span class="price-feature-check">✓</span> $485 refund if no referral</div>
           <div class="price-feature"><span class="price-feature-check">✓</span> Admin dispute resolution</div>
@@ -1220,13 +1220,13 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
 <section class="section" style="background:var(--bg)">
   <div class="container" style="text-align:center">
     <h2 class="section-title reveal" style="font-size:clamp(48px,7vw,80px)">Your next<br>chapter<br><em>starts here</em></h2>
-    <p class="section-sub reveal delay-2" style="margin:0 auto 40px">Join 50,000+ international students. Refer. Connect. Get hired.</p>
+    <p class="section-sub reveal delay-2" style="margin:0 auto 40px">Find your next opportunity through insider referrals. Refer. Connect. Get hired.</p>
     <div id="bottom-guest-cta" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap" class="reveal delay-3">
       <button class="btn btn-white btn-xl" onclick="openModal('signup-modal')">Create account →</button>
       <button class="btn btn-outline btn-xl" onclick="openModal('login-modal')">Sign in</button>
     </div>
     <div id="bottom-loggedin-cta" style="display:none;gap:12px;justify-content:center;flex-wrap:wrap">
-      <button class="btn btn-white btn-xl" onclick="nav('fresher')">Go to Dashboard →</button>
+      <button class="btn btn-white btn-xl" onclick="goDashboard()">Go to Dashboard →</button>
     </div>
     <div style="margin-top:24px;display:flex;gap:24px;justify-content:center;flex-wrap:wrap;font-size:12px;color:var(--text-3)" class="reveal delay-4">
       <span>🔓 Free to sign up</span>
@@ -1271,8 +1271,8 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
     <div class="footer-bottom">
       <span>© 2025 InsiderHire. All rights reserved.</span>
       <div style="display:flex;align-items:center;gap:16px">
-        <span style="display:flex;align-items:center;gap:5px"><span style="color:#4ade80;font-size:8px">●</span> All systems operational</span>
-        <span>🔒 PCI-DSS</span>
+        <span style="display:flex;align-items:center;gap:5px"><span style="color:#4ade80;font-size:8px">●</span> Payments not enabled</span>
+        <span>🔒 Private storage</span>
         <a href="privacy.html" style="cursor:pointer;color:var(--text-4)">Privacy</a>
         <a href="terms.html" style="cursor:pointer;color:var(--text-4)">Terms</a>
         <a href="refund.html" style="cursor:pointer;color:var(--text-4)">Refunds</a>
@@ -1354,7 +1354,7 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
           <div class="stat-card"><div class="stat-label">Active requests</div><div class="stat-val" id="stat-requests">—</div><div class="stat-change stat-neutral">Loading...</div></div>
           <div class="stat-card"><div class="stat-label">Escrow balance</div><div class="stat-val" id="stat-escrow">$0</div><div class="stat-change stat-neutral">Locked funds</div></div>
           <div class="stat-card"><div class="stat-label">Insiders contacted</div><div class="stat-val">—</div><div class="stat-change stat-neutral">This month</div></div>
-          <div class="stat-card"><div class="stat-label">Profile views</div><div class="stat-val">—</div><div class="stat-change stat-neutral">—</div></div>
+          <div class="stat-card"><div class="stat-label">Profile completion</div><div class="stat-val">—</div><div class="stat-change stat-neutral">—</div></div>
         </div>
         <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:20px">
           <div class="panel">
@@ -1652,7 +1652,7 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
             <div class="panel-header"><div class="panel-title">🔐 Security</div></div>
             <div class="panel-body" style="display:flex;flex-direction:column;gap:8px">
               <button class="btn btn-ghost" style="justify-content:flex-start" onclick="changePasswordFromSettings()">🔑 Change password</button>
-              <button class="btn btn-red" style="justify-content:flex-start" onclick="confirmDeleteAccount()">⚠️ Delete account</button>
+              <button class="btn btn-red" style="justify-content:flex-start" onclick="confirmDeleteAccount()">⚠️ Request account deletion</button>
             </div>
           </div>
           <div class="panel">
@@ -1675,7 +1675,7 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
               <div class="input-group" style="margin-bottom:14px"><label class="input-label">Subject</label><select class="input"><option>Payment / Escrow issue</option><option>Referral dispute</option><option>Account problem</option><option>Report fraud</option><option>Other</option></select></div>
               <div class="input-group" style="margin-bottom:20px"><label class="input-label">Describe your issue</label><textarea class="input" id="support-msg" rows="5" placeholder="Describe your issue in detail..."></textarea></div>
               <button class="btn btn-white" style="width:100%" onclick="submitSupportTicket()">Submit ticket →</button>
-              <div style="margin-top:20px;padding:16px;border-radius:var(--r-xl);border:1px solid var(--border);background:var(--elevated);font-size:13px;color:var(--text-2);line-height:2">📧 insiderhire.org@gmail.com<br>⏱ Response within 24 hours</div>
+              <div style="margin-top:20px;padding:16px;border-radius:var(--r-xl);border:1px solid var(--border);background:var(--elevated);font-size:13px;color:var(--text-2);line-height:2">📧 insiderhire.org@gmail.com<br>⏱ Support tickets are reviewed by the team</div>
             </div>
           </div>
         </div>
@@ -1939,7 +1939,7 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
                 <span id="rv-id" class="badge badge-amber">⏳ Pending</span>
               </div>
               <button class="btn btn-white" style="margin-top:8px" onclick="startKYC()">Start KYC Verification →</button>
-              <p style="font-size:12px;color:var(--text-3);text-align:center">Email insiderhire.org@gmail.com with your work badge photo to complete verification</p>
+              <p style="font-size:12px;color:var(--text-3);text-align:center">Upload employment or identity evidence privately. An administrator reviews your submission.</p>
             </div>
           </div>
         </div>
@@ -1983,7 +1983,7 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
           <div class="admin-metric"><div class="admin-metric-icon">👥</div><div class="admin-metric-val" id="am-users">—</div><div class="admin-metric-lbl">Total users</div></div>
           <div class="admin-metric"><div class="admin-metric-icon">✅</div><div class="admin-metric-val" id="am-referrers">—</div><div class="admin-metric-lbl">Verified insiders</div></div>
           <div class="admin-metric"><div class="admin-metric-icon">💰</div><div class="admin-metric-val" id="am-volume">—</div><div class="admin-metric-lbl">Total escrow volume</div></div>
-          <div class="admin-metric"><div class="admin-metric-icon">📋</div><div class="admin-metric-val" id="am-jobs">—</div><div class="admin-metric-lbl">Jobs confirmed</div></div>
+          <div class="admin-metric"><div class="admin-metric-icon">📋</div><div class="admin-metric-val" id="am-jobs">—</div><div class="admin-metric-lbl">Released referrals</div></div>
           <div class="admin-metric"><div class="admin-metric-icon">⚖️</div><div class="admin-metric-val" id="am-disputes" style="color:#f87171">—</div><div class="admin-metric-lbl">Open disputes</div></div>
           <div class="admin-metric"><div class="admin-metric-icon">💵</div><div class="admin-metric-val" id="am-revenue">—</div><div class="admin-metric-lbl">Platform revenue</div></div>
         </div>
@@ -2001,9 +2001,9 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
             <div class="panel-header"><div class="panel-title">⚡ System health</div></div>
             <div class="panel-body" style="display:flex;flex-direction:column;gap:8px">
               <div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-2)">Supabase</span><span style="color:#4ade80" id="health-supa">● Online</span></div>
-              <div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-2)">Razorpay</span><span style="color:#4ade80">● Operational</span></div>
-              <div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-2)">Google Maps</span><span style="color:#4ade80" id="health-maps">● Online</span></div>
-              <div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-2)">Escrow system</span><span style="color:#4ade80">● Active</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-2)">Razorpay</span><span style="color:#4ade80">Not enabled</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-2)">Street map library</span><span style="color:#4ade80" id="health-maps">● Online</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:var(--text-2)">Escrow system</span><span style="color:#4ade80">Not enabled</span></div>
             </div>
           </div>
         </div>
@@ -2570,20 +2570,20 @@ input,select,textarea{font-size:16px!important} /* prevent iOS zoom on input foc
     <!-- Stats row -->
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:24px;overflow:hidden;margin-bottom:40px">
       <div style="padding:24px;background:var(--surface);text-align:center">
-        <div style="font-family:var(--font-serif);font-size:32px;font-weight:400;color:var(--white);line-height:1;margin-bottom:6px">50K+</div>
-        <div style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em">Students</div>
+        <div style="font-family:var(--font-serif);font-size:32px;font-weight:400;color:var(--white);line-height:1;margin-bottom:6px">8</div>
+        <div style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em">Job categories</div>
       </div>
       <div style="padding:24px;background:var(--surface);text-align:center">
-        <div style="font-family:var(--font-serif);font-size:32px;font-weight:400;color:var(--white);line-height:1;margin-bottom:6px">8.5K+</div>
-        <div style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em">Referrers</div>
+        <div style="font-family:var(--font-serif);font-size:32px;font-weight:400;color:var(--white);line-height:1;margin-bottom:6px">2</div>
+        <div style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em">Account types</div>
       </div>
       <div style="padding:24px;background:var(--surface);text-align:center">
-        <div style="font-family:var(--font-serif);font-size:32px;font-weight:400;color:var(--white);line-height:1;margin-bottom:6px">12K+</div>
+        <div style="font-family:var(--font-serif);font-size:32px;font-weight:400;color:var(--white);line-height:1;margin-bottom:6px">3</div>
         <div style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em">Jobs Landed</div>
       </div>
       <div style="padding:24px;background:var(--surface);text-align:center">
         <div style="font-family:var(--font-serif);font-size:32px;font-weight:400;color:var(--white);line-height:1;margin-bottom:6px">4</div>
-        <div style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em">Countries</div>
+        <div style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em">Core steps</div>
       </div>
     </div>
 
@@ -2825,13 +2825,19 @@ document.addEventListener('keydown', e => {
 function nav(p) {
   const policyPages={privacy:'privacy.html',terms:'terms.html',refund:'refund.html'};
   if(policyPages[p]){window.location.assign(policyPages[p]);return;}
+  if (['admin','referrer','fresher'].includes(p)) {
+    if (!me || !profile) { openModal('login-modal'); return; }
+    if (profile.role === 'suspended') { toast('Your account is suspended.', 'error'); return; }
+    if (p==='admin' && profile.role!=='admin') p=profile.role==='referrer' ? 'referrer' : 'fresher';
+    if (p==='referrer' && !['referrer','admin'].includes(profile.role)) p='fresher';
+  }
   closeMobileMenu();
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
   page = p;
   const map = {landing:'page-landing',fresher:'page-fresher-dash',referrer:'page-referrer-dash',admin:'page-admin-dash',privacy:'page-privacy',terms:'page-terms',refund:'page-refund',about:'page-about'};
   const el = $(map[p]); if(el){el.classList.add('active');window.scrollTo(0,0);}
   updateNav();
-  if(p==='fresher')  { loadWallet(); loadRequests(); loadBrowse(); }
+  if(p==='fresher')  { loadWallet(); loadRequests(); loadBrowse(); ihLoadFresherOverview(); }
   if(p==='referrer') { loadRefRequests(); loadRefEarnings(); }
   if(p==='admin')    { loadAdminData(); }
   if(p==='landing')  {
@@ -2899,7 +2905,7 @@ function dashNav(p) {
   if(p==='dash-requests') loadRequests();
   if(p==='dash-txns')     loadTxns();
   if(p==='dash-profile')  loadFullFresherProfile();
-  if(p==='dash-overview') updateAccessStatusWidget();
+  if(p==='dash-overview') { updateAccessStatusWidget(); ihLoadFresherOverview(); }
   // Update mobile bottom nav active state
   document.querySelectorAll('.mobile-bottom-nav button').forEach(b=>b.classList.remove('mob-active'));
   const mobKey = p.replace('dash-','');
@@ -2917,11 +2923,14 @@ function refNav(p) {
   if(p==='ref-earnings') loadRefEarnings();
   if(p==='ref-chat')     loadRefChat();
   if(p==='ref-profile')  loadFullReferrerProfile();
+  if(p==='ref-overview') { loadRefRequests(); loadRefEarnings(); }
 }
 
 function adminNav(p) {
+  document.querySelectorAll('#page-admin-dash .dash-nav-item').forEach(item => item.classList.toggle('active', item.getAttribute('onclick')?.includes(p)));
   document.querySelectorAll('#page-admin-dash .dash-sub-page').forEach(x=>x.classList.remove('active'));
   const el=$('sp-'+p); if(el) el.classList.add('active');
+  if(p==='admin-overview') loadAdminData();
   if(p==='admin-users')    loadAdminUsers();
   if(p==='admin-verify')   loadAdminVerify();
   if(p==='admin-disputes') loadAdminDisputes();
@@ -2945,16 +2954,7 @@ async function initAuth() {
     const hashParams = new URLSearchParams(window.location.hash.replace('#',''));
     const queryParams = new URLSearchParams(window.location.search);
     const isRecovery = hashParams.get('type') === 'recovery' ||
-                       queryParams.get('type') === 'recovery' ||
-                       hashParams.get('access_token');
-
-    const { data: { session } } = await SB.auth.getSession();
-    if (session) await onSession(session);
-
-    // If it's a recovery session, show change password modal
-    if (isRecovery || (session && queryParams.get('type') === 'recovery')) {
-      setTimeout(() => openChangePasswordModal(), 500);
-    }
+                       queryParams.get('type') === 'recovery';
 
     SB.auth.onAuthStateChange((ev, sess) => {
       if (ev==='SIGNED_IN' && sess) setTimeout(() => onSession(sess).catch(e => toast(e.message, 'error')), 0);
@@ -2963,12 +2963,21 @@ async function initAuth() {
         setTimeout(() => openChangePasswordModal(), 300);
       }
       if (ev==='SIGNED_OUT') {
+        ++ihSessionGeneration; ihSessionTask=null; ihSessionActor=null;
         me=null; profile=null; unlockedRefs.clear(); preChatData={};
         clearInterval(ihPrechatTimer);
         if (ihMessageChannel) { SB.removeChannel(ihMessageChannel); ihMessageChannel=null; }
-        nav('landing'); updateNav();
+        ihClearPrivateUI(); nav('landing'); updateNav();
       }
     });
+    const { data: { session } } = await SB.auth.getSession();
+    if (session) await onSession(session);
+
+    // If it's a recovery session, show change password modal
+    if (session && isRecovery) {
+      setTimeout(() => openChangePasswordModal(), 500);
+    }
+
   } catch(e) { console.warn('Auth init:', e.message); }
 }
 
@@ -3021,52 +3030,44 @@ async function submitNewPassword() {
   }
 }
 
-async function onSession(sess) {
-  me = sess.user;
-  profile = null;
-  try {
-    const { data, error } = await SB.rpc('ih_my_profile');
-    if (error || !data) throw error || new Error('Profile is unavailable.');
-    profile = data;
-  } catch (e) {
-    toast('Could not load your account: ' + e.message, 'error');
-    updateNav();
-    return;
+let ihSessionTask = null, ihSessionActor = null, ihSessionGeneration = 0;
+async function onSession(sess, {redirect = false} = {}) {
+  const actor = sess?.user?.id;
+  if (!actor) return;
+  if (!ihSessionTask || ihSessionActor !== actor) {
+    ihSessionActor = actor;
+    const generation = ++ihSessionGeneration;
+    me = sess.user;
+    ihSessionTask = (async () => {
+      const {data, error} = await SB.rpc('ih_my_profile');
+      if (generation !== ihSessionGeneration || me?.id !== actor) return;
+      if (error || !data) { profile = null; throw error || new Error('Profile is unavailable.'); }
+      profile = data;
+      try { await loadUnlockedRefs(); } catch (e) { toast(e.message, 'error'); }
+      if (generation !== ihSessionGeneration || me?.id !== actor) return;
+      fillUI(); updateNav();
+      if (profile.role === 'suspended') toast('Your account is suspended. Contact support.', 'error');
+    })();
   }
-
-  // Load unlocked refs for this user
-  try { await loadUnlockedRefs(); } catch (e) { toast(e.message, 'error'); }
-  fillUI();
-  updateNav();
-  if (page==='landing') {
-    const r = profile?.role || 'fresher';
-    if (r==='admin')    nav('admin');
-    else if (r==='referrer') {
-      nav('referrer');
-      // Welcome toast for newly confirmed referrers
-      if (me?.confirmed_at && new Date(me.confirmed_at) > new Date(Date.now()-30000)) {
-        toast('✅ Email confirmed! Welcome to InsiderHire as a Referrer 🎉','success');
-      }
-    }
-    else if (r==='suspended') {
-      toast('Your account has been suspended. Contact insiderhire.org@gmail.com','error');
-    }
-    else {
-      // Fresher — go straight to dashboard, no fee gate at login
-      const daysLeft = feeExpiresInDays();
-      if (isFeeValid() && daysLeft <= 7) {
-        toast(`⚠️ Access expires in ${daysLeft} day${daysLeft===1?'':'s'}. Renew soon to keep sending requests.`, 'info');
-      }
-      nav('fresher');
-    }
-  }
+  const task = ihSessionTask;
+  try { await task; }
+  catch (e) { toast('Could not load your account: ' + e.message, 'error'); updateNav(); }
+  finally { if (ihSessionTask === task) ihSessionTask = null; }
+  if (redirect && me?.id === actor && profile && profile.role !== 'suspended') goDashboard();
+}
+function goDashboard() {
+  if (!me || !profile) { openModal('login-modal'); return; }
+  if (profile.role === 'suspended') { toast('Your account is suspended.', 'error'); return; }
+  nav(profile.role === 'admin' ? 'admin' : profile.role === 'referrer' ? 'referrer' : 'fresher');
 }
 
 async function loadUnlockedRefs() {
   unlockedRefs.clear();
   if (!SB || !me) return;
+  const actor=me.id;
   const { data, error } = await SB.rpc('ih_connected_ids');
   if (error) throw error;
+  if(me?.id!==actor) return;
   (data || []).forEach(id => unlockedRefs.add(id));
 }
 
@@ -3086,7 +3087,15 @@ function fillUI() {
   // Dashboard avatar
   const da = $('dash-av');
   if(da){ da.textContent=av; da.style.background='linear-gradient(135deg,#1e3a8a,#2563EB)'; da.style.color='var(--blue-light)'; }
-  safe('dash-name', name);
+  safe('dash-name', name); safe('ref-dash-name', name); safe('ref-dash-av', av);
+  const refLabel=$('ref-dash-name')?.parentElement?.querySelector('div:nth-child(2)');
+  if(refLabel) refLabel.textContent=profile?.is_verified ? 'Verified referrer' : 'Verification pending';
+  const verification = {'rv-email':!!me?.email_confirmed_at,'rv-company':!!profile?.company_verified,'rv-id':!!profile?.id_verified,'ref-v-badge':!!profile?.is_verified};
+  Object.entries(verification).forEach(([id,done]) => {
+    const el=$(id); if(!el) return;
+    el.textContent=done ? (id==='ref-v-badge' ? '✓ Verified' : '✓ Done') : 'Pending';
+    el.className='badge ' + (done ? 'badge-green' : 'badge-amber');
+  });
   // Re-run nav updates so landing page CTAs update if still on landing
   if (page === 'landing') updateNav();
 }
@@ -3155,6 +3164,8 @@ async function doLogin() {
       }
       return;
     }
+    await onSession(data.session, {redirect:true});
+    if (!profile) return;
     closeModal('login-modal');
     toast('Welcome back! 👋','success');
   } catch(e) { if(errEl) errEl.textContent = e.message; }
@@ -3211,51 +3222,40 @@ async function doSignup() {
   finally { if(btn){ btn.classList.remove('btn-loading'); btn.textContent='Create account →'; } }
 }
 
-async function doGoogleAuth() {
-  if (!requireSB()) return;
-  closeModal('login-modal'); closeModal('signup-modal');
-  try {
-    const redirectTo = window.location.href.split('?')[0].split('#')[0];
-    const { error } = await SB.auth.signInWithOAuth({
-      provider:'google',
-      options:{ redirectTo, queryParams:{ access_type:'offline', prompt:'consent' } }
-    });
-    if (error) {
-      if (error.message?.includes('not enabled') || error.message?.includes('provider')) {
-        toast('Google sign-in not configured yet. Enable Google provider in Supabase Dashboard → Authentication → Providers → Google.','error');
-      } else throw error;
-    }
-  } catch(e) {
-    if (e.message?.includes('not enabled') || e.message?.includes('provider')) {
-      toast('Google sign-in: Enable it in Supabase Dashboard → Authentication → Providers → Google','error');
-    } else {
-      toast('Google sign-in failed: ' + e.message,'error');
-    }
-  }
+let ihEnabledProviders={};
+function ihApplyProviders(providers) {
+  ihEnabledProviders=providers || {};
+  document.querySelectorAll('.social-btn').forEach(button=>{
+    const provider=button.getAttribute('onclick')?.includes('doGoogleAuth') ? 'google' : 'apple';
+    button.style.display=ihEnabledProviders[provider]===true ? '' : 'none';
+  });
+  document.querySelectorAll('.modal-form').forEach(form=>{
+    const any=[...form.querySelectorAll('.social-btn')].some(button=>button.style.display!=='none');
+    const divider=form.querySelector('.or-div'); if(divider)divider.style.display=any ? '' : 'none';
+  });
 }
-
-async function doAppleAuth() {
-  if (!requireSB()) return;
-  closeModal('login-modal'); closeModal('signup-modal');
+async function ihInitProviders() {
+  ihApplyProviders({});
+  const controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(),6000);
   try {
-    const redirectTo = window.location.href.split('?')[0].split('#')[0];
-    const { error } = await SB.auth.signInWithOAuth({
-      provider:'apple',
-      options:{ redirectTo }
-    });
-    if (error) {
-      if (error.message?.includes('not enabled') || error.message?.includes('provider')) {
-        toast('Apple sign-in not configured yet. Enable Apple provider in Supabase Dashboard → Authentication → Providers → Apple.','error');
-      } else throw error;
-    }
-  } catch(e) {
-    if (e.message?.includes('not enabled') || e.message?.includes('provider')) {
-      toast('Apple sign-in: Enable it in Supabase Dashboard → Authentication → Providers → Apple','error');
-    } else {
-      toast('Apple sign-in failed: ' + e.message,'error');
-    }
-  }
+    const response=await fetch(CFG.SUPABASE_URL+'/auth/v1/settings',{headers:{apikey:CFG.SUPABASE_ANON_KEY},signal:controller.signal});
+    if(!response.ok) return;
+    const settings=await response.json(); ihApplyProviders(settings.external);
+  } catch(e) { /* Email sign-in remains available when provider discovery fails. */ }
+  finally { clearTimeout(timer); }
 }
+async function ihOAuth(provider) {
+  if (!requireSB()) return;
+  if(ihEnabledProviders[provider]!==true){toast('This sign-in method is unavailable. Use email instead.','info');return;}
+  try {
+    const redirectTo=window.location.origin+window.location.pathname;
+    const {error}=await SB.auth.signInWithOAuth({provider,options:{redirectTo}});
+    if(error) throw error;
+  } catch(e) {toast('Sign-in could not start. Please use email or try again.','error');}
+}
+async function doGoogleAuth() {return ihOAuth('google');}
+async function doAppleAuth() {return ihOAuth('apple');}
 
 async function changePasswordFromSettings() {
   if (!requireSB() || !me) return;
@@ -3268,10 +3268,32 @@ async function changePasswordFromSettings() {
   } catch(e) { toast(e.message, 'error'); }
 }
 
+function ihClearPrivateUI() {
+  document.querySelectorAll('#page-fresher-dash input, #page-fresher-dash textarea, #page-fresher-dash select, #page-referrer-dash input, #page-referrer-dash textarea, #page-referrer-dash select').forEach(input=>{
+    if(input.type==='checkbox') input.checked=input.defaultChecked; else input.value='';
+  });
+  ['chat-msgs','ref-chat-msgs','chat-contacts-list','ref-chat-contacts-list','requests-list','ref-requests-list','admin-users-tbody','admin-verify-list','admin-disputes-list','admin-payments-tbody','txn-tbody','escrow-locks-list','notif-list'].forEach(id=>{const el=$(id);if(el)el.innerHTML='';});
+  ['chat-partner-av','ref-chat-partner-av'].forEach(id=>{const el=$(id);if(el)delete el.dataset.partnerId;});
+  ['fresher-av-img','ref-av-img'].forEach(id=>{const el=$(id);if(el){el.removeAttribute('src');el.style.display='none';}});
+  document.querySelectorAll('.modal-overlay input,.modal-overlay textarea').forEach(input=>{input.value='';});
+  document.querySelectorAll('.modal-overlay.open').forEach(modal=>closeModal(modal.id));
+  const help=$('chatbot-msgs'),quick=$('chatbot-quick-btns');
+  if(help){help.replaceChildren();appendBotMsg(help,'Use this guide for platform questions or submit a support ticket.','recv','?','#1e3a8a');if(quick){quick.style.display='flex';help.appendChild(quick);}}
+  allReferrers=[]; streetReferrers=[]; userLoc=null; browseOffset=0;
+  if(leafletMarker){leafletMarker.remove();leafletMarker=null;}
+  if(leafletCircle){leafletCircle.remove();leafletCircle=null;}
+  if(streetReferrerLayer)streetReferrerLayer.clearLayers();
+  if(leafletMap)leafletMap.setView([20,0],2);
+}
 async function doLogout() {
-  try { if(SB) await SB.auth.signOut(); } catch(e) {}
-  me=null; profile=null; allReferrers=[]; browseOffset=0; unlockedRefs=new Set();
-  nav('landing'); updateNav(); toast('Signed out.','info');
+  try {
+    if(SB) {const {error}=await SB.auth.signOut({scope:'local'});if(error)throw error;}
+    ++ihSessionGeneration; ihSessionTask=null; ihSessionActor=null;
+    me=null; profile=null; unlockedRefs.clear(); preChatData={};
+    clearInterval(ihPrechatTimer);
+    if(ihMessageChannel){await SB.removeChannel(ihMessageChannel);ihMessageChannel=null;}
+    ihClearPrivateUI(); nav('landing'); updateNav(); toast('Signed out.','info');
+  } catch(e) {toast('Sign out failed: '+e.message,'error');}
 }
 
 async function doPasswordReset() {
@@ -3780,7 +3802,7 @@ window.onMapsLoaded = function() {
   });
 };
 
-function locateMe() {
+function legacyLocateMe() {
   if (!navigator.geolocation) { toast('Geolocation not supported.','error'); return; }
   toast('Detecting your location...','info');
   navigator.geolocation.getCurrentPosition(
@@ -3790,7 +3812,7 @@ function locateMe() {
   );
 }
 
-function setUserLoc(lat, lng, label) {
+function legacySetUserLoc(lat, lng, label) {
   userLoc = { lat, lng, label: label||`${lat.toFixed(2)},${lng.toFixed(2)}` };
   const s=$('location-status'); if(s) s.textContent='📍 '+userLoc.label;
   drawMap(lat, lng);
@@ -3910,7 +3932,7 @@ function renderBrowse(refs) {
     return;
   }
   g.innerHTML = refs.map(r => {
-    const rat   = +(r.rating||4.5);
+    const rat = Math.max(0, Math.min(5, Number(r.rating) || 0));
     const stars = '★'.repeat(Math.round(rat))+'☆'.repeat(5-Math.round(rat));
     const cat   = JOB_CATS.find(c=>c.label===(r.job_category||r.role_title));
     const emoji = cat?.emoji||'💼';
@@ -4137,13 +4159,13 @@ async function loadTxns() {
   } catch(e) { tbody.innerHTML=`<tr><td colspan="5" style="color:var(--red);padding:16px">${esc(e.message)}</td></tr>`; }
 }
 
-function exportTransactions() {
+async function exportTransactions() {
   if (!requireSB() || !me) return;
-  SB.from('escrow_transactions').select('*').eq('applicant_id', me.id).then(({data})=>{
-    if (!data?.length) { toast('No transactions to export.','info'); return; }
-    const csv=['Date,Description,Amount,Status',...data.map(t=>`${fmtDate(t.created_at)},Escrow ${t.job_category||''},-${t.amount},${t.status}`)].join('\n');
-    const a=document.createElement('a'); a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv); a.download='insiderhire_transactions.csv'; a.click();
-  });
+  try {
+    const rows=await ihAllRows('escrow_transactions','id,created_at,job_category,amount,status',q=>q.eq('applicant_id',me.id));
+    ihDownloadCSV('insiderhire_transactions.csv',['Date','Description','Amount','Status'],
+      rows.map(row=>[fmtDate(row.created_at),'Escrow '+(row.job_category||''),-Number(row.amount||0),row.status]));
+  } catch(e) {toast('Export failed: '+e.message,'error');}
 }
 
 // ─── REQUESTS ─────────────────────────────────────────────────
@@ -4161,14 +4183,15 @@ async function loadRequests() {
     let escrowMap = {};
     if (data?.length) {
       const refIds = [...new Set(data.map(a => a.referrer_id).filter(Boolean))];
-      const { data: escrows } = await SB.from('escrow_transactions')
+      const { data: escrows, error: escrowError } = await SB.from('escrow_transactions')
         .select('applicant_id,referrer_id,status,amount,created_at,auto_release_at')
         .eq('applicant_id', me.id)
         .in('referrer_id', refIds);
+      if (escrowError) throw escrowError;
       (escrows||[]).forEach(e => { escrowMap[e.referrer_id] = e; });
     }
     // Attach escrow to each application
-    const enriched = (data||[]).map(a => ({ ...a, escrow: escrowMap[a.referrer_id] || null }));
+    const enriched = (data||[]).map(a => ({ ...a, escrow: escrowMap[a.referrer_id] || null })).filter(a => ihRequestFilter==='all' || a.status===ihRequestFilter || (ihRequestFilter==='active' && ['accepted','escrow_paid'].includes(a.status)));
     if (!enriched?.length) {
       list.innerHTML='<div style="padding:40px;text-align:center;color:var(--text-3)">No requests yet. <button class="btn btn-outline btn-sm" onclick="dashNav(\'dash-browse\')">Browse workers →</button></div>';
       return;
@@ -4343,9 +4366,9 @@ async function loadRealMsgs(container, partnerId, av, gr, isRef) {
       const detailsHtml = existingDetails ? existingDetails.outerHTML : '';
       container.innerHTML = detailsHtml + [...(data || [])].reverse().map(m=>{
         const isMe=m.sender_id===me.id;
-        return `<div class="msg ${isMe?'sent':'recv'}">
+        return `<div class="msg ${isMe?'sent':'recv'}" data-message-id="${m.id}">
           ${!isMe?`<div class="chat-av" style="background:linear-gradient(135deg,${esc(gr)});width:28px;height:28px;font-size:10px;flex-shrink:0">${esc(av)}</div>`:''}
-          <div><div class="msg-bubble">${esc(m.content)}</div><div class="msg-time">${ts()}</div></div>
+          <div><div class="msg-bubble">${esc(m.content)}${ihAttachmentAction(m)}</div><div class="msg-time">${new Date(m.created_at).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</div></div>
           ${isMe?`<div class="chat-av" style="background:#1e3a8a;width:28px;height:28px;font-size:10px;flex-shrink:0">${ini(profile?.full_name||'U')}</div>`:''}
         </div>`;
       }).join('');
@@ -4358,44 +4381,52 @@ async function loadRealMsgs(container, partnerId, av, gr, isRef) {
         const m=payload.new;
         if (me && ((m.sender_id===me.id&&m.receiver_id===partnerId)||(m.sender_id===partnerId&&m.receiver_id===me.id))) {
           const isMe=m.sender_id===me.id;
-          appendMsg(container, m.content, isMe?'sent':'recv', isMe?ini(profile?.full_name||'U'):av, isMe?'#1e3a8a':gr);
+          appendMsg(container, m.content, isMe?'sent':'recv', isMe?ini(profile?.full_name||'U'):av, isMe?'#1e3a8a':gr,m);
         }
       }).subscribe();
   } catch(e) { console.warn('Load msgs:', e.message); }
 }
 
-async function sendMsg() {
+async function ihSendText(fieldId, partnerId, containerId) {
   if (!requireSB() || !me) return;
-  const field=$('chat-field'), text=field?.value?.trim();
+  const field=$(fieldId), text=field?.value?.trim();
   if (!text) return;
-  field.value='';
-  const partnerId=$('chat-partner-av')?.dataset?.partnerId || null;
-  if (!partnerId) { toast('No active chat selected.','error'); return; }
+  if (!partnerId) { toast('No active chat selected.', 'error'); return; }
+  if (text.length>4000) { toast('Message must be under 4,000 characters.', 'error'); return; }
   try {
-    const { error } = await SB.from('messages').insert({ sender_id: me.id, receiver_id: partnerId, content: text });
+    const {data,error} = await SB.from('messages').insert({sender_id:me.id,receiver_id:partnerId,content:text}).select('*').single();
     if (error) throw error;
+    if (field.value.trim()===text) field.value='';
+    appendMsg($(containerId),data.content,'sent',ini(profile?.full_name||'U'),'#1e3a8a',data);
   } catch(e) { toast('Send failed: '+e.message,'error'); }
 }
-
-async function sendRefMsg() {
+async function sendMsg() { return ihSendText('chat-field',$('chat-partner-av')?.dataset?.partnerId,'chat-msgs'); }
+async function sendRefMsg() { return ihSendText('ref-chat-field',$('ref-chat-partner-av')?.dataset?.partnerId,'ref-chat-msgs'); }
+function ihAttachmentAction(message) {
+  if (!message?.attachment_path) return '';
+  return `<button class="btn btn-ghost btn-sm" onclick="ihOpenChatFile(${ihArg(message.id)})">📎 ${esc(message.attachment_name || 'Download file')}</button>`;
+}
+async function ihOpenChatFile(messageId) {
   if (!requireSB() || !me) return;
-  const field=$('ref-chat-field'), text=field?.value?.trim();
-  if (!text) return;
-  field.value='';
-  const partnerId=$('ref-chat-partner-av')?.dataset?.partnerId || null;
-  if (!partnerId) { toast('No active chat selected.','error'); return; }
+  const preview=window.open('about:blank','_blank'); if (preview) preview.opener=null;
   try {
-    const { error } = await SB.from('messages').insert({ sender_id: me.id, receiver_id: partnerId, content: text });
-    if (error) throw error;
-  } catch(e) { toast('Send failed: '+e.message,'error'); }
+    const {data:message,error} = await SB.from('messages').select('attachment_path').eq('id',messageId).single();
+    if (error || !message?.attachment_path) throw error || new Error('File is unavailable.');
+    const {data,error:fileError} = await SB.storage.from('documents').createSignedUrl(message.attachment_path,60);
+    if (fileError || !data?.signedUrl) throw fileError || new Error('File link is unavailable.');
+    if (!preview) throw new Error('Allow popups to open the file.');
+    preview.location.replace(data.signedUrl);
+  } catch(e) { preview?.close(); toast('Could not open file: '+e.message,'error'); }
 }
 
-function appendMsg(container, text, dir, av, bg) {
+function appendMsg(container, text, dir, av, bg, message=null) {
   if (!container) return;
+  if (message?.id && container.querySelector(`[data-message-id="${message.id}"]`)) return;
   const d=document.createElement('div'); d.className=`msg ${dir}`;
+  if (message?.id) d.dataset.messageId=message.id;
   const bgStyle=String(bg).includes('gradient')?bg:`linear-gradient(135deg,${bg},${bg})`;
   d.innerHTML=`${dir==='recv'?`<div class="chat-av" style="background:${esc(bgStyle)};width:28px;height:28px;font-size:10px;flex-shrink:0">${esc(av)}</div>`:''}
-    <div><div class="msg-bubble">${esc(text)}</div><div class="msg-time">${ts()}</div></div>
+    <div><div class="msg-bubble">${esc(text)}${ihAttachmentAction(message)}</div><div class="msg-time">${message?.created_at ? new Date(message.created_at).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}) : ts()}</div></div>
     ${dir==='sent'?`<div class="chat-av" style="background:${esc(bgStyle)};width:28px;height:28px;font-size:10px;flex-shrink:0">${esc(av)}</div>`:''}`;
   container.appendChild(d); container.scrollTop=container.scrollHeight;
 }
@@ -4458,9 +4489,12 @@ async function loadRefRequests() {
 async function loadRefEarnings() {
   if (!requireSB() || !me) return;
   try {
-    const { data: released } = await SB.from('escrow_transactions').select('amount,created_at,applicant_id').eq('referrer_id',me.id).eq('status','released');
+    const { data: released, error: releasedError } = await SB.from('escrow_transactions').select('amount,created_at,released_at,applicant_id').eq('referrer_id',me.id).eq('status','released');
+    if(releasedError) throw releasedError;
+    ihRenderEarnings(released || []);
     const total = (released||[]).reduce((s,r)=>s+(r.amount||0)-COMMISSION_USD,0);
-    safe('ref-lifetime-earn', total);
+    safe('ref-lifetime-earn', total); safe('ref-total-earn','$'+total.toLocaleString());
+    safe('ref-done',profile?.referral_count || 0); safe('ref-rating',Number(profile?.rating || 0).toFixed(1));
     const ls=$('ref-lifetime-sub'); if(ls) ls.textContent=`${released?.length||0} successful referrals · $${COMMISSION_USD} platform commission each`;
     safe('ref-payout-amount', Math.max(0,total));
     const tbody=$('ref-payout-tbody');
@@ -4552,25 +4586,28 @@ async function loadAdminData() {
   try {
     const _adminResults = await Promise.allSettled([
       SB.from('profiles').select('id',{count:'exact',head:true}),
-      SB.from('profiles').select('id',{count:'exact',head:true}).eq('role','referrer'),
+      SB.from('profiles').select('id',{count:'exact',head:true}).eq('role','referrer').eq('is_verified',true),
       SB.from('escrow_transactions').select('id',{count:'exact',head:true}).eq('status','released'),
       SB.from('escrow_transactions').select('id',{count:'exact',head:true}).eq('status','refund_requested'),
     ]);
     const [{ count: uc=0 },{ count: rc=0 },{ count: ec=0 },{ count: dc=0 }] =
-      _adminResults.map(r => r.status==='fulfilled' ? (r.value.data||r.value) : { count:0 });
+      _adminResults.map(r => { if(r.status!=='fulfilled') throw r.reason; if(r.value.error) throw r.value.error; return r.value; });
     safe('am-users',(uc||0).toLocaleString()); safe('am-referrers',(rc||0).toLocaleString());
     safe('am-jobs',(ec||0).toLocaleString()); safe('am-disputes',dc||0);
-    const { data: escrows } = await SB.from('escrow_transactions').select('amount').eq('status','released');
+    const escrows = (await ihAllRows('escrow_transactions','id,amount,status')).filter(e=>e.status==='released');
     const vol=(escrows||[]).reduce((s,e)=>s+e.amount,0);
     safe('am-volume','$'+vol.toLocaleString()); safe('am-revenue','$'+Math.round(vol*0.2).toLocaleString());
-  } catch(e) { console.warn('Admin data:', e.message); }
+    await ihLoadRegions(); safe('health-supa','Connected');
+    safe('health-maps',window.L ? 'Library loaded' : 'Not loaded');
+  } catch(e) { safe('health-supa','Check connection'); toast('Analytics could not load: '+e.message,'error'); }
 }
 
 async function loadAdminUsers() {
   const tbody=$('admin-users-tbody'); if(!tbody) return;
   if (!requireSB()) return;
   try {
-    const { data } = await SB.from('profiles').select('*').order('created_at',{ascending:false}).limit(25);
+    const { data, error } = await SB.from('profiles').select('*').order('created_at',{ascending:false}).limit(25);
+    if (error) throw error;
     if (!data?.length) { tbody.innerHTML='<tr><td colspan="6" style="text-align:center;color:var(--text-3);padding:24px">No users yet</td></tr>'; return; }
     tbody.innerHTML = data.map(u=>`<tr>
       <td><div style="display:flex;align-items:center;gap:8px"><div class="chat-av" style="background:linear-gradient(135deg,#1e3a8a,#2563EB);width:30px;height:30px;font-size:11px">${ini(u.full_name||u.email||'?')}</div><div><div style="font-weight:600;font-size:12px">${esc(u.full_name||'Unknown')}</div><div style="font-size:10px;color:var(--text-3)">${esc(u.email||'')}</div></div></div></td>
@@ -4587,7 +4624,8 @@ async function loadAdminVerify() {
   const list=$('admin-verify-list'); if(!list) return;
   if (!requireSB()) return;
   try {
-    const { data } = await SB.from('profiles').select('*').eq('role','referrer').eq('is_verified',false).order('created_at',{ascending:false}).limit(20);
+    const { data, error } = await SB.from('profiles').select('*').eq('role','referrer').eq('is_verified',false).order('created_at',{ascending:false}).limit(20);
+    if (error) throw error;
     if (!data?.length) { list.innerHTML='<div style="padding:24px;text-align:center;color:var(--text-3)">No pending verifications</div>'; return; }
     list.innerHTML = data.map(u=>`<div class="verify-row">
       <div style="display:flex;align-items:center;gap:10px">
@@ -4688,8 +4726,90 @@ async function loadAdminPayments() {
 }
 
 function emergencyStop() { toast('Pause payments in your payment-provider dashboard. No payment settings were changed here.', 'info'); }
-function exportAdminReport() { toast('Export functionality — pull from Supabase Dashboard > Table Editor > Export CSV.','info'); }
-function saveAdminConfig() { toast('Configuration changes require the backend administrator; nothing was saved.', 'info'); }
+async function ihAllRows(table,columns,configure=null) {
+  const rows=[];
+  for(let offset=0;;offset+=500) {
+    let query=SB.from(table).select(columns).order('id').range(offset,offset+499);
+    if(configure) query=configure(query);
+    const {data,error}=await query; if(error) throw error;
+    rows.push(...(data || [])); if((data || []).length<500) return rows;
+  }
+}
+async function ihLoadRegions() {
+  const profiles=await ihAllRows('profiles','id,location');
+  const countries=[/\b(uk|united kingdom|england|london|scotland|wales)\b/i,/\b(usa|united states|america)\b/i,/\b(germany|deutschland|berlin|munich)\b/i,/\b(australia|sydney|melbourne)\b/i];
+  const rows=$('sp-admin-overview')?.querySelectorAll('.progress-bar-wrap');
+  (rows || []).forEach((bar,i)=>{
+    const count=profiles.filter(p=>countries[i]?.test(p.location || '')).length;
+    const pct=profiles.length ? Math.round(100*count/profiles.length) : 0;
+    const value=bar.previousElementSibling?.lastElementChild;
+    if(value) value.textContent=pct+'%';
+    if(bar.firstElementChild) bar.firstElementChild.style.width=pct+'%';
+  });
+}
+function ihRenderEarnings(released) {
+  const now=new Date(); const months=Array.from({length:6},(_,i)=>new Date(now.getFullYear(),now.getMonth()-5+i,1));
+  const sums=months.map(month=>released.filter(r=>{const d=new Date(r.released_at || r.created_at); return d.getFullYear()===month.getFullYear() && d.getMonth()===month.getMonth();}).reduce((sum,r)=>sum+Math.max(0,Number(r.amount || 0)-COMMISSION_USD),0));
+  const max=Math.max(0,...sums);
+  document.querySelectorAll('#sp-ref-overview .bar-col').forEach((column,i)=>{
+    const bar=column.querySelector('.bar-fill'), label=column.querySelector('.bar-lbl');
+    if(bar) {bar.style.height=(max ? 100*sums[i]/max : 0)+'%';bar.title='$'+sums[i].toFixed(2);}
+    if(label) label.textContent=months[i].toLocaleDateString([], {month:'short'});
+  });
+}
+async function ihLoadFresherOverview() {
+  if(!SB || !me || profile?.role!=='fresher') return;
+  try {
+    const apps=await ihAllRows('applications','id,referrer_id,status,applied_at',q=>q.eq('applicant_id',me.id));
+    const active=apps.filter(a=>['pending','accepted','escrow_paid'].includes(a.status));
+    safe('stat-requests',active.length);
+    const requestSub=$('stat-requests')?.nextElementSibling;if(requestSub) requestSub.textContent='Pending or in progress';
+    const stats=document.querySelectorAll('#sp-dash-overview .stat-card .stat-val');
+    const start=new Date();start.setDate(1);start.setHours(0,0,0,0);
+    if(stats[2]) stats[2].textContent=new Set(apps.filter(a=>new Date(a.applied_at)>=start).map(a=>a.referrer_id)).size;
+    const fields=['full_name','phone','location','age','nationality','bio','work_eligibility','degree','university','skills'];
+    if(stats[3]) stats[3].textContent=Math.round(100*fields.filter(f=>profile[f] && String(profile[f]).trim()).length/fields.length)+'%';
+    const locks=await ihAllRows('escrow_transactions','id,amount,status',q=>q.eq('applicant_id',me.id));
+    safe('stat-escrow','$'+locks.filter(l=>l.status==='locked').reduce((sum,l)=>sum+Number(l.amount||0),0));
+  } catch(e) { toast('Dashboard could not load: '+e.message,'error'); }
+}
+
+function ihCSVCell(value) {
+  let text = value == null ? '' : String(value);
+  if (/^[\s]*[=+@-]/.test(text)) text = "'" + text;
+  return '"' + text.replace(/"/g, '""') + '"';
+}
+function ihDownloadCSV(filename, columns, rows) {
+  const csv = '\ufeff' + [columns, ...rows].map(row => row.map(ihCSVCell).join(',')).join('\r\n');
+  const url = URL.createObjectURL(new Blob([csv], {type:'text/csv;charset=utf-8'}));
+  const link = document.createElement('a'); link.href=url; link.download=filename;
+  document.body.appendChild(link); link.click(); link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+async function exportAdminReport() {
+  if (!requireSB() || profile?.role !== 'admin') { toast('Administrator access required.', 'error'); return; }
+  try {
+    const payments = $('sp-admin-payments')?.classList.contains('active');
+    const table = payments ? 'escrow_transactions' : 'applications';
+    const columns = payments ? ['id','applicant_id','referrer_id','amount','status','created_at'] :
+      ['id','applicant_id','referrer_id','status','applied_at','updated_at'];
+    const rows = [];
+    for (let offset=0;;offset+=500) {
+      const {data,error} = await SB.from(table).select(columns.join(',')).order('id').range(offset, offset+499);
+      if (error) throw error;
+      rows.push(...(data || []));
+      if ((data || []).length < 500) break;
+    }
+    ihDownloadCSV('insiderhire_' + table + '.csv', columns, rows.map(row => columns.map(c => row[c])));
+    toast('Report downloaded.', 'success');
+  } catch (e) { toast('Export failed: ' + e.message, 'error'); }
+}
+function saveAdminConfig() { toast('These settings belong to payments and will be enabled during payment setup.', 'info'); }
+function ihInitPaymentSettings() {
+  $('sp-admin-config')?.querySelectorAll('input,button').forEach(input => {
+    input.disabled=true; input.title='Available after payment setup';
+  });
+}
 
 // ─── PROFILE SAVE ─────────────────────────────────────────────
 async function saveProfile() {
@@ -4981,11 +5101,12 @@ function openDocUpload() { uploadDoc('other'); }
 // ─── SUPPORT TICKET ───────────────────────────────────────────
 async function submitSupportTicket() {
   const m=$('support-msg')?.value?.trim(); if(!m) { toast('Please describe your issue.','error'); return; }
+  if (m.length>4000) { toast('Please keep the ticket under 4,000 characters.','error'); return; }
   if (!requireSB() || !me) { toast('Sign in to submit a ticket.','error'); return; }
   try {
-    const { error } = await SB.from('support_tickets').insert({ user_id:me.id, message:m, status:'open' });
+    const { error } = await SB.from('support_tickets').insert({ user_id:me.id, message:'['+($('sp-dash-support')?.querySelector('select')?.value || 'Support')+'] '+m, status:'open' });
     if (error) throw error;
-    toast('Ticket created! We respond within 24h.','success');
+    toast('Ticket created! Your request will be reviewed.','success');
     const e=$('support-msg'); if(e) e.value='';
   } catch(e) { toast(e.message,'error'); }
 }
@@ -4994,13 +5115,46 @@ async function submitSupportTicket() {
 function toggleSection(id)   { const el=$(id); if(el) el.classList.toggle('section-collapsed'); }
 function toggleJobPref(tile) { tile.classList.toggle('on'); }
 function saveAvail()         { clearTimeout(saveAvail._t); saveAvail._t=setTimeout(()=>saveFullProfile(),600); }
-function filterRequests(t,el){ document.querySelectorAll('#sp-dash-requests .filter-pill').forEach(p=>p.classList.remove('on')); if(el) el.classList.add('on'); }
-function confirmDeleteAccount() { if(!confirm('Delete account permanently? This cannot be undone.')) return; doLogout(); }
-function startKYC()          { toast('Identity verification — contact insiderhire.org@gmail.com to start KYC.','info'); }
+let ihRequestFilter='all';
+function filterRequests(t,el){ ihRequestFilter=t; document.querySelectorAll('#sp-dash-requests .filter-pill').forEach(p=>p.classList.remove('on')); if(el) el.classList.add('on'); loadRequests(); }
+async function confirmDeleteAccount() {
+  if (!requireSB() || !me || !confirm('Send an account deletion request to support? Your account will remain available until the request is processed.')) return;
+  const {error} = await SB.from('support_tickets').insert({user_id:me.id, message:'ACCOUNT DELETION REQUEST: Please process deletion of my account and associated personal data.', status:'open'});
+  if (error) { toast(error.message, 'error'); return; }
+  toast('Account deletion request submitted. Your account has not been deleted yet.', 'success');
+}
+function startKYC() { uploadDoc('other'); }
 function goReferrerDetail(id){ openEscrowFor(id); }
 function uploadOfferLetter() { openModal('payslip-modal'); }
-function openFileUpload()    { const i=document.createElement('input'); i.type='file'; i.accept='.pdf,.doc,.docx'; i.onchange=()=>toast('File ready to upload','info'); i.click(); }
-function setBrowseFilter(type,el) { setBrowseFilter(type,el); }
+function openFileUpload() {
+  const partnerId=$('chat-partner-av')?.dataset?.partnerId;
+  if (!requireSB() || !me || !partnerId) { toast('Select an active chat first.','error'); return; }
+  const actor=me.id, input=document.createElement('input');
+  input.type='file'; input.accept='.pdf,.doc,.docx';
+  input.onchange=async()=>{
+    const file=input.files?.[0]; if(!file) return;
+    if (!['application/pdf','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document'].includes(file.type)) { toast('Chat attachments must be PDF or Word documents.','error'); return; }
+    const name=file.name.replace(/[^a-zA-Z0-9._-]/g,'_').replace(/\.{2,}/g,'.').slice(-180);
+    const path=`${actor}/chat/${crypto.randomUUID()}_${name}`;
+    let uploaded=false;
+    try {
+      if (me?.id!==actor) throw new Error('Your session changed.');
+      const {error:uploadError}=await ihUpload('documents',path,file);
+      if (uploadError) throw uploadError;
+      uploaded=true;
+      if (me?.id!==actor || $('chat-partner-av')?.dataset?.partnerId!==partnerId) throw new Error('The selected conversation changed. Please try again.');
+      const {data,error}=await SB.from('messages').insert({sender_id:actor,receiver_id:partnerId,
+        content:'Shared a document',attachment_path:path,attachment_name:name,attachment_mime:file.type,attachment_size:file.size}).select('*').single();
+      if (error) throw error;
+      appendMsg($('chat-msgs'),data.content,'sent',ini(profile?.full_name||'U'),'#1e3a8a',data);
+    } catch(e) {
+      if (uploaded) await SB.storage.from('documents').remove([path]);
+      const needsUpdate=['PGRST204','42703'].includes(e.code);
+      toast(needsUpdate ? 'Install the chat attachment SQL update first.' : 'File was not sent: '+e.message,'error');
+    }
+  };
+  input.click();
+}
 
 const bioEl=$('p-bio');
 if (bioEl) {
@@ -5019,140 +5173,15 @@ window.addEventListener('scroll',()=>{
 });
 
 // ─── CHATBOT ──────────────────────────────────────────────────
-const KB = {
-  escrow:`💰 How Escrow Works:\n\n1. Browse verified referrers near you\n2. Send a referral request (free)\n3. Referrer accepts your request\n4. You deposit ₹ equivalent of $500 via Razorpay\n5. Referrer's full name, phone, email & workplace are instantly revealed\n6. Chat opens — share your CV, discuss the role\n7. Referrer submits your application to their employer\n8. You start the job → upload your first payslip\n9. Referrer also uploads a matching payslip\n10. Admin verifies both within 24–48h\n11. Escrow releases: Referrer receives $400, platform keeps $100\n\n❌ No job within 14 days? You get $${ESCROW_USD-REFUND_PROC_FEE} back (minus $${REFUND_PROC_FEE} processing fee).`,
-
-  pricing:`💳 Platform Fees:\n\n• Fresher signup: ₹ equivalent of $${PLATFORM_FEE_USD} (one-time, non-refundable)\n• Escrow per referral: ₹ equivalent of $${ESCROW_USD}\n• Platform commission (on success): $${COMMISSION_USD}\n• Referrer receives: $${REFERRER_PAYOUT}\n• Refund processing fee: $${REFUND_PROC_FEE}\n• Referrer registration: FREE\n\nAll payments via Razorpay (UPI, Cards, Net Banking).`,
-
-  jobs:`Available Job Categories:\n\n🏨 Hotel Staff — front desk, room service, housekeeping\n🍳 Kitchen Staff — chefs, dishwashers, food prep\n📦 Warehouse Worker — packing, picking, loading\n🛒 Retail Assistant — shop floor, cashier, stacking\n🔒 Security Guard — venue, store, site security\n🚴 Delivery Rider — food, parcels, last-mile\n🧹 Cleaner — office, hotel, domestic\n🔧 Labour Jobs — general labour, construction support\n\nAll roles are local, part-time odd jobs suited for international students.`,
-
-  mask:`🔒 Privacy Protection:\n\nBefore paying escrow, referrer info is hidden:\n• Name: Shamsheer Khan → Sham**** Kh**\n• Phone: 6303716492 → ********92\n• Email: john@gmail.com → jo***@gmail.com\n• Company: Hidden\n• Workplace address: Hidden\n\n✅ After $${ESCROW_USD} escrow deposit:\n• Full name revealed\n• Phone number revealed\n• Email address revealed\n• Company & workplace revealed\n• Chat unlocked immediately`,
-
-  refund:`💸 Refund Policy:\n\n• Conditions: Referrer fails to submit referral within 14 days\n• Refund amount: $${ESCROW_USD} minus $${REFUND_PROC_FEE} processing fee = $${ESCROW_USD-REFUND_PROC_FEE} returned\n• Timeline: 5–7 business days to original payment method\n• How to request: Wallet → Active Escrow → Request Refund\n• Disputes: Raise a support ticket at insiderhire.org@gmail.com`,
-
-  how:`📋 How InsiderHire Works:\n\n1. Sign up as a Job Seeker (fresher)\n2. Pay ₹ equivalent of $${PLATFORM_FEE_USD} one-time activation fee\n3. Search referrers by job type & distance (10/50/100/500km)\n4. Send a referral request — free\n5. Referrer accepts your request\n6. Deposit ₹ equivalent of $${ESCROW_USD} escrow via Razorpay\n7. Contact details & workplace revealed immediately\n8. Chat with referrer, share your CV & documents\n9. Referrer submits your job application internally\n10. Start the job & upload your first payslip\n11. Admin verifies → referrer gets $${REFERRER_PAYOUT}`,
-
-  payment:`📱 Payment Methods (Razorpay):\n\n• UPI (Google Pay, PhonePe, Paytm)\n• Debit & Credit Cards (Visa, Mastercard, Rupay)\n• Net Banking (all major banks)\n• Wallets (Paytm, Mobikwik)\n\nAll payments in INR at current exchange rates.\nReceipts emailed automatically.\nPCI-DSS Level 1 compliant.`,
-
-  navigate:`🗺️ Navigation Guide:\n\n• Browse — find workers by job type & location\n• Requests — track your referral applications\n• Messages — chat with referrers (unlocks after escrow)\n• Wallet — view escrow locks & request refunds\n• Profile — update your details for better matches\n\nNeed more help? Email insiderhire.org@gmail.com`,
-};
-
 function botAnswer(q) {
-  const m = q.toLowerCase();
-  // Escrow & payments
-  if (m.includes('escrow')||m.includes('deposit')||m.includes('how do i pay')||m.includes('payment process')) return KB.escrow;
-  if (m.includes('cost')||m.includes('price')||m.includes('fee')||m.includes('how much')||m.includes('charge')||m.includes('₹')||m.includes('rupee')) return KB.pricing;
-  if (m.includes('razorpay')||m.includes('upi')||m.includes('card')||m.includes('net banking')||m.includes('payment method')) return KB.payment;
-  if (m.includes('refund')||m.includes('money back')||m.includes('cancel')||m.includes('failed')||m.includes('no job')) return KB.refund;
-  // Platform info
-  if (m.includes('how')||m.includes('process')||m.includes('step')||m.includes('explain')||m.includes('getting started')||m.includes('work')) return KB.how;
-  if (m.includes('mask')||m.includes('hidden')||m.includes('privacy')||m.includes('reveal')||m.includes('unlock')||m.includes('contact')) return KB.mask;
-  if (m.includes('navigat')||m.includes('where')||m.includes('find')||m.includes('browse')||m.includes('dashboard')) return KB.navigate;
-  // Job category INFO only (not recommendations)
-  if (m.includes('what job')||m.includes('which job')||m.includes('type of job')||m.includes('available job')||m.includes('job categor')) return KB.jobs;
-  // Block job search / recommendation requests
-  if (m.includes('find me a job')||m.includes('get me a job')||m.includes('recommend a job')||m.includes('best job for me')||m.includes('which referrer')||m.includes('suggest a referrer')) {
-    return `🤖 I'm a support assistant — I can't recommend specific jobs or referrers.
-
-To find referrers near you:
-→ Go to Dashboard → Browse Workers
-→ Filter by job type and location
-→ Click "Request →" on any referrer
-
-Need help with something else?`;
-  }
-  // General job type query — explain categories, not recommend
-  if (m.includes('job')||m.includes('work')||m.includes('hotel')||m.includes('kitchen')||m.includes('warehouse')||m.includes('retail')||m.includes('security')||m.includes('delivery')||m.includes('clean')||m.includes('labour')) return KB.jobs;
-
-  // Identity questions
-  if (m.includes('who are you')||m.includes('what are you')||m.includes('are you ai')||m.includes('are you a bot')||m.includes('are you human')||m.includes('are you real'))
-    return `Hi! I'm InsiderBot, InsiderHire's support assistant.
-
-I help with payments, accounts, referrals, and platform questions. I'm not human, but I'm here to help! 🤖
-
-What can I help you with?`;
-
-  if (m.includes('who made')||m.includes('who built')||m.includes('who created')||m.includes('who is founder')||m.includes('founder')||m.includes('ceo'))
-    return `InsiderHire was founded by Sheeban Ahmed Khan (Founder & CEO).
-
-The platform was built by Shamsheer Khan Khurram, AI/ML Engineer and Lead Developer.
-
-You can learn more on our About Us page.`;
-
-  if (m.includes('who is developer')||m.includes('who is shamsheer')||m.includes('shamsheer')||m.includes('lead developer'))
-    return `Shamsheer Khan Khurram is the Lead Developer and AI/ML Engineer behind InsiderHire.
-
-He built the entire platform including the Supabase backend, Razorpay escrow system, and the UI you're using right now.
-
-LinkedIn: linkedin.com/in/shamsheer-khan-khurram`;
-
-  if (m.includes('sheeban')||m.includes('who is sheeban'))
-    return `Sheeban Ahmed Khan is the Founder & CEO of InsiderHire.
-
-He had the vision to create a referral-based platform that helps international students find part-time jobs through trusted employee connections.`;
-
-  if (m.includes('what is insiderhire')||m.includes('about insiderhire')||m.includes('what does insiderhire do')||m.includes('tell me about'))
-    return `InsiderHire is a referral-based job platform for international students.
-
-How it works:
-1. Browse verified workers (Insiders) in your city
-2. Send a request for £/$/€10
-3. If they accept, pay £/$/€500 escrow
-4. Pre-chat to confirm job availability
-5. Get referred, get hired!
-
-We cover hotel, kitchen, warehouse, retail, security, delivery, cleaning and labour jobs.`;
-
-  if (m.includes('hello')||m.includes('hi ')||m.includes('hey ')||m.includes('good morning')||m.includes('good evening')||m.includes('sup'))
-    return `Hey! 👋 Welcome to InsiderHire support.
-
-I can help you with payments, account issues, referrals, and how the platform works.
-
-What do you need help with?`;
-
-  if (m.includes('thank')||m.includes('thanks')||m.includes('great')||m.includes('awesome')||m.includes('perfect'))
-    return `Happy to help! 😊
-
-Let me know if you need anything else.`;
-
-  if (m.includes('contact')||m.includes('email')||m.includes('support email')||m.includes('reach'))
-    return `You can reach our team at:
-📧 insiderhire.org@gmail.com
-
-We typically respond within 24 hours.`;
-
-  if (m.includes('trust')||m.includes('safe')||m.includes('scam')||m.includes('legit')||m.includes('real'))
-    return `InsiderHire is a legitimate platform with:
-
-✅ Razorpay escrow — money is held securely, not sent directly to anyone
-✅ All referrers manually verified before going live
-✅ 14-day auto-refund if referral not submitted
-✅ Full PCI-DSS compliant payment processing
-
-Your money is always protected.`;
-
-  if (m.includes('country')||m.includes('available in')||m.includes('which countries')||m.includes('uk')||m.includes('usa')||m.includes('australia')||m.includes('germany'))
-    return `InsiderHire is currently active in:
-
-🇬🇧 United Kingdom (GBP)
-🇺🇸 USA (USD)
-🇦🇺 Australia (AUD)
-🇩🇪 Germany (EUR)
-
-Payments are charged in your local currency automatically.`;
-
-  return `I can help with:
-
-💰 Escrow & payment process
-💳 Pricing & fees
-📱 Payment methods (Razorpay)
-🔒 Privacy & info masking
-🔄 How InsiderHire works
-💸 Refund policy
-👥 About InsiderHire & team
-🗺️ Navigation & account help
-
-Just type your question!`;
+  const m=String(q || '').toLowerCase();
+  if (/pay|escrow|refund|withdraw|payout|currency|fee/.test(m)) return 'Payments are not enabled yet. No payment, refund or payout is processed by this help panel. Contact insiderhire.org@gmail.com for assistance.';
+  if (/password|login|sign in/.test(m)) return 'Use Sign in to access your account. For a forgotten password, enter your email and choose Forgot password. Never share your password or reset link.';
+  if (/verify|kyc|document|badge/.test(m)) return 'Referrers can submit employment or identity evidence from the Verification Centre. Documents are stored privately and reviewed by an administrator.';
+  if (/delete|privacy|personal/.test(m)) return 'Use Settings to submit an account deletion request. Privacy, Terms and Refund policies open as separate pages from the footer.';
+  if (/chat|file|message/.test(m)) return 'Pre-chat uses predefined replies. Full messaging requires a backend-verified connection. In an active chat, use the attachment button to share a PDF or Word document up to 10 MB.';
+  if (/browse|refer|job|work/.test(m)) return 'Browse verified referrers by category and approximate location. Requests and verification do not guarantee a job offer. Eligibility and hiring decisions belong to employers.';
+  return 'This is the InsiderHire help guide. For account issues or questions not covered here, submit a support ticket from your dashboard or email insiderhire.org@gmail.com.';
 }
 
 function chatbotSend(txt) {
@@ -5164,11 +5193,11 @@ function chatbotSend(txt) {
   const qb=$('chatbot-quick-btns'); if(qb) qb.style.display='none';
   appendBotMsg(msgs, msg, 'sent', ini(profile?.full_name||'U'), '#1e3a8a');
   const typing=document.createElement('div'); typing.className='msg recv'; typing.id='bot-typing';
-  typing.innerHTML=`<div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#1e3a8a,#2563EB);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0">🤖</div><div><div class="msg-bubble" style="color:var(--text-3)">Typing…</div></div>`;
+  typing.innerHTML=`<div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#1e3a8a,#2563EB);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0">?</div><div><div class="msg-bubble" style="color:var(--text-3)">Typing…</div></div>`;
   msgs.appendChild(typing); msgs.scrollTop=msgs.scrollHeight;
   setTimeout(()=>{
     const t=$('bot-typing'); if(t) t.remove();
-    appendBotMsg(msgs, botAnswer(msg), 'recv', '🤖', 'linear-gradient(135deg,#1e3a8a,#2563EB)');
+    appendBotMsg(msgs, botAnswer(msg), 'recv', '?', 'linear-gradient(135deg,#1e3a8a,#2563EB)');
   }, 600);
 }
 
@@ -5675,25 +5704,8 @@ document.addEventListener('click', function(e) {
 // Function "public-config". These keys never appear in frontend source code.
 // Supabase URL + anon key remain in HTML (they are public by design).
 async function loadPublicConfig() {
-  const cfg = window.INSIDERHIRE_CONFIG || {};
-  const url  = cfg.SUPABASE_URL;
-  const anon = cfg.SUPABASE_ANON_KEY;
-  if (!url || url === 'YOUR_SUPABASE_PROJECT_URL') {
-    console.warn('[InsiderHire] SUPABASE_URL not set in config block.');
-    return;
-  }
-  try {
-    const res  = await fetch(`${url}/functions/v1/public-config`, {
-      headers: { 'Authorization': `Bearer ${anon}`, 'Content-Type': 'application/json' }
-    });
-    if (!res.ok) throw new Error(`public-config returned ${res.status}`);
-    const data = await res.json();
-    if (data.razorpay_key_id)     RZP_KEY  = data.razorpay_key_id;
-    if (data.google_maps_api_key) MAPS_KEY = data.google_maps_api_key;
-    console.log('[InsiderHire] Public config loaded from Edge Function.');
-  } catch(e) {
-    console.error('[InsiderHire] Failed to load public-config:', e.message);
-  }
+  // Payments are deliberately disabled; OpenStreetMap needs no API key.
+  return;
 }
 
 // Google Maps removed — using free OpenStreetMap/Leaflet instead
@@ -5712,6 +5724,10 @@ window.addEventListener('load', async ()=>{
 
   // Step 0: Apply saved theme before anything renders
   initTheme();
+  ihInitPaymentSettings();
+  ihInitProviders();
+  ihRenderEarnings([]);
+  $('sp-admin-overview')?.querySelectorAll('.progress-bar-wrap').forEach(bar=>{if(bar.firstElementChild)bar.firstElementChild.style.width='0%';const value=bar.previousElementSibling?.lastElementChild;if(value)value.textContent='—';});
 
   // Step 1: Init Supabase client (needs URL + anon key from HTML)
   if (cfg.SUPABASE_URL && cfg.SUPABASE_URL!=='YOUR_SUPABASE_PROJECT_URL') {
